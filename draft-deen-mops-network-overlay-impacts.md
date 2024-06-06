@@ -1,6 +1,6 @@
 ---
-title: "TODO - Your title"
-abbrev: "TODO - Abbreviation"
+title: "Network Overlay Impacts to Streaming Video"
+abbrev: "NOISV"
 category: info
 
 docname: draft-deen-mops-network-overlay-impacts-latest
@@ -26,7 +26,7 @@ venue:
 author:
  -
     fullname: "Glenn Deen"
-    organization: Your Organization Here
+    organization: Comcast-NBCUniversal
     email: "glenn_deen@comcast.com"
 
 normative:
