@@ -9,19 +9,19 @@ number:
 date:
 consensus: true
 v: 3
-area: AREA
-workgroup: WG Working Group
+area: "Operations and Management"
+workgroup: "Media OPerationS"
 keyword:
  - next generation
  - unicorn
  - sparkling distributed ledger
 venue:
-  group: WG
-  type: Working Group
-  mail: WG@example.com
-  arch: https://example.com/WG
-  github: USER/REPO
-  latest: https://example.com/LATEST
+  group: "Media OPerationS"
+  type: "Working Group"
+  mail: "mops@ietf.org"
+  arch: "https://mailarchive.ietf.org/arch/browse/mops/"
+  github: "gitnnelg/NetworkOverlays"
+  latest: "https://gitnnelg.github.io/NetworkOverlays/draft-deen-mops-network-overlay-impacts.html"
 
 author:
  -
