@@ -56,6 +56,38 @@ Historically VPN users rarely accessed streaming services over VPNs, largely for
 
 More recently, new privacy focused transports such as MASQUE based http2/http3 protocol specific network overlay technologies have become available to consumers who and these network overlays in turn have become part of the delivery pipeline between their adopters devices and the video streaming platform service infrastructures such as CDN caches, authentication and UI servers and platform security and protection services.    
  
+# Impacts
+
+## Improper Cache Selection
+
+## Alternate Routing / Unexpected Routing
+
+## Bypass of Native Network Policies
+
+## Incorrect Traffic Classification 
+
+## Increased Latency
+
+## Impacts of ALtered IP Address 
+
+## Altered logging 
+
+## Geofilters breakage
+
+### unintended blocking
+
+## Broken login/authentication 
+
+
+
+# Ideas to Mitigate Impacts
+
+## Application notification of policy change
+
+## Interfaces to access policy settings
+
+## Enable Application Level Option In/Out
+
 
 # Conventions and Definitions
 
