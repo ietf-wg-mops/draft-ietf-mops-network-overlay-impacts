@@ -36,7 +36,7 @@ informative:
 
 --- abstract
 
-This document examines the operational impacts that network overlays which introduce new alternative policies such as addressing, routing, DNS resolver changes to network connections have on streaming video delivery.    
+This document examines the operational impacts that network overlays which introduce new alternative policies such as addressing, routing, DNS resolver changes to network connections have on streaming video delivery.
 
 --- middle
 
