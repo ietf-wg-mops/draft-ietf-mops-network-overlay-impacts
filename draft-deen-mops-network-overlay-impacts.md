@@ -53,7 +53,7 @@ At the same time the streaming industry has been busy developing and deploying t
 Historically VPN users rarely accessed streaming services over VPNs, largely for performance reasons since in the past many VPNs did not have the bandwidth to support high quality video, and more recently becuase many streaming services have chosen to block use from VPNs due to their extensive use to bypass regional content distribution restrictions.    The result has been that VPNs have largely not had an operational impact to streaming platforms.
 
 More recently, new privacy focused transports such as MASQUE based http2/http3 protocol specific network overlay technologies have become available to consumers who and these network overlays in turn have become part of the delivery pipeline between their adopters devices and the video streaming platform service infrastructures such as CDN caches, authentication and UI servers and platform security and protection services.
- 
+
 # Impacts
 
 ## Improper Cache Selection
@@ -62,19 +62,19 @@ More recently, new privacy focused transports such as MASQUE based http2/http3 p
 
 ## Bypass of Native Network Policies
 
-## Incorrect Traffic Classification 
+## Incorrect Traffic Classification
 
 ## Increased Latency
 
-## Impacts of Altered IP Address 
+## Impacts of Altered IP Address
 
-## Altered logging 
+## Altered logging
 
 ## Geofilters breakage
 
 ### unintended blocking
 
-## Broken login/authentication 
+## Broken login/authentication
 
 # Ideas to Mitigate Impacts
 
