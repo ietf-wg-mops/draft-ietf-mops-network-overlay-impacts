@@ -60,7 +60,7 @@ More recently, new privacy focused transports such as MASQUE based http2/http3 p
 
 ## Improper Cache Selection
 
-## Alternate Routing / Unexpected Routing
+## Alternate Routing and Unexpected Routing
 
 ## Bypass of Native Network Policies
 
@@ -68,7 +68,7 @@ More recently, new privacy focused transports such as MASQUE based http2/http3 p
 
 ## Increased Latency
 
-## Impacts of ALtered IP Address 
+## Impacts of Altered IP Address 
 
 ## Altered logging 
 
@@ -78,16 +78,13 @@ More recently, new privacy focused transports such as MASQUE based http2/http3 p
 
 ## Broken login/authentication 
 
-
-
 # Ideas to Mitigate Impacts
 
 ## Application notification of policy change
 
 ## Interfaces to access policy settings
 
-## Enable Application Level Option In/Out
-
+## Enable Application Level Opt IN or Opt OUT
 
 # Conventions and Definitions
 
