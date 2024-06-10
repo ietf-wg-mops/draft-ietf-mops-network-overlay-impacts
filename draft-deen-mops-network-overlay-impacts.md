@@ -12,10 +12,9 @@ v: 3
 area: "Operations and Management"
 workgroup: "Media OPerationS"
 keyword:
- - network overlay
- - MASQUE
- - streaming video
- - SVTA
+ - next generation
+ - unicorn
+ - sparkling distributed ledger
 venue:
   group: "Media OPerationS"
   type: "Working Group"
@@ -31,44 +30,21 @@ author:
     email: "glenn_deen@comcast.com"
 
 normative:
-    
+
 informative:
 
+
 --- abstract
+
+TODO Abstract
+
 
 --- middle
 
 # Introduction
 
-# Impacts
+TODO Introduction
 
-## Improper Cache Selection
-
-## Alternate Routing and Unexpected Routing
-
-## Bypass of Native Network Policies
-
-## Incorrect Traffic Classification 
-
-## Increased Latency
-
-## Impacts of Altered IP Address 
-
-## Altered logging 
-
-## Geofilters breakage
-
-### unintended blocking
-
-## Broken login and authentication 
-
-# Ideas to Mitigate Impacts
-
-## Application notification of policy change
-
-## Interfaces to access policy settings
-
-## Enable Application Level Opt IN or Opt OUT
 
 # Conventions and Definitions
 
