@@ -1,6 +1,6 @@
-# TODO - Your title
+# Network Overlay Impacts to Streaming Video
 
-This is the working area for the individual Internet-Draft, "TODO - Your title".
+This is the working area for the individual Internet-Draft, "Network Overlay Impacts to Streaming Video".
 
 * [Editor's Copy](https://gitnnelg.github.io/NetworkOverlays/#go.draft-deen-mops-network-overlay-impacts.html)
 * [Datatracker Page](https://datatracker.ietf.org/doc/draft-deen-mops-network-overlay-impacts)
@@ -11,7 +11,7 @@ This is the working area for the individual Internet-Draft, "TODO - Your title".
 ## Contributing
 
 See the
-[guidelines for contributions](https://github.com/gitnnelg/NetworkOverlays/blob//CONTRIBUTING.md).
+[guidelines for contributions](https://github.com/gitnnelg/NetworkOverlays/blob/main/CONTRIBUTING.md).
 
 Contributions can be made by creating pull requests.
 The GitHub interface supports creating pull requests using the Edit (✏) button.
