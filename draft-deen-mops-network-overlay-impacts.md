@@ -12,9 +12,9 @@ v: 3
 area: "Operations and Management"
 workgroup: "Media OPerationS"
 keyword:
- - next generation
- - unicorn
- - sparkling distributed ledger
+ - network policy
+ - video streaming
+ - streaming
 venue:
   group: "Media OPerationS"
   type: "Working Group"
