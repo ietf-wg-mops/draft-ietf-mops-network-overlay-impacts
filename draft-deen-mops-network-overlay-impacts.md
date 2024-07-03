@@ -3,6 +3,14 @@ title: "Network Overlay Impacts to Streaming Video"
 abbrev: "NOISV"
 category: info
 
+ipr: trust200902
+area: Internet
+workgroup: ADD
+
+stand_alone: yes
+pi: [toc, sortrefs, symrefs]
+
+
 docname: draft-deen-mops-network-overlay-impacts-latest
 submissiontype: IETF  # also: "independent", "editorial", "IAB", or "IRTF"
 number:
