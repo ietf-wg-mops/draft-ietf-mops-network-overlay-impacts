@@ -71,23 +71,52 @@ The core problem occurs when changes to network policies are made, often without
 
 This document dicusses the various operational impacts and attempts to provide a few preliminary approachs that could help mitigate the impacts.
 
-# Network Overlays are different than VPNs
+# Network Overlay Functionality
+
+The Network Overlays being discussed in this document is a generic term to describe technology that change an applications network behaviors such as the routing path taken by application traffic, which network services such as DNS resolvers are used by the application and can include changes to IP address for the device or the IP address of the application appears from the perspective of connection end-points.     
+
+The overall effect is to create a tunnel, that often applies to only particular protocol transports such as HTTP but not varients such as HTTPS or HTTP and HTTPS but not other network protocol traffic from the device.  The traffic affected by these overlays typically takes an alternate routing from the device to an ingest point, followed by one or more hops ac
+
+
+<tt>
+
+   NS = Network Segment
+ A-NS = Alternate (Overlay) Network Segement
+   R  = router
+ 
+          NS-1        NS-2                       NS-3                            NS-4           NS-5   NS-6
+  device ------ R ---------- R -------------------------------------  R --------------------- R ---- R ---- destination-node
+                  \                                                                          /
+                   \ A-NS-1                                                                 / A-NS-6
+                    \                                                                      /
+                      R -------- R ------ ingest-node ------- egrees-node ------- R ------+
+                         A-NS-2    A-NS-3              A-NS-4              A-NS-5        
+       
+
+</tt>
+
+
+## Network Overlays are different than VPNs
 
 While conceptually similar in many ways to VPN (Virtual Private Network) technology, the various network overlay technologies currently being deployed as well as new ones currently being designed by the IETF differ quite siginificanlty from the older VPN approach they are replacing in a number of ways.
 
-VPNs typically:
+### VPNs typically:
 
 * (1) VPNs typically are detectable by both the video application and often by the streaming platform.
 * (2) VPNs typically work at the network layer of a device, resulting in a wide-range (if not all) transports and protocols from the devive flowing through the VPN
 * (3) VPNs typically provide exception options allowing for exclusion from traversing via the VPN based a various criteria such as application, destination IP address, application protocol etc. 
 
-Network Overlay which impact streaming applications typically:
+### Network Overlay which impact streaming applications typically:
 
 * (1) Network Overlays are often undetectable by video applications or by the streaming plaform, when in use
 * (2) Network Overlays often only apply to specific application transports such as HTTP2/TCP or HTTP3/QUIC while not applying to HTTP2/TCP+TLS on the same device.
 * (3) Network Overlays often only apply to HTTP connections and do not support ICMP, non-http versions of DNS, NTP etc, and various tools used for network measurement, problem determination, and network manangement that are not http based.
 * (4) Network Overlays do not expose to applications any means for the application to discover the policy changes the overlay will apply to the applications network connections.
-* (5) Network Overlays do not expose a mechanism or API for applications to interact with them such as getting or setting options.
+* (5) Network Overlays do not expose mechanisms or APIs for applications to interact with them such as getting or setting options.
+
+## Policy Changes by Network Overlays
+
+
 
 
 # Impacts
@@ -103,6 +132,10 @@ Network Overlay which impact streaming applications typically:
 ## Increased Latency
 
 ## Impacts of Altered IP Address
+
+## Performance management
+
+## Problem Determination
 
 ## Altered logging
 
