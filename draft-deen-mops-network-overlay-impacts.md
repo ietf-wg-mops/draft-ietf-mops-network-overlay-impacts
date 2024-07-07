@@ -44,13 +44,19 @@ informative:
 
 --- abstract
 
-This document examines the operational impacts that network overlays which introduce new alternative policies such as addressing, routing, DNS resolver changes to network connections have on streaming video delivery.
+This document examines the operational impacts to streaming video applications caused by changes to network policies by network overlays.  The network policy changes incluide a wide range including changes to address assignment, transport protocols, routing, DNS resolver which in turn affect a variety of important content delivery aspects such as latency, CDN cache selection, delivery path choices, traffic classification and content access controls.
 
 --- middle
 
 # Introduction
 
-This work is connected to work at the SVTA.ORG - Streaming Video Technology Alliance and is submitted to the IETF based on an impacts of network overlays to streaminv video study done in the SVTA.
+Internet streaming has greatly matured and diversified from its early days of viewers watching pre-recorded 320x240, 640x480 standard definiton 480p movies to wired PCs connected to the Internet via high-latency, low-bandwidth DSL as early DOCSIS modems.  
+
+Streaming has grown be a daily go-to video source world wide for billions of viewers and has expanded from pre-recorded movies to encompass every type of video imaginable.   Viewers now steam latency sensitive live sports, live events and contents, content  resolutions and corresponding formats have jumped from SD-480p to 4K (3840x2160) and 8K (7680x4320) along with bit rates which can had data needs of 10-24+ Mbps for 4K with 8K demanding 40 Mbps under extreme compression and 150-300 Mbps for high quality such as cinema, to a broard range of devices from cheap stream sticks, to Smart TVs, tablets, phones, and game consoles, connecting to streaming sources over a deverse set of networking technologies including WiFi, gig speed-low latency DOCSIS, satellite, and 5G cellular networks, using a growing list of application transport protocols which now include DASH, HLS, http2/tcp, http3/QUIC, WebRTC, SRT, HESP, and soon Media over QUIC (MoQ)
+
+
+
+Streaming video applications and streaming delivery operations are increasingly optimized to the network and content delivery environment that operate in.  As Internet streaming has grown matured as a video delivery pathway 
 
 Streaming video services are the fastest growing application running on the Internet.   The streaming of pre-recorded content such as movies, TV shows and video series since its commercially viable emergence in the late 2000s has become both a global way of accessing content and has become the leading source of Internet traffic.    With acceptance of streaming as a video delivery channel, live events such as news , concerts and sporting events have begun appearing on streaming services.  Internet Streaming of recorded and live content has come of age globably viewers globally over the may different paths - broadband, mobile-wireless and satellite.
 
@@ -112,5 +118,7 @@ This document has no IANA actions.
 
 # Acknowledgments
 {:numbered="false"}
+
+This work is connected to work at the Streaming Video Technology Alliance (SVTA) and is submitted to the IETF based on experiences and observations of a variety of impacts to streaming video delivery of network overlays to streaming video study done by the SVTA
 
 TODO acknowledge.
