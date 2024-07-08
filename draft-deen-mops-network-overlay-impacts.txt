@@ -139,19 +139,19 @@ Table of Contents
 1.1.  Streaming Video Architects and Privacy Enhancement Designers
       Working Together
 
-   This document is not intenteded to challenge the need for privacy
-   enchancements for the Internet, instead the hope is to illustrate
+   This document is not intended to challenge the need for privacy
+   enhancements for the Internet, instead the hope is to illustrate
    impacts of such changes to the billions of users of Streaming Video
    delivered over the Internet so that the designers of privacy
    enhancements and the designers of services built on them can better
    understand the impacts of different design choices and perhaps find
    ways to mitigate such impacts through altered design choices.
 
-   Given the importantance of streaming video to the Internet's users,
-   network operators, streaming platform services, and many others it
-   only makes sense that as the IETF and it's participants work on
-   improving privacy for those same users that the two efforts work
-   together for everyone's benefit.
+   Given the popularity of streaming video with the Internet's users and
+   it's importancne to network operators, streaming platform operators
+   and many others it only makes sense that as the IETF and it's
+   participants work on improving privacy for those same users that the
+   two efforts work together for everyone's benefit.
 
 1.2.  Possible Outcomes
 
