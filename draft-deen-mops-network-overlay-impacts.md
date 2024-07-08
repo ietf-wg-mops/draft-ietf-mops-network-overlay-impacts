@@ -40,7 +40,7 @@ author:
     fullname: "Sanjay Mishra"
     organization: Verizon
     email: sanjay.mishra@verizon.com
-    
+
 normative:
 
 informative:
@@ -59,18 +59,18 @@ choices, traffic classification and content access controls.
 
 # Introduction
 
-The past decade of Internet evolution (2014-2024) has include two significant trends, the global expansion of video streaming and a variety of privacy enhancing technologies that alter how the Internet behaves when carrying application traffic.    
+The past decade of Internet evolution (2014-2024) has include two significant trends, the global expansion of video streaming and a variety of privacy enhancing technologies that alter how the Internet behaves when carrying application traffic.
 
 Streaming video applications and the streaming platforms they get their content from run into problems when these privacy enhancing technologies change the behaviors to network connections and to the underlying Internet for the streaming video connections from devices to content sources.  Particular problems arise when such changes are done in a way that hides the changes, or even that they are going to occur from the streaming application.
 
-This document is not intenteded to challenge the need for privacy enchancements for the Internet, instead the hope is to illustrate impacts of such changes to the billions of users of Streaming Video delivered over the Internet so that the designers of privacy enhancements and the designers of services built on them can better understand the impacts of different design choices and perhaps find ways to mitigate such impacts through altered design choices. 
+This document is not intenteded to challenge the need for privacy enchancements for the Internet, instead the hope is to illustrate impacts of such changes to the billions of users of Streaming Video delivered over the Internet so that the designers of privacy enhancements and the designers of services built on them can better understand the impacts of different design choices and perhaps find ways to mitigate such impacts through altered design choices.
 
-Protocols such as MASQUE {{!RFC9494}} and services built on it such as Apple\'s iCloud Private Relay offer enhanced privacy but do so by changing the routing and other aspects of the network connection between an application and the end points it connects to.  
+Protocols such as MASQUE {{!RFC9494}} and services built on it such as Apple\'s iCloud Private Relay offer enhanced privacy but do so by changing the routing and other aspects of the network connection between an application and the end points it connects to.
 
-Streaming applications, which themselves are part of a well designed and optimized streaming delivery architectured, operating over an privacy enhanced network connection run into problems when the actual connections behaviour deviates in unexpected and often unpredictable ways from the expected connection behavior.    
+Streaming applications, which themselves are part of a well designed and optimized streaming delivery architectured, operating over an privacy enhanced network connection run into problems when the actual connections behaviour deviates in unexpected and often unpredictable ways from the expected connection behavior.
 
 The IETF has discussed this situation in the past, more than 20 years ago in 2002 Middleboxes: Taxonomy and Issues {{!RFC3234}}
-was published capturing the issues with Middleboxes in the network and the affects of hidden changes occuring on the network between the sender and receiver.     
+was published capturing the issues with Middleboxes in the network and the affects of hidden changes occuring on the network between the sender and receiver.
 
 While more recently, the IAB has explored the design of spreading traffic across mulitple paths to enhance privacy in Partitioning as an Architecture for Privacy {{I-D.draft-iab-privacy-partitioning}} suggesting that an operating environment where an application can know and predict what the behavior of connections it makes using the underlying, partitioned network may take.
 
