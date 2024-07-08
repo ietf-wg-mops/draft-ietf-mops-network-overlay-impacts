@@ -100,7 +100,7 @@ To meet these techincal challenges streaming platforms have significantly invest
 are built with detailed understandings of each element in the content delivery pathway from the content capture all the way
 through to the screen of the viewer.
 
-Streaming applications are part of an end to end architecture that is optimized around achieving the best experience including low latency video delivery to viewing devices.  Obviously the open Internet can be unpredictable with momentary issues such as packet loss, congestion and other conditions but streaming architecture is desiged to do its best when such momentary problems arise.  
+Streaming applications are part of an end to end architecture that is optimized around achieving the best experience including low latency video delivery to viewing devices.  Obviously the open Internet can be unpredictable with momentary issues such as packet loss, congestion and other conditions but streaming architecture is desiged to do its best when such momentary problems arise.
 
 ## Impact of Changing Network Routing and other Policies
 
@@ -127,22 +127,9 @@ help mitigate the impacts.
 ## Network Overlays and Streaming
 
 The Network Overlays being discussed in this document is a generic term to characterize any technology that changes the network
-and associated services that a streaming application uses to connect to streaming service infrastructure such as CDN caches, authentication, content protection, telemetry and UI services.      
+and associated services that a streaming application uses to connect to streaming service infrastructure such as CDN caches, authentication, content protection, telemetry and UI services.
 
 The Network Overlays impacting stream have a common characteristic is the creation of a new network tunnel carrying traffic from the user device through an alternative routing to the native underlying network, which itself can be characterized as a change in the network policy for the affected traffic.
-
-## Network Overlay Policy Changes
-
-The changes 
-In addt
-applications network behaviors such as the routing path taken by application traffic, which network services
-such as DNS resolvers are used by the application and can include changes to IP address for the device or the
-IP address of the application appears from the perspective of connection end-points.
-
-The overall effect is to create a tunnel, that often applies to only particular protocol transports such as HTTP
-but not varients such as HTTPS or HTTP and HTTPS but not other network protocol traffic from the device.
-The traffic affected by these overlays typically takes an alternate routing from the device to an ingest point 
-
 
 <tt>Example 1.  Network Overlay routing select traffic via an alternate path
  &nbsp;
