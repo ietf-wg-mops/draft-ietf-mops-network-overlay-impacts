@@ -84,13 +84,13 @@ The overall effect is to create a tunnel, that often applies to only particular 
  A-NS = Alternate (Overlay) Network Segement
    R  = router
  
-          NS-1        NS-2                       NS-3                            NS-4           NS-5   NS-6
-  device ------ R ---------- R -------------------------------------  R --------------------- R ---- R ---- destination-node
-                  \                                                                          /
-                   \ A-NS-1                                                                 / A-NS-6
-                    \                                                                      /
-                      R -------- R ------ ingest-node ------- egrees-node ------- R ------+
-                         A-NS-2    A-NS-3              A-NS-4              A-NS-5        
+          NS-1        NS-2                       NS-3                      NS-4        NS-5   NS-6
+  device ------ R ---------- R -------------------------------  R ---------------- R ---- R ---- dest-node
+                  \                                                               /
+                   \ A-NS-1                                                      / A-NS-6
+                    \                                                           /
+                      R ------ R ----- ingest-node ----- egrees-node ----- R --+
+                        A-NS-2   A-NS-3            A-NS-4            A-NS-5        
        
 
 </tt>
