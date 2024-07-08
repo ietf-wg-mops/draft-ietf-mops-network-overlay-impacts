@@ -5,7 +5,7 @@ category: info
 
 ipr: trust200902
 area: Internet
-workgroup: ADD
+workgroup: MOPS
 
 stand_alone: yes
 pi: [toc, sortrefs, symrefs]
