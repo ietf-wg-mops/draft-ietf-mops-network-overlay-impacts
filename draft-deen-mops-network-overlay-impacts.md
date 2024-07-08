@@ -58,7 +58,7 @@ choices, traffic classification and content access controls.
 
 # Introduction
 
-The past decade of Internet evolution (2014-2024) has included two significant trends,  the global growth of video streaming and  active passionate work within the IETF and places on enhancing Internet user privacy.
+The past decade of Internet evolution has included two significant trends,  the global growth of video streaming and  active passionate work within the IETF and places on enhancing Internet user privacy.
 
 The work on these initiatives has largely been done independently of one another, though there are a few individuals and companies that are involved with both efforts.   However, the arrival of the newly developed privacy enhancements in consumer products and their subsequent use by streaming video viewers has brought the work of the two efforts in contact and highlighted a number of friction points which are having impacts to users and support engineers of video streaming platforms.
 
