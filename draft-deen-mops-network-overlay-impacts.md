@@ -117,7 +117,7 @@ followed by one or more hops ac
   &nbsp;&nbsp;             \\                                                             /
   &nbsp;&nbsp;              \\                                                           /
   &nbsp;&nbsp;               \\                                                         /
-  &nbsp;&nbsp;                 R ---- R ----- ingest-node ----- egrees-node ----- R --+ 
+  &nbsp;&nbsp;                 R ---- R ----- ingest-node ----- egrees-node ----- R --+
 </tt>
 
 
