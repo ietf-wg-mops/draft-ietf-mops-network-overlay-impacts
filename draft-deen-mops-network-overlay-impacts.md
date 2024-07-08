@@ -86,7 +86,7 @@ for the viewers that subscribe to them.
 
 The core problem occurs when changes to network policies are made, often without notification or visibiltiy to applications and
 without clear methods of probing to determine and test changed behaviors that affect the streaming application\'s content
-delivery path resulting in increased latency, changes of IP address for the application as seen by either the application 
+delivery path resulting in increased latency, changes of IP address for the application as seen by either the application
 or the streaming service connection, changes to DNS resolvers being queried and the results returned by DNS, and changes to
 application transports such as adding or removing outter layer encryption are all problems that have been observed in
 production streaming platforms.
@@ -108,7 +108,7 @@ followed by one or more hops ac
 
 
 <tt>
-   
+
      NS = Network Segment
    A-NS = Alternate (Overlay) Network Segement
      R  = router
