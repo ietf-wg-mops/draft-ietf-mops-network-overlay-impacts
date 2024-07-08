@@ -66,11 +66,43 @@ This document does not propose rolling back privacy enhancement for users and th
 
 The hope in developing this document is to provide meaningful and helpful feedback from the streaming application and streaming platform operational perspective to help the enhanced privacy architecture work being done at the IETF.
 
+## Internet Privacy Enhancements
+
+Enhancing Internet Privacy is a challenging task to do for something as complex as the running Internet and it is easy for great proposals that fix one issue to cause new issues to arise in other places.  That\'s not a reason to stop trying, but it is important to understand the consequences of changes and to find ways to manage or mitigate such impacts, ideally without weaking or rolling back the enhancements.
+
+A popular design choice in privacy enhancements at the IETF has been the enapsulation of data inside encrypted connections.  {!RFC9000} is an excellent example of this design and introduces a protocol that is always encrypted.
+
+### Network Overlays
+
+Along with the use of encrypted connections another popular approach is to additionally create alterative routings and tunnels for connections which bypass the routing and other policy decisions of the ISP access network and of the public open Internet.   These alternative network policy choices have the effect of creating a Network Overlay that operates ontop of the Access Network and Open Internet, but follows its own independent set of policies.
+
+### Partitioning
+Network Overlay policy changes will include an alternate routing policy since a fundamental aspect of this design is the tunneling of connections through alternate paths to enhance privacy. The reasons for this approach are discussed in the IAB document [Partitioning as an Architecture for Privacy](https://datatracker.ietf.org/doc/draft-iab-privacy-partitioning/).
+
+### Policy Changes
+Beyond alternate routing policies, network overlays often also make changes to the Source IP Address Assignment, the DNS Resolver Selection, can include protocol conversions/translations such as HTTP2->HTTP3 and HTTP2->HTTPS2+TLS, and can include IP layer changes such as IPv4->IPv6 or IPv6->IPv6 conversions.
+
+### MASQUE
+Protocols such as MASQUE {{!RFC9494}} and services built on it such as Apple\'s [iCloud Private Relay](https://www.apple.com/privacy/docs/iCloud_Private_Relay_Overview_Dec2021.PDF) are examples of Privacy Enhancing Network Overlays that involve making a number of network policy changes from the open Internet for the connections passed through them.
+
+The IETF has discussed this situation in the past, more than 20 years ago in 2002 Middleboxes: Taxonomy and Issues {{!RFC3234}}
+was published capturing the issues with Middleboxes in the network and the affects of hidden changes occuring on the network between the sender and receiver.
+
+### Making It Easy (for Users) by Working Under the Covers
+
+Privacy has historically been a complicated feature to add into products targeted to end users. There are many reasons for this such as trying to meet every possible scenario and use-case and trying to provide easy user access to advanced privacy frameworks and taxonomies.   Many attempts have been made, very very few have succeeed in finding success with end users.
+
+Perhaps learning from the lesson of offering too many options the recent trend in privacy enhancements has steered torward either a very simple \"Privacy On or Off\" switch or in other cases automatically enabling or \"upgrading\" to enhance privacy.   Apple\'s iCloud Private Relay can be easily turned on with a single settings switch, while privacy features like Encrypted DNS over HTTP and upgrade from HTTP to HTTPS connections have had a number of deployments automatically enable them for users when possible.
+
+Keep with the Keep It Simple approach, users are generally not provided with granular Network Overlay controls permitting the user to select what applications, or what networok connections the Network Overlay's policies apply to.
+
+Also, keeping with the Keep It Simple approach the application itself has very little connection to privacy enhancing Network Overlays.  Applications generally do not have a means to detect when networking policy changes are active. Applications generally do not have a means to access policy change settings or to interact with changing them.
+
 ## Streaming Video
 
-Streaming Video, while just on in a plethora of different uses of the Internet does standout in a great many ways that each callout why it should perhaps get special consideration for the impacts particular privacy enhancing design choices may have.
+Streaming Video, while just one of the many different Internet applications does standout from other uses in a number of significant that perhaps merit some amount of special consideration in understanding and addressing the impacts caused by particular privacy enhancing design and service offering choices.
 
-Firstly, Streaming Video operates at a hard to imagine scale - streaming video globally to as many as 2 billion users daily currently and continuing to grow in leaps and bounds.
+Firstly, Streaming Video operates at a hard to imagine scale - streaming video globally to be more than 2 billion user daily currently and continuing to grow in leaps and bounds.
 
 Secondly, the content types delivered through streaming has evolved from  the pre-recorded low-resolution, low-bit rate, latency tolerant Video On Demand movies, TV shows, and user generated videos delivered by pioneer streaming platforms to now include low-latency 4K and 8K live sports events, while also evolving the pre-recorded content to become very resolution and high high-bit rate 4K and 8K cinema quality and High Dynamic Range (HDR) lighting.
 
@@ -80,25 +112,20 @@ To meet the growth to billions of users, the growth in content type, quality and
 
 It\'s hard to over state just how much the growth of Streaming Video has contributed to the growth of the Internet.  Internet connections of hundred megabit and gigabit speeds are because of the needs of video streaming, the ongoing work on low-latency networking and ultra-low-latency video delivery are both driven by streaming video.
 
-
-## Working together for everyone\'s benefit
+## Streaming Video Architects and Privacy Enhancement Designers Working Together
 
 Given the importantance of streaming video to the Internet\'s users, network operators, streaming platform services, and many others it only makes sense that as the IETF and it\'s participants work on improving privacy for those same users that the two efforts work together for everyone\'s benefit.
 
-## Emerging Issues
+## Emerging Issues with Network Overlay Policy Changes
 
 Streaming video applications and the streaming platforms they get their content from run into problems when these privacy enhancing technologies change the behaviors to network connections and to the underlying Internet for the streaming video connections from devices to content sources.  Particular problems arise when such changes are done in a way that hides the changes, or even that they are going to occur from the streaming application.
 
 This document is not intenteded to challenge the need for privacy enchancements for the Internet, instead the hope is to illustrate impacts of such changes to the billions of users of Streaming Video delivered over the Internet so that the designers of privacy enhancements and the designers of services built on them can better understand the impacts of different design choices and perhaps find ways to mitigate such impacts through altered design choices.
 
-Protocols such as MASQUE {{!RFC9494}} and services built on it such as Apple\'s iCloud Private Relay offer enhanced privacy but do so by changing the routing and other aspects of the network connection between an application and the end points it connects to.
 
 Streaming applications, which themselves are part of a well designed and optimized streaming delivery architectured, operating over an privacy enhanced network connection run into problems when the actual connections behaviour deviates in unexpected and often unpredictable ways from the expected connection behavior.
 
-The IETF has discussed this situation in the past, more than 20 years ago in 2002 Middleboxes: Taxonomy and Issues {{!RFC3234}}
-was published capturing the issues with Middleboxes in the network and the affects of hidden changes occuring on the network between the sender and receiver.
 
-While more recently, the IAB has explored the design of spreading traffic across mulitple paths to enhance privacy in [Partitioning as an Architecture for Privacy](https://datatracker.ietf.org/doc/draft-iab-privacy-partitioning/)  suggesting that an operating environment where an application can know and predict what the behavior of connections it makes using the underlying, partitioned network may take.
 
 
 ## Streaming at Scale Architecture
