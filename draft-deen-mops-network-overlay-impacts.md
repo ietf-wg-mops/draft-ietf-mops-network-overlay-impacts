@@ -106,9 +106,8 @@ Streaming applications are part of an end to end architecture that is optimized 
 
 The problem for streaming applications occurs when the underlying network properties and policies change from what is expected by the streaming application. In particular when such changes are not visible to the streaming application, which unfortuately has emerged as a common behavior of privacy enhancing technologies based on standards such as MASQUE {{!RFC9484}}
 
-While the open Internet is a dynamic environment, changing of basic network behaviour and policies, from what is expectedseen from the streaming application,  deviate unexpectedly from what the streaming application expects disrupts the optimized streaming delivery architecture the devcei.  Changes to Network Policies such the routing, source IP address assigned to the streaming application traffic, DNS resolver choice etc. all 
+While the open Internet is a dynamic environment, changing of basic network behaviour and policies, from what is expected as seen from the streaming application,  deviate unexpectedly from what the streaming application expects disrupts the optimized streaming delivery architecture the devcei.  Changes to Network Policies such the routing, source IP address assigned to the streaming application traffic, DNS resolver choice etc.
 
-these , such as routing
 Having an understanding and a predicatablity of the delivery path is essential for streaming operators and the introduction
 of network overlays based on technologies such as MASQUE especially when they are designed to not be easily detected, even
 by applications using them has created a new set of technical problems for streaming operators and network operators and
@@ -143,9 +142,6 @@ The Network Overlays impacting stream have a common characteristic is the creati
 &nbsp;&nbsp;                                    <--- overlay traffic path --->
 </tt>
 
-## Network Overlays are a form of Middle Box
-
-In many ways, the Network Overlays being discussed are a form of Middle Box which the IETF has previously discussed the general impacts of {{RFC3234}} describing the various variations of middle boxes and capturing the analysis 
 
 ## Network Overlays are different than VPNs
 
