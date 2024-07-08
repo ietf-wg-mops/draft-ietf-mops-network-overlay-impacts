@@ -170,15 +170,19 @@ siginificanlty from the older VPN approach they are replacing in a number of way
 
 As discussed Streaming Video delivery is done at scale using highly optimized delivery paths and infrastructure choices.  The priamry impact comes from the unpredicatable changes overlays make that alter this optimized delivery path.
 
-# Approaches to Mitigate or Minimize Impacts 
+A significant problem to address is the general problem of the Streaming Application not being able to determine the changes that will be made to its network connections.    Routing changes impact latency and can impact bandwidth; Changing the DNS resolver can change CDN Cache selection; Changing the source IP address of the Streaming Application, without the Streaming Application being aware of the change impacts CDN Cache selection, logging, authentication;  Changing connections from HTTP2 to HTTP3 or HTTP3 to HTTP2 fundamentally impacts latency and CDN caching; Changing HTTP2 connections to HTTP2+TLS or HTTP3 impacts both latency and CDN caching.
 
-## Ideas to Mitigate Impacts
+# Approaches to Mitigate or Minimize Impacts
 
-### Application notification of policy change
+There are a number of ways Network Overlays can work with Streaming Applications to mitigate or at best minimize their impacts.  
 
-### Interfaces to access policy settings
+A common theme in many of the mitigation proposal is making the Network Overlay changes and behavior transparent to the Streaming Application.  This approach should not affect privacy enhancements of the Network Overlay as it doesn't alter the Network Overlay. Enabling the Streaming Application to better understand the network environment it is operating, allows the application to adapt the changes and work within them.
 
-### Enable Application Level Opt IN or Opt OUT
+## Application notification of policy change
+
+## Interfaces to access policy settings
+
+## Enable Application Level Opt IN or Opt OUT
 
 
 ## Appendix A: Detailed Impacts
