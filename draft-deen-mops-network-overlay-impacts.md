@@ -72,8 +72,7 @@ Streaming platform have now have significant technical challenges to meet viewer
 * (3) content resolutions and corresponding formats which have jumped from the days of SD-480p to 4K (3840x2160) and 8K (7680x4320) along with bit rates which can had data needs of 10-24+ Mbps for 4K with 8K demanding 40 Mbps under extreme compression and 150-300 Mbps for high quality such as cinema;
 * (4) devices with very divese capabilities low-cost streaming sticks, to Smart TVs, tablets, phones, and game consoles
 * (5) broad range of connectivity choices including WiFi, gig speed-low latency DOCSIS, satellite, and 5G cellular networks;
-* (6) application transport protocols including DASH, HLS, http2/tcp, http3/QUIC, WebRTC, Media over QUIC (MoQ) and
-* speciality application transports such as SRT, HESP etc.
+* (6) application transport protocols including DASH, HLS, http2/tcp, http3/QUIC, WebRTC, Media over QUIC (MoQ) and speciality application transports such as SRT, HESP etc.
 
 To meet these techincal challenges streaming platforms have significantly invested in developing delivery architectures that
 are built with detailed understandings of each element in the content delivery pathway from the content capture all the way
@@ -107,17 +106,16 @@ The traffic affected by these overlays typically takes an alternate routing from
 followed by one or more hops ac
 
 
-<tt>
+<tt>Example 1.  Network Overlay routing select traffic via an alternate path 
  &nbsp;
-     NS = Network Segment
-   A-NS = Alternate (Overlay) Network Segement
-     R  = router
- &nbsp;
+ R  = router
+ &nbsp;                                    <--- non-overlay traffic path --->
   device ------ R -------- R ------------------------------  R ---------------- R ---- R ---- dest-node
-  &nbsp;&nbsp;             \\                                                             /
-  &nbsp;&nbsp;              \\                                                           /
-  &nbsp;&nbsp;               \\                                                         /
-  &nbsp;&nbsp;                 R ---- R ----- ingest-node ----- egrees-node ----- R --+
+  &nbsp;&nbsp;             \                                                             /
+  &nbsp;&nbsp;              \                                                           /
+  &nbsp;&nbsp;               \                                                         /
+  &nbsp;&nbsp;                R ----- R ----- ingest-node ----- egrees-node ----- R --+
+&nbsp;&nbsp;                                    <--- overlay traffic path --->
 </tt>
 
 
@@ -135,57 +133,50 @@ siginificanlty from the older VPN approach they are replacing in a number of way
 * (3) VPNs typically provide exception options allowing for exclusion from traversing via the VPN based on
 * various criteria such as application, destination IP address, application protocol etc.
 
-### Network Overlay which impact streaming applications typically:
+### Network Overlays typically:
 
-+ (1) Network Overlays are often undetectable by video applications or by the streaming plaform, when in use
-+ (2) Network Overlays often only apply to specific application transports such as HTTP2/TCP or HTTP3/QUIC while not
-+ applying to HTTP2/TCP+TLS on the same device.
-+ (3) Network Overlays often only apply to HTTP connections and do not support ICMP, non-http versions of DNS,
-+ NTP etc, and various tools used for network measurement, problem determination, and network manangement that are
-+ not http based.
-+ (4) Network Overlays do not expose to applications any means for the application to discover the policy changes
-+ the overlay will apply to the applications network connections.
-+ (5) Network Overlays do not expose mechanisms or APIs for applications to interact with them such as getting
-+ or setting options.
-
-## Policy Changes by Network Overlays
+* (1) Network Overlays are often undetectable by video applications or by the streaming plaform, when in use
+* (2) Network Overlays often only apply to specific application transports such as HTTP2/TCP or HTTP3/QUIC while not applying to HTTP2/TCP+TLS on the same device.
+* (3) Network Overlays often only apply to HTTP connections and do not support ICMP, non-http versions of DNS, NTP etc, and various tools used for network measurement, problem determination, and network manangement that are not http based.
++ (4) Network Overlays do not expose to applications any means for the application to discover the policy changes the overlay will apply to the applications network connections.
++ (5) Network Overlays do not expose mechanisms or APIs for applications to interact with them such as getting or setting options.
 
 
+## Network Overlay Impacts to Streaming Video
 
+As discussed Streaming Video delivery is done at scale using highly optimized delivery paths and infrastructure choices.  The priamry impact comes from the unpredicatable changes overlays make that alter this optimized delivery path.   
 
-# Impacts
+### Improper Cache Selection
 
-## Improper Cache Selection
+### Alternate Routing and Unexpected Routing
 
-## Alternate Routing and Unexpected Routing
+### Bypass of Native Network Policies
 
-## Bypass of Native Network Policies
+### Incorrect Traffic Classification
 
-## Incorrect Traffic Classification
+### Increased Latency
 
-## Increased Latency
+### Impacts of Altered IP Address
 
-## Impacts of Altered IP Address
+### Performance management
 
-## Performance management
+### Problem Determination
 
-## Problem Determination
+### Altered logging
 
-## Altered logging
+### Geofilters breakage
 
-## Geofilters breakage
-
-### unintended blocking
+#### unintended blocking
 
 ## Broken login/authentication
 
-# Ideas to Mitigate Impacts
+## Ideas to Mitigate Impacts
 
-## Application notification of policy change
+### Application notification of policy change
 
-## Interfaces to access policy settings
+### Interfaces to access policy settings
 
-## Enable Application Level Opt IN or Opt OUT
+### Enable Application Level Opt IN or Opt OUT
 
 
 # Conventions and Definitions
