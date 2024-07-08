@@ -189,13 +189,6 @@ Table of Contents
    Network and the Open Internet, but follows an independent set of
    policies chosen by the Network Overlay.
 
-     R = router   <--- non-overlay traffic path ---> device ------ R
-   -------- R ------------------------------ R ---------------- R ---- R
-   ---- dest-node    \ /    \ /    \ /    R ----- R ----- ingest-node
-   ----- egrees-node ----- R --+    <--- overlay traffic path
-   --->   </br>  Figure 1: Network Overlay routing select traffic via an
-   alternate path
-
 2.1.1.  Partitioning
 
    Network Overlay policy changes will include an alternate routing
