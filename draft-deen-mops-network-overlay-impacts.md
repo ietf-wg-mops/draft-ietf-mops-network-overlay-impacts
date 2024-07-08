@@ -48,7 +48,7 @@ This document examines the operational impacts to streaming video applications
 caused by changes to network policies by network overlays.  The network policy
 changes incluide a wide range including changes to address assignment, transport
 protocols, routing, DNS resolver which in turn affect a variety of important
-content delivery aspects such as latency, CDN cache selection, delivery path 
+content delivery aspects such as latency, CDN cache selection, delivery path
 choices, traffic classification and content access controls.
 
 --- middle
@@ -65,43 +65,41 @@ imaginable.  This growth to billions of viewers and the addition of low latency 
 content and new connectivity options like WiFi, Cellular and Satellite in addition to
 high-speed DOCSIS and fibre is the world streaming platforms now operate in.
 
-Streaming platform have now have significant technical challenges to meet viewer expectations:  
+Streaming platform have now have significant technical challenges to meet viewer expectations:
 
 * (1) Delivery scales that commonly range from hundreds of thousand to millions of viewers simultaneously, with billions of views world wide daily;
 * (2) Low latency demands from live sports, live events and live streamed content;
-* (3) content resolutions and corresponding formats which have jumped from the days of SD-480p to 4K (3840x2160) and 8K
-*  (7680x4320) along with bit rates which can had data needs of 10-24+ Mbps for 4K with 8K demanding 40 Mbps under
-*  extreme compression and 150-300 Mbps for high quality such as cinema;
+* (3) content resolutions and corresponding formats which have jumped from the days of SD-480p to 4K (3840x2160) and 8K (7680x4320) along with bit rates which can had data needs of 10-24+ Mbps for 4K with 8K demanding 40 Mbps under extreme compression and 150-300 Mbps for high quality such as cinema;
 * (4) devices with very divese capabilities low-cost streaming sticks, to Smart TVs, tablets, phones, and game consoles
 * (5) broad range of connectivity choices including WiFi, gig speed-low latency DOCSIS, satellite, and 5G cellular networks;
 * (6) application transport protocols including DASH, HLS, http2/tcp, http3/QUIC, WebRTC, Media over QUIC (MoQ) and
 * speciality application transports such as SRT, HESP etc.
 
-To meet these techincal challenges streaming platforms have significantly invested in developing delivery architectures that 
+To meet these techincal challenges streaming platforms have significantly invested in developing delivery architectures that
 are built with detailed understandings of each element in the content delivery pathway from the content capture all the way
-through to the screen of the viewer.  
+through to the screen of the viewer.
 
 Having an understanding and a predicatablity of the delivery path is essential for streaming operators and the introduction
-of network overlays based on technologies such as MASQUE especially when they are designed to not be easily detected, even 
-by applications using them has created a new set of technical problems for streaming operators and network operators and 
-for the viewers that subscribe to them. 
+of network overlays based on technologies such as MASQUE especially when they are designed to not be easily detected, even
+by applications using them has created a new set of technical problems for streaming operators and network operators and
+for the viewers that subscribe to them.
 
 The core problem occurs when changes to network policies are made, often without notification or visibiltiy to applications and
-without clear methods of probing to determine and test changed behaviors that affect the streaming application\'s content 
+without clear methods of probing to determine and test changed behaviors that affect the streaming application\'s content
 delivery path resulting in increased latency, changes of IP address for the application as seen by either the application 
 or the streaming service connection, changes to DNS resolvers being queried and the results returned by DNS, and changes to
-application transports such as adding or removing outter layer encryption are all problems that have been observed in 
-production streaming platforms. 
+application transports such as adding or removing outter layer encryption are all problems that have been observed in
+production streaming platforms.
 
-This document dicusses the various operational impacts and attempts to provide a few preliminary approachs that could 
+This document dicusses the various operational impacts and attempts to provide a few preliminary approachs that could
 help mitigate the impacts.
 
 # Network Overlay Functionality
 
-The Network Overlays being discussed in this document is a generic term to describe technology that change an 
-applications network behaviors such as the routing path taken by application traffic, which network services 
-such as DNS resolvers are used by the application and can include changes to IP address for the device or the 
-IP address of the application appears from the perspective of connection end-points.     
+The Network Overlays being discussed in this document is a generic term to describe technology that change an
+applications network behaviors such as the routing path taken by application traffic, which network services
+such as DNS resolvers are used by the application and can include changes to IP address for the device or the
+IP address of the application appears from the perspective of connection end-points.
 
 The overall effect is to create a tunnel, that often applies to only particular protocol transports such as HTTP
 but not varients such as HTTPS or HTTP and HTTPS but not other network protocol traffic from the device.
@@ -138,7 +136,7 @@ siginificanlty from the older VPN approach they are replacing in a number of way
 * (2) VPNs typically work at the network layer of a device, resulting in a wide-range (if not all) transports
 *  and protocols from the devive flowing through the VPN
 * (3) VPNs typically provide exception options allowing for exclusion from traversing via the VPN based on
-* various criteria such as application, destination IP address, application protocol etc. 
+* various criteria such as application, destination IP address, application protocol etc.
 
 ### Network Overlay which impact streaming applications typically:
 
