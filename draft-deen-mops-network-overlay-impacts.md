@@ -62,7 +62,7 @@ The past decade of Internet evolution (2014-2024) has included two significant t
 
 The work on these initiatives has largely been done independently of one another, though there are a few individuals and companies that are involved with both efforts.   However, the arrival of the newly developed privacy enhancements in consumer products and their subsequent use by streaming video viewers has brought the work of the two efforts in contact and highlighted a number of friction points which are having impacts to users and support engineers of video streaming platforms.
 
-To be blunt, this document is not proposing or advocating rolling back the any of the privacy enhancements for users.  Instead the authors hope to help educate the IETF and others on the practical operational impacts of these enhancements and to eventually develop approaches that can help mitigate such impacts.  
+To be clear, this document is not proposing or advocating rolling back the any of the privacy enhancements for users.  Instead the authors hope to help educate the IETF and others on the practical operational impacts of these enhancements and to eventually develop approaches that can help mitigate such impacts.
 
 The authors also readily acknowledge the many challenges and difficulties in improving Internet privacy into something as complex as the Internet while maintaining compatibiltiy with the wildly varied applications and uses the Internet\'s users rely upon daily in their lives. This is hard stuff and it's very natural for their to be operational considerations that must be understood and folded back into architectural designs and consumer products.
 
