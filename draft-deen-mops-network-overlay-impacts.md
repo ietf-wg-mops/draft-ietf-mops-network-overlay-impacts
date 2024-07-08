@@ -90,19 +90,6 @@ A popular design choice in privacy enhancements at the IETF has been the encapsu
 
 Along with the use of encrypted connections another popular approach is to additionally create alterative routings and tunnels for connections which bypass the routing and other policy decisions of the ISP access network and of the public open Internet.   These alternative network policy choices have the effect of creating a Network Overlay that operates on top of and over the device\'s Access Network and the Open Internet, but follows an independent set of policies chosen by the Network Overlay.
 
-<tt>
- &nbsp;
- R  = router
- &nbsp;                                    <--- non-overlay traffic path --->
-  device ------ R -------- R ------------------------------  R ---------------- R ---- R ---- dest-node
-  &nbsp;&nbsp;             \                                                             /
-  &nbsp;&nbsp;              \                                                           /
-  &nbsp;&nbsp;               \                                                         /
-  &nbsp;&nbsp;                R ----- R ----- ingest-node ----- egrees-node ----- R --+
-&nbsp;&nbsp;                                    <--- overlay traffic path --->
-&nbsp;&nbsp;</br>
-&nbsp;Figure 1:  Network Overlay routing select traffic via an alternate path
-</tt>
 
 ### Partitioning
 Network Overlay policy changes will include an alternate routing policy since a fundamental aspect of this design is the tunneling of connections through alternate paths to enhance privacy. The reasons for this approach are discussed in the IAB document [Partitioning as an Architecture for Privacy](https://datatracker.ietf.org/doc/draft-iab-privacy-partitioning/).
