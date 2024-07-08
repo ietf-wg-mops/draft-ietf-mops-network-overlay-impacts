@@ -167,7 +167,7 @@ Streaming applications are part of an end to end architecture that is optimized 
 
 # Emerging Operational Issues with Network Overlay Policy Changes
 
-Streaming video applications and the streaming platforms delivery content to them are beginning to encounter a variety operational problem related to the Network Overlays as users and customers of both bring them together. 
+Streaming video applications and the streaming platforms delivery content to them are beginning to encounter a variety operational problem related to the Network Overlays as users and customers of both bring them together.
 
 The various impacts are list later in this document but there are a few classes of issues that have been observed:
 
@@ -213,7 +213,7 @@ Related to better transparency of policy settings is enabling notification to ap
 
 ## Exclusion from Policy Changes
 
-The other approach is enabling applications to be excluded from network overlays.  This could be be done through a variety of approaches such as providing users an option on their device to exclude either by specific applications, by specific end point destinations identified by DNS name or IP address, or by some other characteristic. 
+The other approach is enabling applications to be excluded from network overlays.  This could be be done through a variety of approaches such as providing users an option on their device to exclude either by specific applications, by specific end point destinations identified by DNS name or IP address, or by some other characteristic.
 
 ## Support Tools
 
@@ -257,7 +257,7 @@ technologies currently being deployed as well as new ones currently being design
 siginificanlty from the older VPN approach they are replacing in a number of ways.
 
 It is also work noting that one reason why the issues discussed in this document have been histrical operating issues with
-regard to VPNs is that largely VPNs have not been a pervasive way to stream video.   First, many VPNs have not had very good or consistent throughput compared to the direct open Internet.  Second, many video plaforms block or deny service to VPN connections due to the very common use of VPNs to bypass geofiltering restrictions.   
+regard to VPNs is that largely VPNs have not been a pervasive way to stream video.   First, many VPNs have not had very good or consistent throughput compared to the direct open Internet.  Second, many video plaforms block or deny service to VPN connections due to the very common use of VPNs to bypass geofiltering restrictions.
 
 Whatever the reason, it's work looking at how VPNs differ from the Network Overylays being discussed herein.
 
