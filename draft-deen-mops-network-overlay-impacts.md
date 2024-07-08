@@ -36,7 +36,11 @@ author:
     fullname: "Glenn Deen"
     organization: Comcast-NBCUniversal
     email: "glenn_deen@comcast.com"
-
+ -
+    fullname: "Sanjay Mishra"
+    organization: Verizon
+    email: sanjay.mishra@verizon.com
+    
 normative:
 
 informative:
@@ -46,7 +50,7 @@ informative:
 
 This document examines the operational impacts to streaming video applications
 caused by changes to network policies by network overlays.  The network policy
-changes incluide a wide range including changes to address assignment, transport
+changes include IP address assignment, transport
 protocols, routing, DNS resolver which in turn affect a variety of important
 content delivery aspects such as latency, CDN cache selection, delivery path
 choices, traffic classification and content access controls.
