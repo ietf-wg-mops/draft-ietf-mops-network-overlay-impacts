@@ -66,16 +66,17 @@ This document does not propose rolling back privacy enhancement for users and th
 
 The hope in developing this document is to provide meaningful and helpful feedback from the streaming application and streaming platform operational perspective to help the enhanced privacy architecture work being done at the IETF.
 
-## Streaming Video 
-Streaming Video, while just on in a plethora of different uses of the Internet does standout in a great many ways that each callout why it should perhaps get special consideration for the impacts particular privacy enhancing design choices may have.  
+## Streaming Video
+
+Streaming Video, while just on in a plethora of different uses of the Internet does standout in a great many ways that each callout why it should perhaps get special consideration for the impacts particular privacy enhancing design choices may have.
 
 Firstly, Streaming Video operates at a hard to imagine scale - streaming video globally to as many as 2 billion users daily currently and continuing to grow in leaps and bounds.
 
 Secondly, the content types delivered through streaming has evolved from  the pre-recorded low-resolution, low-bit rate, latency tolerant Video On Demand movies, TV shows, and user generated videos delivered by pioneer streaming platforms to now include low-latency 4K and 8K live sports events, while also evolving the pre-recorded content to become very resolution and high high-bit rate 4K and 8K cinema quality and High Dynamic Range (HDR) lighting.
 
-Finally, the expectations of streaming video viewers has signiciantly evolved from the days of settling for being able to watch a movie in a PC browser.  Viewers expect to watch on any device type the want from low-end-streaming sticks that plug into USB ports, to 4K and HDR capable laptops, 4K and 8K HDR TV screens, gaming consoles, phones and many many more choices.  Viewers also expect to have the same great viewing experience while at home connected via high-speed wired Internet, high-speed WiFi, or mobile celluar 5G and even satelite Internet connections.      
+Finally, the expectations of streaming video viewers has signiciantly evolved from the days of settling for being able to watch a movie in a PC browser.  Viewers expect to watch on any device type the want from low-end-streaming sticks that plug into USB ports, to 4K and HDR capable laptops, 4K and 8K HDR TV screens, gaming consoles, phones and many many more choices.  Viewers also expect to have the same great viewing experience while at home connected via high-speed wired Internet, high-speed WiFi, or mobile celluar 5G and even satelite Internet connections.
 
-To meet the growth to billions of users, the growth in content type, quality and speed expectations, and the on-any-device anywhere that I am over any-network-connection expectations of users the Streaming Video technonology infrastructure has had to itself evolve signifcantly.  This is video streaming evolution work that done in the IETF, in the [Streaming Video Technology Alliance (SVTA)](https://www.svta.org/), and in a number of other technical and industry groups.  
+To meet the growth to billions of users, the growth in content type, quality and speed expectations, and the on-any-device anywhere that I am over any-network-connection expectations of users the Streaming Video technonology infrastructure has had to itself evolve signifcantly.  This is video streaming evolution work that done in the IETF, in the [Streaming Video Technology Alliance (SVTA)](https://www.svta.org/), and in a number of other technical and industry groups.
 
 It\'s hard to over state just how much the growth of Streaming Video has contributed to the growth of the Internet.  Internet connections of hundred megabit and gigabit speeds are because of the needs of video streaming, the ongoing work on low-latency networking and ultra-low-latency video delivery are both driven by streaming video.
 
