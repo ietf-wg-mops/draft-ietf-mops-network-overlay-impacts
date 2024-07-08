@@ -100,7 +100,7 @@ Along with the use of encrypted connections another popular approach is to addit
   &nbsp;&nbsp;               \                                                         /
   &nbsp;&nbsp;                R ----- R ----- ingest-node ----- egrees-node ----- R --+
 &nbsp;&nbsp;                                    <--- overlay traffic path --->
-&nbsp;&nbsp;
+&nbsp;&nbsp;</br>
 &nbsp;Figure 1:  Network Overlay routing select traffic via an alternate path
 </tt>
 
