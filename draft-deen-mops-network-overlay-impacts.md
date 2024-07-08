@@ -66,15 +66,41 @@ This document does not propose rolling back privacy enhancement for users and th
 
 The hope in developing this document is to provide meaningful and helpful feedback from the streaming application and streaming platform operational perspective to help the enhanced privacy architecture work being done at the IETF.
 
-## Internet Privacy Enhancements
+## Streaming Video Architects and Privacy Enhancement Designers Working Together
+
+This document is not intenteded to challenge the need for privacy enchancements for the Internet, instead the hope is to illustrate impacts of such changes to the billions of users of Streaming Video delivered over the Internet so that the designers of privacy enhancements and the designers of services built on them can better understand the impacts of different design choices and perhaps find ways to mitigate such impacts through altered design choices.
+
+Given the importantance of streaming video to the Internet\'s users, network operators, streaming platform services, and many others it only makes sense that as the IETF and it\'s participants work on improving privacy for those same users that the two efforts work together for everyone\'s benefit.
+
+## Possible Outcomes
+
+One possible outcome might be a best design and implementation guide developed together and published by the IETF Media Operations Group.
+
+Another possible outcome might be an IAB led study on the operational impacts of Network Overlays to help the IETF and Internet communities better understand the operational impacts of various architectural decisions along with mitigate approaches.
+
+# Internet Privacy Enhancements
 
 Enhancing Internet Privacy is a challenging task to do for something as complex as the running Internet and it is easy for great proposals that fix one issue to cause new issues to arise in other places.  That\'s not a reason to stop trying, but it is important to understand the consequences of changes and to find ways to manage or mitigate such impacts, ideally without weaking or rolling back the enhancements.
 
 A popular design choice in privacy enhancements at the IETF has been the enapsulation of data inside encrypted connections.  {!RFC9000} is an excellent example of this design and introduces a protocol that is always encrypted.
 
-### Network Overlays
+## Network Overlays
 
 Along with the use of encrypted connections another popular approach is to additionally create alterative routings and tunnels for connections which bypass the routing and other policy decisions of the ISP access network and of the public open Internet.   These alternative network policy choices have the effect of creating a Network Overlay that operates ontop of the Access Network and Open Internet, but follows its own independent set of policies.
+
+<tt>
+ &nbsp;
+ R  = router
+ &nbsp;                                    <--- non-overlay traffic path --->
+  device ------ R -------- R ------------------------------  R ---------------- R ---- R ---- dest-node
+  &nbsp;&nbsp;             \                                                             /
+  &nbsp;&nbsp;              \                                                           /
+  &nbsp;&nbsp;               \                                                         /
+  &nbsp;&nbsp;                R ----- R ----- ingest-node ----- egrees-node ----- R --+
+&nbsp;&nbsp;                                    <--- overlay traffic path --->
+&nbsp;&nbsp;
+&nbsp;Figure 1:  Network Overlay routing select traffic via an alternate path
+</tt>
 
 ### Partitioning
 Network Overlay policy changes will include an alternate routing policy since a fundamental aspect of this design is the tunneling of connections through alternate paths to enhance privacy. The reasons for this approach are discussed in the IAB document [Partitioning as an Architecture for Privacy](https://datatracker.ietf.org/doc/draft-iab-privacy-partitioning/).
@@ -88,7 +114,7 @@ Protocols such as MASQUE {{!RFC9494}} and services built on it such as Apple\'s 
 The IETF has discussed this situation in the past, more than 20 years ago in 2002 Middleboxes: Taxonomy and Issues {{!RFC3234}}
 was published capturing the issues with Middleboxes in the network and the affects of hidden changes occuring on the network between the sender and receiver.
 
-### Making It Easy (for Users) by Working Under the Covers
+## Making It Easy (for Users) by Working Under the Covers
 
 Privacy has historically been a complicated feature to add into products targeted to end users. There are many reasons for this such as trying to meet every possible scenario and use-case and trying to provide easy user access to advanced privacy frameworks and taxonomies.   Many attempts have been made, very very few have succeeed in finding success with end users.
 
@@ -98,7 +124,7 @@ Keep with the Keep It Simple approach, users are generally not provided with gra
 
 Also, keeping with the Keep It Simple approach the application itself has very little connection to privacy enhancing Network Overlays.  Applications generally do not have a means to detect when networking policy changes are active. Applications generally do not have a means to access policy change settings or to interact with changing them.
 
-## Streaming Video
+# Streaming Video
 
 Streaming Video, while just one of the many different Internet applications does standout from other uses in a number of significant that perhaps merit some amount of special consideration in understanding and addressing the impacts caused by particular privacy enhancing design and service offering choices.
 
@@ -112,23 +138,7 @@ To meet the growth to billions of users, the growth in content type, quality and
 
 It\'s hard to over state just how much the growth of Streaming Video has contributed to the growth of the Internet.  Internet connections of hundred megabit and gigabit speeds are because of the needs of video streaming, the ongoing work on low-latency networking and ultra-low-latency video delivery are both driven by streaming video.
 
-## Streaming Video Architects and Privacy Enhancement Designers Working Together
-
-Given the importantance of streaming video to the Internet\'s users, network operators, streaming platform services, and many others it only makes sense that as the IETF and it\'s participants work on improving privacy for those same users that the two efforts work together for everyone\'s benefit.
-
-## Emerging Issues with Network Overlay Policy Changes
-
-Streaming video applications and the streaming platforms they get their content from run into problems when these privacy enhancing technologies change the behaviors to network connections and to the underlying Internet for the streaming video connections from devices to content sources.  Particular problems arise when such changes are done in a way that hides the changes, or even that they are going to occur from the streaming application.
-
-This document is not intenteded to challenge the need for privacy enchancements for the Internet, instead the hope is to illustrate impacts of such changes to the billions of users of Streaming Video delivered over the Internet so that the designers of privacy enhancements and the designers of services built on them can better understand the impacts of different design choices and perhaps find ways to mitigate such impacts through altered design choices.
-
-
-Streaming applications, which themselves are part of a well designed and optimized streaming delivery architectured, operating over an privacy enhanced network connection run into problems when the actual connections behaviour deviates in unexpected and often unpredictable ways from the expected connection behavior.
-
-
-
-
-## Streaming at Scale Architecture
+## Advances in Streaming Video Architecture
 
 Internet streaming has greatly matured and diversified from its early days of viewers
 watching pre-recorded 320x240, 640x480 standard definiton 480p movies to wired PCs connected
@@ -155,6 +165,19 @@ through to the screen of the viewer.
 
 Streaming applications are part of an end to end architecture that is optimized around achieving the best experience including low latency video delivery to viewing devices.  Obviously the open Internet can be unpredictable with momentary issues such as packet loss, congestion and other conditions but streaming architecture is desiged to do its best when such momentary problems arise.
 
+# Emerging Operational Issues with Network Overlay Policy Changes
+
+Streaming video applications and the streaming platforms delivery content to them are beginning to encounter a variety operational problem related to the Network Overlays as users and customers of both bring them together. 
+
+The various impacts are list later in this document but there are a few classes of issues that have been observed:
+
+* (1) Routing changes which cause bypassing edge CDN caches on access networks to be bypassed
+* (2) Routing changes which add network latency compared to edge CDN caches or access network peering connections
+* (3) Forced encrypted of unencrypted HTTP2 connections to HTTP2+TLS connections
+* (4) DNS Resolver choice changes resulting in less optimal CDN cache selection or bypassing of CDN load balancing direction
+* (5) Changed Source IP Address for the application\'s connections to Streaming Platform Servers resulting in logging, geofencing, and session management problems
+* (6) Performance and Problem determination tools \& protocols not able to traverse the alternative route tunnel impacting services ability to diagnose connection and performance problems
+
 ## Impact of Changing Network Routing and other Policies
 
 The problem for streaming applications occurs when the underlying network properties and policies change from what is expected by the streaming application. In particular when such changes are not visible to the streaming application, which unfortuately has emerged as a common behavior of privacy enhancing technologies based on standards such as MASQUE {{!RFC9484}}
@@ -176,71 +199,31 @@ production streaming platforms.
 This document dicusses the various operational impacts and attempts to provide a few preliminary approachs that could
 help mitigate the impacts.
 
-## Network Overlays and Streaming
-
-The Network Overlays being discussed in this document is a generic term to characterize any technology that changes the network
-and associated services that a streaming application uses to connect to streaming service infrastructure such as CDN caches, authentication, content protection, telemetry and UI services.
-
-The Network Overlays impacting stream have a common characteristic is the creation of a new network tunnel carrying traffic from the user device through an alternative routing to the native underlying network, which itself can be characterized as a change in the network policy for the affected traffic.
-
-<tt>Example 1.  Network Overlay routing select traffic via an alternate path
- &nbsp;
- R  = router
- &nbsp;                                    <--- non-overlay traffic path --->
-  device ------ R -------- R ------------------------------  R ---------------- R ---- R ---- dest-node
-  &nbsp;&nbsp;             \                                                             /
-  &nbsp;&nbsp;              \                                                           /
-  &nbsp;&nbsp;               \                                                         /
-  &nbsp;&nbsp;                R ----- R ----- ingest-node ----- egrees-node ----- R --+
-&nbsp;&nbsp;                                    <--- overlay traffic path --->
-</tt>
-
-
-## Network Overlays are different than VPNs
-
-While conceptually similar in many ways to VPN (Virtual Private Network) technology, the various network overlay
-technologies currently being deployed as well as new ones currently being designed by the IETF differ quite
-siginificanlty from the older VPN approach they are replacing in a number of ways.
-
-### VPNs typically:
-
-* (1) VPNs typically are detectable by both the video application and often by the streaming platform.
-* (2) VPNs typically work at the network layer of a device, resulting in a wide-range (if not all) transports
-*  and protocols from the devive flowing through the VPN
-* (3) VPNs typically provide exception options allowing for exclusion from traversing via the VPN based on
-* various criteria such as application, destination IP address, application protocol etc.
-
-### Network Overlays typically:
-
-* (1) Network Overlays are often undetectable by video applications or by the streaming plaform, when in use
-* (2) Network Overlays often only apply to specific application transports such as HTTP2/TCP or HTTP3/QUIC while not applying to HTTP2/TCP+TLS on the same device.
-* (3) Network Overlays often only apply to HTTP connections and do not support ICMP, non-http versions of DNS, NTP etc, and various tools used for network measurement, problem determination, and network manangement that are not http based.
-+ (4) Network Overlays do not expose to applications any means for the application to discover the policy changes the overlay will apply to the applications network connections.
-+ (5) Network Overlays do not expose mechanisms or APIs for applications to interact with them such as getting or setting options.
-
-
-## Network Overlay Impacts to Streaming Video
-
-As discussed Streaming Video delivery is done at scale using highly optimized delivery paths and infrastructure choices.  The priamry impact comes from the unpredicatable changes overlays make that alter this optimized delivery path.
-
-A significant problem to address is the general problem of the Streaming Application not being able to determine the changes that will be made to its network connections.    Routing changes impact latency and can impact bandwidth; Changing the DNS resolver can change CDN Cache selection; Changing the source IP address of the Streaming Application, without the Streaming Application being aware of the change impacts CDN Cache selection, logging, authentication;  Changing connections from HTTP2 to HTTP3 or HTTP3 to HTTP2 fundamentally impacts latency and CDN caching; Changing HTTP2 connections to HTTP2+TLS or HTTP3 impacts both latency and CDN caching.
-
 # Approaches to Mitigate or Minimize Impacts
 
 There are a number of ways Network Overlays can work with Streaming Applications to mitigate or at best minimize their impacts.
 
+## Transparent Policy Settings
+
 A common theme in many of the mitigation proposal is making the Network Overlay changes and behavior transparent to the Streaming Application.  This approach should not affect privacy enhancements of the Network Overlay as it doesn't alter the Network Overlay. Enabling the Streaming Application to better understand the network environment it is operating, allows the application to adapt the changes and work within them.
 
-The other approach is enabling applications to be excluded from network overlays.  This could be be done through a variety of approaches such as providing users an option on their device to exclude either by specific applications, by specific end point destinations identified by DNS name or IP address, or by some other characteristic.   Another opt
+## Policy Change Notification
 
-## Application notification of policy change
+Related to better transparency of policy settings is enabling notification to applications of changes to network policies.  This would enable the streaming application to take into account the changes when they occur - for example a Network Overlay turning on or off.
 
-## Interfaces to access policy settings
+## Exclusion from Policy Changes
 
-## Enable Application Level Opt IN or Opt OUT
+The other approach is enabling applications to be excluded from network overlays.  This could be be done through a variety of approaches such as providing users an option on their device to exclude either by specific applications, by specific end point destinations identified by DNS name or IP address, or by some other characteristic. 
+
+## Support Tools
+
+One of the issues streaming platforms have run into, especially when working on connection and performance issues is that Network Overlays that only affect very specific application protocols, for example HTTP2/tcp and HTTP3/QUIC+UDP connections, is that other Internet protocols like ICMP which are fundamental in the toolkits of support desks do not traverse the Network Overlay tunnel.  Since neither HTTP2 or HTTP3 provide protocol native ways of finding \"the bad hop\" or measuring bandwidth or latency along their path, helpdesks and engineers often find they lack the necessary support tools to help customers in determining streaming problems.
 
 
-## Appendix A: Detailed Impacts
+
+## Appendix A: Detailed Impacts of Network Policy Changes
+
+TDB - This is connected to on going active development work at the SVTA cataloging technical impacts in detail of Network Overlays.
 
 ### Improper Cache Selection
 
@@ -267,6 +250,32 @@ The other approach is enabling applications to be excluded from network overlays
 ## Broken login/authentication
 
 
+# Appendix B: Network Overlays are different than VPNs
+
+While conceptually similar in many ways to VPN (Virtual Private Network) technology, the various network overlay
+technologies currently being deployed as well as new ones currently being designed by the IETF differ quite
+siginificanlty from the older VPN approach they are replacing in a number of ways.
+
+It is also work noting that one reason why the issues discussed in this document have been histrical operating issues with
+regard to VPNs is that largely VPNs have not been a pervasive way to stream video.   First, many VPNs have not had very good or consistent throughput compared to the direct open Internet.  Second, many video plaforms block or deny service to VPN connections due to the very common use of VPNs to bypass geofiltering restrictions.   
+
+Whatever the reason, it's work looking at how VPNs differ from the Network Overylays being discussed herein.
+
+### VPNs typically:
+
+* (1) VPNs typically are detectable by both the video application and often by the streaming platform.
+* (2) VPNs typically work at the network layer of a device, resulting in a wide-range (if not all) transports
+*  and protocols from the devive flowing through the VPN
+* (3) VPNs typically provide exception options allowing for exclusion from traversing via the VPN based on
+* various criteria such as application, destination IP address, application protocol etc.
+
+### Network Overlays typically:
+
+* (1) Network Overlays are often undetectable by video applications or by the streaming plaform, when in use
+* (2) Network Overlays often only apply to specific application transports such as HTTP2/TCP or HTTP3/QUIC while not applying to HTTP2/TCP+TLS on the same device.
+* (3) Network Overlays often only apply to HTTP connections and do not support ICMP, non-http versions of DNS, NTP etc, and various tools used for network measurement, problem determination, and network manangement that are not http based.
++ (4) Network Overlays do not expose to applications any means for the application to discover the policy changes the overlay will apply to the applications network connections.
++ (5) Network Overlays do not expose mechanisms or APIs for applications to interact with them such as getting or setting options.
 
 
 # Conventions and Definitions
