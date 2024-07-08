@@ -50,9 +50,13 @@ This document examines the operational impacts to streaming video applications c
 
 # Introduction
 
-Internet streaming has greatly matured and diversified from its early days of viewers watching pre-recorded 320x240, 640x480 standard definiton 480p movies to wired PCs connected to the Internet via high-latency, low-bandwidth DSL as early DOCSIS modems.  
+Internet streaming has greatly matured and diversified from its early days of viewers watching pre-recorded 320x240, 640x480
+standard definiton 480p movies to wired PCs connected to the Internet via high-latency, low-bandwidth DSL as early DOCSIS modems.  
 
-Streaming has grown be a daily go-to video source world wide for billions of viewers and has expanded from pre-recorded movies to encompass every type of video content imaginable.  This growth to billions of viewers and the addition of low latency sensistive content and new connectivity options like WiFi, Cellular and Satellite in addition to high-speed DOCSIS and fibre is the world streaming platforms now operate in. 
+Streaming has grown be a daily go-to video source world wide for billions of viewers and has expanded from pre-recorded movies to
+encompass every type of video content imaginable.  This growth to billions of viewers and the addition of low latency sensistive
+content and new connectivity options like WiFi, Cellular and Satellite in addition to high-speed DOCSIS and fibre is the world
+streaming platforms now operate in. 
 
 Streaming platform have now have significant technical challenges to meet viewer expectations:  
 
