@@ -106,7 +106,7 @@ The traffic affected by these overlays typically takes an alternate routing from
 followed by one or more hops ac
 
 
-<tt>Example 1.  Network Overlay routing select traffic via an alternate path 
+<tt>Example 1.  Network Overlay routing select traffic via an alternate path
  &nbsp;
  R  = router
  &nbsp;                                    <--- non-overlay traffic path --->
@@ -144,7 +144,7 @@ siginificanlty from the older VPN approach they are replacing in a number of way
 
 ## Network Overlay Impacts to Streaming Video
 
-As discussed Streaming Video delivery is done at scale using highly optimized delivery paths and infrastructure choices.  The priamry impact comes from the unpredicatable changes overlays make that alter this optimized delivery path.   
+As discussed Streaming Video delivery is done at scale using highly optimized delivery paths and infrastructure choices.  The priamry impact comes from the unpredicatable changes overlays make that alter this optimized delivery path.
 
 ### Improper Cache Selection
 
