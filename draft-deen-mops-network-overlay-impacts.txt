@@ -76,30 +76,27 @@ Table of Contents
    2.  Network Overlay Functionality
      2.1.  Network Overlays are different than VPNs
        2.1.1.  VPNs typically:
-       2.1.2.  Network Overlay which impact streaming applications
-               typically:
-     2.2.  Policy Changes by Network Overlays
-   3.  Impacts
-     3.1.  Improper Cache Selection
-     3.2.  Alternate Routing and Unexpected Routing
-     3.3.  Bypass of Native Network Policies
-     3.4.  Incorrect Traffic Classification
-     3.5.  Increased Latency
-     3.6.  Impacts of Altered IP Address
-     3.7.  Performance management
-     3.8.  Problem Determination
-     3.9.  Altered logging
-     3.10. Geofilters breakage
-       3.10.1.  unintended blocking
-     3.11. Broken login/authentication
-   4.  Ideas to Mitigate Impacts
-     4.1.  Application notification of policy change
-     4.2.  Interfaces to access policy settings
-     4.3.  Enable Application Level Opt IN or Opt OUT
-   5.  Conventions and Definitions
-   6.  Security Considerations
-   7.  IANA Considerations
-   8.  Normative References
+       2.1.2.  Network Overlays typically:
+     2.2.  Network Overlay Impacts to Streaming Video
+       2.2.1.  Improper Cache Selection
+       2.2.2.  Alternate Routing and Unexpected Routing
+       2.2.3.  Bypass of Native Network Policies
+       2.2.4.  Incorrect Traffic Classification
+       2.2.5.  Increased Latency
+       2.2.6.  Impacts of Altered IP Address
+       2.2.7.  Performance management
+       2.2.8.  Problem Determination
+       2.2.9.  Altered logging
+       2.2.10. Geofilters breakage
+     2.3.  Broken login/authentication
+     2.4.  Ideas to Mitigate Impacts
+       2.4.1.  Application notification of policy change
+       2.4.2.  Interfaces to access policy settings
+       2.4.3.  Enable Application Level Opt IN or Opt OUT
+   3.  Conventions and Definitions
+   4.  Security Considerations
+   5.  IANA Considerations
+   6.  Normative References
    Acknowledgments
    Author's Address
 
@@ -141,9 +138,8 @@ Table of Contents
       low latency DOCSIS, satellite, and 5G cellular networks;
 
    *  (6) application transport protocols including DASH, HLS, http2/
-      tcp, http3/QUIC, WebRTC, Media over QUIC (MoQ) and
-
-   *  speciality application transports such as SRT, HESP etc.
+      tcp, http3/QUIC, WebRTC, Media over QUIC (MoQ) and speciality
+      application transports such as SRT, HESP etc.
 
    To meet these techincal challenges streaming platforms have
    significantly invested in developing delivery architectures that are
@@ -191,10 +187,11 @@ Table of Contents
    an alternate routing from the device to an ingest point, followed by
    one or more hops ac
 
-     NS = Network Segment A-NS = Alternate (Overlay) Network Segement R
-   = router   device ------ R -------- R ------------------------------
-   R ---------------- R ---- R ---- dest-node    \ /    \ /    \ /    R
-   ---- R ----- ingest-node ----- egrees-node ----- R --+
+   Example 1.  Network Overlay routing select traffic via an alternate
+   path   R = router   <--- non-overlay traffic path ---> device ------
+   R -------- R ------------------------------ R ---------------- R ----
+   R ---- dest-node    \ /    \ /    \ /    R ----- R ----- ingest-node
+   ----- egrees-node ----- R --+    <--- overlay traffic path --->
 
 2.1.  Network Overlays are different than VPNs
 
@@ -220,71 +217,68 @@ Table of Contents
    *  various criteria such as application, destination IP address,
       application protocol etc.
 
-2.1.2.  Network Overlay which impact streaming applications typically:
+2.1.2.  Network Overlays typically:
 
    *  (1) Network Overlays are often undetectable by video applications
       or by the streaming plaform, when in use
 
    *  (2) Network Overlays often only apply to specific application
-      transports such as HTTP2/TCP or HTTP3/QUIC while not
-
-   *  applying to HTTP2/TCP+TLS on the same device.
+      transports such as HTTP2/TCP or HTTP3/QUIC while not applying to
+      HTTP2/TCP+TLS on the same device.
 
    *  (3) Network Overlays often only apply to HTTP connections and do
-      not support ICMP, non-http versions of DNS,
-
-   *  NTP etc, and various tools used for network measurement, problem
-      determination, and network manangement that are
-
-   *  not http based.
+      not support ICMP, non-http versions of DNS, NTP etc, and various
+      tools used for network measurement, problem determination, and
+      network manangement that are not http based.
 
    *  (4) Network Overlays do not expose to applications any means for
-      the application to discover the policy changes
-
-   *  the overlay will apply to the applications network connections.
+      the application to discover the policy changes the overlay will
+      apply to the applications network connections.
 
    *  (5) Network Overlays do not expose mechanisms or APIs for
-      applications to interact with them such as getting
+      applications to interact with them such as getting or setting
+      options.
 
-   *  or setting options.
+2.2.  Network Overlay Impacts to Streaming Video
 
-2.2.  Policy Changes by Network Overlays
+   As discussed Streaming Video delivery is done at scale using highly
+   optimized delivery paths and infrastructure choices.  The priamry
+   impact comes from the unpredicatable changes overlays make that alter
+   this optimized delivery path.
 
-3.  Impacts
+2.2.1.  Improper Cache Selection
 
-3.1.  Improper Cache Selection
+2.2.2.  Alternate Routing and Unexpected Routing
 
-3.2.  Alternate Routing and Unexpected Routing
+2.2.3.  Bypass of Native Network Policies
 
-3.3.  Bypass of Native Network Policies
+2.2.4.  Incorrect Traffic Classification
 
-3.4.  Incorrect Traffic Classification
+2.2.5.  Increased Latency
 
-3.5.  Increased Latency
+2.2.6.  Impacts of Altered IP Address
 
-3.6.  Impacts of Altered IP Address
+2.2.7.  Performance management
 
-3.7.  Performance management
+2.2.8.  Problem Determination
 
-3.8.  Problem Determination
+2.2.9.  Altered logging
 
-3.9.  Altered logging
+2.2.10.  Geofilters breakage
 
-3.10.  Geofilters breakage
+2.2.10.1.  unintended blocking
 
-3.10.1.  unintended blocking
+2.3.  Broken login/authentication
 
-3.11.  Broken login/authentication
+2.4.  Ideas to Mitigate Impacts
 
-4.  Ideas to Mitigate Impacts
+2.4.1.  Application notification of policy change
 
-4.1.  Application notification of policy change
+2.4.2.  Interfaces to access policy settings
 
-4.2.  Interfaces to access policy settings
+2.4.3.  Enable Application Level Opt IN or Opt OUT
 
-4.3.  Enable Application Level Opt IN or Opt OUT
-
-5.  Conventions and Definitions
+3.  Conventions and Definitions
 
    The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
    "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
@@ -292,15 +286,15 @@ Table of Contents
    BCP 14 [RFC2119] [RFC8174] when, and only when, they appear in all
    capitals, as shown here.
 
-6.  Security Considerations
+4.  Security Considerations
 
    TODO Security
 
-7.  IANA Considerations
+5.  IANA Considerations
 
    This document has no IANA actions.
 
-8.  Normative References
+6.  Normative References
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
