@@ -193,7 +193,7 @@ Table of Contents
    -------- R ------------------------------ R ---------------- R ---- R
    ---- dest-node    \ /    \ /    \ /    R ----- R ----- ingest-node
    ----- egrees-node ----- R --+    <--- overlay traffic path
-   --->     Figure 1: Network Overlay routing select traffic via an
+   --->   </br>  Figure 1: Network Overlay routing select traffic via an
    alternate path
 
 2.1.1.  Partitioning
