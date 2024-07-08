@@ -58,7 +58,33 @@ choices, traffic classification and content access controls.
 
 # Introduction
 
-The past decade of Internet evolution (2014-2024) has include two significant trends, the global expansion of video streaming and a variety of privacy enhancing technologies that alter how the Internet behaves when carrying application traffic.
+The past decade of Internet evolution (2014-2024) has include two significant trends, firstly the global growth of video streaming and secondly, strong work within the IETF, Operating System platforms and others to develop new privacy enhancing technologies to protect the privacy of Internet users.
+
+The work of these two groups has largely been done independently of one another, though there are a few individuals and companies that are involved with both efforts.     However, the arrival of the new privacy enhancements in consumer products and their subsequent use by streaming video viewers has created a number of friction points which are having significant impacts to the streaming video delivery ecosystem, creating frustration for users and support issue for platforms.
+
+This document does not propose rolling back privacy enhancement for users and the authors readily ackowledge the many challenges and difficulties in improving Internet privacy into something as complex as the Internet while maintianing compatabiltiy with wildly varied applications and uses the Internet\'s users rely upon daily in their lives.
+
+The hope in developing this document is to provide meaningful and helpful feedback from the streaming application and streaming platform operational perspective to help the enhanced privacy architecture work being done at the IETF.
+
+## Streaming Video 
+Streaming Video, while just on in a plethora of different uses of the Internet does standout in a great many ways that each callout why it should perhaps get special consideration for the impacts particular privacy enhancing design choices may have.  
+
+Firstly, Streaming Video operates at a hard to imagine scale - streaming video globally to as many as 2 billion users daily currently and continuing to grow in leaps and bounds.
+
+Secondly, the content types delivered through streaming has evolved from  the pre-recorded low-resolution, low-bit rate, latency tolerant Video On Demand movies, TV shows, and user generated videos delivered by pioneer streaming platforms to now include low-latency 4K and 8K live sports events, while also evolving the pre-recorded content to become very resolution and high high-bit rate 4K and 8K cinema quality and High Dynamic Range (HDR) lighting.
+
+Finally, the expectations of streaming video viewers has signiciantly evolved from the days of settling for being able to watch a movie in a PC browser.  Viewers expect to watch on any device type the want from low-end-streaming sticks that plug into USB ports, to 4K and HDR capable laptops, 4K and 8K HDR TV screens, gaming consoles, phones and many many more choices.  Viewers also expect to have the same great viewing experience while at home connected via high-speed wired Internet, high-speed WiFi, or mobile celluar 5G and even satelite Internet connections.      
+
+To meet the growth to billions of users, the growth in content type, quality and speed expectations, and the on-any-device anywhere that I am over any-network-connection expectations of users the Streaming Video technonology infrastructure has had to itself evolve signifcantly.  This is video streaming evolution work that done in the IETF, in the [Streaming Video Technology Alliance (SVTA)](https://www.svta.org/), and in a number of other technical and industry groups.  
+
+It\'s hard to over state just how much the growth of Streaming Video has contributed to the growth of the Internet.  Internet connections of hundred megabit and gigabit speeds are because of the needs of video streaming, the ongoing work on low-latency networking and ultra-low-latency video delivery are both driven by streaming video.
+
+
+## Working together for everyone\'s benefit
+
+Given the importantance of streaming video to the Internet\'s users, network operators, streaming platform services, and many others it only makes sense that as the IETF and it\'s participants work on improving privacy for those same users that the two efforts work together for everyone\'s benefit.
+
+## Emerging Issues
 
 Streaming video applications and the streaming platforms they get their content from run into problems when these privacy enhancing technologies change the behaviors to network connections and to the underlying Internet for the streaming video connections from devices to content sources.  Particular problems arise when such changes are done in a way that hides the changes, or even that they are going to occur from the streaming application.
 
@@ -177,6 +203,8 @@ There are a number of ways Network Overlays can work with Streaming Applications
 
 A common theme in many of the mitigation proposal is making the Network Overlay changes and behavior transparent to the Streaming Application.  This approach should not affect privacy enhancements of the Network Overlay as it doesn't alter the Network Overlay. Enabling the Streaming Application to better understand the network environment it is operating, allows the application to adapt the changes and work within them.
 
+The other approach is enabling applications to be excluded from network overlays.  This could be be done through a variety of approaches such as providing users an option on their device to exclude either by specific applications, by specific end point destinations identified by DNS name or IP address, or by some other characteristic.   Another opt
+
 ## Application notification of policy change
 
 ## Interfaces to access policy settings
@@ -233,6 +261,5 @@ This document has no IANA actions.
 # Acknowledgments
 {:numbered="false"}
 
-This work is connected to work at the Streaming Video Technology Alliance (SVTA) and is submitted to the IETF based on experiences and observations of a variety of impacts to streaming video delivery of network overlays to streaming video study done by the SVTA
+The authors would like to acknowledge to the contributions from the Streaming Video Technology Alliance (SVTA) based on their work studing the impacts of network overlays on the streaming platforms participating in the SVTS.  In particular the contributions of Brian Paxton have been very helpful.
 
-TODO acknowledge.
