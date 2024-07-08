@@ -74,13 +74,16 @@ Copyright Notice
 Table of Contents
 
    1.  Introduction
-     1.1.  Streaming at Scale Architecture
-     1.2.  Impact of Changing Network Routing and other Policies
-     1.3.  Network Overlays and Streaming
-     1.4.  Network Overlays are different than VPNs
-       1.4.1.  VPNs typically:
-       1.4.2.  Network Overlays typically:
-     1.5.  Network Overlay Impacts to Streaming Video
+     1.1.  Streaming Video
+     1.2.  Working together for everyone's benefit
+     1.3.  Emerging Issues
+     1.4.  Streaming at Scale Architecture
+     1.5.  Impact of Changing Network Routing and other Policies
+     1.6.  Network Overlays and Streaming
+     1.7.  Network Overlays are different than VPNs
+       1.7.1.  VPNs typically:
+       1.7.2.  Network Overlays typically:
+     1.8.  Network Overlay Impacts to Streaming Video
    2.  Approaches to Mitigate or Minimize Impacts
      2.1.  Application notification of policy change
      2.2.  Interfaces to access policy settings
@@ -107,9 +110,85 @@ Table of Contents
 1.  Introduction
 
    The past decade of Internet evolution (2014-2024) has include two
-   significant trends, the global expansion of video streaming and a
-   variety of privacy enhancing technologies that alter how the Internet
-   behaves when carrying application traffic.
+   significant trends, firstly the global growth of video streaming and
+   secondly, strong work within the IETF, Operating System platforms and
+   others to develop new privacy enhancing technologies to protect the
+   privacy of Internet users.
+
+   The work of these two groups has largely been done independently of
+   one another, though there are a few individuals and companies that
+   are involved with both efforts.  However, the arrival of the new
+   privacy enhancements in consumer products and their subsequent use by
+   streaming video viewers has created a number of friction points which
+   are having significant impacts to the streaming video delivery
+   ecosystem, creating frustration for users and support issue for
+   platforms.
+
+   This document does not propose rolling back privacy enhancement for
+   users and the authors readily ackowledge the many challenges and
+   difficulties in improving Internet privacy into something as complex
+   as the Internet while maintianing compatabiltiy with wildly varied
+   applications and uses the Internet's users rely upon daily in their
+   lives.
+
+   The hope in developing this document is to provide meaningful and
+   helpful feedback from the streaming application and streaming
+   platform operational perspective to help the enhanced privacy
+   architecture work being done at the IETF.
+
+1.1.  Streaming Video
+
+   Streaming Video, while just on in a plethora of different uses of the
+   Internet does standout in a great many ways that each callout why it
+   should perhaps get special consideration for the impacts particular
+   privacy enhancing design choices may have.
+
+   Firstly, Streaming Video operates at a hard to imagine scale -
+   streaming video globally to as many as 2 billion users daily
+   currently and continuing to grow in leaps and bounds.
+
+   Secondly, the content types delivered through streaming has evolved
+   from the pre-recorded low-resolution, low-bit rate, latency tolerant
+   Video On Demand movies, TV shows, and user generated videos delivered
+   by pioneer streaming platforms to now include low-latency 4K and 8K
+   live sports events, while also evolving the pre-recorded content to
+   become very resolution and high high-bit rate 4K and 8K cinema
+   quality and High Dynamic Range (HDR) lighting.
+
+   Finally, the expectations of streaming video viewers has signiciantly
+   evolved from the days of settling for being able to watch a movie in
+   a PC browser.  Viewers expect to watch on any device type the want
+   from low-end-streaming sticks that plug into USB ports, to 4K and HDR
+   capable laptops, 4K and 8K HDR TV screens, gaming consoles, phones
+   and many many more choices.  Viewers also expect to have the same
+   great viewing experience while at home connected via high-speed wired
+   Internet, high-speed WiFi, or mobile celluar 5G and even satelite
+   Internet connections.
+
+   To meet the growth to billions of users, the growth in content type,
+   quality and speed expectations, and the on-any-device anywhere that I
+   am over any-network-connection expectations of users the Streaming
+   Video technonology infrastructure has had to itself evolve
+   signifcantly.  This is video streaming evolution work that done in
+   the IETF, in the Streaming Video Technology Alliance (SVTA)
+   (https://www.svta.org/), and in a number of other technical and
+   industry groups.
+
+   It's hard to over state just how much the growth of Streaming Video
+   has contributed to the growth of the Internet.  Internet connections
+   of hundred megabit and gigabit speeds are because of the needs of
+   video streaming, the ongoing work on low-latency networking and
+   ultra-low-latency video delivery are both driven by streaming video.
+
+1.2.  Working together for everyone's benefit
+
+   Given the importantance of streaming video to the Internet's users,
+   network operators, streaming platform services, and many others it
+   only makes sense that as the IETF and it's participants work on
+   improving privacy for those same users that the two efforts work
+   together for everyone's benefit.
+
+1.3.  Emerging Issues
 
    Streaming video applications and the streaming platforms they get
    their content from run into problems when these privacy enhancing
@@ -152,7 +231,7 @@ Table of Contents
    connections it makes using the underlying, partitioned network may
    take.
 
-1.1.  Streaming at Scale Architecture
+1.4.  Streaming at Scale Architecture
 
    Internet streaming has greatly matured and diversified from its early
    days of viewers watching pre-recorded 320x240, 640x480 standard
@@ -206,7 +285,7 @@ Table of Contents
    congestion and other conditions but streaming architecture is desiged
    to do its best when such momentary problems arise.
 
-1.2.  Impact of Changing Network Routing and other Policies
+1.5.  Impact of Changing Network Routing and other Policies
 
    The problem for streaming applications occurs when the underlying
    network properties and policies change from what is expected by the
@@ -246,7 +325,7 @@ Table of Contents
    to provide a few preliminary approachs that could help mitigate the
    impacts.
 
-1.3.  Network Overlays and Streaming
+1.6.  Network Overlays and Streaming
 
    The Network Overlays being discussed in this document is a generic
    term to characterize any technology that changes the network and
@@ -266,7 +345,7 @@ Table of Contents
    R ---- dest-node    \ /    \ /    \ /    R ----- R ----- ingest-node
    ----- egrees-node ----- R --+    <--- overlay traffic path --->
 
-1.4.  Network Overlays are different than VPNs
+1.7.  Network Overlays are different than VPNs
 
    While conceptually similar in many ways to VPN (Virtual Private
    Network) technology, the various network overlay technologies
@@ -274,7 +353,7 @@ Table of Contents
    by the IETF differ quite siginificanlty from the older VPN approach
    they are replacing in a number of ways.
 
-1.4.1.  VPNs typically:
+1.7.1.  VPNs typically:
 
    *  (1) VPNs typically are detectable by both the video application
       and often by the streaming platform.
@@ -290,7 +369,7 @@ Table of Contents
    *  various criteria such as application, destination IP address,
       application protocol etc.
 
-1.4.2.  Network Overlays typically:
+1.7.2.  Network Overlays typically:
 
    *  (1) Network Overlays are often undetectable by video applications
       or by the streaming plaform, when in use
@@ -312,7 +391,7 @@ Table of Contents
       applications to interact with them such as getting or setting
       options.
 
-1.5.  Network Overlay Impacts to Streaming Video
+1.8.  Network Overlay Impacts to Streaming Video
 
    As discussed Streaming Video delivery is done at scale using highly
    optimized delivery paths and infrastructure choices.  The priamry
@@ -343,6 +422,13 @@ Table of Contents
    Enabling the Streaming Application to better understand the network
    environment it is operating, allows the application to adapt the
    changes and work within them.
+
+   The other approach is enabling applications to be excluded from
+   network overlays.  This could be be done through a variety of
+   approaches such as providing users an option on their device to
+   exclude either by specific applications, by specific end point
+   destinations identified by DNS name or IP address, or by some other
+   characteristic.  Another opt
 
 2.1.  Application notification of policy change
 
@@ -419,12 +505,11 @@ Table of Contents
 
 Acknowledgments
 
-   This work is connected to work at the Streaming Video Technology
-   Alliance (SVTA) and is submitted to the IETF based on experiences and
-   observations of a variety of impacts to streaming video delivery of
-   network overlays to streaming video study done by the SVTA
-
-   TODO acknowledge.
+   The authors would like to acknowledge to the contributions from the
+   Streaming Video Technology Alliance (SVTA) based on their work
+   studing the impacts of network overlays on the streaming platforms
+   participating in the SVTS.  In particular the contributions of Brian
+   Paxton have been very helpful.
 
 Authors' Addresses
 
