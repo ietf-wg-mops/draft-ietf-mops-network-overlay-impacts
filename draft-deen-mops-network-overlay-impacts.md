@@ -221,36 +221,7 @@ One of the issues streaming platforms have run into, especially when working on 
 
 
 
-## Appendix A: Detailed Impacts of Network Policy Changes
-
-TDB - This is connected to on going active development work at the SVTA cataloging technical impacts in detail of Network Overlays.
-
-### Improper Cache Selection
-
-### Alternate Routing and Unexpected Routing
-
-### Bypass of Native Network Policies
-
-### Incorrect Traffic Classification
-
-### Increased Latency
-
-### Impacts of Altered IP Address
-
-### Performance management
-
-### Problem Determination
-
-### Altered logging
-
-### Geofilters breakage
-
-#### unintended blocking
-
-## Broken login/authentication
-
-
-# Appendix B: Network Overlays are different than VPNs
+# Appendix A: Network Overlays are different than VPNs
 
 While conceptually similar in many ways to VPN (Virtual Private Network) technology, the various network overlay
 technologies currently being deployed as well as new ones currently being designed by the IETF differ quite
