@@ -60,20 +60,35 @@ streaming platforms now operate in.
 
 Streaming platform have now have significant technical challenges to meet viewer expectations:  
 
-* (1) Delivery scales that commonly range from hundreds of thousand to millions of viewers simultaneously, with billions of views world wide daily;
+* (1) Delivery scales that commonly range from hundreds of thousand to millions of viewers simultaneously, with billions of
+* views world wide daily;
 * (2) Low latency demands from live sports, live events and live streamed content;
-* (3) content resolutions and corresponding formats which have jumped from the days of SD-480p to 4K (3840x2160) and 8K (7680x4320) along with bit rates which can had data needs of 10-24+ Mbps for 4K with 8K demanding 40 Mbps under extreme compression and 150-300 Mbps for high quality such as cinema;
+* (3) content resolutions and corresponding formats which have jumped from the days of SD-480p to 4K (3840x2160) and 8K
+*  (7680x4320) along with bit rates which can had data needs of 10-24+ Mbps for 4K with 8K demanding 40 Mbps under
+*  extreme compression and 150-300 Mbps for high quality such as cinema;
 * (4) devices with very divese capabilities low-cost streaming sticks, to Smart TVs, tablets, phones, and game consoles
 * (5) broad range of connectivity choices including WiFi, gig speed-low latency DOCSIS, satellite, and 5G cellular networks;
-* (6) application transport protocols including DASH, HLS, http2/tcp, http3/QUIC, WebRTC, Media over QUIC (MoQ) and speciality application transports such as SRT, HESP etc.
+* (6) application transport protocols including DASH, HLS, http2/tcp, http3/QUIC, WebRTC, Media over QUIC (MoQ) and
+* speciality application transports such as SRT, HESP etc.
 
-To meet these techincal challenges streaming platforms have significantly invested in developing delivery architectures that are built with detailed understandings of each element in the content delivery pathway from the content capture all the way through to the screen of the viewer.  
+To meet these techincal challenges streaming platforms have significantly invested in developing delivery architectures that 
+are built with detailed understandings of each element in the content delivery pathway from the content capture all the way
+through to the screen of the viewer.  
 
-Having an understanding and a predicatablity of the delivery path is essential for streaming operators and the introduction of network overlays based on technologies such as MASQUE especially when they are designed to not be easily detected, even by applications using them has created a new set of technical problems for streaming operators and network operators and for the viewers that subscribe to them. 
+Having an understanding and a predicatablity of the delivery path is essential for streaming operators and the introduction
+of network overlays based on technologies such as MASQUE especially when they are designed to not be easily detected, even 
+by applications using them has created a new set of technical problems for streaming operators and network operators and 
+for the viewers that subscribe to them. 
 
-The core problem occurs when changes to network policies are made, often without notification or visibiltiy to applications and without clear methods of probing to determine and test changed behaviors that affect the streaming application\'s content delivery path resulting in increased latency, changes of IP address for the application as seen by either the application or the streaming service connection, changes to DNS resolvers being queried and the results returned by DNS, and changes to application transports such as adding or removing outter layer encryption are all problems that have been observed in production streaming platforms. 
+The core problem occurs when changes to network policies are made, often without notification or visibiltiy to applications and
+without clear methods of probing to determine and test changed behaviors that affect the streaming application\'s content 
+delivery path resulting in increased latency, changes of IP address for the application as seen by either the application 
+or the streaming service connection, changes to DNS resolvers being queried and the results returned by DNS, and changes to
+application transports such as adding or removing outter layer encryption are all problems that have been observed in 
+production streaming platforms. 
 
-This document dicusses the various operational impacts and attempts to provide a few preliminary approachs that could help mitigate the impacts.
+This document dicusses the various operational impacts and attempts to provide a few preliminary approachs that could 
+help mitigate the impacts.
 
 # Network Overlay Functionality
 
