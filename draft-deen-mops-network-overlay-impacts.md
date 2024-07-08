@@ -40,7 +40,8 @@ author:
     fullname: "Sanjay Mishra"
     organization: Verizon
     email: sanjay.mishra@verizon.com
-
+  
+  
 normative:
 
 informative:
@@ -72,7 +73,7 @@ Streaming applications, which themselves are part of a well designed and optimiz
 The IETF has discussed this situation in the past, more than 20 years ago in 2002 Middleboxes: Taxonomy and Issues {{!RFC3234}}
 was published capturing the issues with Middleboxes in the network and the affects of hidden changes occuring on the network between the sender and receiver.
 
-While more recently, the IAB has explored the design of spreading traffic across mulitple paths to enhance privacy in Partitioning as an Architecture for Privacy {{I-D.draft-iab-privacy-partitioning}} suggesting that an operating environment where an application can know and predict what the behavior of connections it makes using the underlying, partitioned network may take.
+While more recently, the IAB has explored the design of spreading traffic across mulitple paths to enhance privacy in [Partitioning as an Architecture for Privacy](https://datatracker.ietf.org/doc/draft-iab-privacy-partitioning/)  suggesting that an operating environment where an application can know and predict what the behavior of connections it makes using the underlying, partitioned network may take.
 
 
 ## Streaming at Scale Architecture
@@ -174,7 +175,7 @@ A significant problem to address is the general problem of the Streaming Applica
 
 # Approaches to Mitigate or Minimize Impacts
 
-There are a number of ways Network Overlays can work with Streaming Applications to mitigate or at best minimize their impacts.  
+There are a number of ways Network Overlays can work with Streaming Applications to mitigate or at best minimize their impacts.
 
 A common theme in many of the mitigation proposal is making the Network Overlay changes and behavior transparent to the Streaming Application.  This approach should not affect privacy enhancements of the Network Overlay as it doesn't alter the Network Overlay. Enabling the Streaming Application to better understand the network environment it is operating, allows the application to adapt the changes and work within them.
 
