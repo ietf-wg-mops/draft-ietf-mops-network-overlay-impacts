@@ -41,11 +41,9 @@ author:
     organization: Verizon
     email: sanjay.mishra@verizon.com
   
-  
 normative:
 
 informative:
-
 
 --- abstract
 
