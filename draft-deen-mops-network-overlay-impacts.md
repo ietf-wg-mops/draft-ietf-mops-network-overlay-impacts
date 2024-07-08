@@ -108,11 +108,11 @@ followed by one or more hops ac
 
 
 <tt>
-
+ &nbsp;
      NS = Network Segment
    A-NS = Alternate (Overlay) Network Segement
      R  = router
-
+ &nbsp;
   device ------ R -------- R ------------------------------  R ---------------- R ---- R ---- dest-node
   &nbsp;&nbsp;             \\                                                             /
   &nbsp;&nbsp;              \\                                                           /
