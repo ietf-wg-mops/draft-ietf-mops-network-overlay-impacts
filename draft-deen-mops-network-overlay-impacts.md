@@ -112,15 +112,12 @@ followed by one or more hops ac
      NS = Network Segment
    A-NS = Alternate (Overlay) Network Segement
      R  = router
-     
+
   device ------ R -------- R ------------------------------  R ---------------- R ---- R ---- dest-node
   &nbsp;&nbsp;             \\                                                             /
-  &nbsp;&nbsp;              \\                                                           /  
+  &nbsp;&nbsp;              \\                                                           /
   &nbsp;&nbsp;               \\                                                         /
-  &nbsp;&nbsp;                 R ---- R ----- ingest-node ----- egrees-node ----- R --+
-                                
-           
-    
+  &nbsp;&nbsp;                 R ---- R ----- ingest-node ----- egrees-node ----- R --+ 
 </tt>
 
 
