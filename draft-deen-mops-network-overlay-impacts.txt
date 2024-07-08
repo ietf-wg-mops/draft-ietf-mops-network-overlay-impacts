@@ -92,19 +92,7 @@ Table of Contents
      5.2.  Policy Change Notification
      5.3.  Exclusion from Policy Changes
      5.4.  Support Tools
-     5.5.  Appendix A: Detailed Impacts of Network Policy Changes
-       5.5.1.  Improper Cache Selection
-       5.5.2.  Alternate Routing and Unexpected Routing
-       5.5.3.  Bypass of Native Network Policies
-       5.5.4.  Incorrect Traffic Classification
-       5.5.5.  Increased Latency
-       5.5.6.  Impacts of Altered IP Address
-       5.5.7.  Performance management
-       5.5.8.  Problem Determination
-       5.5.9.  Altered logging
-       5.5.10. Geofilters breakage
-     5.6.  Broken login/authentication
-   6.  Appendix B: Network Overlays are different than VPNs
+   6.  Appendix A: Network Overlays are different than VPNs
      6.1.  VPNs typically:
        6.1.1.  Network Overlays typically:
    7.  Conventions and Definitions
@@ -478,36 +466,7 @@ Table of Contents
    engineers often find they lack the necessary support tools to help
    customers in determining streaming problems.
 
-5.5.  Appendix A: Detailed Impacts of Network Policy Changes
-
-   TDB - This is connected to on going active development work at the
-   SVTA cataloging technical impacts in detail of Network Overlays.
-
-5.5.1.  Improper Cache Selection
-
-5.5.2.  Alternate Routing and Unexpected Routing
-
-5.5.3.  Bypass of Native Network Policies
-
-5.5.4.  Incorrect Traffic Classification
-
-5.5.5.  Increased Latency
-
-5.5.6.  Impacts of Altered IP Address
-
-5.5.7.  Performance management
-
-5.5.8.  Problem Determination
-
-5.5.9.  Altered logging
-
-5.5.10.  Geofilters breakage
-
-5.5.10.1.  unintended blocking
-
-5.6.  Broken login/authentication
-
-6.  Appendix B: Network Overlays are different than VPNs
+6.  Appendix A: Network Overlays are different than VPNs
 
    While conceptually similar in many ways to VPN (Virtual Private
    Network) technology, the various network overlay technologies
