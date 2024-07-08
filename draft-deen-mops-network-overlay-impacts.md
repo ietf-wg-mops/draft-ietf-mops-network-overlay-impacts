@@ -44,17 +44,21 @@ informative:
 
 --- abstract
 
-This document examines the operational impacts to streaming video applications caused by changes to network policies by 
-network overlays.  The network policy changes incluide a wide range including changes to address assignment, transport 
-protocols, routing, DNS resolver which in turn affect a variety of important content delivery aspects such as latency, 
-CDN cache selection, delivery path choices, traffic classification and content access controls.
+This document examines the operational impacts to streaming video applications 
+caused by changes to network policies by network overlays.  The network policy 
+changes incluide a wide range including changes to address assignment, transport 
+protocols, routing, DNS resolver which in turn affect a variety of important 
+content delivery aspects such as latency, CDN cache selection, delivery path 
+choices, traffic classification and content access controls.
 
 --- middle
 
 # Introduction
 
-Internet streaming has greatly matured and diversified from its early days of viewers watching pre-recorded 320x240, 640x480
-standard definiton 480p movies to wired PCs connected to the Internet via high-latency, low-bandwidth DSL as early DOCSIS modems.  
+Internet streaming has greatly matured and diversified from its early days of viewers watching pre-recorded 
+320x240, 640x480
+standard definiton 480p movies to wired PCs connected to the Internet via high-latency, 
+low-bandwidth DSL as early DOCSIS modems.  
 
 Streaming has grown be a daily go-to video source world wide for billions of viewers and has expanded from pre-recorded movies to
 encompass every type of video content imaginable.  This growth to billions of viewers and the addition of low latency sensistive
