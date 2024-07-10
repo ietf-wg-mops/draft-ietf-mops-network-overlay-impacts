@@ -366,8 +366,8 @@ Table of Contents
    The various impacts are list later in this document but there are a
    few classes of issues that have been observed:
 
-   *  (1) Routing changes which cause bypassing edge CDN caches on
-      access networks to be bypassed
+   *  (1) Routing changes which cause bypassing edge CDN caches instead
+      choosing less optimal caches
 
    *  (2) Routing changes which add network latency compared to edge CDN
       caches or access network peering connections
