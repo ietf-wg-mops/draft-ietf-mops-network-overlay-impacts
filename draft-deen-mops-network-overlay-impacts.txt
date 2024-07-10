@@ -87,6 +87,7 @@ Table of Contents
      3.1.  Advances in Streaming Video Architecture
    4.  Emerging Operational Issues with Network Overlay Policy Changes
      4.1.  Impact of Changing Network Routing and other Policies
+       4.1.1.  Middleboxes and learning from the past
    5.  Approaches to Mitigate or Minimize Impacts
      5.1.  Transparent Policy Settings
      5.2.  Policy Change Notification
@@ -225,12 +226,6 @@ Table of Contents
    Enhancing Network Overlays that involve making a number of network
    policy changes from the open Internet for the connections passed
    through them.
-
-   The IETF has discussed this situation in the past, more than 20 years
-   ago in 2002 Middleboxes: Taxonomy and Issues [RFC3234] was published
-   capturing the issues with Middleboxes in the network and the affects
-   of hidden changes occuring on the network between the sender and
-   receiver.
 
 2.2.  Making It Easy (for Users) by Working Under the Covers
 
@@ -424,6 +419,14 @@ Table of Contents
    DNS, and changes to application transports such as adding or removing
    outer layer encryption are all problems that have been observed in
    production streaming platforms.
+
+4.1.1.  Middleboxes and learning from the past
+
+   The IETF has discussed this situation in the past, more than 20 years
+   ago in 2002 Middleboxes: Taxonomy and Issues [RFC3234] was published
+   capturing the issues with Middleboxes in the network and the affects
+   of hidden changes occuring on the network between the sender and
+   receiver.
 
 5.  Approaches to Mitigate or Minimize Impacts
 
