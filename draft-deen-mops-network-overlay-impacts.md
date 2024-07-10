@@ -98,7 +98,7 @@ Network Overlay policy changes will include an alternate routing policy since a 
 Beyond alternate routing policies, network overlays often also make changes to the Source IP Address Assignment, the DNS Resolver Selection, can include protocol conversions/translations such as HTTP2->HTTP3 and HTTP2->HTTPS2+TLS, and can include IP layer changes such as IPv4->IPv6 or IPv6->IPv6 conversions.
 
 ### MASQUE
-Protocols such as MASQUE {{!RFC9494}} and services built on it such as Apple\'s [iCloud Private Relay](https://www.apple.com/privacy/docs/iCloud_Private_Relay_Overview_Dec2021.PDF) are examples of Privacy Enhancing Network Overlays that involve making a number of network policy changes from the open Internet for the connections passed through them.
+Protocols such as MASQUE {{!RFC9484}} and services built on it such as Apple\'s [iCloud Private Relay](https://www.apple.com/privacy/docs/iCloud_Private_Relay_Overview_Dec2021.PDF) are examples of Privacy Enhancing Network Overlays that involve making a number of network policy changes from the open Internet for the connections passed through them.
 
 The IETF has discussed this situation in the past, more than 20 years ago in 2002 Middleboxes: Taxonomy and Issues {{!RFC3234}}
 was published capturing the issues with Middleboxes in the network and the affects of hidden changes occuring on the network between the sender and receiver.
