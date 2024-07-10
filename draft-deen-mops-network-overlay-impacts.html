@@ -1286,6 +1286,20 @@ choices, traffic classification and content access controls.<a href="#section-ab
 <a href="#section-2.1" class="section-number selfRef">2.1. </a><a href="#name-network-overlays" class="section-name selfRef">Network Overlays</a>
         </h3>
 <p id="section-2.1-1">Along with the use of encrypted connections another popular approach is to additionally create alterative routings and tunnels for connections which bypass the routing and other policy decisions of the ISP access network and of the public open Internet.   These alternative network policy choices have the effect of creating a Network Overlay that operates on top of and over the device's Access Network and the Open Internet, but follows an independent set of policies chosen by the Network Overlay.<a href="#section-2.1-1" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-2.1-2">
+<pre>
+ R  = router
+                    &lt;--- non-overlay traffic path ---&gt;
+ device -- R ---- R ------------- R ------------- R ---- R -- dest-node
+            \                                           /
+             \                                         /
+              \                                       /
+               R -- R -- ingest -- egress -- R ------+
+                     &lt;--- overlay traffic path ---&gt;
+
+ Figure 1:  Network Overlay routing select traffic via an alternate path
+</pre><a href="#section-2.1-2" class="pilcrow">¶</a>
+</div>
 <div id="partitioning">
 <section id="section-2.1.1">
           <h4 id="name-partitioning">
