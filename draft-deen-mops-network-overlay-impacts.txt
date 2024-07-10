@@ -5,8 +5,8 @@
 Media OPerationS                                                 G. Deen
 Internet-Draft                                      Comcast-NBCUniversal
 Intended status: Informational                                 S. Mishra
-Expires: 9 January 2025                                          Verizon
-                                                             8 July 2024
+Expires: 11 January 2025                                         Verizon
+                                                            10 July 2024
 
 
                Network Overlay Impacts to Streaming Video
@@ -55,7 +55,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 9 January 2025.
+   This Internet-Draft will expire on 11 January 2025.
 
 Copyright Notice
 
@@ -208,7 +208,7 @@ Table of Contents
 
 2.1.3.  MASQUE
 
-   Protocols such as MASQUE [RFC9494] and services built on it such as
+   Protocols such as MASQUE [RFC9484] and services built on it such as
    Apple's iCloud Private Relay (https://www.apple.com/privacy/docs/
    iCloud_Private_Relay_Overview_Dec2021.PDF) are examples of Privacy
    Enhancing Network Overlays that involve making a number of network
@@ -548,10 +548,10 @@ Table of Contents
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
               May 2017, <https://www.rfc-editor.org/rfc/rfc8174>.
 
-   [RFC9494]  Uttaro, J., Chen, E., Decraene, B., and J. Scudder, "Long-
-              Lived Graceful Restart for BGP", RFC 9494,
-              DOI 10.17487/RFC9494, November 2023,
-              <https://www.rfc-editor.org/rfc/rfc9494>.
+   [RFC9484]  Pauly, T., Ed., Schinazi, D., Chernyakhovsky, A.,
+              Kühlewind, M., and M. Westerlund, "Proxying IP in HTTP",
+              RFC 9484, DOI 10.17487/RFC9484, October 2023,
+              <https://www.rfc-editor.org/rfc/rfc9484>.
 
 Acknowledgments
 
