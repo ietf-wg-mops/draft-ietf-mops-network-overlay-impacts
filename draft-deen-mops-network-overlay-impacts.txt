@@ -5,8 +5,8 @@
 Media OPerationS                                                 G. Deen
 Internet-Draft                                      Comcast-NBCUniversal
 Intended status: Informational                                 S. Mishra
-Expires: 11 January 2025                                         Verizon
-                                                            10 July 2024
+Expires: 12 January 2025                                         Verizon
+                                                            11 July 2024
 
 
                Network Overlay Impacts to Streaming Video
@@ -55,7 +55,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 11 January 2025.
+   This Internet-Draft will expire on 12 January 2025.
 
 Copyright Notice
 
@@ -368,6 +368,17 @@ Table of Contents
 
    *  (1) Routing changes which cause bypassing edge CDN caches instead
       choosing less optimal caches
+
+ R  = router
+                    <--- non-overlay traffic path --->
+ device -- R ---- R ---- Edge CDN Cach111e
+            \
+             \
+              \
+               R --- R -- ingest -- R --- R -- egress -- R ------R ---- Less Optimal CDN Cache
+                     <--- overlay traffic path --->
+
+ Figure:  Routing Changes alering CDN Cache selection
 
    *  (2) Routing changes which add network latency compared to edge CDN
       caches or access network peering connections
