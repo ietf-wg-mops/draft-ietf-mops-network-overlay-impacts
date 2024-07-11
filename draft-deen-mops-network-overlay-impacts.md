@@ -174,6 +174,21 @@ Streaming video applications and the streaming platforms delivery content to the
 The various impacts are list later in this document but there are a few classes of issues that have been observed:
 
 * (1) Routing changes which cause bypassing edge CDN caches instead choosing less optimal caches
+
+~~~
+ R  = router
+                    <--- non-overlay traffic path --->
+ device -- R ---- R ---- Edge CDN Cache
+            \                                           
+             \                                         
+              \                                       
+               R -- R -- ingest ---- egress -- R ------R ---- Deep CDN Cache
+                     <--- overlay traffic path --->
+
+ Figure:  Routing Changes alering CDN Cache selection
+~~~
+
+
 * (2) Routing changes which add network latency compared to edge CDN caches or access network peering connections
 * (3) Forced encrypted of unencrypted HTTP2 connections to HTTP2+TLS connections
 * (4) DNS Resolver choice changes resulting in less optimal CDN cache selection or bypassing of CDN load balancing direction
