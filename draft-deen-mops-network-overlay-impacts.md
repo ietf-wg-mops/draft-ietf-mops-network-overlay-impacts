@@ -178,9 +178,9 @@ The various impacts are list later in this document but there are a few classes 
 ~~~
  R  = router
                     <--- non-overlay traffic path --->
- device -- R ---- R ---- Edge CDN Cache
-            \                                           
-             \                                         
+ device -- R ---- R ---- Edge CDN Cach111e
+            \
+             \  
               \                                       
                R -- R -- ingest ---- egress -- R ------R ---- Deep CDN Cache
                      <--- overlay traffic path --->
