@@ -370,8 +370,8 @@ Table of Contents
       choosing less optimal caches
 
  R  = router
-                    <--- non-overlay traffic path --->
- device -- R ---- R ---- Edge CDN Cach111e
+           <--- non-overlay traffic path --->
+ device -- R ---- R ---- Edge CDN Cache
             \
              \
               \
