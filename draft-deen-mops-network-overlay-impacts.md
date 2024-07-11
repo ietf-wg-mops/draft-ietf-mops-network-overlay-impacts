@@ -180,9 +180,9 @@ The various impacts are list later in this document but there are a few classes 
                     <--- non-overlay traffic path --->
  device -- R ---- R ---- Edge CDN Cach111e
             \
-             \  
-              \                                       
-               R -- R -- ingest ---- egress -- R ------R ---- Deep CDN Cache
+             \
+              \
+               R --- R -- ingest -- R --- R -- egress -- R ------R ---- Less Optimal CDN Cache
                      <--- overlay traffic path --->
 
  Figure:  Routing Changes alering CDN Cache selection
