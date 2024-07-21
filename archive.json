@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-07-18T01:18:06.581194+00:00",
+  "timestamp": "2024-07-21T01:24:55.645241+00:00",
   "repo": "gitnnelg/NetworkOverlays",
   "labels": [
     {
@@ -100,6 +100,32 @@
           "comments": []
         }
       ]
+    },
+    {
+      "number": 2,
+      "id": "PR_kwDOMF9odM511P2t",
+      "title": "Update draft-deen-mops-network-overlay-impacts.md",
+      "url": "https://github.com/gitnnelg/NetworkOverlays/pull/2",
+      "state": "OPEN",
+      "author": "smishra1200",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Made editorial updates throughout the document",
+      "createdAt": "2024-07-18T21:39:51Z",
+      "updatedAt": "2024-07-18T21:39:52Z",
+      "baseRepository": "gitnnelg/NetworkOverlays",
+      "baseRefName": "main",
+      "baseRefOid": "000ee9a3c2bb60506f3bcc4675e27df5b5ee27f5",
+      "headRepository": "gitnnelg/NetworkOverlays",
+      "headRefName": "smishra1200-patch-1",
+      "headRefOid": "483e986c963b5749b119b6560a9aa05efbf5ddeb",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
     }
   ]
 }
