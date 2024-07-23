@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-07-21T01:24:55.645241+00:00",
+  "timestamp": "2024-07-23T01:19:44.415556+00:00",
   "repo": "gitnnelg/NetworkOverlays",
   "labels": [
     {
@@ -106,26 +106,50 @@
       "id": "PR_kwDOMF9odM511P2t",
       "title": "Update draft-deen-mops-network-overlay-impacts.md",
       "url": "https://github.com/gitnnelg/NetworkOverlays/pull/2",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "smishra1200",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Made editorial updates throughout the document",
       "createdAt": "2024-07-18T21:39:51Z",
-      "updatedAt": "2024-07-18T21:39:52Z",
+      "updatedAt": "2024-07-21T20:15:03Z",
       "baseRepository": "gitnnelg/NetworkOverlays",
       "baseRefName": "main",
       "baseRefOid": "000ee9a3c2bb60506f3bcc4675e27df5b5ee27f5",
       "headRepository": "gitnnelg/NetworkOverlays",
       "headRefName": "smishra1200-patch-1",
       "headRefOid": "483e986c963b5749b119b6560a9aa05efbf5ddeb",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
-      "comments": [],
-      "reviews": []
+      "closedAt": "2024-07-21T20:15:03Z",
+      "mergedAt": "2024-07-21T20:15:03Z",
+      "mergedBy": "gitnnelg",
+      "mergeCommit": {
+        "oid": "25be2919e7246a65b22ec95587403879aef57536"
+      },
+      "comments": [
+        {
+          "author": "gitnnelg",
+          "authorAssociation": "OWNER",
+          "body": "Merge Sanjay's edits",
+          "createdAt": "2024-07-21T20:14:48Z",
+          "updatedAt": "2024-07-21T20:14:48Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOMF9odM6Cjr31",
+          "commit": {
+            "abbreviatedOid": "483e986"
+          },
+          "author": "gitnnelg",
+          "authorAssociation": "OWNER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-07-21T20:14:02Z",
+          "updatedAt": "2024-07-21T20:14:02Z",
+          "comments": []
+        }
+      ]
     }
   ]
 }
