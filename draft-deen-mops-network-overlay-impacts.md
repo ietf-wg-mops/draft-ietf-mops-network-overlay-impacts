@@ -64,15 +64,15 @@ The work on these initiatives has largely occured independently of one another, 
 
 To be clear, this document is not proposing or advocating rolling back any of the privacy enhancements for the viewers.  Instead the authors hope to help educate the IETF and others on the practical operational impacts of these enhancements and to eventually develop approaches that can help mitigate such impacts.
 
-The authors also readily acknowledge the many challenges and difficulties in improving Internet privacy into something as complex as the Internet while maintaining compatibiltiy with the wildly varied applications and uses the Internet\'s users rely upon daily in their lives. This is hard stuff and it's very natural for there to be operational considerations that must be understood and folded back into architectural designs and consumer products.
+The authors also readily acknowledge the many challenges and difficulties in improving Internet privacy in an area as complex as the world wide web while also maintaining compatibiltiy with the wildly varied applications and uses the Internet\'s users rely upon daily in their lives. This is hard stuff and it's very natural for there to be operational considerations that must be understood and folded back into architectural designs and consumer products.
 
-The hope in developing this document is to provide meaningful and helpful feedback from the streaming application and streaming platform operational perspective to help the enhanced privacy architecture work being done at the IETF.
+The motivation in developing this document is to provide a meaningful and helpful feedback from the streaming application and streaming platform operational perspective to help the enhanced privacy architecture work being done at the IETF.
 
 ## Streaming Video Architects and Privacy Enhancement Designers Working Together
 
-This document is not intended to challenge the need for privacy enhancements for the Internet, instead the hope is to illustrate impacts of such changes to the billions of users of Streaming Video delivered over the Internet so that the designers of privacy enhancements and the designers of services built on them can better understand the impacts of different design choices and perhaps find ways to mitigate such impacts through altered design choices.
+This document is not intended to challenge the need for privacy enhancements for the Internet, instead the hope is to illustrate impacts of such changes to the billions of users of streaming video delivered over the Internet so that the designers of privacy enhancements and the designers of services built on them can better understand the impacts of different design choices and perhaps find ways to mitigate such impacts through altered design choices.
 
-Given the popularity of streaming video with the Internet\'s users and it\'s importancne to network operators, streaming platform operators and many others it only makes sense that as the IETF and it\'s participants work on improving privacy for those same users that the two efforts work together for everyone\'s benefit.
+Given the popularity of streaming video with the Internet\'s users and it\'s importance to network operators, streaming platform operators and many others, it only makes sense that as the IETF and it\'s participants work on improving privacy for those same users that the two efforts work together for everyone\'s benefit.
 
 ## Possible Outcomes
 
@@ -82,7 +82,7 @@ Another possible outcome might be an IAB led study on the operational impacts of
 
 # Internet Privacy Enhancements
 
-Enhancing Internet Privacy is a challenging task to do for something as complex as the running Internet and it is easy for great proposals that fix one issue to cause new issues to arise in other places.  That\'s not a reason to stop trying, but it is important to understand the consequences of changes and to find ways to manage or mitigate such impacts, ideally without weakening or rolling back the enhancements.
+Enhancing Internet privacy is a difficult challenge, given the complexity of the Internet itself.  It's common for solutions that address one issue to inadvertently create new problems elsewhere.  That\'s not a reason to stop trying, but it is important to understand the consequences of changes and to find ways to manage or mitigate such impacts, ideally without weakening or rolling back the enhancements.
 
 A popular design choice in privacy enhancements at the IETF has been the encapsulation of data inside encrypted connections.  {{!RFC9000}} is an excellent example of this design and introduces a protocol that is always encrypted.
 
@@ -118,13 +118,13 @@ Protocols such as MASQUE {{!RFC9484}} and services built on it such as Apple\'s 
 
 ## Making It Easy (for Users) by Working Under the Covers
 
-Privacy has historically been a complicated feature to add into products targeted to end users. There are many reasons for this such as trying to meet every possible scenario and use-case and trying to provide easy user access to advanced privacy frameworks and taxonomies.   Many attempts have been made and very few have achieved finding success with end users.
+Historically, incorporating privacy features into consumer-facing products has been complex. This challenge arises from the need to address a wide range of use cases while also offering users easy access to advanced privacy frameworks and taxonomies. Many attempts have been made and very few have achieved finding success with end users.
 
 Perhaps learning from the lessons of offering too many options, the recent trend in privacy enhancements has steered torward either a very simple \"Privacy On or Off\" switch or in other cases automatically enabling or \"upgrading\" to enhance privacy.   Apple\'s iCloud Private Relay can be easily turned on with a single settings switch, while privacy features such as Encrypted DNS over HTTP and upgrade from HTTP to HTTPS connections have had a number of deployments that automatically enable them for users when possible.
 
-Keeping with the motto of Keep It Simple, users are generally not provided with granular Network Overlay controls permitting the user to select what applications, or what network connections the Network Overlay's policies can apply to.
+Keeping with the motto of "Keep It Simple", users are generally not provided with granular Network Overlay controls permitting the user to select what applications, or what network connections the Network Overlay's policies can apply to.
 
-Adhereing with the Keep It Simple approach the application itself has very little connection to privacy enhancing Network Overlays.  Applications generally do not have a means to detect when networking policy changes are active. Applications generally do not have a means to access policy change settings or to interact to change them.
+Adhereing with the "Keep It Simple" approach the application itself has very little connection to privacy enhancing Network Overlays.  Applications generally do not have a means to detect when networking policy changes are active. Applications generally do not have a means to access policy change settings or to interact to change them.
 
 # Streaming Video
 
@@ -132,13 +132,13 @@ Streaming Video, while just one of the many different Internet applications does
 
 Firstly, Streaming video operates at a hard to imagine scale - streaming video is served globally to more than 2 billion user daily currently and continuing to grow in leaps and bounds.
 
-Secondly, the content types delivered through streaming has evolved from  the pre-recorded low-resolution, low-bit rate, latency tolerant Video-On-Demand movies, live or pre-recorded TV shows, and user generated videos delivered by pioneering streaming platforms to now including low-latency 4K and 8K live sports events, while also evolving the pre-recorded content with high-bit rate such as 4K and 8K cinema quality and High Dynamic Range (HDR) lighting.
+Secondly, the content types delivered through streaming has evolved from  the pre-recorded low-resolution, low-bit rate, latency tolerant video-on-demand movies, live or pre-recorded TV shows, and user generated videos delivered by pioneering streaming platforms to now including low-latency 4K and 8K live sports events, while also evolving the pre-recorded content with high-bit rate such as 4K and 8K cinema quality and High Dynamic Range (HDR) lighting.
 
 Finally, the expectations of streaming video viewers have significantly evolved from the days of settling for being able to watch a movie in a PC browser.  Viewers expect to watch on any device type they want ranging from low-end-streaming sticks that plug into a USB port, to 4K and HDR capable laptops, 4K and 8K HDR TV screens, gaming consoles, smart phones and many more choices.  Viewers also expect to have the same great viewing experience while at home connected via high-speed wired Internet, high-speed WiFi, or mobile cellular 5G and even satellite Internet connections.
 
 To meet the growth to billions of users, the growth in content type, quality and speed expectations, and  on-any-device anywhere that I am over any-network-connection expectations of users the Streaming Video technology infrastructure has had to itself evolve significantly.  This video streaming evolution work is being done in the IETF and in the [Streaming Video Technology Alliance (SVTA)](https://www.svta.org/), and in a number of other technical and industry groups.
 
-It\'s hard to overstate just how much the growth of Streaming video has contributed to the growth of the Internet.  Internet connections of multiples of hundred megabits and gigabits speeds today are because of the needs of video streaming, the ongoing work on low-latency networking and ultra-low-latency video delivery are both driven by the use of streaming video.
+It\'s hard to overstate just how much the growth of streaming video has contributed to the growth of the Internet.  Internet connections of multiples of hundred megabits and gigabits speeds today are because of the needs of video streaming, the ongoing work on low-latency networking and ultra-low-latency video delivery are both driven by the use of streaming video.
 
 ## Advances in Streaming Video Architecture
 
@@ -158,20 +158,18 @@ With the large user base and its usage, the Streaming platforms also have signif
 * (2) Low latency demands from live sports, live events and live streamed content;
 * (3) content resolutions and corresponding formats which have jumped from the days of SD-480p to 4K (3840x2160) and 8K (7680x4320) along with bit rates which can had data needs of 10-24+ Mbps for 4K with 8K demanding 40 Mbps under extreme compression and 150-300 Mbps for high quality such as cinema;
 * (4) devices with very diverse capabilities low-cost streaming sticks, to Smart TVs, tablets, phones, and game consoles
-* (5) broad range of connectivity choices including WiFi, gig speed-low latency DOCSIS, Fiber, satellite, and 5G cellular networks;
-* (6) application transport protocols including DASH, HLS, HTTP2/TCP, HTTP3/QUIC, WebRTC, Media over QUIC (MoQ) and specialty application transports such as SRT, HESP etc.
+* (5) broad range of connectivity choices including WiFi, Gig speed-low latency DOCSIS, Fiber, satellite, and 5G cellular networks;
+* (6) application transport protocols including MPEG DASH, HLS, HTTP2/TCP, HTTP3/QUIC, WebRTC, Media over QUIC (MoQ) and specialty application transports such as SRT, HESP etc.
 
 To meet these challenges streaming platforms have significantly invested in developing delivery architectures that
 are built with detailed understandings of each element in the content delivery pathway starting from the content capture all the way
 through to the screen of the viewer.
 
-Streaming applications are part of an end-to-end architecture that is optimized around achieving the best experience including low latency video delivery to viewing devices.  Obviously the open Internet can be unpredictable with momentary issues such as packet loss, congestion and other conditions but streaming architecture is desiged to do its best when such momentary problems arise.
+Streaming applications are part of an end-to-end architecture that is optimized around achieving the best experience including low latency video delivery to viewing devices.  The open Internet can be unpredictable with temporary issues like packet loss, congestion and other conditions. However,  streaming architecture is desiged to handle these momentary problems as effectively as possible. 
 
 # Emerging Operational Issues with Network Overlay Policy Changes
 
-Streaming video applications and the streaming platforms used for delivering content to them are beginning to encounter a variety operational problems related to the Network Overlays as users and customers of both bring them together.
-
-The various impacts are listed further down in this document but there are a few classes of issues that have been observed:
+Streaming video applications and the streaming platforms delivering their content are starting to face various operational challenges related to Network Overlays. The various impacts are listed further down in this document but there are a few classes of issues that have been observed:
 
 * (1) Routing changes which cause bypassing edge CDN caches and instead choosing less optimal caches
 
@@ -201,10 +199,8 @@ The problem for streaming applications occurs when the underlying network proper
 
 While the open Internet is a dynamic environment, changing of basic network behavior and policies from what is expected as seen from the streaming application,  deviate unexpectedly from what the streaming application expects. This behavior disrupts the optimized streaming delivery architecture for the end-user device.  Changes to Network Policies such the routing, source IP address assigned to the streaming application traffic, DNS resolver choice etc influences this behavior.
 
-Having an understanding and a reliable understanding of the delivery path is essential for streaming operators and the introduction
-of network overlays based on technologies such as MASQUE especially when they are designed to not be easily detected, even
-by applications using them has created a new set of technical problems for streaming operators and network operators and
-for the viewers that subscribe to them.
+Having a reliable understanding of the delivery path is essential for streaming operators and the introduction
+of network overlays like those based on technologies such as MASQUE especially when designed to be undetectable by the applications using them has introduced new technical challengess for streaming operators and network operators as well as for their viewers.
 
 The core problem occurs when changes to network policies are made, often without notification or visibilty to applications and
 without clear methods of probing to determine and test changed behaviors that affect the streaming application\'s content
