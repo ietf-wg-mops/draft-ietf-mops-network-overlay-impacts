@@ -165,7 +165,7 @@ To meet these challenges streaming platforms have significantly invested in deve
 are built with detailed understandings of each element in the content delivery pathway starting from the content capture all the way
 through to the screen of the viewer.
 
-Streaming applications are part of an end-to-end architecture that is optimized around achieving the best experience including low latency video delivery to viewing devices.  The open Internet can be unpredictable with temporary issues like packet loss, congestion and other conditions. However,  streaming architecture is desiged to handle these momentary problems as effectively as possible. 
+Streaming applications are part of an end-to-end architecture that is optimized around achieving the best experience including low latency video delivery to viewing devices.  The open Internet can be unpredictable with temporary issues like packet loss, congestion and other conditions. However,  streaming architecture is desiged to handle these momentary problems as effectively as possible.
 
 # Emerging Operational Issues with Network Overlay Policy Changes
 
