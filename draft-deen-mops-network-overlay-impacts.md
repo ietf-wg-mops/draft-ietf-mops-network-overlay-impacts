@@ -64,7 +64,7 @@ The work on these initiatives has largely occured independently of one another, 
 
 To be clear, this document is not proposing or advocating rolling back any of the privacy enhancements for the viewers.  Instead the authors hope to help educate the IETF and others on the practical operational impacts of these enhancements and to eventually develop approaches that can help mitigate such impacts.
 
-The authors also readily acknowledge the many challenges and difficulties in improving Internet privacy in an area as complex as the world wide web while also maintaining compatibiltiy with the wildly varied applications and uses the Internet\'s users rely upon daily in their lives. This is hard stuff and it's very natural for there to be operational considerations that must be understood and folded back into architectural designs and consumer products.
+The authors also readily acknowledge the many challenges and difficulties in improving Internet privacy in an area as complex as the Internet while also maintaining compatibiltiy with the wildly varied applications and uses the Internet\'s users rely upon daily in their lives. This is hard stuff and it's very natural for there to be operational considerations that must be understood and folded back into architectural designs and consumer products.
 
 The motivation in developing this document is to provide a meaningful and helpful feedback from the streaming application and streaming platform operational perspective to help the enhanced privacy architecture work being done at the IETF.
 
