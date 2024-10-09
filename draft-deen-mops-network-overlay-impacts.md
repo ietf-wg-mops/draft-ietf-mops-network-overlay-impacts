@@ -74,7 +74,7 @@ Enhancing the Internet\'s privacy is a difficult challenge, given the complexity
 
 A popular design choice in privacy enhancements at the IETF has been the encapsulation of data inside encrypted connections along with other network policy changes to introduce changes which make observing and tracing data difficult to do and difficult to associate to any particular user.
 
-{{RFC7258}} from the IAB examines various pervasive montoring approaches while {{RFC7624}} discusses responses that enhance privacy.  {{!RFC9000}} itself is an excellent example of the applied design approaches and introduces the QUIC transport protocol that is always encrypted.
+{{!RFC7258}} from the IAB examines various pervasive montoring approaches while {{!RFC7624}} discusses responses that enhance privacy.  {{!RFC9000}} itself is an excellent example of the applied design approaches and introduces the QUIC transport protocol that is always encrypted.
 
 ## Network Overlays
 
