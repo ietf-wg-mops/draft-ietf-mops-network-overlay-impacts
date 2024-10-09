@@ -5,8 +5,8 @@
 Media OPerationS                                                 G. Deen
 Internet-Draft                                      Comcast-NBCUniversal
 Intended status: Informational                                 S. Mishra
-Expires: 7 April 2025                                            Verizon
-                                                          4 October 2024
+Expires: 12 April 2025                                           Verizon
+                                                          9 October 2024
 
 
                Network Overlay Impacts to Streaming Video
@@ -55,7 +55,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 7 April 2025.
+   This Internet-Draft will expire on 12 April 2025.
 
 Copyright Notice
 
@@ -74,9 +74,6 @@ Copyright Notice
 Table of Contents
 
    1.  Introduction
-     1.1.  Streaming Video Architects and Privacy Enhancement
-           Designers Working Together
-     1.2.  Possible Outcomes
    2.  Internet Privacy Enhancements
      2.1.  Network Overlays
        2.1.1.  Partitioning
@@ -88,18 +85,13 @@ Table of Contents
    4.  Emerging Operational Issues with Network Overlay Policy Changes
      4.1.  Impact of Changing Network Routing and other Policies
        4.1.1.  Middleboxes and learning from the past
-   5.  Approaches to Mitigate or Minimize Impacts
-     5.1.  Transparent Policy Settings
-     5.2.  Policy Change Notification
-     5.3.  Exclusion from Policy Changes
-     5.4.  Support Tools
-   6.  Appendix A: Network Overlays are different than VPNs
-     6.1.  VPNs typically:
-       6.1.1.  Network Overlays typically:
-   7.  Conventions and Definitions
-   8.  Security Considerations
-   9.  IANA Considerations
-   10. Normative References
+   5.  Appendix A: Network Overlays are different than VPNs
+     5.1.  VPNs typically:
+       5.1.1.  Network Overlays typically:
+   6.  Conventions and Definitions
+   7.  Security Considerations
+   8.  IANA Considerations
+   9.  Normative References
    Acknowledgments
    Authors' Addresses
 
@@ -120,9 +112,10 @@ Table of Contents
 
    To be clear, this document is not proposing or advocating rolling
    back any of the privacy enhancements for the viewers.  Instead the
-   authors hope to help educate the IETF and others on the practical
-   operational impacts of these enhancements and to eventually develop
-   approaches that can help mitigate such impacts.
+   authors hope to help describe the problem space and educate the IETF
+   and others on the practical operational impacts of these enhancements
+   and to eventually develop approaches that can help mitigate such
+   impacts.
 
    The authors also readily acknowledge the many challenges and
    difficulties in improving Internet privacy in an area as complex as
@@ -137,36 +130,9 @@ Table of Contents
    platform operational perspective to help the enhanced privacy
    architecture work being done at the IETF.
 
-1.1.  Streaming Video Architects and Privacy Enhancement Designers
-      Working Together
-
-   This document is not intended to challenge the need for privacy
-   enhancements for the Internet, instead the hope is to illustrate
-   impacts of such changes to the billions of users of streaming video
-   delivered over the Internet so that the designers of privacy
-   enhancements and the designers of services built on them can better
-   understand the impacts of different design choices and perhaps find
-   ways to mitigate such impacts through altered design choices.
-
-   Given the popularity of streaming video with the Internet's users and
-   it's importance to network operators, streaming platform operators
-   and many others, it only makes sense that as the IETF and it's
-   participants work on improving privacy for those same users that the
-   two efforts work together for everyone's benefit.
-
-1.2.  Possible Outcomes
-
-   One possible outcome might be a best design and implementation guide
-   developed together and published by the IETF Media Operations Group.
-
-   Another possible outcome might be an IAB led study on the operational
-   impacts of Network Overlays to help the IETF and Internet communities
-   better understand the operational impacts of various architectural
-   decisions along with approaches mitigating the operational impacts.
-
 2.  Internet Privacy Enhancements
 
-   Enhancing Internet privacy is a difficult challenge, given the
+   Enhancing the Internet's privacy is a difficult challenge, given the
    complexity of the Internet itself.  It's common for solutions that
    address one issue to inadvertently create new problems elsewhere.
    That's not a reason to stop trying, but it is important to understand
@@ -175,9 +141,16 @@ Table of Contents
    enhancements.
 
    A popular design choice in privacy enhancements at the IETF has been
-   the encapsulation of data inside encrypted connections.  [RFC9000] is
-   an excellent example of this design and introduces a protocol that is
-   always encrypted.
+   the encapsulation of data inside encrypted connections along with
+   other network policy changes to introduce changes which make
+   observing and tracing data difficult to do and difficult to associate
+   to any particular user.
+
+   [RFC7258] from the IAB examines various pervasive montoring
+   approaches while [RFC7624] discusses responses that enhance privacy.
+   [RFC9000] itself is an excellent example of the applied design
+   approaches and introduces the QUIC transport protocol that is always
+   encrypted.
 
 2.1.  Network Overlays
 
@@ -191,7 +164,7 @@ Table of Contents
    policies chosen by the Network Overlay.
 
  R  = router
-                    <--- non-overlay traffic path --->
+                  <--- non-overlay traffic path --->
  device -- R ---- R ------------- R ------------- R ---- R -- dest-node
             \                                           /
              \                                         /
@@ -354,15 +327,21 @@ Table of Contents
    video delivery to viewing devices.  The open Internet can be
    unpredictable with temporary issues like packet loss, congestion and
    other conditions.  However, streaming architecture is desiged to
-   handle these momentary problems as effectively as possible.
+   handle these momentary problems as effectively as possible often
+   through use of dynamic adaptive approaches designed into streaming
+   protocols and platform components.
 
 4.  Emerging Operational Issues with Network Overlay Policy Changes
 
    Streaming video applications and the streaming platforms delivering
-   their content are starting to face various operational challenges
-   related to Network Overlays.  The various impacts are listed further
-   down in this document but there are a few classes of issues that have
-   been observed:
+   content are starting to encounter various operational challenges
+   related to Network Overlays.  Typically the primary problems are
+   encountered when the network overlay has made policy changes that are
+   either unexpected, are difficult or impossible for the streaming
+   platform to detect, or the changes are inconsitently applied.
+
+   There are a variety of impacts but a few common classes of issues
+   have been observed:
 
    *  (1) Routing changes which cause bypassing edge CDN caches and
       instead choosing less optimal caches
@@ -378,8 +357,8 @@ Table of Contents
 
  Figure:  Routing Changes alering CDN Cache selection
 
-   *  (2) Routing changes which add network latency compared to edge CDN
-      caches or access network peering connections
+   *  (2) Routing changes which adds network latency compared to edge
+      CDN caches or access network peering connections
 
    *  (3) Forced encryption of unencrypted HTTP2 connections to
       HTTP2+TLS connections
@@ -437,53 +416,7 @@ Table of Contents
    of hidden changes occuring on the network between the sender and
    receiver.
 
-5.  Approaches to Mitigate or Minimize Impacts
-
-   There are a number of ways Network Overlays can work with Streaming
-   applications to mitigate or at best minimize their impacts.
-
-5.1.  Transparent Policy Settings
-
-   A common theme in many of the mitigation proposal is making the
-   Network Overlay changes and behavior transparent to the Streaming
-   application.  This approach should not affect privacy enhancements of
-   the Network Overlay as it doesn't alter the Network Overlay.
-   Enabling the Streaming Application to better understand the network
-   environment it is operating, allows the application to adapt the
-   changes and work within them.
-
-5.2.  Policy Change Notification
-
-   Related to better transparency of policy settings is enabling
-   notification to applications of changes to network policies.  This
-   would enable the streaming application to take into account the
-   changes when they occur - for example a Network Overlay turning on or
-   off.
-
-5.3.  Exclusion from Policy Changes
-
-   The other approach is enabling applications to be excluded from
-   network overlays.  This could be be done through a variety of
-   approaches such as providing users an option on their device to
-   exclude either by specific applications, by specific end point
-   destinations identified by DNS name or IP address, or by some other
-   characteristic.
-
-5.4.  Support Tools
-
-   One of the issues streaming platforms have run into, especially when
-   working on connection and performance issues is that Network Overlays
-   that only affect very specific application protocols, for example
-   HTTP2/TCP and HTTP3/QUIC+UDP connections, is that other Internet
-   protocols like ICMP which are fundamental in the toolkits of support
-   desks do not traverse the Network Overlay tunnel.  Since neither
-   HTTP2 or HTTP3 protocols provide native ways of finding "the bad hop"
-   or measuring bandwidth or latency along their path, the customer
-   service Helpdesk and the Network Engineers often find they lack the
-   necessary support tools to help customers in determining streaming
-   problems.
-
-6.  Appendix A: Network Overlays are different than VPNs
+5.  Appendix A: Network Overlays are different than VPNs
 
    While conceptually similar in many ways to VPN (Virtual Private
    Network) technology, the various network overlay technologies
@@ -503,7 +436,7 @@ Table of Contents
    Whatever the reason, it's work looking at how VPNs differ from the
    Network Overlays being discussed herein.
 
-6.1.  VPNs typically:
+5.1.  VPNs typically:
 
    *  (1) VPNs typically are detectable by both the video application
       and often by the streaming platform.
@@ -519,7 +452,7 @@ Table of Contents
    *  various criteria such as application, destination IP address,
       application protocol etc.
 
-6.1.1.  Network Overlays typically:
+5.1.1.  Network Overlays typically:
 
    *  (1) Network Overlays are often undetectable by video applications
       or by the streaming platform, when in use
@@ -541,7 +474,7 @@ Table of Contents
       applications to interact with them such as getting or setting
       options.
 
-7.  Conventions and Definitions
+6.  Conventions and Definitions
 
    The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
    "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
@@ -549,15 +482,15 @@ Table of Contents
    BCP 14 [RFC2119] [RFC8174] when, and only when, they appear in all
    capitals, as shown here.
 
-8.  Security Considerations
+7.  Security Considerations
 
    TODO Security
 
-9.  IANA Considerations
+8.  IANA Considerations
 
    This document has no IANA actions.
 
-10.  Normative References
+9.  Normative References
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
@@ -567,6 +500,17 @@ Table of Contents
    [RFC3234]  Carpenter, B. and S. Brim, "Middleboxes: Taxonomy and
               Issues", RFC 3234, DOI 10.17487/RFC3234, February 2002,
               <https://www.rfc-editor.org/rfc/rfc3234>.
+
+   [RFC7258]  Farrell, S. and H. Tschofenig, "Pervasive Monitoring Is an
+              Attack", BCP 188, RFC 7258, DOI 10.17487/RFC7258, May
+              2014, <https://www.rfc-editor.org/rfc/rfc7258>.
+
+   [RFC7624]  Barnes, R., Schneier, B., Jennings, C., Hardie, T.,
+              Trammell, B., Huitema, C., and D. Borkmann,
+              "Confidentiality in the Face of Pervasive Surveillance: A
+              Threat Model and Problem Statement", RFC 7624,
+              DOI 10.17487/RFC7624, August 2015,
+              <https://www.rfc-editor.org/rfc/rfc7624>.
 
    [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
