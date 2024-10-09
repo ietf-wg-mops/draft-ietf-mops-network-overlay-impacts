@@ -60,11 +60,13 @@ choices, traffic classification and content access controls.
 
 The past decade of Internet evolution has included two significant trends,  the global growth of video streaming and  active passionate work within the IETF on enhancing Internet user privacy.
 
-The work on these initiatives has largely occured independently of one another, though there are a few individuals and companies that are involved with both efforts.   However, the arrival of the newly developed privacy enhancements in consumer products and their subsequent use by streaming video viewers has brought the work of the two efforts in contact and highlighted a number of friction points which are having impacts to the viewers and support engineers of video streaming platforms.
+The work on these initiatives has largely occured independently of one another, though there are a few individuals and companies that are involved with both efforts.   
+
+The arrival of the newly developed privacy enhancements in consumer products and their subsequent use by streaming video viewers has brought the results of the two efforts into contact and a number of friction points are now being encountered which are having impacts to the viewers, support engineers and operational aspects of video streaming platforms.
 
 To be clear, this document is not proposing or advocating rolling back any of the privacy enhancements for the viewers.  Instead the authors hope to help describe the problem space and educate the IETF and others on the practical operational impacts of these enhancements and to eventually develop approaches that can help mitigate such impacts.
 
-The authors also readily acknowledge the many challenges and difficulties in improving Internet privacy in an area as complex as the Internet while also maintaining compatibiltiy with the wildly varied applications and uses the Internet\'s users rely upon daily in their lives. This is hard stuff and it\'s very natural for there to be operational considerations that must be understood and folded back into architectural designs and consumer products.
+The authors also readily acknowledge the many challenges and difficulties in improving Internet privacy in an area as complex as the Internet while also maintaining compatibiltiy with the wildly varied applications and uses of the Internet on which users rely upon daily in their lives. This is hard stuff and it\'s very natural for there to be operational considerations that must be understood and folded back into architectural designs and consumer products.
 
 The motivation in developing this document is to provide a meaningful and helpful feedback from the streaming application and streaming platform operational perspective to help the enhanced privacy architecture work being done at the IETF.
 
@@ -72,10 +74,10 @@ The motivation in developing this document is to provide a meaningful and helpfu
 
 Enhancing the Internet\'s privacy is a difficult challenge, given the complexity of the Internet itself.  It\'s common for solutions that address one issue to inadvertently create new problems elsewhere.  That\'s not a reason to stop trying, but it is important to understand the consequences of changes and to find ways to manage or mitigate such impacts, ideally without weakening or rolling back the enhancements.
 
-A popular design choice in privacy enhancements at the IETF has been the encapsulation of data inside encrypted connections along with other network policy changes to introduce changes which make observing and tracing data difficult to do and difficult to associate to any particular user.
+A popular design choice in privacy enhancements at the IETF has been the encapsulation of data inside encrypted connections along with other network policy changes to introduce changes which make observing and tracing data difficult to do and difficult to associate to any particular user.   
 
 {{!RFC7258}} from the IAB examines various pervasive montoring approaches while {{!RFC7624}} discusses responses that enhance privacy.  {{!RFC9000}} itself is an excellent example of the applied design approaches and introduces the QUIC transport protocol that is always encrypted.
-
+ 
 ## Network Overlays
 
 Along with the use of encrypted connections another popular approach is to additionally create alternative routes and tunnels for connections which bypass the routing and other policy decisions of the ISP access network and of the public open Internet.   These alternative network policy choices have the effect of creating a Network Overlay that operates on top of and over the device\'s Access Network and the Open Internet, but follows an independent set of policies chosen by the Network Overlay.
@@ -163,7 +165,17 @@ Streaming video applications and the streaming platforms delivering content are 
 
 There are a variety of impacts but a few common classes of issues have been observed:
 
-* (1) Routing changes which cause bypassing edge CDN caches and instead choosing less optimal caches
+## Routing Changes
+
+Routing changes which cause connections between video applications and the infrastructure servcices they use can create a large number of problems.   
+
+### End to End Problem Discovery
+
+A common issue in video delivery is locating where along the delivery path the video transport is encountering problems.   Often such problems are more complex than the connection not working at but instead involve identifying bottleneck, lost packets, congestion issues.   When the routing changes from what is expected or visible to support tools it becomes an operational trouble spot for users and platform suport to location and determine the source of the problems.
+
+### CDN Edge Cache Selection due to Routing
+
+A significant, and often overlooked problm is the addition of network latency compared to edge CDN caches or access network peering connections.  Routing changes which cause bypassing edge CDN caches and instead choosing less optimal caches
 
 ~~~
  R  = router
@@ -179,15 +191,30 @@ There are a variety of impacts but a few common classes of issues have been obse
 ~~~
 
 
-* (2) Routing changes which adds network latency compared to edge CDN caches or access network peering connections
 
-* (3) Forced encryption of unencrypted HTTP2 connections to HTTP2+TLS connections
+## Changed Encryption Policy
 
-* (4) DNS Resolver choice changes resulting in less optimal CDN cache selection or bypassing of CDN load balancing direction
+Changing the encryption policy applied to video streams either adding where it wasn't orginally used or removing if it was originally specified can cause a wide range of operational problems. 
 
-* (5) Changed Source IP Address for the application\'s connections to Streaming Platform Servers resulting in logging, geofencing, and session management problems
+### Forced Upgrade
 
-* (6) Performance and Problem determination tools and protocols not able to traverse the alternative route tunnel impacting services ability to diagnose connection and performance problems
+Changing unencrytped HTTP2 to encrypted HTTP2+TLS connects will prohibit streaming workflows that involve content detection as part of the network delivery.  This can result in video traffic not being correctly identified and the incorrect network policies being applied to it.  This is particularly problematic in environments using multicast and in mobile environments.  
+
+### Forced Downgrade 
+
+Equally so, removing of encryption applied to the transport stream by a streaming platform would be significantly problematic as such encryption may be part of a content protection and content integrity protections architecture.
+
+## Changed DNS Resolver Selection
+
+DNS Resolver choice changes resulting in less optimal CDN cache selection or bypassing of CDN load balancing direction
+
+## Changed Source IP Address
+
+Changing the Source IP Address for the application\'s connections to Streaming Platform Servers resulting in logging, geofencing, and session management problems
+
+## Performance and Problem determination 
+
+Network overlays often interfere with the tools used in performance and problem determination.   This is due to either the tool and protocols not able to traverse the alternative route tunnel impacting services ability to diagnose connection and performance problems, or the network overlay itself not supporting the tool and not supporting or carrying the tools functions.
 
 
 ## Impact of Changing Network Routing and other Policies
