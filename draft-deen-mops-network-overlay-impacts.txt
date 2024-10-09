@@ -370,7 +370,7 @@ Table of Contents
       Streaming Platform Servers resulting in logging, geofencing, and
       session management problems
 
-   *  (6) Performance and Problem determination tools \& protocols not
+   *  (6) Performance and Problem determination tools and protocols not
       able to traverse the alternative route tunnel impacting services
       ability to diagnose connection and performance problems
 
