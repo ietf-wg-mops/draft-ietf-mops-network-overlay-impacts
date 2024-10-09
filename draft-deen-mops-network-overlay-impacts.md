@@ -74,10 +74,10 @@ The motivation in developing this document is to provide a meaningful and helpfu
 
 Enhancing the Internet\'s privacy is a difficult challenge, given the complexity of the Internet itself.  It\'s common for solutions that address one issue to inadvertently create new problems elsewhere.  That\'s not a reason to stop trying, but it is important to understand the consequences of changes and to find ways to manage or mitigate such impacts, ideally without weakening or rolling back the enhancements.
 
-A popular design choice in privacy enhancements at the IETF has been the encapsulation of data inside encrypted connections along with other network policy changes to introduce changes which make observing and tracing data difficult to do and difficult to associate to any particular user.   
+A popular design choice in privacy enhancements at the IETF has been the encapsulation of data inside encrypted connections along with other network policy changes to introduce changes which make observing and tracing data difficult to do and difficult to associate to any particular user.
 
 {{!RFC7258}} from the IAB examines various pervasive montoring approaches while {{!RFC7624}} discusses responses that enhance privacy.  {{!RFC9000}} itself is an excellent example of the applied design approaches and introduces the QUIC transport protocol that is always encrypted.
- 
+
 ## Network Overlays
 
 Along with the use of encrypted connections another popular approach is to additionally create alternative routes and tunnels for connections which bypass the routing and other policy decisions of the ISP access network and of the public open Internet.   These alternative network policy choices have the effect of creating a Network Overlay that operates on top of and over the device\'s Access Network and the Open Internet, but follows an independent set of policies chosen by the Network Overlay.
