@@ -62,29 +62,19 @@ The past decade of Internet evolution has included two significant trends,  the 
 
 The work on these initiatives has largely occured independently of one another, though there are a few individuals and companies that are involved with both efforts.   However, the arrival of the newly developed privacy enhancements in consumer products and their subsequent use by streaming video viewers has brought the work of the two efforts in contact and highlighted a number of friction points which are having impacts to the viewers and support engineers of video streaming platforms.
 
-To be clear, this document is not proposing or advocating rolling back any of the privacy enhancements for the viewers.  Instead the authors hope to help educate the IETF and others on the practical operational impacts of these enhancements and to eventually develop approaches that can help mitigate such impacts.
+To be clear, this document is not proposing or advocating rolling back any of the privacy enhancements for the viewers.  Instead the authors hope to help describe the problem space and educate the IETF and others on the practical operational impacts of these enhancements and to eventually develop approaches that can help mitigate such impacts.
 
-The authors also readily acknowledge the many challenges and difficulties in improving Internet privacy in an area as complex as the Internet while also maintaining compatibiltiy with the wildly varied applications and uses the Internet\'s users rely upon daily in their lives. This is hard stuff and it's very natural for there to be operational considerations that must be understood and folded back into architectural designs and consumer products.
+The authors also readily acknowledge the many challenges and difficulties in improving Internet privacy in an area as complex as the Internet while also maintaining compatibiltiy with the wildly varied applications and uses the Internet\'s users rely upon daily in their lives. This is hard stuff and it\'s very natural for there to be operational considerations that must be understood and folded back into architectural designs and consumer products.
 
 The motivation in developing this document is to provide a meaningful and helpful feedback from the streaming application and streaming platform operational perspective to help the enhanced privacy architecture work being done at the IETF.
 
-## Streaming Video Architects and Privacy Enhancement Designers Working Together
-
-This document is not intended to challenge the need for privacy enhancements for the Internet, instead the hope is to illustrate impacts of such changes to the billions of users of streaming video delivered over the Internet so that the designers of privacy enhancements and the designers of services built on them can better understand the impacts of different design choices and perhaps find ways to mitigate such impacts through altered design choices.
-
-Given the popularity of streaming video with the Internet\'s users and it\'s importance to network operators, streaming platform operators and many others, it only makes sense that as the IETF and it\'s participants work on improving privacy for those same users that the two efforts work together for everyone\'s benefit.
-
-## Possible Outcomes
-
-One possible outcome might be a best design and implementation guide developed together and published by the IETF Media Operations Group.
-
-Another possible outcome might be an IAB led study on the operational impacts of Network Overlays to help the IETF and Internet communities better understand the operational impacts of various architectural decisions along with approaches mitigating the operational impacts.
-
 # Internet Privacy Enhancements
 
-Enhancing Internet privacy is a difficult challenge, given the complexity of the Internet itself.  It's common for solutions that address one issue to inadvertently create new problems elsewhere.  That\'s not a reason to stop trying, but it is important to understand the consequences of changes and to find ways to manage or mitigate such impacts, ideally without weakening or rolling back the enhancements.
+Enhancing the Internet\'s privacy is a difficult challenge, given the complexity of the Internet itself.  It\'s common for solutions that address one issue to inadvertently create new problems elsewhere.  That\'s not a reason to stop trying, but it is important to understand the consequences of changes and to find ways to manage or mitigate such impacts, ideally without weakening or rolling back the enhancements.
 
-A popular design choice in privacy enhancements at the IETF has been the encapsulation of data inside encrypted connections.  {{!RFC9000}} is an excellent example of this design and introduces a protocol that is always encrypted.
+A popular design choice in privacy enhancements at the IETF has been the encapsulation of data inside encrypted connections along with other network policy changes to introduce changes which make observing and tracing data difficult to do and difficult to associate to any particular user.
+
+{{!RFC7258}} from the IAB examines various pervasive montoring approaches while {{!RFC7624}} discusses responses that enhance privacy.  {{!RFC9000}} itself is an excellent example of the applied design approaches and introduces the QUIC transport protocol that is always encrypted.
 
 ## Network Overlays
 
@@ -92,7 +82,7 @@ Along with the use of encrypted connections another popular approach is to addit
 
 ~~~
  R  = router
-                    <--- non-overlay traffic path --->
+                  <--- non-overlay traffic path --->
  device -- R ---- R ------------- R ------------- R ---- R -- dest-node
             \                                           /
              \                                         /
@@ -162,14 +152,16 @@ With the large user base and its usage, the Streaming platforms also have signif
 * (6) application transport protocols including MPEG DASH, HLS, HTTP2/TCP, HTTP3/QUIC, WebRTC, Media over QUIC (MoQ) and specialty application transports such as SRT, HESP etc.
 
 To meet these challenges streaming platforms have significantly invested in developing delivery architectures that
-are built with detailed understandings of each element in the content delivery pathway starting from the content capture all the way
-through to the screen of the viewer.
+are built with detailed understandings of each element in the content delivery pathway starting from the content capture all the way through to the screen of the viewer.
 
-Streaming applications are part of an end-to-end architecture that is optimized around achieving the best experience including low latency video delivery to viewing devices.  The open Internet can be unpredictable with temporary issues like packet loss, congestion and other conditions. However,  streaming architecture is desiged to handle these momentary problems as effectively as possible.
+Streaming applications are part of an end-to-end architecture that is optimized around achieving the best experience including low latency video delivery to viewing devices.  The open Internet can be unpredictable with temporary issues like packet loss, congestion and other conditions. However, streaming architecture is desiged to handle these momentary problems as effectively as possible often through use of dynamic adaptive approaches designed into streaming protocols and platform components.
+
 
 # Emerging Operational Issues with Network Overlay Policy Changes
 
-Streaming video applications and the streaming platforms delivering their content are starting to face various operational challenges related to Network Overlays. The various impacts are listed further down in this document but there are a few classes of issues that have been observed:
+Streaming video applications and the streaming platforms delivering content are starting to encounter various operational challenges related to Network Overlays. Typically the primary problems are encountered when the network overlay has made policy changes that are either unexpected, are difficult or impossible for the streaming platform to detect, or the changes are inconsitently applied.
+
+There are a variety of impacts but a few common classes of issues have been observed:
 
 * (1) Routing changes which cause bypassing edge CDN caches and instead choosing less optimal caches
 
@@ -187,11 +179,16 @@ Streaming video applications and the streaming platforms delivering their conten
 ~~~
 
 
-* (2) Routing changes which add network latency compared to edge CDN caches or access network peering connections
+* (2) Routing changes which adds network latency compared to edge CDN caches or access network peering connections
+
 * (3) Forced encryption of unencrypted HTTP2 connections to HTTP2+TLS connections
+
 * (4) DNS Resolver choice changes resulting in less optimal CDN cache selection or bypassing of CDN load balancing direction
+
 * (5) Changed Source IP Address for the application\'s connections to Streaming Platform Servers resulting in logging, geofencing, and session management problems
+
 * (6) Performance and Problem determination tools \& protocols not able to traverse the alternative route tunnel impacting services ability to diagnose connection and performance problems
+
 
 ## Impact of Changing Network Routing and other Policies
 
@@ -209,32 +206,11 @@ or the streaming service connection, changes to DNS resolvers being queried and 
 application transports such as adding or removing outer layer encryption are all problems that have been observed in
 production streaming platforms.
 
+
 ### Middleboxes and learning from the past
 
 The IETF has discussed this situation in the past, more than 20 years ago in 2002 Middleboxes: Taxonomy and Issues {{!RFC3234}}
 was published capturing the issues with Middleboxes in the network and the affects of hidden changes occuring on the network between the sender and receiver.
-
-
-# Approaches to Mitigate or Minimize Impacts
-
-There are a number of ways Network Overlays can work with Streaming applications to mitigate or at best minimize their impacts.
-
-## Transparent Policy Settings
-
-A common theme in many of the mitigation proposal is making the Network Overlay changes and behavior transparent to the Streaming application.  This approach should not affect privacy enhancements of the Network Overlay as it doesn't alter the Network Overlay. Enabling the Streaming Application to better understand the network environment it is operating, allows the application to adapt the changes and work within them.
-
-## Policy Change Notification
-
-Related to better transparency of policy settings is enabling notification to applications of changes to network policies.  This would enable the streaming application to take into account the changes when they occur - for example a Network Overlay turning on or off.
-
-## Exclusion from Policy Changes
-
-The other approach is enabling applications to be excluded from network overlays.  This could be be done through a variety of approaches such as providing users an option on their device to exclude either by specific applications, by specific end point destinations identified by DNS name or IP address, or by some other characteristic.
-
-## Support Tools
-
-One of the issues streaming platforms have run into, especially when working on connection and performance issues is that Network Overlays that only affect very specific application protocols, for example HTTP2/TCP and HTTP3/QUIC+UDP connections, is that other Internet protocols like ICMP which are fundamental in the toolkits of support desks do not traverse the Network Overlay tunnel.  Since neither HTTP2 or HTTP3 protocols provide native ways of finding \"the bad hop\" or measuring bandwidth or latency along their path, the customer service Helpdesk and the Network Engineers often find they lack the necessary support tools to help customers in determining streaming problems.
-
 
 
 # Appendix A: Network Overlays are different than VPNs
