@@ -152,8 +152,7 @@ With the large user base and its usage, the Streaming platforms also have signif
 * (6) application transport protocols including MPEG DASH, HLS, HTTP2/TCP, HTTP3/QUIC, WebRTC, Media over QUIC (MoQ) and specialty application transports such as SRT, HESP etc.
 
 To meet these challenges streaming platforms have significantly invested in developing delivery architectures that
-are built with detailed understandings of each element in the content delivery pathway starting from the content capture all the way
-through to the screen of the viewer.
+are built with detailed understandings of each element in the content delivery pathway starting from the content capture all the way through to the screen of the viewer.
 
 Streaming applications are part of an end-to-end architecture that is optimized around achieving the best experience including low latency video delivery to viewing devices.  The open Internet can be unpredictable with temporary issues like packet loss, congestion and other conditions. However, streaming architecture is desiged to handle these momentary problems as effectively as possible often through use of dynamic adaptive approaches designed into streaming protocols and platform components.
 
@@ -181,9 +180,13 @@ There are a variety of impacts but a few common classes of issues have been obse
 
 
 * (2) Routing changes which adds network latency compared to edge CDN caches or access network peering connections
+
 * (3) Forced encryption of unencrypted HTTP2 connections to HTTP2+TLS connections
+
 * (4) DNS Resolver choice changes resulting in less optimal CDN cache selection or bypassing of CDN load balancing direction
+
 * (5) Changed Source IP Address for the application\'s connections to Streaming Platform Servers resulting in logging, geofencing, and session management problems
+
 * (6) Performance and Problem determination tools \& protocols not able to traverse the alternative route tunnel impacting services ability to diagnose connection and performance problems
 
 
@@ -203,13 +206,11 @@ or the streaming service connection, changes to DNS resolvers being queried and 
 application transports such as adding or removing outer layer encryption are all problems that have been observed in
 production streaming platforms.
 
+
 ### Middleboxes and learning from the past
 
 The IETF has discussed this situation in the past, more than 20 years ago in 2002 Middleboxes: Taxonomy and Issues {{!RFC3234}}
 was published capturing the issues with Middleboxes in the network and the affects of hidden changes occuring on the network between the sender and receiver.
-
-
-
 
 
 # Appendix A: Network Overlays are different than VPNs
