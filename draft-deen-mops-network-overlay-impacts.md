@@ -165,6 +165,16 @@ Streaming video applications and the streaming platforms delivering content are 
 
 There are a variety of impacts but a few common classes of issues have been observed:
 
+## Policy Changes Hidden from Applications
+
+One of the central recurring issues with streaming applications running on devices or networks with changed policies due to network overlays is that the changes are often hidden from the applications.
+
+Applications often find it difficult or even impossible to detect when network policy changes will be active and what they are changing.   For example, a device may have a desingated default DNS resolver for the device, but may have a different resolver selected depending on how the streaming application queries the DNS.    
+
+Likewise, a streaming application might find that one application transport protocol such as HTTP queries will have one set of routing policies applied to it but a different appliction transport like HTTPS may have a different set of routing policies applied.
+
+Streaming applications that cannot determine the exact behavior to be expected can prevent the streaming application from making good content source decisions and can prevent appllications from being able to provide reliable feedback and logs when problems are encountered.
+
 ## Routing Changes
 
 Routing changes which cause connections between video applications and the infrastructure servcices they use can create a large number of problems.
@@ -196,11 +206,11 @@ A significant, and often overlooked problm is the addition of network latency co
 
 Changing the encryption policy applied to video streams either adding where it wasn't orginally used or removing if it was originally specified can cause a wide range of operational problems.
 
-### Forced Upgrade
+### Forced Encryption Upgrade
 
 Changing unencrytped HTTP2 to encrypted HTTP2+TLS connects will prohibit streaming workflows that involve content detection as part of the network delivery.  This can result in video traffic not being correctly identified and the incorrect network policies being applied to it.  This is particularly problematic in environments using multicast and in mobile environments.
 
-### Forced Downgrade
+### Forced Encryption Downgrade
 
 Equally so, removing of encryption applied to the transport stream by a streaming platform would be significantly problematic as such encryption may be part of a content protection and content integrity protections architecture.
 
