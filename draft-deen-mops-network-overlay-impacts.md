@@ -187,7 +187,7 @@ There are a variety of impacts but a few common classes of issues have been obse
 
 * (5) Changed Source IP Address for the application\'s connections to Streaming Platform Servers resulting in logging, geofencing, and session management problems
 
-* (6) Performance and Problem determination tools \& protocols not able to traverse the alternative route tunnel impacting services ability to diagnose connection and performance problems
+* (6) Performance and Problem determination tools and protocols not able to traverse the alternative route tunnel impacting services ability to diagnose connection and performance problems
 
 
 ## Impact of Changing Network Routing and other Policies
