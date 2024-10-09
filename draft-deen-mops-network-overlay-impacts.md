@@ -60,7 +60,7 @@ choices, traffic classification and content access controls.
 
 The past decade of Internet evolution has included two significant trends,  the global growth of video streaming and  active passionate work within the IETF on enhancing Internet user privacy.
 
-The work on these initiatives has largely occured independently of one another, though there are a few individuals and companies that are involved with both efforts.   
+The work on these initiatives has largely occured independently of one another, though there are a few individuals and companies that are involved with both efforts.
 
 The arrival of the newly developed privacy enhancements in consumer products and their subsequent use by streaming video viewers has brought the results of the two efforts into contact and a number of friction points are now being encountered which are having impacts to the viewers, support engineers and operational aspects of video streaming platforms.
 
@@ -167,7 +167,7 @@ There are a variety of impacts but a few common classes of issues have been obse
 
 ## Routing Changes
 
-Routing changes which cause connections between video applications and the infrastructure servcices they use can create a large number of problems.   
+Routing changes which cause connections between video applications and the infrastructure servcices they use can create a large number of problems.
 
 ### End to End Problem Discovery
 
@@ -194,13 +194,13 @@ A significant, and often overlooked problm is the addition of network latency co
 
 ## Changed Encryption Policy
 
-Changing the encryption policy applied to video streams either adding where it wasn't orginally used or removing if it was originally specified can cause a wide range of operational problems. 
+Changing the encryption policy applied to video streams either adding where it wasn't orginally used or removing if it was originally specified can cause a wide range of operational problems.
 
 ### Forced Upgrade
 
-Changing unencrytped HTTP2 to encrypted HTTP2+TLS connects will prohibit streaming workflows that involve content detection as part of the network delivery.  This can result in video traffic not being correctly identified and the incorrect network policies being applied to it.  This is particularly problematic in environments using multicast and in mobile environments.  
+Changing unencrytped HTTP2 to encrypted HTTP2+TLS connects will prohibit streaming workflows that involve content detection as part of the network delivery.  This can result in video traffic not being correctly identified and the incorrect network policies being applied to it.  This is particularly problematic in environments using multicast and in mobile environments.
 
-### Forced Downgrade 
+### Forced Downgrade
 
 Equally so, removing of encryption applied to the transport stream by a streaming platform would be significantly problematic as such encryption may be part of a content protection and content integrity protections architecture.
 
@@ -212,7 +212,7 @@ DNS Resolver choice changes resulting in less optimal CDN cache selection or byp
 
 Changing the Source IP Address for the application\'s connections to Streaming Platform Servers resulting in logging, geofencing, and session management problems
 
-## Performance and Problem determination 
+## Performance and Problem determination
 
 Network overlays often interfere with the tools used in performance and problem determination.   This is due to either the tool and protocols not able to traverse the alternative route tunnel impacting services ability to diagnose connection and performance problems, or the network overlay itself not supporting the tool and not supporting or carrying the tools functions.
 
