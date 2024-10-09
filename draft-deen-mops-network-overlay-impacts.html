@@ -22,7 +22,7 @@ choices, traffic classification and content access controls.
 <meta content="draft-deen-mops-network-overlay-impacts-latest" name="ietf.draft">
 <!-- Generator version information:
   xml2rfc 3.23.2
-    Python 3.12.6
+    Python 3.12.7
     ConfigArgParse 1.7
     google-i18n-address 3.1.1
     intervaltree 3.1.0
@@ -1179,10 +1179,41 @@ choices, traffic classification and content access controls.<a href="#section-ab
             <p id="section-toc.1-1.4.1"><a href="#section-4" class="auto internal xref">4</a>.  <a href="#name-emerging-operational-issues" class="internal xref">Emerging Operational Issues with Network Overlay Policy Changes</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.1">
-                <p id="section-toc.1-1.4.2.1.1"><a href="#section-4.1" class="auto internal xref">4.1</a>.  <a href="#name-impact-of-changing-network-" class="internal xref">Impact of Changing Network Routing and other Policies</a></p>
+                <p id="section-toc.1-1.4.2.1.1"><a href="#section-4.1" class="auto internal xref">4.1</a>.  <a href="#name-routing-changes" class="internal xref">Routing Changes</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.1.2.1">
-                    <p id="section-toc.1-1.4.2.1.2.1.1"><a href="#section-4.1.1" class="auto internal xref">4.1.1</a>.  <a href="#name-middleboxes-and-learning-fr" class="internal xref">Middleboxes and learning from the past</a></p>
+                    <p id="section-toc.1-1.4.2.1.2.1.1"><a href="#section-4.1.1" class="auto internal xref">4.1.1</a>.  <a href="#name-end-to-end-problem-discover" class="internal xref">End to End Problem Discovery</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.1.2.2">
+                    <p id="section-toc.1-1.4.2.1.2.2.1"><a href="#section-4.1.2" class="auto internal xref">4.1.2</a>.  <a href="#name-cdn-edge-cache-selection-du" class="internal xref">CDN Edge Cache Selection due to Routing</a></p>
+</li>
+                </ul>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.2">
+                <p id="section-toc.1-1.4.2.2.1"><a href="#section-4.2" class="auto internal xref">4.2</a>.  <a href="#name-changed-encryption-policy" class="internal xref">Changed Encryption Policy</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.2.2.1">
+                    <p id="section-toc.1-1.4.2.2.2.1.1"><a href="#section-4.2.1" class="auto internal xref">4.2.1</a>.  <a href="#name-forced-upgrade" class="internal xref">Forced Upgrade</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.2.2.2">
+                    <p id="section-toc.1-1.4.2.2.2.2.1"><a href="#section-4.2.2" class="auto internal xref">4.2.2</a>.  <a href="#name-forced-downgrade" class="internal xref">Forced Downgrade</a></p>
+</li>
+                </ul>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.3">
+                <p id="section-toc.1-1.4.2.3.1"><a href="#section-4.3" class="auto internal xref">4.3</a>.  <a href="#name-changed-dns-resolver-select" class="internal xref">Changed DNS Resolver Selection</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.4">
+                <p id="section-toc.1-1.4.2.4.1"><a href="#section-4.4" class="auto internal xref">4.4</a>.  <a href="#name-changed-source-ip-address" class="internal xref">Changed Source IP Address</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.5">
+                <p id="section-toc.1-1.4.2.5.1"><a href="#section-4.5" class="auto internal xref">4.5</a>.  <a href="#name-performance-and-problem-det" class="internal xref">Performance and Problem determination</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.6">
+                <p id="section-toc.1-1.4.2.6.1"><a href="#section-4.6" class="auto internal xref">4.6</a>.  <a href="#name-impact-of-changing-network-" class="internal xref">Impact of Changing Network Routing and other Policies</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.6.2.1">
+                    <p id="section-toc.1-1.4.2.6.2.1.1"><a href="#section-4.6.1" class="auto internal xref">4.6.1</a>.  <a href="#name-middleboxes-and-learning-fr" class="internal xref">Middleboxes and learning from the past</a></p>
 </li>
                 </ul>
 </li>
@@ -1229,10 +1260,11 @@ choices, traffic classification and content access controls.<a href="#section-ab
 <a href="#section-1" class="section-number selfRef">1. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
       </h2>
 <p id="section-1-1">The past decade of Internet evolution has included two significant trends,  the global growth of video streaming and  active passionate work within the IETF on enhancing Internet user privacy.<a href="#section-1-1" class="pilcrow">¶</a></p>
-<p id="section-1-2">The work on these initiatives has largely occured independently of one another, though there are a few individuals and companies that are involved with both efforts.   However, the arrival of the newly developed privacy enhancements in consumer products and their subsequent use by streaming video viewers has brought the work of the two efforts in contact and highlighted a number of friction points which are having impacts to the viewers and support engineers of video streaming platforms.<a href="#section-1-2" class="pilcrow">¶</a></p>
-<p id="section-1-3">To be clear, this document is not proposing or advocating rolling back any of the privacy enhancements for the viewers.  Instead the authors hope to help describe the problem space and educate the IETF and others on the practical operational impacts of these enhancements and to eventually develop approaches that can help mitigate such impacts.<a href="#section-1-3" class="pilcrow">¶</a></p>
-<p id="section-1-4">The authors also readily acknowledge the many challenges and difficulties in improving Internet privacy in an area as complex as the Internet while also maintaining compatibiltiy with the wildly varied applications and uses the Internet's users rely upon daily in their lives. This is hard stuff and it's very natural for there to be operational considerations that must be understood and folded back into architectural designs and consumer products.<a href="#section-1-4" class="pilcrow">¶</a></p>
-<p id="section-1-5">The motivation in developing this document is to provide a meaningful and helpful feedback from the streaming application and streaming platform operational perspective to help the enhanced privacy architecture work being done at the IETF.<a href="#section-1-5" class="pilcrow">¶</a></p>
+<p id="section-1-2">The work on these initiatives has largely occured independently of one another, though there are a few individuals and companies that are involved with both efforts.<a href="#section-1-2" class="pilcrow">¶</a></p>
+<p id="section-1-3">The arrival of the newly developed privacy enhancements in consumer products and their subsequent use by streaming video viewers has brought the results of the two efforts into contact and a number of friction points are now being encountered which are having impacts to the viewers, support engineers and operational aspects of video streaming platforms.<a href="#section-1-3" class="pilcrow">¶</a></p>
+<p id="section-1-4">To be clear, this document is not proposing or advocating rolling back any of the privacy enhancements for the viewers.  Instead the authors hope to help describe the problem space and educate the IETF and others on the practical operational impacts of these enhancements and to eventually develop approaches that can help mitigate such impacts.<a href="#section-1-4" class="pilcrow">¶</a></p>
+<p id="section-1-5">The authors also readily acknowledge the many challenges and difficulties in improving Internet privacy in an area as complex as the Internet while also maintaining compatibiltiy with the wildly varied applications and uses of the Internet on which users rely upon daily in their lives. This is hard stuff and it's very natural for there to be operational considerations that must be understood and folded back into architectural designs and consumer products.<a href="#section-1-5" class="pilcrow">¶</a></p>
+<p id="section-1-6">The motivation in developing this document is to provide a meaningful and helpful feedback from the streaming application and streaming platform operational perspective to help the enhanced privacy architecture work being done at the IETF.<a href="#section-1-6" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="internet-privacy-enhancements">
@@ -1361,12 +1393,27 @@ are built with detailed understandings of each element in the content delivery p
       </h2>
 <p id="section-4-1">Streaming video applications and the streaming platforms delivering content are starting to encounter various operational challenges related to Network Overlays. Typically the primary problems are encountered when the network overlay has made policy changes that are either unexpected, are difficult or impossible for the streaming platform to detect, or the changes are inconsitently applied.<a href="#section-4-1" class="pilcrow">¶</a></p>
 <p id="section-4-2">There are a variety of impacts but a few common classes of issues have been observed:<a href="#section-4-2" class="pilcrow">¶</a></p>
-<ul class="normal">
-<li class="normal" id="section-4-3.1">
-          <p id="section-4-3.1.1">(1) Routing changes which cause bypassing edge CDN caches and instead choosing less optimal caches<a href="#section-4-3.1.1" class="pilcrow">¶</a></p>
-</li>
-      </ul>
-<div class="alignLeft art-text artwork" id="section-4-4">
+<div id="routing-changes">
+<section id="section-4.1">
+        <h3 id="name-routing-changes">
+<a href="#section-4.1" class="section-number selfRef">4.1. </a><a href="#name-routing-changes" class="section-name selfRef">Routing Changes</a>
+        </h3>
+<p id="section-4.1-1">Routing changes which cause connections between video applications and the infrastructure servcices they use can create a large number of problems.<a href="#section-4.1-1" class="pilcrow">¶</a></p>
+<div id="end-to-end-problem-discovery">
+<section id="section-4.1.1">
+          <h4 id="name-end-to-end-problem-discover">
+<a href="#section-4.1.1" class="section-number selfRef">4.1.1. </a><a href="#name-end-to-end-problem-discover" class="section-name selfRef">End to End Problem Discovery</a>
+          </h4>
+<p id="section-4.1.1-1">A common issue in video delivery is locating where along the delivery path the video transport is encountering problems.   Often such problems are more complex than the connection not working at but instead involve identifying bottleneck, lost packets, congestion issues.   When the routing changes from what is expected or visible to support tools it becomes an operational trouble spot for users and platform suport to location and determine the source of the problems.<a href="#section-4.1.1-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="cdn-edge-cache-selection-due-to-routing">
+<section id="section-4.1.2">
+          <h4 id="name-cdn-edge-cache-selection-du">
+<a href="#section-4.1.2" class="section-number selfRef">4.1.2. </a><a href="#name-cdn-edge-cache-selection-du" class="section-name selfRef">CDN Edge Cache Selection due to Routing</a>
+          </h4>
+<p id="section-4.1.2-1">A significant, and often overlooked problm is the addition of network latency compared to edge CDN caches or access network peering connections.  Routing changes which cause bypassing edge CDN caches and instead choosing less optimal caches<a href="#section-4.1.2-1" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-4.1.2-2">
 <pre>
  R  = router
            &lt;--- non-overlay traffic path ---&gt;
@@ -1378,47 +1425,82 @@ are built with detailed understandings of each element in the content delivery p
                      &lt;--- overlay traffic path ---&gt;
 
  Figure:  Routing Changes alering CDN Cache selection
-</pre><a href="#section-4-4" class="pilcrow">¶</a>
+</pre><a href="#section-4.1.2-2" class="pilcrow">¶</a>
 </div>
-<ul class="normal">
-<li class="normal" id="section-4-5.1">
-          <p id="section-4-5.1.1">(2) Routing changes which adds network latency compared to edge CDN caches or access network peering connections<a href="#section-4-5.1.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="section-4-5.2">
-          <p id="section-4-5.2.1">(3) Forced encryption of unencrypted HTTP2 connections to HTTP2+TLS connections<a href="#section-4-5.2.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="section-4-5.3">
-          <p id="section-4-5.3.1">(4) DNS Resolver choice changes resulting in less optimal CDN cache selection or bypassing of CDN load balancing direction<a href="#section-4-5.3.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="section-4-5.4">
-          <p id="section-4-5.4.1">(5) Changed Source IP Address for the application's connections to Streaming Platform Servers resulting in logging, geofencing, and session management problems<a href="#section-4-5.4.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="section-4-5.5">
-          <p id="section-4-5.5.1">(6) Performance and Problem determination tools and protocols not able to traverse the alternative route tunnel impacting services ability to diagnose connection and performance problems<a href="#section-4-5.5.1" class="pilcrow">¶</a></p>
-</li>
-      </ul>
-<div id="impact-of-changing-network-routing-and-other-policies">
-<section id="section-4.1">
-        <h3 id="name-impact-of-changing-network-">
-<a href="#section-4.1" class="section-number selfRef">4.1. </a><a href="#name-impact-of-changing-network-" class="section-name selfRef">Impact of Changing Network Routing and other Policies</a>
+</section>
+</div>
+</section>
+</div>
+<div id="changed-encryption-policy">
+<section id="section-4.2">
+        <h3 id="name-changed-encryption-policy">
+<a href="#section-4.2" class="section-number selfRef">4.2. </a><a href="#name-changed-encryption-policy" class="section-name selfRef">Changed Encryption Policy</a>
         </h3>
-<p id="section-4.1-1">The problem for streaming applications occurs when the underlying network properties and policies change from what is expected by the streaming application. In particular when such changes are either hidden or not visible to the streaming application.<a href="#section-4.1-1" class="pilcrow">¶</a></p>
-<p id="section-4.1-2">While the open Internet is a dynamic environment, changing of basic network behavior and policies from what is expected as seen from the streaming application,  deviate unexpectedly from what the streaming application expects. This behavior disrupts the optimized streaming delivery architecture for the end-user device.  Changes to Network Policies such the routing, source IP address assigned to the streaming application traffic, DNS resolver choice etc influences this behavior.<a href="#section-4.1-2" class="pilcrow">¶</a></p>
-<p id="section-4.1-3">Having a reliable understanding of the delivery path is essential for streaming operators and the introduction
-of network overlays like those based on technologies such as MASQUE especially when designed to be undetectable by the applications using them has introduced new technical challengess for streaming operators and network operators as well as for their viewers.<a href="#section-4.1-3" class="pilcrow">¶</a></p>
-<p id="section-4.1-4">The core problem occurs when changes to network policies are made, often without notification or visibilty to applications and
+<p id="section-4.2-1">Changing the encryption policy applied to video streams either adding where it wasn't orginally used or removing if it was originally specified can cause a wide range of operational problems.<a href="#section-4.2-1" class="pilcrow">¶</a></p>
+<div id="forced-upgrade">
+<section id="section-4.2.1">
+          <h4 id="name-forced-upgrade">
+<a href="#section-4.2.1" class="section-number selfRef">4.2.1. </a><a href="#name-forced-upgrade" class="section-name selfRef">Forced Upgrade</a>
+          </h4>
+<p id="section-4.2.1-1">Changing unencrytped HTTP2 to encrypted HTTP2+TLS connects will prohibit streaming workflows that involve content detection as part of the network delivery.  This can result in video traffic not being correctly identified and the incorrect network policies being applied to it.  This is particularly problematic in environments using multicast and in mobile environments.<a href="#section-4.2.1-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="forced-downgrade">
+<section id="section-4.2.2">
+          <h4 id="name-forced-downgrade">
+<a href="#section-4.2.2" class="section-number selfRef">4.2.2. </a><a href="#name-forced-downgrade" class="section-name selfRef">Forced Downgrade</a>
+          </h4>
+<p id="section-4.2.2-1">Equally so, removing of encryption applied to the transport stream by a streaming platform would be significantly problematic as such encryption may be part of a content protection and content integrity protections architecture.<a href="#section-4.2.2-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="changed-dns-resolver-selection">
+<section id="section-4.3">
+        <h3 id="name-changed-dns-resolver-select">
+<a href="#section-4.3" class="section-number selfRef">4.3. </a><a href="#name-changed-dns-resolver-select" class="section-name selfRef">Changed DNS Resolver Selection</a>
+        </h3>
+<p id="section-4.3-1">DNS Resolver choice changes resulting in less optimal CDN cache selection or bypassing of CDN load balancing direction<a href="#section-4.3-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="changed-source-ip-address">
+<section id="section-4.4">
+        <h3 id="name-changed-source-ip-address">
+<a href="#section-4.4" class="section-number selfRef">4.4. </a><a href="#name-changed-source-ip-address" class="section-name selfRef">Changed Source IP Address</a>
+        </h3>
+<p id="section-4.4-1">Changing the Source IP Address for the application's connections to Streaming Platform Servers resulting in logging, geofencing, and session management problems<a href="#section-4.4-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="performance-and-problem-determination">
+<section id="section-4.5">
+        <h3 id="name-performance-and-problem-det">
+<a href="#section-4.5" class="section-number selfRef">4.5. </a><a href="#name-performance-and-problem-det" class="section-name selfRef">Performance and Problem determination</a>
+        </h3>
+<p id="section-4.5-1">Network overlays often interfere with the tools used in performance and problem determination.   This is due to either the tool and protocols not able to traverse the alternative route tunnel impacting services ability to diagnose connection and performance problems, or the network overlay itself not supporting the tool and not supporting or carrying the tools functions.<a href="#section-4.5-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="impact-of-changing-network-routing-and-other-policies">
+<section id="section-4.6">
+        <h3 id="name-impact-of-changing-network-">
+<a href="#section-4.6" class="section-number selfRef">4.6. </a><a href="#name-impact-of-changing-network-" class="section-name selfRef">Impact of Changing Network Routing and other Policies</a>
+        </h3>
+<p id="section-4.6-1">The problem for streaming applications occurs when the underlying network properties and policies change from what is expected by the streaming application. In particular when such changes are either hidden or not visible to the streaming application.<a href="#section-4.6-1" class="pilcrow">¶</a></p>
+<p id="section-4.6-2">While the open Internet is a dynamic environment, changing of basic network behavior and policies from what is expected as seen from the streaming application,  deviate unexpectedly from what the streaming application expects. This behavior disrupts the optimized streaming delivery architecture for the end-user device.  Changes to Network Policies such the routing, source IP address assigned to the streaming application traffic, DNS resolver choice etc influences this behavior.<a href="#section-4.6-2" class="pilcrow">¶</a></p>
+<p id="section-4.6-3">Having a reliable understanding of the delivery path is essential for streaming operators and the introduction
+of network overlays like those based on technologies such as MASQUE especially when designed to be undetectable by the applications using them has introduced new technical challengess for streaming operators and network operators as well as for their viewers.<a href="#section-4.6-3" class="pilcrow">¶</a></p>
+<p id="section-4.6-4">The core problem occurs when changes to network policies are made, often without notification or visibilty to applications and
 without clear methods of probing to determine and test changed behaviors that affect the streaming application's content
 delivery path resulting in increased latency, changes of IP address for the application as seen by either the application
 or the streaming service connection, changes to DNS resolvers being queried and the results returned by DNS, and changes to
 application transports such as adding or removing outer layer encryption are all problems that have been observed in
-production streaming platforms.<a href="#section-4.1-4" class="pilcrow">¶</a></p>
+production streaming platforms.<a href="#section-4.6-4" class="pilcrow">¶</a></p>
 <div id="middleboxes-and-learning-from-the-past">
-<section id="section-4.1.1">
+<section id="section-4.6.1">
           <h4 id="name-middleboxes-and-learning-fr">
-<a href="#section-4.1.1" class="section-number selfRef">4.1.1. </a><a href="#name-middleboxes-and-learning-fr" class="section-name selfRef">Middleboxes and learning from the past</a>
+<a href="#section-4.6.1" class="section-number selfRef">4.6.1. </a><a href="#name-middleboxes-and-learning-fr" class="section-name selfRef">Middleboxes and learning from the past</a>
           </h4>
-<p id="section-4.1.1-1">The IETF has discussed this situation in the past, more than 20 years ago in 2002 Middleboxes: Taxonomy and Issues <span>[<a href="#RFC3234" class="cite xref">RFC3234</a>]</span>
-was published capturing the issues with Middleboxes in the network and the affects of hidden changes occuring on the network between the sender and receiver.<a href="#section-4.1.1-1" class="pilcrow">¶</a></p>
+<p id="section-4.6.1-1">The IETF has discussed this situation in the past, more than 20 years ago in 2002 Middleboxes: Taxonomy and Issues <span>[<a href="#RFC3234" class="cite xref">RFC3234</a>]</span>
+was published capturing the issues with Middleboxes in the network and the affects of hidden changes occuring on the network between the sender and receiver.<a href="#section-4.6.1-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
