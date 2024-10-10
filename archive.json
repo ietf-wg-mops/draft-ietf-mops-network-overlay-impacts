@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-10-08T01:37:13.808979+00:00",
+  "timestamp": "2024-10-10T01:36:44.542164+00:00",
   "repo": "gitnnelg/NetworkOverlays",
   "labels": [
     {
@@ -150,6 +150,42 @@
           "comments": []
         }
       ]
+    },
+    {
+      "number": 3,
+      "id": "PR_kwDOMF9odM5-Ax5o",
+      "title": "Pre ietf121 problem statement",
+      "url": "https://github.com/gitnnelg/NetworkOverlays/pull/3",
+      "state": "MERGED",
+      "author": "gitnnelg",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-10-09T01:10:46Z",
+      "updatedAt": "2024-10-09T01:15:15Z",
+      "baseRepository": "gitnnelg/NetworkOverlays",
+      "baseRefName": "main",
+      "baseRefOid": "8428a81cf32483703a2fe6836543b1d97ce4dbcc",
+      "headRepository": "gitnnelg/NetworkOverlays",
+      "headRefName": "pre-IETF121-problem-statement",
+      "headRefOid": "b47c46fd8afe73af0fca34dbb48232f4ad07a30d",
+      "closedAt": "2024-10-09T01:15:14Z",
+      "mergedAt": "2024-10-09T01:15:14Z",
+      "mergedBy": "gitnnelg",
+      "mergeCommit": {
+        "oid": "17ff1637cabcb9ff4143cfd6d41fa068afc9cd71"
+      },
+      "comments": [
+        {
+          "author": "gitnnelg",
+          "authorAssociation": "OWNER",
+          "body": "Updated into problem statement ",
+          "createdAt": "2024-10-09T01:11:49Z",
+          "updatedAt": "2024-10-09T01:11:49Z"
+        }
+      ],
+      "reviews": []
     }
   ]
 }
