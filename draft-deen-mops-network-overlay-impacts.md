@@ -165,6 +165,10 @@ Streaming video applications and the streaming platforms delivering content are 
 
 There are a variety of impacts but a few common classes of issues have been observed:
 
+### CDNs interconnection troubleshooting
+
+In a CDN interconnection When 2 CDN domains have to localize a point of failure, they first determine the delivery path and a point of observation where to do measurement. Then they proceed by dichotomy to determine the domain where the point of failure is. The issue with overlay networking is the Following : CDNs use their request routing information to determine a point of observation on the delivery path where to do the measurement, as their delivery path is overwritten by the re-routing of the overlay networking, the flow can't be observed at the observation point.
+
 ## Policy Changes Hidden from Applications
 
 One of the central recurring issues with streaming applications running on devices or networks with changed policies due to network overlays is that the changes are often hidden from the applications.
