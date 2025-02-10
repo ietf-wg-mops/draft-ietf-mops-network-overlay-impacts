@@ -15,27 +15,27 @@ protocols, routing, DNS resolver which in turn affect a variety of important
 content delivery aspects such as latency, CDN cache selection, delivery path
 choices, traffic classification and content access controls. 
     " name="description">
-<meta content="xml2rfc 3.23.2" name="generator">
+<meta content="xml2rfc 3.26.0" name="generator">
 <meta content="network policy" name="keyword">
 <meta content="video streaming" name="keyword">
 <meta content="streaming" name="keyword">
-<meta content="draft-deen-mops-network-overlay-impacts-latest" name="ietf.draft">
+<meta content="draft-ietf-mops-network-overlay-impacts-latest" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.23.2
-    Python 3.12.6
+  xml2rfc 3.26.0
+    Python 3.12.8
     ConfigArgParse 1.7
     google-i18n-address 3.1.1
     intervaltree 3.1.0
-    Jinja2 3.1.4
-    lxml 4.9.4
+    Jinja2 3.1.5
+    lxml 5.3.0
     platformdirs 4.3.6
-    pycountry 22.3.5
-    PyYAML 6.0.1
+    pycountry 24.6.1
+    PyYAML 6.0.2
     requests 2.32.3
     setuptools 70.3.0
     wcwidth 0.2.13
 -->
-<link href="draft-deen-mops-network-overlay-impacts.xml" rel="alternate" type="application/rfc+xml">
+<link href="draft-ietf-mops-network-overlay-impacts.xml" rel="alternate" type="application/rfc+xml">
 <link href="#copyright" rel="license">
 <style type="text/css">@font-face {
   font-family: 'Lora';
@@ -169,31 +169,6 @@ choices, traffic classification and content access controls.
 }
 
 @font-face {
-  font-family: 'Cabin Condensed';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: local('Cabin Condensed SemiBold'), local('CabinCondensed-SemiBold'), url('https://martinthomson.github.io/rfc-css/fonts/cabincondensed-semibold-vietnamese.woff2') format('woff2');
-  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
-}
-@font-face {
-  font-family: 'Cabin Condensed';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: local('Cabin Condensed SemiBold'), local('CabinCondensed-SemiBold'), url('https://martinthomson.github.io/rfc-css/fonts/cabincondensed-semibold-latin-ext.woff2') format('woff2');
-  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-@font-face {
-  font-family: 'Cabin Condensed';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: local('Cabin Condensed SemiBold'), local('CabinCondensed-SemiBold'), url('https://martinthomson.github.io/rfc-css/fonts/cabincondensed-semibold-latin.woff2') format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-
-@font-face {
   font-family: 'Oxygen Mono';
   font-style: normal;
   font-weight: 400;
@@ -210,6 +185,77 @@ choices, traffic classification and content access controls.
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: italic;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-italic-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: italic;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-italic-cyrillic.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: italic;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-italic-greek.woff2') format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: italic;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-italic-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: italic;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-italic-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: normal;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-regular-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: normal;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-regular-cyrillic.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: normal;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-regular-greek.woff2') format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: normal;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-regular-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: normal;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-regular-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 :root {
   color-scheme: light dark;
   --background-color: #fff;
@@ -222,6 +268,7 @@ choices, traffic classification and content access controls.
   --pilcrow-strong: #bbb;
   --small-font-size: 14.5px;
   --font-mono: 'Oxygen Mono', monospace;
+  --font-title: "Sofia Sans Semi Condensed", sans-serif;
   scrollbar-color: #bbb #eee;
 }
 body {
@@ -239,9 +286,15 @@ body {
 }
 
 /* headings */
+section {
+  clear: both;
+}
+.section-number {
+  padding-right: 0.5em;
+}
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Cabin Condensed", sans-serif;
-  font-weight: 600;
+  font-family: var(--font-title);
+  font-weight: 680;
   margin: 0.8em 0 0.3em;
   font-size-adjust: 0.5;
   color: var(--title-color);
@@ -270,6 +323,7 @@ h4, h5, h6 {
 /* general structure */
 .author {
   padding-bottom: 0.3em;
+  vertical-align: top;
 }
 #abstract+p {
   font-size: 18px;
@@ -347,25 +401,26 @@ svg[font-family~="monospace" i], svg [font-family~="monospace" i] {
 ol, ul {
   padding: 0;
   margin: 0 0 0.5em 2em;
-}
-:is(ol, ul) :is(ol, ul) {
-  margin-left: 1em;
+  & :is(ol, ul) {
+    margin-left: 1em;
+  }
 }
 li {
   margin: 0 0 0.25em 0;
 }
-.ulCompact li {
-  margin: 0;
-}
 ul.empty, .ulEmpty {
   list-style-type: none;
-}
-ul.empty li, .ulEmpty li {
-  margin-top: 0.5em;
+  & li {
+    margin-top: 0.5em;
+  }
 }
 :is(ul, ol).compact, .ulCompact, .olCompact {
-  line-height: 1;
   margin: 0 0 0 2em;
+  & li {
+    margin: 0;
+    & :first-child { margin-top: 0; }
+    & :last-child { margin-bottom: 0; }
+  }
 }
 
 /* definition lists */
@@ -373,38 +428,39 @@ dl {
   clear: left;
   --indent: 3ch;
   /* --indent: attr(indent ch); not supported in any browser, but we can dream */
-}
-dl.olPercent {
-  --indent: 5ch;
+  &.olPercent {
+    --indent: 5ch;
+    & > dt {
+      min-width: calc(var(--indent) - 2ch);
+    }
+  }
+  &.olPercent > dt {
+    float: none;
+  }
+
+  dl > dd > & {
+    margin-top: 0.5em;
+    margin-bottom: 0;
+  }
 }
 dl > dt {
   float: left;
   margin-right: 2ch;
   min-width: 8ch;
 }
-dl.dlNewline > dt {
-  float: none;
-}
 dl > dd {
   margin-bottom: .8em;
   margin-left: var(--indent) !important; /* stupid element overrides */
   min-height: 2ex;
 }
-dl.olPercent > dt {
-  min-width: calc(var(--indent) - 2ch);
-}
 :is(dl.compact, .dlCompact) > dd {
   margin-bottom: 0;
-}
-:is(dl.compact, .dlCompact) > dd > :is(:first-child, .break:first-child + *) {
-  margin-top: 0;
-}
-:is(dl.compact, .dlCompact) > dd > :is(:last-child) {
-  margin-bottom: 0;
-}
-dl > dd > dl {
-  margin-top: 0.5em;
-  margin-bottom: 0;
+  & > :is(:first-child, .break:first-child + *) {
+    margin-top: 0;
+  }
+  & > :is(:last-child) {
+    margin-bottom: 0;
+  }
 }
 :is(dd, span).break {
   display: none;
@@ -468,6 +524,7 @@ figcaption, caption {
   font-style: italic;
   margin: 0.5em 1.5em;
   text-align: left;
+  caption-side: bottom;
 }
 @media screen {
   /* Auto-collapse boilerplate. */
@@ -485,7 +542,11 @@ figcaption, caption {
   }
   pre, svg {
     display: inline-block;
-    overflow-x: auto;
+    /* In the horizontal direction, sometimes people make over-sized figures.
+       Scrollbars for those is therefore necessary: auto adds them as necessary..
+       In the vertical direction, the line-height can combine with the font
+       asender/descender height to produce scrollbars: hidden avoids that. */
+    overflow: auto hidden;
   }
   pre {
     max-width: 100%;
@@ -522,6 +583,7 @@ cite {
 
 /* tables */
 table {
+  width: auto;
   max-width: 100%;
   margin: 0 0 1em;
   border-collapse: collapse;
@@ -536,6 +598,16 @@ table.center {
 table.left {
   margin-right: auto;
 }
+table .text-left {
+  text-align: left;
+}
+table .text-center {
+  text-align: center;
+}
+table .text-right {
+  text-align: right;
+}
+
 thead, tbody {
   border: 1px solid var(--line-color);
 }
@@ -566,9 +638,11 @@ a.pilcrow {
   margin-left: 3px;
   opacity: 0.2;
   user-select: none;
+  &[href] {
+    color: var(--pilcrow-weak);
+    &:hover { text-decoration: none; }
+  }
 }
-a.pilcrow[href] { color: var(--pilcrow-weak); }
-a.pilcrow[href]:hover { text-decoration: none; }
 @media not print {
   :hover > a.pilcrow {
     opacity: 1;
@@ -608,26 +682,28 @@ sub, sup {
   font-size: var(--small-font-size);
   line-height: 18px;
   --identifier-width: 15ch;
-}
-#identifiers dt {
-  width: var(--identifier-width);
-  min-width: var(--identifier-width);
-  clear: left;
-  float: left;
-  text-align: right;
-  margin-right: 1ch;
-}
-#identifiers dd {
-  margin: 0;
-  margin-left: calc(1em + var(--identifier-width)) !important;
-  min-width: 5em;
-}
-#identifiers .authors .author {
-  display: inline-block;
-  margin-right: 1.5em;
-}
-#identifiers .authors .org {
-  font-style: italic;
+  & dt {
+    width: var(--identifier-width);
+    min-width: var(--identifier-width);
+    clear: left;
+    float: left;
+    text-align: right;
+    margin-right: 1ch;
+  }
+  & dd {
+    margin: 0;
+    margin-left: calc(1em + var(--identifier-width)) !important;
+    min-width: 5em;
+  }
+  & .authors {
+    & .author {
+      display: inline-block;
+      margin-right: 1.5em;
+    }
+    & .org {
+      font-style: italic;
+    }
+  }
 }
 
 /* The prepared/rendered info at the very bottom of the page */
@@ -638,9 +714,6 @@ sub, sup {
   margin-top: 2em;
 }
 .docInfo .prepared {
-  float: left;
-}
-.docInfo .prepared {
   float: right;
 }
 
@@ -648,47 +721,48 @@ sub, sup {
 #toc {
   padding: 0.75em 0 2em 0;
   margin-bottom: 1em;
-}
-#toc nav ul {
-  margin: 0 0.5em 0 0;
-  padding: 0;
-  list-style: none;
-}
-#toc nav li {
-  line-height: 1.3em;
-  margin: 2px 0;
-  padding-left: 1.2em;
-  text-indent: -1.2em;
-}
-#toc a.xref {
-  white-space: normal;
-}
-/* references */
-.references dt {
-  text-align: right;
-  font-weight: bold;
-  min-width: 10ch;
-  margin-right: 1.5ch;
-}
-.references dt:target::before {
-  content: "⇒";
-  width: 15px;
-  margin: 0 10px 0 -25px;
-}
-.references dd {
-  margin-left: 12ch !important;
-  overflow: auto;
+
+  & nav {
+    & ul {
+      margin: 0 0.5em 0 0;
+      padding: 0;
+      list-style: none;
+    }
+    & li {
+      line-height: 1.3em;
+      margin: 2px 0;
+      padding-left: 1.2em;
+      text-indent: -1.2em;
+    }
+  }
+  & a.xref {
+    white-space: normal;
+  }
 }
 
-.refInstance {
-  margin-bottom: 1.25em;
+.references {
+  & > dt {
+    text-align: right;
+    font-weight: bold;
+    min-width: 10ch;
+    margin-right: 1.5ch;
+    &:target::before {
+      content: "⇒";
+      margin: 0 10px 0 -25px;
+    }
+  }
+  & > dd {
+    margin-left: 12ch !important;
+    overflow: visible;
+    & .refInstance {
+      margin-bottom: 0.8em;
+    }
+    & .ascii {
+      margin-bottom: 0.25em;
+    }
+  }
 }
 
-.references .ascii {
-  margin-bottom: 0.25em;
-}
-
-/* index */
 #rfc\.index\.index + ul {
   margin-left: 0;
 }
@@ -696,21 +770,33 @@ sub, sup {
 /* authors */
 address.vcard {
   font-style: normal;
-  margin: 1em 0;
+  max-width: 20em;
+  margin: 1em auto 1em 0;
+
+  & .nameRole {
+    font-weight: 700;
+    margin-left: 0;
+  }
+  & .label {
+    margin: 0.5em 0;
+  }
+  & .type {
+    display: none;
+  }
+  & .alternative-contact {
+    margin: 0.5em 0 0.25em 0;
+  }
+  & .non-ascii {
+    margin: 0 0 0 2em;
+  }
+  & div.left {
+    text-align: left;
+  }
+  & div.right {
+    text-align: right;
+  }
 }
-address.vcard .nameRole {
-  font-weight: 700;
-  margin-left: 0;
-}
-address.vcard .label {
-  margin: 0.5em 0;
-}
-address.vcard .type {
-  display: none;
-}
-.alternative-contact {
-  margin: 1.5em 0 1em;
-}
+
 hr.addr {
   border-top: 1px dashed;
   margin: 0;
@@ -732,6 +818,7 @@ hr.addr {
   }
 }
 
+/* Comments */
 .rfcEditorRemove p:first-of-type {
   font-style: italic;
 }
@@ -742,7 +829,31 @@ hr.addr {
 .crefSource {
   font-style: italic;
 }
-/* alternative layout for smaller screens */
+
+@media screen {
+  #toc nav {
+    font-family: var(--font-title);
+    font-weight: 360;
+    & > ul { margin-bottom: 2em; }
+    & ul {
+      margin: 0 0 0 4px;
+      & :is(p, li) {
+        margin: 2px 0;
+      }
+    }
+  }
+  #toc a.toplink {
+    float: right;
+  }
+}
+@media not screen {
+  #toc a.toplink {
+    display: none;
+  }
+}
+
+
+/* TOC layout for smaller screens */
 @media screen and (max-width: 929px) {
   #toc {
     position: fixed;
@@ -753,9 +864,6 @@ hr.addr {
     margin: 0;
     border-bottom: 1px solid #ccc;
     opacity: 0.6;
-  }
-  #toc.active {
-      opacity: 1;
   }
   #toc h2 {
     margin: 0;
@@ -768,17 +876,17 @@ hr.addr {
     background-color: #444;
     color: white;
     cursor: pointer;
-  }
-  #toc h2::before { /* css hamburger */
-    float: right;
-    position: relative;
-    width: 1em;
-    height: 1px;
-    left: -164px;
-    margin: 8px 0 0 0;
-    background: white none repeat scroll 0 0;
-    box-shadow: 0 4px 0 0 white, 0 8px 0 0 white;
-    content: "";
+    &::before { /* css hamburger */
+      float: right;
+      position: relative;
+      width: 1em;
+      height: 1px;
+      left: -164px;
+      margin: 8px 0 0 0;
+      background: white none repeat scroll 0 0;
+      box-shadow: 0 4px 0 0 white, 0 8px 0 0 white;
+      content: "";
+    }
   }
   #toc nav {
     display: none;
@@ -789,14 +897,13 @@ hr.addr {
     height: calc(100vh - 48px);
     border-left: 1px solid #ddd;
   }
-  #toc.active nav {
-    display: block;
+  #toc.active {
+    opacity: 1;
+    & nav { display: block; }
   }
   /* Make the collapsed ToC header render white on gray also when it's a link */
   #toc h2 a,
-  #toc h2 a:link,
-  #toc h2 a:focus,
-  #toc h2 a:hover,
+  #toc h2 a:is(:link, :focus, :hover),
   #toc a.toplink,
   #toc a.toplink:hover {
     color: white;
@@ -804,11 +911,11 @@ hr.addr {
     text-decoration: none;
   }
   #toc a.toplink {
-    margin-top: 2px;
+    margin: 2px 0.5em 0;
   }
 }
 
-/* alternative layout for wide screens */
+/* TOC layout for wide screens */
 @media screen and (min-width: 930px) {
   body {
     padding-right: 360px;
@@ -837,20 +944,12 @@ hr.addr {
     overscroll-behavior: contain;
     scrollbar-width: thin;
   }
-  #toc nav > ul  {
-    margin-bottom: 2em;
-  }
-  #toc ul {
-    margin: 0 0 0 4px;
-    font-size: var(--small-font-size);
-  }
-  #toc ul :is(p, li) {
-    margin: 2px 0;
-    line-height: 22px;
-  }
   img { /* future proofing */
     max-width: 100%;
     height: auto;
+  }
+  #toc a.toplink {
+    margin: 8px 0.5em 0;
   }
 }
 
@@ -893,9 +992,6 @@ hr.addr {
   td {
     border-top: 1px solid #ddd;
   }
-  .toplink {
-    display: none;
-  }
 }
 
 @page :first {
@@ -918,82 +1014,6 @@ hr.addr {
   size: A4;
   margin-bottom: 45mm;
   padding-top: 20px;
-}
-
-/* Changes introduced to fix issues found during implementation */
-
-/* Separate body from document info even without intervening H1 */
-section {
-  clear: both;
-}
-
-/* Top align author divs, to avoid names without organization dropping level with org names */
-.author {
-  vertical-align: top;
-}
-
-/* Style section numbers with more space between number and title */
-.section-number {
-  padding-right: 0.5em;
-}
-
-/* Add styling for a link in the ToC that points to the top of the document */
-a.toplink {
-  float: right;
-  margin: 8px 0.5em 0;
-}
-
-/* Provide styling for table cell text alignment */
-table .text-left {
-  text-align: left;
-}
-table .text-center {
-  text-align: center;
-}
-table .text-right {
-  text-align: right;
-}
-
-/* Make the alternative author contact information look less like just another
-   author, and group it closer with the primary author contact information */
-.alternative-contact {
-  margin: 0.5em 0 0.25em 0;
-}
-address .non-ascii {
-  margin: 0 0 0 2em;
-}
-
-/* With it being possible to set tables with alignment
-  left, center, and right, { width: 100%; } does not make sense */
-table {
-  width: auto;
-}
-
-/* Avoid reference text that sits in a block with very wide left margin,
-   because of a long floating dt label.*/
-.references dd {
-  overflow: visible;
-}
-
-/* Control caption placement */
-caption {
-  caption-side: bottom;
-}
-
-/* Limit the width of the author address vcard, so names in right-to-left
-   script don't end up on the other side of the page. */
-
-address.vcard {
-  max-width: 20em;
-  margin-right: auto;
-}
-
-/* For address alignment dependent on LTR or RTL scripts */
-address div.left {
-  text-align: left;
-}
-address div.right {
-  text-align: right;
 }
 
 /* Dark mode. */
@@ -1032,11 +1052,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">NOISV</td>
-<td class="right">October 2024</td>
+<td class="right">February 2025</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Deen &amp; Mishra</td>
-<td class="center">Expires 12 April 2025</td>
+<td class="center">Expires 14 August 2025</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1046,15 +1066,15 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dt class="label-workgroup">Workgroup:</dt>
 <dd class="workgroup">Media OPerationS</dd>
 <dt class="label-internet-draft">Internet-Draft:</dt>
-<dd class="internet-draft">draft-deen-mops-network-overlay-impacts-latest</dd>
+<dd class="internet-draft">draft-ietf-mops-network-overlay-impacts-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2024-10-09" class="published">9 October 2024</time>
+<time datetime="2025-02-10" class="published">10 February 2025</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2025-04-12">12 April 2025</time></dd>
+<dd class="expires"><time datetime="2025-08-14">14 August 2025</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1084,15 +1104,15 @@ choices, traffic classification and content access controls.<a href="#section-ab
       </h2>
 <p id="section-note.1-1">This note is to be removed before publishing as an RFC.<a href="#section-note.1-1" class="pilcrow">¶</a></p>
 <p id="section-note.1-2">
-        The latest revision of this draft can be found at <span><a href="https://gitnnelg.github.io/NetworkOverlays/draft-deen-mops-network-overlay-impacts.html">https://gitnnelg.github.io/NetworkOverlays/draft-deen-mops-network-overlay-impacts.html</a></span>.
-        Status information for this document may be found at <span><a href="https://datatracker.ietf.org/doc/draft-deen-mops-network-overlay-impacts/">https://datatracker.ietf.org/doc/draft-deen-mops-network-overlay-impacts/</a></span>.<a href="#section-note.1-2" class="pilcrow">¶</a></p>
+        The latest revision of this draft can be found at <span><a href="https://gitnnelg.github.io/draft-ietf-mops-network-overlay-impacts/draft-ieft--mops-network-overlay-impacts.html">https://gitnnelg.github.io/draft-ietf-mops-network-overlay-impacts/draft-ieft--mops-network-overlay-impacts.html</a></span>.
+        Status information for this document may be found at <span><a href="https://datatracker.ietf.org/doc/draft-ietf-mops-network-overlay-impacts/">https://datatracker.ietf.org/doc/draft-ietf-mops-network-overlay-impacts/</a></span>.<a href="#section-note.1-2" class="pilcrow">¶</a></p>
 <p id="section-note.1-3">
         Discussion of this document takes place on the
         Media OPerationS Working Group mailing list (<span><a href="mailto:mops@ietf.org">mailto:mops@ietf.org</a></span>),
         which is archived at <span><a href="https://mailarchive.ietf.org/arch/browse/mops/">https://mailarchive.ietf.org/arch/browse/mops/</a></span>.
         Subscribe at <span><a href="https://www.ietf.org/mailman/listinfo/mops/">https://www.ietf.org/mailman/listinfo/mops/</a></span>.<a href="#section-note.1-3" class="pilcrow">¶</a></p>
 <p id="section-note.1-4">Source for this draft and an issue tracker can be found at
-        <span><a href="https://github.com/gitnnelg/NetworkOverlays">https://github.com/gitnnelg/NetworkOverlays</a></span>.<a href="#section-note.1-4" class="pilcrow">¶</a></p>
+        <span><a href="https://github.com/gitnnelg/draft-ietf-mops-network-overlay-impacts">https://github.com/gitnnelg/draft-ietf-mops-network-overlay-impacts</a></span>.<a href="#section-note.1-4" class="pilcrow">¶</a></p>
 </section>
 <div id="status-of-memo">
 <section id="section-boilerplate.1">
@@ -1113,7 +1133,7 @@ choices, traffic classification and content access controls.<a href="#section-ab
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 12 April 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 14 August 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1122,7 +1142,7 @@ choices, traffic classification and content access controls.<a href="#section-ab
 <a href="#name-copyright-notice" class="section-name selfRef">Copyright Notice</a>
         </h2>
 <p id="section-boilerplate.2-1">
-            Copyright (c) 2024 IETF Trust and the persons identified as the
+            Copyright (c) 2025 IETF Trust and the persons identified as the
             document authors. All rights reserved.<a href="#section-boilerplate.2-1" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.2-2">
             This document is subject to BCP 78 and the IETF Trust's Legal
@@ -1179,10 +1199,44 @@ choices, traffic classification and content access controls.<a href="#section-ab
             <p id="section-toc.1-1.4.1"><a href="#section-4" class="auto internal xref">4</a>.  <a href="#name-emerging-operational-issues" class="internal xref">Emerging Operational Issues with Network Overlay Policy Changes</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.1">
-                <p id="section-toc.1-1.4.2.1.1"><a href="#section-4.1" class="auto internal xref">4.1</a>.  <a href="#name-impact-of-changing-network-" class="internal xref">Impact of Changing Network Routing and other Policies</a></p>
+                <p id="section-toc.1-1.4.2.1.1"><a href="#section-4.1" class="auto internal xref">4.1</a>.  <a href="#name-policy-changes-hidden-from-" class="internal xref">Policy Changes Hidden from Applications</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.2">
+                <p id="section-toc.1-1.4.2.2.1"><a href="#section-4.2" class="auto internal xref">4.2</a>.  <a href="#name-routing-changes" class="internal xref">Routing Changes</a></p>
 <ul class="compact toc ulBare ulEmpty">
-<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.1.2.1">
-                    <p id="section-toc.1-1.4.2.1.2.1.1"><a href="#section-4.1.1" class="auto internal xref">4.1.1</a>.  <a href="#name-middleboxes-and-learning-fr" class="internal xref">Middleboxes and learning from the past</a></p>
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.2.2.1">
+                    <p id="section-toc.1-1.4.2.2.2.1.1"><a href="#section-4.2.1" class="auto internal xref">4.2.1</a>.  <a href="#name-end-to-end-problem-discover" class="internal xref">End to End Problem Discovery</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.2.2.2">
+                    <p id="section-toc.1-1.4.2.2.2.2.1"><a href="#section-4.2.2" class="auto internal xref">4.2.2</a>.  <a href="#name-cdn-edge-cache-selection-du" class="internal xref">CDN Edge Cache Selection due to Routing</a></p>
+</li>
+                </ul>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.3">
+                <p id="section-toc.1-1.4.2.3.1"><a href="#section-4.3" class="auto internal xref">4.3</a>.  <a href="#name-changed-encryption-policy" class="internal xref">Changed Encryption Policy</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.3.2.1">
+                    <p id="section-toc.1-1.4.2.3.2.1.1"><a href="#section-4.3.1" class="auto internal xref">4.3.1</a>.  <a href="#name-forced-encryption-upgrade" class="internal xref">Forced Encryption Upgrade</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.3.2.2">
+                    <p id="section-toc.1-1.4.2.3.2.2.1"><a href="#section-4.3.2" class="auto internal xref">4.3.2</a>.  <a href="#name-forced-encryption-downgrade" class="internal xref">Forced Encryption Downgrade</a></p>
+</li>
+                </ul>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.4">
+                <p id="section-toc.1-1.4.2.4.1"><a href="#section-4.4" class="auto internal xref">4.4</a>.  <a href="#name-changed-dns-resolver-select" class="internal xref">Changed DNS Resolver Selection</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.5">
+                <p id="section-toc.1-1.4.2.5.1"><a href="#section-4.5" class="auto internal xref">4.5</a>.  <a href="#name-changed-source-ip-address" class="internal xref">Changed Source IP Address</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.6">
+                <p id="section-toc.1-1.4.2.6.1"><a href="#section-4.6" class="auto internal xref">4.6</a>.  <a href="#name-performance-and-problem-det" class="internal xref">Performance and Problem determination</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.7">
+                <p id="section-toc.1-1.4.2.7.1"><a href="#section-4.7" class="auto internal xref">4.7</a>.  <a href="#name-impact-of-changing-network-" class="internal xref">Impact of Changing Network Routing and other Policies</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.7.2.1">
+                    <p id="section-toc.1-1.4.2.7.2.1.1"><a href="#section-4.7.1" class="auto internal xref">4.7.1</a>.  <a href="#name-middleboxes-and-learning-fr" class="internal xref">Middleboxes and learning from the past</a></p>
 </li>
                 </ul>
 </li>
@@ -1229,10 +1283,11 @@ choices, traffic classification and content access controls.<a href="#section-ab
 <a href="#section-1" class="section-number selfRef">1. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
       </h2>
 <p id="section-1-1">The past decade of Internet evolution has included two significant trends,  the global growth of video streaming and  active passionate work within the IETF on enhancing Internet user privacy.<a href="#section-1-1" class="pilcrow">¶</a></p>
-<p id="section-1-2">The work on these initiatives has largely occured independently of one another, though there are a few individuals and companies that are involved with both efforts.   However, the arrival of the newly developed privacy enhancements in consumer products and their subsequent use by streaming video viewers has brought the work of the two efforts in contact and highlighted a number of friction points which are having impacts to the viewers and support engineers of video streaming platforms.<a href="#section-1-2" class="pilcrow">¶</a></p>
-<p id="section-1-3">To be clear, this document is not proposing or advocating rolling back any of the privacy enhancements for the viewers.  Instead the authors hope to help describe the problem space and educate the IETF and others on the practical operational impacts of these enhancements and to eventually develop approaches that can help mitigate such impacts.<a href="#section-1-3" class="pilcrow">¶</a></p>
-<p id="section-1-4">The authors also readily acknowledge the many challenges and difficulties in improving Internet privacy in an area as complex as the Internet while also maintaining compatibiltiy with the wildly varied applications and uses the Internet's users rely upon daily in their lives. This is hard stuff and it's very natural for there to be operational considerations that must be understood and folded back into architectural designs and consumer products.<a href="#section-1-4" class="pilcrow">¶</a></p>
-<p id="section-1-5">The motivation in developing this document is to provide a meaningful and helpful feedback from the streaming application and streaming platform operational perspective to help the enhanced privacy architecture work being done at the IETF.<a href="#section-1-5" class="pilcrow">¶</a></p>
+<p id="section-1-2">The work on these initiatives has largely occured independently of one another, though there are a few individuals and companies that are involved with both efforts.<a href="#section-1-2" class="pilcrow">¶</a></p>
+<p id="section-1-3">The arrival of the newly developed privacy enhancements in consumer products and their subsequent use by streaming video viewers has brought the results of the two efforts into contact and a number of friction points are now being encountered which are having impacts to the viewers, support engineers and operational aspects of video streaming platforms.<a href="#section-1-3" class="pilcrow">¶</a></p>
+<p id="section-1-4">To be clear, this document is not proposing or advocating rolling back any of the privacy enhancements for the viewers.  Instead the authors hope to help describe the problem space and educate the IETF and others on the practical operational impacts of these enhancements and to eventually develop approaches that can help mitigate such impacts.<a href="#section-1-4" class="pilcrow">¶</a></p>
+<p id="section-1-5">The authors also readily acknowledge the many challenges and difficulties in improving Internet privacy in an area as complex as the Internet while also maintaining compatibiltiy with the wildly varied applications and uses of the Internet on which users rely upon daily in their lives. This is hard stuff and it's very natural for there to be operational considerations that must be understood and folded back into architectural designs and consumer products.<a href="#section-1-5" class="pilcrow">¶</a></p>
+<p id="section-1-6">The motivation in developing this document is to provide a meaningful and helpful feedback from the streaming application and streaming platform operational perspective to help the enhanced privacy architecture work being done at the IETF.<a href="#section-1-6" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="internet-privacy-enhancements">
@@ -1361,12 +1416,38 @@ are built with detailed understandings of each element in the content delivery p
       </h2>
 <p id="section-4-1">Streaming video applications and the streaming platforms delivering content are starting to encounter various operational challenges related to Network Overlays. Typically the primary problems are encountered when the network overlay has made policy changes that are either unexpected, are difficult or impossible for the streaming platform to detect, or the changes are inconsitently applied.<a href="#section-4-1" class="pilcrow">¶</a></p>
 <p id="section-4-2">There are a variety of impacts but a few common classes of issues have been observed:<a href="#section-4-2" class="pilcrow">¶</a></p>
-<ul class="normal">
-<li class="normal" id="section-4-3.1">
-          <p id="section-4-3.1.1">(1) Routing changes which cause bypassing edge CDN caches and instead choosing less optimal caches<a href="#section-4-3.1.1" class="pilcrow">¶</a></p>
-</li>
-      </ul>
-<div class="alignLeft art-text artwork" id="section-4-4">
+<div id="policy-changes-hidden-from-applications">
+<section id="section-4.1">
+        <h3 id="name-policy-changes-hidden-from-">
+<a href="#section-4.1" class="section-number selfRef">4.1. </a><a href="#name-policy-changes-hidden-from-" class="section-name selfRef">Policy Changes Hidden from Applications</a>
+        </h3>
+<p id="section-4.1-1">One of the central recurring issues with streaming applications running on devices or networks with changed policies due to network overlays is that the changes are often hidden from the applications.<a href="#section-4.1-1" class="pilcrow">¶</a></p>
+<p id="section-4.1-2">Applications often find it difficult or even impossible to detect when network policy changes will be active and what they are changing.   For example, a device may have a desingated default DNS resolver for the device, but may have a different resolver selected depending on how the streaming application queries the DNS.<a href="#section-4.1-2" class="pilcrow">¶</a></p>
+<p id="section-4.1-3">Likewise, a streaming application might find that one application transport protocol such as HTTP queries will have one set of routing policies applied to it but a different appliction transport like HTTPS may have a different set of routing policies applied.<a href="#section-4.1-3" class="pilcrow">¶</a></p>
+<p id="section-4.1-4">Streaming applications that cannot determine the exact behavior to be expected can prevent the streaming application from making good content source decisions and can prevent appllications from being able to provide reliable feedback and logs when problems are encountered.<a href="#section-4.1-4" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="routing-changes">
+<section id="section-4.2">
+        <h3 id="name-routing-changes">
+<a href="#section-4.2" class="section-number selfRef">4.2. </a><a href="#name-routing-changes" class="section-name selfRef">Routing Changes</a>
+        </h3>
+<p id="section-4.2-1">Routing changes which cause connections between video applications and the infrastructure servcices they use can create a large number of problems.<a href="#section-4.2-1" class="pilcrow">¶</a></p>
+<div id="end-to-end-problem-discovery">
+<section id="section-4.2.1">
+          <h4 id="name-end-to-end-problem-discover">
+<a href="#section-4.2.1" class="section-number selfRef">4.2.1. </a><a href="#name-end-to-end-problem-discover" class="section-name selfRef">End to End Problem Discovery</a>
+          </h4>
+<p id="section-4.2.1-1">A common issue in video delivery is locating where along the delivery path the video transport is encountering problems.   Often such problems are more complex than the connection not working at but instead involve identifying bottleneck, lost packets, congestion issues.   When the routing changes from what is expected or visible to support tools it becomes an operational trouble spot for users and platform suport to location and determine the source of the problems.<a href="#section-4.2.1-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="cdn-edge-cache-selection-due-to-routing">
+<section id="section-4.2.2">
+          <h4 id="name-cdn-edge-cache-selection-du">
+<a href="#section-4.2.2" class="section-number selfRef">4.2.2. </a><a href="#name-cdn-edge-cache-selection-du" class="section-name selfRef">CDN Edge Cache Selection due to Routing</a>
+          </h4>
+<p id="section-4.2.2-1">A significant, and often overlooked problm is the addition of network latency compared to edge CDN caches or access network peering connections.  Routing changes which cause bypassing edge CDN caches and instead choosing less optimal caches<a href="#section-4.2.2-1" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-4.2.2-2">
 <pre>
  R  = router
            &lt;--- non-overlay traffic path ---&gt;
@@ -1378,47 +1459,82 @@ are built with detailed understandings of each element in the content delivery p
                      &lt;--- overlay traffic path ---&gt;
 
  Figure:  Routing Changes alering CDN Cache selection
-</pre><a href="#section-4-4" class="pilcrow">¶</a>
+</pre><a href="#section-4.2.2-2" class="pilcrow">¶</a>
 </div>
-<ul class="normal">
-<li class="normal" id="section-4-5.1">
-          <p id="section-4-5.1.1">(2) Routing changes which adds network latency compared to edge CDN caches or access network peering connections<a href="#section-4-5.1.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="section-4-5.2">
-          <p id="section-4-5.2.1">(3) Forced encryption of unencrypted HTTP2 connections to HTTP2+TLS connections<a href="#section-4-5.2.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="section-4-5.3">
-          <p id="section-4-5.3.1">(4) DNS Resolver choice changes resulting in less optimal CDN cache selection or bypassing of CDN load balancing direction<a href="#section-4-5.3.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="section-4-5.4">
-          <p id="section-4-5.4.1">(5) Changed Source IP Address for the application's connections to Streaming Platform Servers resulting in logging, geofencing, and session management problems<a href="#section-4-5.4.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="section-4-5.5">
-          <p id="section-4-5.5.1">(6) Performance and Problem determination tools \&amp; protocols not able to traverse the alternative route tunnel impacting services ability to diagnose connection and performance problems<a href="#section-4-5.5.1" class="pilcrow">¶</a></p>
-</li>
-      </ul>
-<div id="impact-of-changing-network-routing-and-other-policies">
-<section id="section-4.1">
-        <h3 id="name-impact-of-changing-network-">
-<a href="#section-4.1" class="section-number selfRef">4.1. </a><a href="#name-impact-of-changing-network-" class="section-name selfRef">Impact of Changing Network Routing and other Policies</a>
+</section>
+</div>
+</section>
+</div>
+<div id="changed-encryption-policy">
+<section id="section-4.3">
+        <h3 id="name-changed-encryption-policy">
+<a href="#section-4.3" class="section-number selfRef">4.3. </a><a href="#name-changed-encryption-policy" class="section-name selfRef">Changed Encryption Policy</a>
         </h3>
-<p id="section-4.1-1">The problem for streaming applications occurs when the underlying network properties and policies change from what is expected by the streaming application. In particular when such changes are either hidden or not visible to the streaming application.<a href="#section-4.1-1" class="pilcrow">¶</a></p>
-<p id="section-4.1-2">While the open Internet is a dynamic environment, changing of basic network behavior and policies from what is expected as seen from the streaming application,  deviate unexpectedly from what the streaming application expects. This behavior disrupts the optimized streaming delivery architecture for the end-user device.  Changes to Network Policies such the routing, source IP address assigned to the streaming application traffic, DNS resolver choice etc influences this behavior.<a href="#section-4.1-2" class="pilcrow">¶</a></p>
-<p id="section-4.1-3">Having a reliable understanding of the delivery path is essential for streaming operators and the introduction
-of network overlays like those based on technologies such as MASQUE especially when designed to be undetectable by the applications using them has introduced new technical challengess for streaming operators and network operators as well as for their viewers.<a href="#section-4.1-3" class="pilcrow">¶</a></p>
-<p id="section-4.1-4">The core problem occurs when changes to network policies are made, often without notification or visibilty to applications and
+<p id="section-4.3-1">Changing the encryption policy applied to video streams either adding where it wasn't orginally used or removing if it was originally specified can cause a wide range of operational problems.<a href="#section-4.3-1" class="pilcrow">¶</a></p>
+<div id="forced-encryption-upgrade">
+<section id="section-4.3.1">
+          <h4 id="name-forced-encryption-upgrade">
+<a href="#section-4.3.1" class="section-number selfRef">4.3.1. </a><a href="#name-forced-encryption-upgrade" class="section-name selfRef">Forced Encryption Upgrade</a>
+          </h4>
+<p id="section-4.3.1-1">Changing unencrytped HTTP2 to encrypted HTTP2+TLS connects will prohibit streaming workflows that involve content detection as part of the network delivery.  This can result in video traffic not being correctly identified and the incorrect network policies being applied to it.  This is particularly problematic in environments using multicast and in mobile environments.<a href="#section-4.3.1-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="forced-encryption-downgrade">
+<section id="section-4.3.2">
+          <h4 id="name-forced-encryption-downgrade">
+<a href="#section-4.3.2" class="section-number selfRef">4.3.2. </a><a href="#name-forced-encryption-downgrade" class="section-name selfRef">Forced Encryption Downgrade</a>
+          </h4>
+<p id="section-4.3.2-1">Equally so, removing of encryption applied to the transport stream by a streaming platform would be significantly problematic as such encryption may be part of a content protection and content integrity protections architecture.<a href="#section-4.3.2-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="changed-dns-resolver-selection">
+<section id="section-4.4">
+        <h3 id="name-changed-dns-resolver-select">
+<a href="#section-4.4" class="section-number selfRef">4.4. </a><a href="#name-changed-dns-resolver-select" class="section-name selfRef">Changed DNS Resolver Selection</a>
+        </h3>
+<p id="section-4.4-1">DNS Resolver choice changes resulting in less optimal CDN cache selection or bypassing of CDN load balancing direction<a href="#section-4.4-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="changed-source-ip-address">
+<section id="section-4.5">
+        <h3 id="name-changed-source-ip-address">
+<a href="#section-4.5" class="section-number selfRef">4.5. </a><a href="#name-changed-source-ip-address" class="section-name selfRef">Changed Source IP Address</a>
+        </h3>
+<p id="section-4.5-1">Changing the Source IP Address for the application's connections to Streaming Platform Servers resulting in logging, geofencing, and session management problems<a href="#section-4.5-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="performance-and-problem-determination">
+<section id="section-4.6">
+        <h3 id="name-performance-and-problem-det">
+<a href="#section-4.6" class="section-number selfRef">4.6. </a><a href="#name-performance-and-problem-det" class="section-name selfRef">Performance and Problem determination</a>
+        </h3>
+<p id="section-4.6-1">Network overlays often interfere with the tools used in performance and problem determination.   This is due to either the tool and protocols not able to traverse the alternative route tunnel impacting services ability to diagnose connection and performance problems, or the network overlay itself not supporting the tool and not supporting or carrying the tools functions.<a href="#section-4.6-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="impact-of-changing-network-routing-and-other-policies">
+<section id="section-4.7">
+        <h3 id="name-impact-of-changing-network-">
+<a href="#section-4.7" class="section-number selfRef">4.7. </a><a href="#name-impact-of-changing-network-" class="section-name selfRef">Impact of Changing Network Routing and other Policies</a>
+        </h3>
+<p id="section-4.7-1">The problem for streaming applications occurs when the underlying network properties and policies change from what is expected by the streaming application. In particular when such changes are either hidden or not visible to the streaming application.<a href="#section-4.7-1" class="pilcrow">¶</a></p>
+<p id="section-4.7-2">While the open Internet is a dynamic environment, changing of basic network behavior and policies from what is expected as seen from the streaming application,  deviate unexpectedly from what the streaming application expects. This behavior disrupts the optimized streaming delivery architecture for the end-user device.  Changes to Network Policies such the routing, source IP address assigned to the streaming application traffic, DNS resolver choice etc influences this behavior.<a href="#section-4.7-2" class="pilcrow">¶</a></p>
+<p id="section-4.7-3">Having a reliable understanding of the delivery path is essential for streaming operators and the introduction
+of network overlays like those based on technologies such as MASQUE especially when designed to be undetectable by the applications using them has introduced new technical challengess for streaming operators and network operators as well as for their viewers.<a href="#section-4.7-3" class="pilcrow">¶</a></p>
+<p id="section-4.7-4">The core problem occurs when changes to network policies are made, often without notification or visibilty to applications and
 without clear methods of probing to determine and test changed behaviors that affect the streaming application's content
 delivery path resulting in increased latency, changes of IP address for the application as seen by either the application
 or the streaming service connection, changes to DNS resolvers being queried and the results returned by DNS, and changes to
 application transports such as adding or removing outer layer encryption are all problems that have been observed in
-production streaming platforms.<a href="#section-4.1-4" class="pilcrow">¶</a></p>
+production streaming platforms.<a href="#section-4.7-4" class="pilcrow">¶</a></p>
 <div id="middleboxes-and-learning-from-the-past">
-<section id="section-4.1.1">
+<section id="section-4.7.1">
           <h4 id="name-middleboxes-and-learning-fr">
-<a href="#section-4.1.1" class="section-number selfRef">4.1.1. </a><a href="#name-middleboxes-and-learning-fr" class="section-name selfRef">Middleboxes and learning from the past</a>
+<a href="#section-4.7.1" class="section-number selfRef">4.7.1. </a><a href="#name-middleboxes-and-learning-fr" class="section-name selfRef">Middleboxes and learning from the past</a>
           </h4>
-<p id="section-4.1.1-1">The IETF has discussed this situation in the past, more than 20 years ago in 2002 Middleboxes: Taxonomy and Issues <span>[<a href="#RFC3234" class="cite xref">RFC3234</a>]</span>
-was published capturing the issues with Middleboxes in the network and the affects of hidden changes occuring on the network between the sender and receiver.<a href="#section-4.1.1-1" class="pilcrow">¶</a></p>
+<p id="section-4.7.1-1">The IETF has discussed this situation in the past, more than 20 years ago in 2002 Middleboxes: Taxonomy and Issues <span>[<a href="#RFC3234" class="cite xref">RFC3234</a>]</span>
+was published capturing the issues with Middleboxes in the network and the affects of hidden changes occuring on the network between the sender and receiver.<a href="#section-4.7.1-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>

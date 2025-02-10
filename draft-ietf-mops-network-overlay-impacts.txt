@@ -5,12 +5,12 @@
 Media OPerationS                                                 G. Deen
 Internet-Draft                                      Comcast-NBCUniversal
 Intended status: Informational                                 S. Mishra
-Expires: 12 April 2025                                           Verizon
-                                                          9 October 2024
+Expires: 14 August 2025                                          Verizon
+                                                        10 February 2025
 
 
                Network Overlay Impacts to Streaming Video
-             draft-deen-mops-network-overlay-impacts-latest
+             draft-ietf-mops-network-overlay-impacts-latest
 
 Abstract
 
@@ -27,10 +27,10 @@ About This Document
    This note is to be removed before publishing as an RFC.
 
    The latest revision of this draft can be found at
-   https://gitnnelg.github.io/NetworkOverlays/draft-deen-mops-network-
-   overlay-impacts.html.  Status information for this document may be
-   found at https://datatracker.ietf.org/doc/draft-deen-mops-network-
-   overlay-impacts/.
+   https://gitnnelg.github.io/draft-ietf-mops-network-overlay-impacts/
+   draft-ieft--mops-network-overlay-impacts.html.  Status information
+   for this document may be found at https://datatracker.ietf.org/doc/
+   draft-ietf-mops-network-overlay-impacts/.
 
    Discussion of this document takes place on the Media OPerationS
    Working Group mailing list (mailto:mops@ietf.org), which is archived
@@ -38,7 +38,7 @@ About This Document
    https://www.ietf.org/mailman/listinfo/mops/.
 
    Source for this draft and an issue tracker can be found at
-   https://github.com/gitnnelg/NetworkOverlays.
+   https://github.com/gitnnelg/draft-ietf-mops-network-overlay-impacts.
 
 Status of This Memo
 
@@ -55,11 +55,11 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 12 April 2025.
+   This Internet-Draft will expire on 14 August 2025.
 
 Copyright Notice
 
-   Copyright (c) 2024 IETF Trust and the persons identified as the
+   Copyright (c) 2025 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -83,8 +83,18 @@ Table of Contents
    3.  Streaming Video
      3.1.  Advances in Streaming Video Architecture
    4.  Emerging Operational Issues with Network Overlay Policy Changes
-     4.1.  Impact of Changing Network Routing and other Policies
-       4.1.1.  Middleboxes and learning from the past
+     4.1.  Policy Changes Hidden from Applications
+     4.2.  Routing Changes
+       4.2.1.  End to End Problem Discovery
+       4.2.2.  CDN Edge Cache Selection due to Routing
+     4.3.  Changed Encryption Policy
+       4.3.1.  Forced Encryption Upgrade
+       4.3.2.  Forced Encryption Downgrade
+     4.4.  Changed DNS Resolver Selection
+     4.5.  Changed Source IP Address
+     4.6.  Performance and Problem determination
+     4.7.  Impact of Changing Network Routing and other Policies
+       4.7.1.  Middleboxes and learning from the past
    5.  Appendix A: Network Overlays are different than VPNs
      5.1.  VPNs typically:
        5.1.1.  Network Overlays typically:
@@ -103,12 +113,14 @@ Table of Contents
 
    The work on these initiatives has largely occured independently of
    one another, though there are a few individuals and companies that
-   are involved with both efforts.  However, the arrival of the newly
-   developed privacy enhancements in consumer products and their
-   subsequent use by streaming video viewers has brought the work of the
-   two efforts in contact and highlighted a number of friction points
-   which are having impacts to the viewers and support engineers of
-   video streaming platforms.
+   are involved with both efforts.
+
+   The arrival of the newly developed privacy enhancements in consumer
+   products and their subsequent use by streaming video viewers has
+   brought the results of the two efforts into contact and a number of
+   friction points are now being encountered which are having impacts to
+   the viewers, support engineers and operational aspects of video
+   streaming platforms.
 
    To be clear, this document is not proposing or advocating rolling
    back any of the privacy enhancements for the viewers.  Instead the
@@ -120,10 +132,10 @@ Table of Contents
    The authors also readily acknowledge the many challenges and
    difficulties in improving Internet privacy in an area as complex as
    the Internet while also maintaining compatibiltiy with the wildly
-   varied applications and uses the Internet's users rely upon daily in
-   their lives.  This is hard stuff and it's very natural for there to
-   be operational considerations that must be understood and folded back
-   into architectural designs and consumer products.
+   varied applications and uses of the Internet on which users rely upon
+   daily in their lives.  This is hard stuff and it's very natural for
+   there to be operational considerations that must be understood and
+   folded back into architectural designs and consumer products.
 
    The motivation in developing this document is to provide a meaningful
    and helpful feedback from the streaming application and streaming
@@ -343,8 +355,51 @@ Table of Contents
    There are a variety of impacts but a few common classes of issues
    have been observed:
 
-   *  (1) Routing changes which cause bypassing edge CDN caches and
-      instead choosing less optimal caches
+4.1.  Policy Changes Hidden from Applications
+
+   One of the central recurring issues with streaming applications
+   running on devices or networks with changed policies due to network
+   overlays is that the changes are often hidden from the applications.
+
+   Applications often find it difficult or even impossible to detect
+   when network policy changes will be active and what they are
+   changing.  For example, a device may have a desingated default DNS
+   resolver for the device, but may have a different resolver selected
+   depending on how the streaming application queries the DNS.
+
+   Likewise, a streaming application might find that one application
+   transport protocol such as HTTP queries will have one set of routing
+   policies applied to it but a different appliction transport like
+   HTTPS may have a different set of routing policies applied.
+
+   Streaming applications that cannot determine the exact behavior to be
+   expected can prevent the streaming application from making good
+   content source decisions and can prevent appllications from being
+   able to provide reliable feedback and logs when problems are
+   encountered.
+
+4.2.  Routing Changes
+
+   Routing changes which cause connections between video applications
+   and the infrastructure servcices they use can create a large number
+   of problems.
+
+4.2.1.  End to End Problem Discovery
+
+   A common issue in video delivery is locating where along the delivery
+   path the video transport is encountering problems.  Often such
+   problems are more complex than the connection not working at but
+   instead involve identifying bottleneck, lost packets, congestion
+   issues.  When the routing changes from what is expected or visible to
+   support tools it becomes an operational trouble spot for users and
+   platform suport to location and determine the source of the problems.
+
+4.2.2.  CDN Edge Cache Selection due to Routing
+
+   A significant, and often overlooked problm is the addition of network
+   latency compared to edge CDN caches or access network peering
+   connections.  Routing changes which cause bypassing edge CDN caches
+   and instead choosing less optimal caches
 
  R  = router
            <--- non-overlay traffic path --->
@@ -357,24 +412,49 @@ Table of Contents
 
  Figure:  Routing Changes alering CDN Cache selection
 
-   *  (2) Routing changes which adds network latency compared to edge
-      CDN caches or access network peering connections
+4.3.  Changed Encryption Policy
 
-   *  (3) Forced encryption of unencrypted HTTP2 connections to
-      HTTP2+TLS connections
+   Changing the encryption policy applied to video streams either adding
+   where it wasn't orginally used or removing if it was originally
+   specified can cause a wide range of operational problems.
 
-   *  (4) DNS Resolver choice changes resulting in less optimal CDN
-      cache selection or bypassing of CDN load balancing direction
+4.3.1.  Forced Encryption Upgrade
 
-   *  (5) Changed Source IP Address for the application's connections to
-      Streaming Platform Servers resulting in logging, geofencing, and
-      session management problems
+   Changing unencrytped HTTP2 to encrypted HTTP2+TLS connects will
+   prohibit streaming workflows that involve content detection as part
+   of the network delivery.  This can result in video traffic not being
+   correctly identified and the incorrect network policies being applied
+   to it.  This is particularly problematic in environments using
+   multicast and in mobile environments.
 
-   *  (6) Performance and Problem determination tools \& protocols not
-      able to traverse the alternative route tunnel impacting services
-      ability to diagnose connection and performance problems
+4.3.2.  Forced Encryption Downgrade
 
-4.1.  Impact of Changing Network Routing and other Policies
+   Equally so, removing of encryption applied to the transport stream by
+   a streaming platform would be significantly problematic as such
+   encryption may be part of a content protection and content integrity
+   protections architecture.
+
+4.4.  Changed DNS Resolver Selection
+
+   DNS Resolver choice changes resulting in less optimal CDN cache
+   selection or bypassing of CDN load balancing direction
+
+4.5.  Changed Source IP Address
+
+   Changing the Source IP Address for the application's connections to
+   Streaming Platform Servers resulting in logging, geofencing, and
+   session management problems
+
+4.6.  Performance and Problem determination
+
+   Network overlays often interfere with the tools used in performance
+   and problem determination.  This is due to either the tool and
+   protocols not able to traverse the alternative route tunnel impacting
+   services ability to diagnose connection and performance problems, or
+   the network overlay itself not supporting the tool and not supporting
+   or carrying the tools functions.
+
+4.7.  Impact of Changing Network Routing and other Policies
 
    The problem for streaming applications occurs when the underlying
    network properties and policies change from what is expected by the
@@ -408,7 +488,7 @@ Table of Contents
    outer layer encryption are all problems that have been observed in
    production streaming platforms.
 
-4.1.1.  Middleboxes and learning from the past
+4.7.1.  Middleboxes and learning from the past
 
    The IETF has discussed this situation in the past, more than 20 years
    ago in 2002 Middleboxes: Taxonomy and Issues [RFC3234] was published
