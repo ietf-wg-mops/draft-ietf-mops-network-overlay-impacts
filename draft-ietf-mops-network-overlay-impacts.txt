@@ -339,7 +339,7 @@ Table of Contents
    optimized around achieving the best experience including low latency
    video delivery to viewing devices.  The open Internet can be
    unpredictable with temporary issues like packet loss, congestion and
-   other conditions.  However, streaming architecture is desiged to
+   other conditions.  However, streaming architecture is desinged to
    handle these momentary problems as effectively as possible often
    through use of dynamic adaptive approaches designed into streaming
    protocols and platform components.
