@@ -83,18 +83,19 @@ Table of Contents
    3.  Streaming Video
      3.1.  Advances in Streaming Video Architecture
    4.  Emerging Operational Issues with Network Overlay Policy Changes
-     4.1.  Policy Changes Hidden from Applications
-     4.2.  Routing Changes
-       4.2.1.  End to End Problem Discovery
-       4.2.2.  CDN Edge Cache Selection due to Routing
-     4.3.  Changed Encryption Policy
-       4.3.1.  Forced Encryption Upgrade
-       4.3.2.  Forced Encryption Downgrade
-     4.4.  Changed DNS Resolver Selection
-     4.5.  Changed Source IP Address
-     4.6.  Performance and Problem determination
-     4.7.  Impact of Changing Network Routing and other Policies
-       4.7.1.  Middleboxes and learning from the past
+     4.1.  CDNs interconnection troubleshooting
+     4.2.  Policy Changes Hidden from Applications
+     4.3.  Routing Changes
+       4.3.1.  End to End Problem Discovery
+       4.3.2.  CDN Edge Cache Selection due to Routing
+     4.4.  Changed Encryption Policy
+       4.4.1.  Forced Encryption Upgrade
+       4.4.2.  Forced Encryption Downgrade
+     4.5.  Changed DNS Resolver Selection
+     4.6.  Changed Source IP Address
+     4.7.  Performance and Problem determination
+     4.8.  Impact of Changing Network Routing and other Policies
+       4.8.1.  Middleboxes and learning from the past
    5.  Appendix A: Network Overlays are different than VPNs
      5.1.  VPNs typically:
        5.1.1.  Network Overlays typically:
@@ -355,7 +356,19 @@ Table of Contents
    There are a variety of impacts but a few common classes of issues
    have been observed:
 
-4.1.  Policy Changes Hidden from Applications
+4.1.  CDNs interconnection troubleshooting
+
+   In a CDN interconnection When 2 CDN domains have to localize a point
+   of failure, they first determine the delivery path and a point of
+   observation where to do measurement.  Then they proceed by dichotomy
+   to determine the domain where the point of failure is.  The issue
+   with overlay networking is the Following : CDNs use their request
+   routing information to determine a point of observation on the
+   delivery path where to do the measurement, as their delivery path is
+   overwritten by the re-routing of the overlay networking, the flow
+   can't be observed at the observation point.
+
+4.2.  Policy Changes Hidden from Applications
 
    One of the central recurring issues with streaming applications
    running on devices or networks with changed policies due to network
@@ -378,13 +391,13 @@ Table of Contents
    able to provide reliable feedback and logs when problems are
    encountered.
 
-4.2.  Routing Changes
+4.3.  Routing Changes
 
    Routing changes which cause connections between video applications
    and the infrastructure servcices they use can create a large number
    of problems.
 
-4.2.1.  End to End Problem Discovery
+4.3.1.  End to End Problem Discovery
 
    A common issue in video delivery is locating where along the delivery
    path the video transport is encountering problems.  Often such
@@ -394,7 +407,7 @@ Table of Contents
    support tools it becomes an operational trouble spot for users and
    platform suport to location and determine the source of the problems.
 
-4.2.2.  CDN Edge Cache Selection due to Routing
+4.3.2.  CDN Edge Cache Selection due to Routing
 
    A significant, and often overlooked problm is the addition of network
    latency compared to edge CDN caches or access network peering
@@ -412,13 +425,13 @@ Table of Contents
 
  Figure:  Routing Changes alering CDN Cache selection
 
-4.3.  Changed Encryption Policy
+4.4.  Changed Encryption Policy
 
    Changing the encryption policy applied to video streams either adding
    where it wasn't orginally used or removing if it was originally
    specified can cause a wide range of operational problems.
 
-4.3.1.  Forced Encryption Upgrade
+4.4.1.  Forced Encryption Upgrade
 
    Changing unencrytped HTTP2 to encrypted HTTP2+TLS connects will
    prohibit streaming workflows that involve content detection as part
@@ -427,25 +440,25 @@ Table of Contents
    to it.  This is particularly problematic in environments using
    multicast and in mobile environments.
 
-4.3.2.  Forced Encryption Downgrade
+4.4.2.  Forced Encryption Downgrade
 
    Equally so, removing of encryption applied to the transport stream by
    a streaming platform would be significantly problematic as such
    encryption may be part of a content protection and content integrity
    protections architecture.
 
-4.4.  Changed DNS Resolver Selection
+4.5.  Changed DNS Resolver Selection
 
    DNS Resolver choice changes resulting in less optimal CDN cache
    selection or bypassing of CDN load balancing direction
 
-4.5.  Changed Source IP Address
+4.6.  Changed Source IP Address
 
    Changing the Source IP Address for the application's connections to
    Streaming Platform Servers resulting in logging, geofencing, and
    session management problems
 
-4.6.  Performance and Problem determination
+4.7.  Performance and Problem determination
 
    Network overlays often interfere with the tools used in performance
    and problem determination.  This is due to either the tool and
@@ -454,7 +467,7 @@ Table of Contents
    the network overlay itself not supporting the tool and not supporting
    or carrying the tools functions.
 
-4.7.  Impact of Changing Network Routing and other Policies
+4.8.  Impact of Changing Network Routing and other Policies
 
    The problem for streaming applications occurs when the underlying
    network properties and policies change from what is expected by the
@@ -488,7 +501,7 @@ Table of Contents
    outer layer encryption are all problems that have been observed in
    production streaming platforms.
 
-4.7.1.  Middleboxes and learning from the past
+4.8.1.  Middleboxes and learning from the past
 
    The IETF has discussed this situation in the past, more than 20 years
    ago in 2002 Middleboxes: Taxonomy and Issues [RFC3234] was published
