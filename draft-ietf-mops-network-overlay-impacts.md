@@ -49,7 +49,7 @@ informative:
 
 This document examines the operational impacts to streaming video applications
 caused by changes to network policies by network overlays.  The network policy
-changes include IP address assignment, transport
+changes include IP addre aignment, transport
 protocols, routing, DNS resolver which in turn affect a variety of important
 content delivery aspects such as latency, CDN cache selection, delivery path
 choices, traffic classification and content access controls.
@@ -189,7 +189,7 @@ A common issue in video delivery is locating where along the delivery path the v
 
 ### CDN Edge Cache Selection due to Routing
 
-A significant, and often overlooked problm is the addition of network latency compared to edge CDN caches or access network peering connections.  Routing changes which cause bypassing edge CDN caches and instead choosing less optimal caches
+A significant, and often overlooked problem is the addition of network latency compared to edge CDN caches or access network peering connections.  Routing changes which cause bypassing edge CDN caches and instead choosing less optimal caches
 
 ~~~
  R  = router
@@ -238,7 +238,7 @@ The problem for streaming applications occurs when the underlying network proper
 While the open Internet is a dynamic environment, changing of basic network behavior and policies from what is expected as seen from the streaming application,  deviate unexpectedly from what the streaming application expects. This behavior disrupts the optimized streaming delivery architecture for the end-user device.  Changes to Network Policies such the routing, source IP address assigned to the streaming application traffic, DNS resolver choice etc influences this behavior.
 
 Having a reliable understanding of the delivery path is essential for streaming operators and the introduction
-of network overlays like those based on technologies such as MASQUE especially when designed to be undetectable by the applications using them has introduced new technical challengess for streaming operators and network operators as well as for their viewers.
+of network overlays like those based on technologies such as MASQUE especially when designed to be undetectable by the applications using them has introduced new technical challenges for streaming operators and network operators as well as for their viewers.
 
 The core problem occurs when changes to network policies are made, often without notification or visibilty to applications and
 without clear methods of probing to determine and test changed behaviors that affect the streaming application\'s content
