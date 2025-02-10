@@ -382,7 +382,7 @@ Table of Contents
 
    Likewise, a streaming application might find that one application
    transport protocol such as HTTP queries will have one set of routing
-   policies applied to it but a different appliction transport like
+   policies applied to it but a different application transport like
    HTTPS may have a different set of routing policies applied.
 
    Streaming applications that cannot determine the exact behavior to be
