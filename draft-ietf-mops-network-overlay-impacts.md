@@ -112,7 +112,8 @@ Protocols such as MASQUE {{!RFC9484}} and services built on it such as Apple\'s 
 
 Historically, incorporating privacy features into consumer-facing products has been complex. This challenge arises from the need to address a wide range of use cases while also offering users easy access to advanced privacy frameworks and taxonomies. Many attempts have been made and very few have achieved finding success with end users.
 
-Perhaps learning from the lessons of offering too many options, the recent trend in privacy enhancements has steered torward either a very simple \"Privacy On or Off\" switch or in other cases automatically enabling or \"upgrading\" to enhance privacy.   Apple\'s iCloud Private Relay can be easily turned on with a single settings switch, while privacy features such as Encrypted DNS over HTTP and upgrade from HTTP to HTTPS connections have had a number of deployments that automatically enable them for users when possible.
+Perhaps learning from the lessons of offering too many options, the recent trend in privacy enhancements has steered torward either a very simple \"Privacy On or Off\" switch or in other cases automatically enabling or \"upgrading\" to enhance privacy.   Apple\'s iCloud Private Relay can be easily turned on with a single
+settings switch, while privacy features such as Encrypted DNS over HTTP and upgrade from HTTP to HTTPS connections have had a number of deployments that automatically enable them for users when possible.
 
 Keeping with the motto of "Keep It Simple", users are generally not provided with granular Network Overlay controls permitting the user to select what applications, or what network connections the Network Overlay's policies can apply to.
 
@@ -124,9 +125,11 @@ Streaming Video, while just one of the many different Internet applications does
 
 Firstly, Streaming video operates at a hard to imagine scale - streaming video is served globally to more than 2 billion user daily currently and continuing to grow in leaps and bounds.
 
-Secondly, the content types delivered through streaming has evolved from  the pre-recorded low-resolution, low-bit rate, latency tolerant video-on-demand movies, live or pre-recorded TV shows, and user generated videos delivered by pioneering streaming platforms to now including low-latency 4K and 8K live sports events, while also evolving the pre-recorded content with high-bit rate such as 4K and 8K cinema quality and High Dynamic Range (HDR) lighting.
+Secondly, the content types delivered through streaming has evolved from  the pre-recorded low-resolution, low-bit rate, latency tolerant video-on-demand movies, live or pre-recorded TV shows, and user generated videos delivered by pioneering streaming platforms to now including low-latency 4K and 8K live sports events, while
+also evolving the pre-recorded content with high-bit rate such as 4K and 8K cinema quality and High Dynamic Range (HDR) lighting.
 
-Finally, the expectations of streaming video viewers have significantly evolved from the days of settling for being able to watch a movie in a PC browser.  Viewers expect to watch on any device type they want ranging from low-end-streaming sticks that plug into a USB port, to 4K and HDR capable laptops, 4K and 8K HDR TV screens, gaming consoles, smart phones and many more choices.  Viewers also expect to have the same great viewing experience while at home connected via high-speed wired Internet, high-speed WiFi, or mobile cellular 5G and even satellite Internet connections.
+Finally, the expectations of streaming video viewers have significantly evolved from the days of settling for being able to watch a movie in a PC browser.  Viewers expect to watch on any device type they want ranging from low-end-streaming sticks that plug into a USB port, to 4K and HDR capable laptops, 4K and 8K HDR TV
+screens, gaming consoles, smart phones and many more choices.  Viewers also expect to have the same great viewing experience while at home connected via high-speed wired Internet, high-speed WiFi, or mobile cellular 5G and even satellite Internet connections.
 
 To meet the growth to billions of users, the growth in content type, quality and speed expectations, and  on-any-device anywhere that I am over any-network-connection expectations of users the Streaming Video technology infrastructure has had to itself evolve significantly.  This video streaming evolution work is being done in the IETF and in the [Streaming Video Technology Alliance (SVTA)](https://www.svta.org/), and in a number of other technical and industry groups.
 
@@ -161,13 +164,15 @@ Streaming applications are part of an end-to-end architecture that is optimized 
 
 # Emerging Operational Issues with Network Overlay Policy Changes
 
-Streaming video applications and the streaming platforms delivering content are starting to encounter various operational challenges related to Network Overlays. Typically the primary problems are encountered when the network overlay has made policy changes that are either unexpected, are difficult or impossible for the streaming platform to detect, or the changes are inconsitently applied.
+Streaming video applications and the streaming platforms delivering content are starting to encounter various operational challenges related to Network Overlays.
+Typically the primary problems are encountered when the network overlay has made policy changes that are either unexpected, are difficult or impossible for the streaming platform to detect, or the changes are inconsitently applied.
 
 There are a variety of impacts but a few common classes of issues have been observed:
 
 ### CDNs interconnection troubleshooting
 
-In a CDN interconnection When 2 CDN domains have to localize a point of failure, they first determine the delivery path and a point of observation where to do measurement. Then they proceed by dichotomy to determine the domain where the point of failure is. The issue with overlay networking is the Following : CDNs use their request routing information to determine a point of observation on the delivery path where to do the measurement, as their delivery path is overwritten by the re-routing of the overlay networking, the flow can't be observed at the observation point.
+In a CDN interconnection When 2 CDN domains have to localize a point of failure, they first determine the delivery path and a point of observation where to do measurement. Then they proceed by dichotomy to determine the domain where the point of failure is. The issue with overlay networking is the Following : CDNs use
+their request routing information to determine a point of observation on the delivery path where to do the measurement, as their delivery path is overwritten by the re-routing of the overlay networking, the flow can't be observed at the observation point.
 
 ## Policy Changes Hidden from Applications
 
@@ -185,7 +190,9 @@ Routing changes which cause connections between video applications and the infra
 
 ### End to End Problem Discovery
 
-A common issue in video delivery is locating where along the delivery path the video transport is encountering problems.   Often such problems are more complex than the connection not working at but instead involve identifying bottleneck, lost packets, congestion issues.   When the routing changes from what is expected or visible to support tools it becomes an operational trouble spot for users and platform suport to location and determine the source of the problems.
+A common issue in video delivery is locating where along the delivery path the video transport is encountering problems.   Often such problems are more complex than
+the connection not working at but instead involve identifying bottleneck, lost packets, congestion issues.   When the routing changes from what is expected or
+visible to support tools it becomes an operational trouble spot for users and platform suport to location and determine the source of the problems.
 
 ### CDN Edge Cache Selection due to Routing
 
@@ -212,7 +219,9 @@ Changing the encryption policy applied to video streams either adding where it w
 
 ### Forced Encryption Upgrade
 
-Changing unencrytped HTTP2 to encrypted HTTP2+TLS connects will prohibit streaming workflows that involve content detection as part of the network delivery.  This can result in video traffic not being correctly identified and the incorrect network policies being applied to it.  This is particularly problematic in environments using multicast and in mobile environments.
+Changing unencrytped HTTP2 to encrypted HTTP2+TLS connects will prohibit streaming workflows that involve content detection as part of the network delivery.  This
+can result in video traffic not being correctly identified and the incorrect network policies being applied to it.  This is particularly problematic in environments
+using multicast and in mobile environments.
 
 ### Forced Encryption Downgrade
 
@@ -228,14 +237,17 @@ Changing the Source IP Address for the application\'s connections to Streaming P
 
 ## Performance and Problem determination
 
-Network overlays often interfere with the tools used in performance and problem determination.   This is due to either the tool and protocols not able to traverse the alternative route tunnel impacting services ability to diagnose connection and performance problems, or the network overlay itself not supporting the tool and not supporting or carrying the tools functions.
+Network overlays often interfere with the tools used in performance and problem determination.   This is due to either the tool and protocols not able to traverse
+the alternative route tunnel impacting services ability to diagnose connection and performance problems, or the network overlay itself not supporting the tool and
+not supporting or carrying the tools functions.
 
 
 ## Impact of Changing Network Routing and other Policies
 
 The problem for streaming applications occurs when the underlying network properties and policies change from what is expected by the streaming application. In particular when such changes are either hidden or not visible to the streaming application.
 
-While the open Internet is a dynamic environment, changing of basic network behavior and policies from what is expected as seen from the streaming application,  deviate unexpectedly from what the streaming application expects. This behavior disrupts the optimized streaming delivery architecture for the end-user device.  Changes to Network Policies such the routing, source IP address assigned to the streaming application traffic, DNS resolver choice etc influences this behavior.
+While the open Internet is a dynamic environment, changing of basic network behavior and policies from what is expected as seen from the streaming application,  deviate unexpectedly from what the streaming application expects. This behavior disrupts the optimized streaming delivery architecture for the end-user device.
+Changes to Network Policies such the routing, source IP address assigned to the streaming application traffic, DNS resolver choice etc influences this behavior.
 
 Having a reliable understanding of the delivery path is essential for streaming operators and the introduction
 of network overlays like those based on technologies such as MASQUE especially when designed to be undetectable by the applications using them has introduced new technical challenges for streaming operators and network operators as well as for their viewers.
@@ -302,5 +314,6 @@ This document has no IANA actions.
 # Acknowledgments
 {:numbered="false"}
 
-The authors would like to acknowledge to the contributions from the Streaming Video Technology Alliance (SVTA) based on their work studying the impacts of network overlays on the streaming platforms. In particular, contributions from Brian Paxton have been very helpful.
+The authors would like to acknowledge to the contributions from the Streaming Video Technology Alliance (SVTA) based on their work studying the impacts of 
+network overlays on the streaming platforms. In particular, contributions from Brian Paxton have been very helpful.
 
