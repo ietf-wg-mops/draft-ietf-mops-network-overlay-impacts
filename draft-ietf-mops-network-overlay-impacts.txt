@@ -26,11 +26,11 @@ About This Document
 
    This note is to be removed before publishing as an RFC.
 
-   The latest revision of this draft can be found at
-   https://gitnnelg.github.io/draft-ietf-mops-network-overlay-impacts/
-   draft-ieft--mops-network-overlay-impacts.html.  Status information
-   for this document may be found at https://datatracker.ietf.org/doc/
-   draft-ietf-mops-network-overlay-impacts/.
+   The latest revision of this draft can be found at https://ietf-wg-
+   mops.github.io/draft-ietf-mops-network-overlay-impacts/draft-ieft--
+   mops-network-overlay-impacts.html.  Status information for this
+   document may be found at https://datatracker.ietf.org/doc/draft-ietf-
+   mops-network-overlay-impacts/.
 
    Discussion of this document takes place on the Media OPerationS
    Working Group mailing list (mailto:mops@ietf.org), which is archived
@@ -38,7 +38,8 @@ About This Document
    https://www.ietf.org/mailman/listinfo/mops/.
 
    Source for this draft and an issue tracker can be found at
-   https://github.com/gitnnelg/draft-ietf-mops-network-overlay-impacts.
+   https://github.com/ietf-wg-mops/draft-ietf-mops-network-overlay-
+   impacts.
 
 Status of This Memo
 
