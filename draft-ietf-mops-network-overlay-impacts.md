@@ -175,7 +175,7 @@ One of the central recurring issues with streaming applications running on devic
 
 Applications often find it difficult or even impossible to detect when network policy changes will be active and what they are changing.   For example, a device may have a desingated default DNS resolver for the device, but may have a different resolver selected depending on how the streaming application queries the DNS.
 
-Likewise, a streaming application might find that one application transport protocol such as HTTP queries will have one set of routing policies applied to it but a different appliction transport like HTTPS may have a different set of routing policies applied.
+Likewise, a streaming application might find that one application transport protocol such as HTTP queries will have one set of routing policies applied to it but a different application transport like HTTPS may have a different set of routing policies applied.
 
 Streaming applications that cannot determine the exact behavior to be expected can prevent the streaming application from making good content source decisions and can prevent appllications from being able to provide reliable feedback and logs when problems are encountered.
 
