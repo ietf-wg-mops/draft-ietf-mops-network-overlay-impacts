@@ -2,16 +2,16 @@
 
 This is the working area for the IETF [MOPS Working Group](https://datatracker.ietf.org/group/mops/documents/) Internet-Draft, "Network Overlay Impacts to Streaming Video".
 
-* [Editor's Copy](https://gitnnelg.github.io/draft-ietf-mops-network-overlay-impacts/#go.draft-ietf-mops-network-overlay-impacts.html)
+* [Editor's Copy](https://ietf-wg-mops.github.io/draft-ietf-mops-network-overlay-impacts/#go.draft-ietf-mops-network-overlay-impacts.html)
 * [Datatracker Page](https://datatracker.ietf.org/doc/draft-ietf-mops-network-overlay-impacts)
 * [Working Group Draft](https://datatracker.ietf.org/doc/html/draft-ietf-mops-network-overlay-impacts)
-* [Compare Editor's Copy to Working Group Draft](https://gitnnelg.github.io/draft-ietf-mops-network-overlay-impacts/#go.draft-ietf-mops-network-overlay-impacts.diff)
+* [Compare Editor's Copy to Working Group Draft](https://ietf-wg-mops.github.io/draft-ietf-mops-network-overlay-impacts/#go.draft-ietf-mops-network-overlay-impacts.diff)
 
 
 ## Contributing
 
 See the
-[guidelines for contributions](https://github.com/gitnnelg/draft-ietf-mops-network-overlay-impacts/blob/main/CONTRIBUTING.md).
+[guidelines for contributions](https://github.com/ietf-wg-mops/draft-ietf-mops-network-overlay-impacts/blob/main/CONTRIBUTING.md).
 
 Contributions can be made by creating pull requests.
 The GitHub interface supports creating pull requests using the Edit (✏) button.

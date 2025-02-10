@@ -28,8 +28,8 @@ venue:
   type: "Working Group"
   mail: "mops@ietf.org"
   arch: "https://mailarchive.ietf.org/arch/browse/mops/"
-  github: "gitnnelg/draft-ietf-mops-network-overlay-impacts"
-  latest: "https://gitnnelg.github.io/draft-ietf-mops-network-overlay-impacts/draft-ieft--mops-network-overlay-impacts.html"
+  github: "ietf-wg-mops/draft-ietf-mops-network-overlay-impacts"
+  latest: "https://ietf-wg-mops.github.io/draft-ietf-mops-network-overlay-impacts/draft-ieft--mops-network-overlay-impacts.html"
 
 author:
  -
