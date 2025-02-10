@@ -11,7 +11,7 @@ stand_alone: yes
 pi: [toc, sortrefs, symrefs]
 
 
-docname: draft-deen-mops-network-overlay-impacts-latest
+docname: draft-ietf-mops-network-overlay-impacts-latest
 submissiontype: IETF  # also: "independent", "editorial", "IAB", or "IRTF"
 number:
 date:
@@ -28,8 +28,8 @@ venue:
   type: "Working Group"
   mail: "mops@ietf.org"
   arch: "https://mailarchive.ietf.org/arch/browse/mops/"
-  github: "gitnnelg/NetworkOverlays"
-  latest: "https://gitnnelg.github.io/NetworkOverlays/draft-deen-mops-network-overlay-impacts.html"
+  github: "gitnnelg/draft-ietf-mops-network-overlay-impacts"
+  latest: "https://gitnnelg.github.io/draft-ietf-mops-network-overlay-impacts/draft-ieft--mops-network-overlay-impacts.html"
 
 author:
  -
