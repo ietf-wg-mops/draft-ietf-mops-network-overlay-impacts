@@ -49,7 +49,7 @@ informative:
 
 This document examines the operational impacts to streaming video applications
 caused by changes to network policies by network overlays.  The network policy
-changes include IP addre aignment, transport protocols, routing, DNS resolver which in turn affect a variety of 
+changes include IP address assignment, transport protocols, routing, DNS resolver which in turn affect a variety of 
 important content delivery aspects such as latency, CDN cache selection, delivery path
 choices, traffic classification and content access controls.
 
