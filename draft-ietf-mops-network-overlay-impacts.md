@@ -57,29 +57,37 @@ CDN cache selection, delivery path choices, traffic classification and content a
 
 # Introduction
 
-The past decade of Internet evolution has included two significant trends,  the global growth of video streaming and  active passionate work within the IETF on enhancing Internet user privacy.
+The past decade of Internet evolution has included two significant trends,  the global growth of video streaming and active focuesed work within the IETF on enhancing Internet user privacy.
 
-The work on these initiatives has largely occured independently of one another, though there are a few individuals and companies that are involved with both efforts.
+The work on these initiatives has largely occured independently of one another, though there are a few individuals and organiztions that are involved with both efforts.
 
 The arrival of the newly developed privacy enhancements in consumer products and their subsequent use by streaming video viewers has brought the results of the two efforts into contact and a number of friction points are now being encountered which are having impacts to the viewers, support engineers and operational aspects of video streaming platforms.
 
-To be clear, this document is not proposing or advocating rolling back any of the privacy enhancements for the viewers.  Instead the authors hope to help describe the problem space and educate the IETF and others on the practical operational impacts of these enhancements and to eventually develop approaches that can help mitigate such impacts.
+To be clear, this document is not proposing or advocating rolling back any of the privacy enhancements for the viewers.  Instead the authors intention is to help describe the problem space and educate the IETF and others on the practical operational impacts of these enhancements and to eventually develop approaches that can help mitigate such impacts.
 
 The authors also readily acknowledge the many challenges and difficulties in improving Internet privacy in an area as complex as the Internet while also maintaining compatibiltiy with the wildly varied applications and uses of the Internet on which users rely upon daily in their lives. This is hard stuff and it\'s very natural for there to be operational considerations that must be understood and folded back into architectural designs and consumer products.
 
-The motivation in developing this document is to provide a meaningful and helpful feedback from the streaming application and streaming platform operational perspective to help the enhanced privacy architecture work being done at the IETF.
+The motivation in developing this document is to provide a meaningful and helpful feedback from the streaming application and streaming platform operational perspective on the impacts of certain enhanced privacy architecture approaches that have been pursued at the IETF.
+
+The work of the IETF to enhance Internet privacy is a difficult challenge; The Internet is a complex entity and even with the most careful consideration it is not unheard of for changes that address one issue to inadvertently create new problems elsewhere.  The purpose of this document is to identify and discuss the operational impacts of some Internet privacy enhancement on streaming applications so as to better understand the impacts and possibly lead to mitigations.
 
 # Internet Privacy Enhancements
 
-Enhancing the Internet\'s privacy is a difficult challenge, given the complexity of the Internet itself.  It\'s common for solutions that address one issue to inadvertently create new problems elsewhere.  That\'s not a reason to stop trying, but it is important to understand the consequences of changes and to find ways to manage or mitigate such impacts, ideally without weakening or rolling back the enhancements.
-
-A popular design choice in privacy enhancements at the IETF has been the encapsulation of data inside encrypted connections along with other network policy changes to introduce changes which make observing and tracing data difficult to do and difficult to associate to any particular user.
+The IETF\'s work to enhance the privacy of Internet and defend against pervasive monitoring as described in {{!RFC7258}} has employed as series of techniques
+starting with encrypting network data flows, typically using TLS.   Other approaches, involve changing things at a policy level such as changing routing, DNS resolver choices so as to further obfuscate and isolate the network and data flows from the underlying base network as means of interfering with pervasive
+monitoring.
 
 {{!RFC7258}} from the IAB examines various pervasive montoring approaches while {{!RFC7624}} discusses responses that enhance privacy.  {{!RFC9000}} itself is an excellent example of the applied design approaches and introduces the QUIC transport protocol that is always encrypted.
 
 ## Network Overlays
 
-Along with the use of encrypted connections another popular approach is to additionally create alternative routes and tunnels for connections which bypass the routing and other policy decisions of the ISP access network and of the public open Internet.   These alternative network policy choices have the effect of creating a Network Overlay that operates on top of and over the device\'s Access Network and the Open Internet, but follows an independent set of policies chosen by the Network Overlay.
+The practical consequence of the approaches in {{!RFC7624}} is to often create a network flow that while still carried on the open Internet is in effect 
+an new network flow that is overlayed on the underlying base network, namely an Network Overlay goverened by one or more alternate policies, including automatically applied encryption even when the application has requeated a non-encrypted connection.    
+
+Network Overlay's that cause network connection behavior and properties to differ from what the application expects can lead to situations where the application user and operator assume one set of behaviors of the network data flow to be true while in reality one or more different behaviors may occur. This in turn can lead to unanticipated outcomes that can have operational impacts.
+
+An example is illustated in figure 1 of different policies for a network overlay vs the underlying base network which the changes the traffic path 
+from the Network Overlay having a different routing policy from that of the underlying native base network.
 
 ~~~
  R  = router
@@ -168,7 +176,7 @@ Typically the primary problems are encountered when the network overlay has made
 
 There are a variety of impacts but a few common classes of issues have been observed:
 
-### CDNs interconnection troubleshooting
+### CDN interconnection troubleshooting
 
 In a CDN interconnection When 2 CDN domains have to localize a point of failure, they first determine the delivery path and a point of observation where to do measurement. Then they proceed by dichotomy to determine the domain where the point of failure is. The issue with overlay networking is the Following : CDNs use
 their request routing information to determine a point of observation on the delivery path where to do the measurement, as their delivery path is overwritten by the re-routing of the overlay networking, the flow can't be observed at the observation point.
