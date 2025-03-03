@@ -36,7 +36,8 @@ author:
     fullname: "Glenn Deen"
     organization: Comcast-NBCUniversal
     email: "glenn_deen@comcast.com"
- -
+    
+ 
     fullname: "Sanjay Mishra"
     organization: Verizon
     email: sanjay.mishra@verizon.com
@@ -57,19 +58,30 @@ CDN cache selection, delivery path choices, traffic classification and content a
 
 # Introduction
 
-The past decade of Internet evolution has included two significant trends,  the global growth of video streaming and active focuesed work within the IETF on enhancing Internet user privacy.
+Enhancing the privacy of Internet users has a been significant focus of the IETF since the Snowden revelations and the publication of {{!RFC7258}}.  {{RFC7264}} explored in greater detail the technical threats identified in RFC7258 along with high level descriptions of mitigations.   
+Since then the various working groups at the IETF have endevored to address the specific threats to their respective area and have produced a long list of new RFCs with privacy enhancements deliberately and consciously included.    
+Protocols like QUIC {{!RFC9000}} are examples of the new generation of IETF protocols with privacy enhancements such as always enabled encryption built directly into their design.
 
-The work on these initiatives has largely occured independently of one another, though there are a few individuals and organiztions that are involved with both efforts.
+At the same time that the IETF has been diligently enhancing Internet privacy, Internet video streaming has become a part of daily life for billions of viewers with streaming being for many their primary way of watching sports, entertainment, user generated content (UGC) and news.  This has grown to become the primary 
+data by volume traversing the Internet with an hour of HD video consisting of roughly 1.5-2.5GB of data and streaming is estimated to account for 80-85\% of current global Internet traffic.
 
-The arrival of the newly developed privacy enhancements in consumer products and their subsequent use by streaming video viewers has brought the results of the two efforts into contact and a number of friction points are now being encountered which are having impacts to the viewers, support engineers and operational aspects of video streaming platforms.
+The Operational Considerations for Streaming Media {{!RFC9317}} provides a good introduction to the various engineering aspects encountered by streaming platforms in engineering and operating the infrastructure used to meet the global growth in video streaming.
 
-To be clear, this document is not proposing or advocating rolling back any of the privacy enhancements for the viewers.  Instead the authors intention is to help describe the problem space and educate the IETF and others on the practical operational impacts of these enhancements and to eventually develop approaches that can help mitigate such impacts.
+While early streaming efforts were satified with being able to stream a video to a device successfully without consideration for efficiency or scale, the rapid growth in viewership has pushed platforms to develop sophisticated architectures and designs.
 
-The authors also readily acknowledge the many challenges and difficulties in improving Internet privacy in an area as complex as the Internet while also maintaining compatibiltiy with the wildly varied applications and uses of the Internet on which users rely upon daily in their lives. This is hard stuff and it\'s very natural for there to be operational considerations that must be understood and folded back into architectural designs and consumer products.
+For video that is prerecorded, such as Video On Demand (VOD) TV and Movie content ans User Generated Content (UGC) distributing the recorded and encoded content using Content Delivery Network (CDN) caches is a common technique to meet demand at scale. The IETF CDNi working group has done significant work on this and
+SVTA OpenCaching (svta.org) extends upon CDNi to created a robust implementation of CDN architecture for VOD scaling.   VOD \& UCG streaming typically place a focus on selecting the best CDN cache with the best responsiveness, the shortest network path and fewest of hops to avoid congestion and bandwith limitations that might limit the quality of the video being delivered.
 
-The motivation in developing this document is to provide a meaningful and helpful feedback from the streaming application and streaming platform operational perspective on the impacts of certain enhanced privacy architecture approaches that have been pursued at the IETF.
+The newest frontier in streaming is live streaming, primarily around sports events.   Live streaming, like VOD has significant capacity demands with events that can have viewership levels ranging from tens of thousands to 10-50 million live viewers .  The day of hundreds of millions of live viewers for a single event such as a major global sporting event is on the near horizon, with no limit in sight on how far growth can go.  Perhaps, one day a signifant portion of the global population will live view an event over the Internet.
 
-The work of the IETF to enhance Internet privacy is a difficult challenge; The Internet is a complex entity and even with the most careful consideration it is not unheard of for changes that address one issue to inadvertently create new problems elsewhere.  The purpose of this document is to identify and discuss the operational impacts of some Internet privacy enhancement on streaming applications so as to better understand the impacts and possibly lead to mitigations.
+Even today, the current viewers levels for large events are pushing the boundaries of video streaming techniqies. Live also comes with new challenges; CDN caching is still used to meet scaling challenges for live events, but unlike VOD it can't be prerecorded and prepositioned on CDN caches ahead of the event.  Live sports also brings distinct and important low latency requirements - viewers don\'t want a big goal spoiled by alerts on their phones, or cheering the street before they see it on their own screen.    The video pipeline used to deliver live streamed events with low latency at high quality is extemely well engineered but is very sensitive to interference from unexpected network behaviors and conditions.
+
+The delivery pipelines of VOD, UGC and Live have each been engineering and optimized to deliver the highest quality, in the most efficient manner over the Internet from platform to viewer.   However, increasingly as the responses to {{!RFC7258}} and {{!RFC7264}} are implemented in consumer devices and serivces, they have occasionally introduced undexpected and sometimes non-easily detectable changes to the network behavior and the video pipeline in ways that can interfere with and undermine the efficiencies, scaling and low latency engineering that video platforms have spent considerable time, money and talent developing and deploying to meet user video experience expectations.
+
+The authors readily acknowledge the many challenges and difficulties in improving Internet privacy in an area as complex as the Internet while also maintaining compatibiltiy with the wildly varied applications and uses of the Internet on which users rely upon daily in their lives. This is hard stuff and it\'s very natural for there to be operational considerations that must be understood and folded back into architectural designs and consumer products.
+
+This document is intended to document the various impacts that have been observered by streaming applications from a streaming platform operational perspective on the impacts of certain enhanced privacy architecture approaches that have been pursued at the IETF.
+
 
 # Internet Privacy Enhancements
 
@@ -81,8 +93,9 @@ monitoring.
 
 ## Network Overlays
 
-The practical consequence of the approaches in {{!RFC7624}} is to often create a network flow that while still carried on the open Internet is in effect 
-an new network flow that is overlayed on the underlying base network, namely an Network Overlay goverened by one or more alternate policies, including automatically applied encryption even when the application has requeated a non-encrypted connection.    
+The practical consequence of the approaches in {{!RFC7624}} is to often create a network flow that while still carried on the open Internet is in effect
+an new network flow that is overlayed on the underlying base network, namely an Network Overlay goverened by one or more alternate policies, including
+automatically applied encryption even when the application has requeated a non-encrypted connection.
 
 Network Overlay's that cause network connection behavior and properties to differ from what the application expects can lead to situations where the application user and operator assume one set of behaviors of the network data flow to be true while in reality one or more different behaviors may occur. This in turn can lead to unanticipated outcomes that can have operational impacts.
 
