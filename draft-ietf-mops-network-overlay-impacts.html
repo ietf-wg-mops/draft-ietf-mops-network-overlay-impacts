@@ -14,14 +14,14 @@ changes include IP address assignment, transport protocols, routing, DNS resolve
 which in turn affect a variety of important content delivery aspects such as latency,
 CDN cache selection, delivery path choices, traffic classification and content access controls. 
     " name="description">
-<meta content="xml2rfc 3.26.0" name="generator">
+<meta content="xml2rfc 3.27.0" name="generator">
 <meta content="network policy" name="keyword">
 <meta content="video streaming" name="keyword">
 <meta content="streaming" name="keyword">
 <meta content="draft-ietf-mops-network-overlay-impacts-latest" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.26.0
-    Python 3.12.8
+  xml2rfc 3.27.0
+    Python 3.12.9
     ConfigArgParse 1.7
     google-i18n-address 3.1.1
     intervaltree 3.1.0
@@ -442,7 +442,7 @@ dl {
     margin-bottom: 0;
   }
 }
-dl > dt {
+dl:not(.dlNewline) > dt {
   float: left;
   margin-right: 2ch;
   min-width: 8ch;
@@ -1051,11 +1051,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">NOISV</td>
-<td class="right">February 2025</td>
+<td class="right">March 2025</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Deen &amp; Mishra</td>
-<td class="center">Expires 15 August 2025</td>
+<td class="center">Expires 4 September 2025</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1068,12 +1068,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-mops-network-overlay-impacts-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2025-02-11" class="published">11 February 2025</time>
+<time datetime="2025-03-03" class="published">3 March 2025</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2025-08-15">15 August 2025</time></dd>
+<dd class="expires"><time datetime="2025-09-04">4 September 2025</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1131,7 +1131,7 @@ CDN cache selection, delivery path choices, traffic classification and content a
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 15 August 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 4 September 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1197,7 +1197,7 @@ CDN cache selection, delivery path choices, traffic classification and content a
             <p id="section-toc.1-1.4.1"><a href="#section-4" class="auto internal xref">4</a>.  <a href="#name-emerging-operational-issues" class="internal xref">Emerging Operational Issues with Network Overlay Policy Changes</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.1">
-                <p id="section-toc.1-1.4.2.1.1"><a href="#section-4.1" class="auto internal xref">4.1</a>.  <a href="#name-cdns-interconnection-troubl" class="internal xref">CDNs interconnection troubleshooting</a></p>
+                <p id="section-toc.1-1.4.2.1.1"><a href="#section-4.1" class="auto internal xref">4.1</a>.  <a href="#name-cdn-interconnection-trouble" class="internal xref">CDN interconnection troubleshooting</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.2">
                 <p id="section-toc.1-1.4.2.2.1"><a href="#section-4.2" class="auto internal xref">4.2</a>.  <a href="#name-policy-changes-hidden-from-" class="internal xref">Policy Changes Hidden from Applications</a></p>
@@ -1283,12 +1283,27 @@ CDN cache selection, delivery path choices, traffic classification and content a
       <h2 id="name-introduction">
 <a href="#section-1" class="section-number selfRef">1. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
       </h2>
-<p id="section-1-1">The past decade of Internet evolution has included two significant trends,  the global growth of video streaming and  active passionate work within the IETF on enhancing Internet user privacy.<a href="#section-1-1" class="pilcrow">¶</a></p>
-<p id="section-1-2">The work on these initiatives has largely occured independently of one another, though there are a few individuals and companies that are involved with both efforts.<a href="#section-1-2" class="pilcrow">¶</a></p>
-<p id="section-1-3">The arrival of the newly developed privacy enhancements in consumer products and their subsequent use by streaming video viewers has brought the results of the two efforts into contact and a number of friction points are now being encountered which are having impacts to the viewers, support engineers and operational aspects of video streaming platforms.<a href="#section-1-3" class="pilcrow">¶</a></p>
-<p id="section-1-4">To be clear, this document is not proposing or advocating rolling back any of the privacy enhancements for the viewers.  Instead the authors hope to help describe the problem space and educate the IETF and others on the practical operational impacts of these enhancements and to eventually develop approaches that can help mitigate such impacts.<a href="#section-1-4" class="pilcrow">¶</a></p>
-<p id="section-1-5">The authors also readily acknowledge the many challenges and difficulties in improving Internet privacy in an area as complex as the Internet while also maintaining compatibiltiy with the wildly varied applications and uses of the Internet on which users rely upon daily in their lives. This is hard stuff and it's very natural for there to be operational considerations that must be understood and folded back into architectural designs and consumer products.<a href="#section-1-5" class="pilcrow">¶</a></p>
-<p id="section-1-6">The motivation in developing this document is to provide a meaningful and helpful feedback from the streaming application and streaming platform operational perspective to help the enhanced privacy architecture work being done at the IETF.<a href="#section-1-6" class="pilcrow">¶</a></p>
+<p id="section-1-1">Enhancing the privacy of Internet users has a been significant focus of the IETF since the Snowden revelations and the publication of <span>[<a href="#RFC7258" class="cite xref">RFC7258</a>]</span>.  <span>[<a href="#RFC7264" class="cite xref">RFC7264</a>]</span> explored in greater detail the technical threats identified in RFC7258 along with high level descriptions of mitigations.
+Since then the various working groups at the IETF have endevored to address the specific threats to their respective area and have produced a long list of new RFCs with privacy enhancements deliberately and consciously included.
+Protocols like QUIC <span>[<a href="#RFC9000" class="cite xref">RFC9000</a>]</span> are examples of the new generation of IETF protocols with privacy enhancements such as always enabled encryption built directly into their design.<a href="#section-1-1" class="pilcrow">¶</a></p>
+<p id="section-1-2">At the same time that the IETF has been diligently enhancing Internet privacy, Internet video streaming has become a part of daily life for billions of viewers with streaming being for many their primary way of watching sports, entertainment, user generated content (UGC) and news.
+This has grown to become the primary data by volume traversing the Internet with an hour of HD video consisting of roughly 1.5-2.5GB of data and streaming is estimated to account for 80-85\% of current global Internet traffic.<a href="#section-1-2" class="pilcrow">¶</a></p>
+<p id="section-1-3">The Operational Considerations for Streaming Media <span>[<a href="#RFC9317" class="cite xref">RFC9317</a>]</span> provides a good introduction to the various engineering aspects encountered by streaming platforms in engineering and operating the infrastructure used to meet the global growth in video streaming.<a href="#section-1-3" class="pilcrow">¶</a></p>
+<p id="section-1-4">While early streaming efforts were satified with being able to stream a video to a device successfully without consideration for efficiency or scale, the rapid growth in viewership has pushed platforms to develop sophisticated architectures and designs.<a href="#section-1-4" class="pilcrow">¶</a></p>
+<p id="section-1-5">For video that is prerecorded, such as Video On Demand (VOD) TV and Movie content ans User Generated Content (UGC) distributing the recorded and encoded content using Content Delivery Network (CDN) caches is a common technique to meet demand at scale.
+The IETF CDNi working group has done significant work on this and SVTA OpenCaching (svta.org) extends upon CDNi to created a robust implementation of CDN architecture for VOD scaling.
+VOD \&amp; UCG streaming typically place a focus on selecting the best CDN cache with the best responsiveness, the shortest network path and fewest of hops to avoid congestion and bandwith limitations that might limit the quality of the video being delivered.<a href="#section-1-5" class="pilcrow">¶</a></p>
+<p id="section-1-6">The newest frontier in streaming is live streaming, primarily around sports events.   Live streaming, like VOD has significant capacity demands with events that can have viewership levels ranging from tens of thousands to 10-50 million live viewers.
+The day of hundreds of millions of live viewers for a single event such as a major global sporting event is on the near horizon, with no limit in sight on how far growth can go.
+Perhaps, one day a signifant portion of the global population will live view an event over the Internet.<a href="#section-1-6" class="pilcrow">¶</a></p>
+<p id="section-1-7">Even today, the current viewers levels for large events are pushing the boundaries of video streaming techniqies.
+Live also comes with new challenges; CDN caching is still used to meet scaling challenges for live events, but unlike VOD it can't be prerecorded and prepositioned on CDN caches ahead of the event.
+Live sports also brings distinct and important low latency requirements - viewers don't want a big goal spoiled by alerts on their phones, or cheering the street before they see it on their own screen.
+The video pipeline used to deliver live streamed events with low latency at high quality is extemely well engineered but is very sensitive to interference from unexpected network behaviors and conditions.<a href="#section-1-7" class="pilcrow">¶</a></p>
+<p id="section-1-8">The delivery pipelines of VOD, UGC and Live have each been engineering and optimized to deliver the highest quality, in the most efficient manner over the Internet from platform to viewers.
+However, increasingly as the responses to <span>[<a href="#RFC7258" class="cite xref">RFC7258</a>]</span> and <span>[<a href="#RFC7264" class="cite xref">RFC7264</a>]</span> are implemented in consumer devices and serivces, they have occasionally introduced undexpected and sometimes non-easily detectable changes to the network behavior and the video pipeline in ways that can interfere with and undermine the efficiencies, scaling and low latency engineering that video platforms have spent considerable time, money and talent developing and deploying to meet user video experience expectations.<a href="#section-1-8" class="pilcrow">¶</a></p>
+<p id="section-1-9">The authors readily acknowledge the many challenges and difficulties in improving Internet privacy in an area as complex as the Internet while also maintaining compatibiltiy with the wildly varied applications and uses of the Internet on which users rely upon daily in their lives. This is hard stuff and it's very natural for there to be operational considerations that must be understood and folded back into architectural designs and consumer products.<a href="#section-1-9" class="pilcrow">¶</a></p>
+<p id="section-1-10">This document is intended to document the various impacts that have been observered by streaming applications from a streaming platform operational perspective on the impacts of certain enhanced privacy architecture approaches that have been pursued at the IETF.<a href="#section-1-10" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="internet-privacy-enhancements">
@@ -1296,16 +1311,22 @@ CDN cache selection, delivery path choices, traffic classification and content a
       <h2 id="name-internet-privacy-enhancemen">
 <a href="#section-2" class="section-number selfRef">2. </a><a href="#name-internet-privacy-enhancemen" class="section-name selfRef">Internet Privacy Enhancements</a>
       </h2>
-<p id="section-2-1">Enhancing the Internet's privacy is a difficult challenge, given the complexity of the Internet itself.  It's common for solutions that address one issue to inadvertently create new problems elsewhere.  That's not a reason to stop trying, but it is important to understand the consequences of changes and to find ways to manage or mitigate such impacts, ideally without weakening or rolling back the enhancements.<a href="#section-2-1" class="pilcrow">¶</a></p>
-<p id="section-2-2">A popular design choice in privacy enhancements at the IETF has been the encapsulation of data inside encrypted connections along with other network policy changes to introduce changes which make observing and tracing data difficult to do and difficult to associate to any particular user.<a href="#section-2-2" class="pilcrow">¶</a></p>
-<p id="section-2-3"><span>[<a href="#RFC7258" class="cite xref">RFC7258</a>]</span> from the IAB examines various pervasive montoring approaches while <span>[<a href="#RFC7624" class="cite xref">RFC7624</a>]</span> discusses responses that enhance privacy.  <span>[<a href="#RFC9000" class="cite xref">RFC9000</a>]</span> itself is an excellent example of the applied design approaches and introduces the QUIC transport protocol that is always encrypted.<a href="#section-2-3" class="pilcrow">¶</a></p>
+<p id="section-2-1">The IETF's work to enhance the privacy of Internet and defend against pervasive monitoring as described in <span>[<a href="#RFC7258" class="cite xref">RFC7258</a>]</span> has employed as series of techniques
+starting with encrypting network data flows, typically using TLS.   Other approaches, involve changing things at a policy level such as changing routing, DNS resolver choices so as to further obfuscate and isolate the network and data flows from the underlying base network as means of interfering with pervasive
+monitoring.<a href="#section-2-1" class="pilcrow">¶</a></p>
+<p id="section-2-2"><span>[<a href="#RFC7258" class="cite xref">RFC7258</a>]</span> from the IAB examines various pervasive montoring approaches while <span>[<a href="#RFC7624" class="cite xref">RFC7624</a>]</span> discusses responses that enhance privacy.  <span>[<a href="#RFC9000" class="cite xref">RFC9000</a>]</span> itself is an excellent example of the applied design approaches and introduces the QUIC transport protocol that is always encrypted.<a href="#section-2-2" class="pilcrow">¶</a></p>
 <div id="network-overlays">
 <section id="section-2.1">
         <h3 id="name-network-overlays">
 <a href="#section-2.1" class="section-number selfRef">2.1. </a><a href="#name-network-overlays" class="section-name selfRef">Network Overlays</a>
         </h3>
-<p id="section-2.1-1">Along with the use of encrypted connections another popular approach is to additionally create alternative routes and tunnels for connections which bypass the routing and other policy decisions of the ISP access network and of the public open Internet.   These alternative network policy choices have the effect of creating a Network Overlay that operates on top of and over the device's Access Network and the Open Internet, but follows an independent set of policies chosen by the Network Overlay.<a href="#section-2.1-1" class="pilcrow">¶</a></p>
-<div class="alignLeft art-text artwork" id="section-2.1-2">
+<p id="section-2.1-1">The practical consequence of the approaches in <span>[<a href="#RFC7624" class="cite xref">RFC7624</a>]</span> is to often create a network flow that while still carried on the open Internet is in effect
+an new network flow that is overlayed on the underlying base network, namely an Network Overlay goverened by one or more alternate policies, including
+automatically applied encryption even when the application has requeated a non-encrypted connection.<a href="#section-2.1-1" class="pilcrow">¶</a></p>
+<p id="section-2.1-2">Network Overlay's that cause network connection behavior and properties to differ from what the application expects can lead to situations where the application user and operator assume one set of behaviors of the network data flow to be true while in reality one or more different behaviors may occur. This in turn can lead to unanticipated outcomes that can have operational impacts.<a href="#section-2.1-2" class="pilcrow">¶</a></p>
+<p id="section-2.1-3">An example is illustated in figure 1 of different policies for a network overlay vs the underlying base network which the changes the traffic path
+from the Network Overlay having a different routing policy from that of the underlying native base network.<a href="#section-2.1-3" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-2.1-4">
 <pre>
  R  = router
                   &lt;--- non-overlay traffic path ---&gt;
@@ -1317,7 +1338,7 @@ CDN cache selection, delivery path choices, traffic classification and content a
                      &lt;--- overlay traffic path ---&gt;
 
  Figure 1:  Network Overlay routing select traffic via an alternate path
-</pre><a href="#section-2.1-2" class="pilcrow">¶</a>
+</pre><a href="#section-2.1-4" class="pilcrow">¶</a>
 </div>
 <div id="partitioning">
 <section id="section-2.1.1">
@@ -1421,10 +1442,10 @@ are built with detailed understandings of each element in the content delivery p
 <p id="section-4-1">Streaming video applications and the streaming platforms delivering content are starting to encounter various operational challenges related to Network Overlays.
 Typically the primary problems are encountered when the network overlay has made policy changes that are either unexpected, are difficult or impossible for the streaming platform to detect, or the changes are inconsitently applied.<a href="#section-4-1" class="pilcrow">¶</a></p>
 <p id="section-4-2">There are a variety of impacts but a few common classes of issues have been observed:<a href="#section-4-2" class="pilcrow">¶</a></p>
-<div id="cdns-interconnection-troubleshooting">
+<div id="cdn-interconnection-troubleshooting">
 <section id="section-4.1">
-        <h3 id="name-cdns-interconnection-troubl">
-<a href="#section-4.1" class="section-number selfRef">4.1. </a><a href="#name-cdns-interconnection-troubl" class="section-name selfRef">CDNs interconnection troubleshooting</a>
+        <h3 id="name-cdn-interconnection-trouble">
+<a href="#section-4.1" class="section-number selfRef">4.1. </a><a href="#name-cdn-interconnection-trouble" class="section-name selfRef">CDN interconnection troubleshooting</a>
         </h3>
 <p id="section-4.1-1">In a CDN interconnection When 2 CDN domains have to localize a point of failure, they first determine the delivery path and a point of observation where to do measurement. Then they proceed by dichotomy to determine the domain where the point of failure is. The issue with overlay networking is the Following : CDNs use
 their request routing information to determine a point of observation on the delivery path where to do the measurement, as their delivery path is overwritten by the re-routing of the overlay networking, the flow can't be observed at the observation point.<a href="#section-4.1-1" class="pilcrow">¶</a></p>
@@ -1668,6 +1689,10 @@ appear in all capitals, as shown here.<a href="#section-6-1" class="pilcrow">¶<
       <dd>
 <span class="refAuthor">Farrell, S.</span> and <span class="refAuthor">H. Tschofenig</span>, <span class="refTitle">"Pervasive Monitoring Is an Attack"</span>, <span class="seriesInfo">BCP 188</span>, <span class="seriesInfo">RFC 7258</span>, <span class="seriesInfo">DOI 10.17487/RFC7258</span>, <time datetime="2014-05" class="refDate">May 2014</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc7258">https://www.rfc-editor.org/rfc/rfc7258</a>&gt;</span>. </dd>
 <dd class="break"></dd>
+<dt id="RFC7264">[RFC7264]</dt>
+      <dd>
+<span class="refAuthor">Zong, N.</span>, <span class="refAuthor">Jiang, X.</span>, <span class="refAuthor">Even, R.</span>, and <span class="refAuthor">Y. Zhang</span>, <span class="refTitle">"An Extension to the REsource LOcation And Discovery (RELOAD) Protocol to Support Relay Peer Routing"</span>, <span class="seriesInfo">RFC 7264</span>, <span class="seriesInfo">DOI 10.17487/RFC7264</span>, <time datetime="2014-06" class="refDate">June 2014</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc7264">https://www.rfc-editor.org/rfc/rfc7264</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="RFC7624">[RFC7624]</dt>
       <dd>
 <span class="refAuthor">Barnes, R.</span>, <span class="refAuthor">Schneier, B.</span>, <span class="refAuthor">Jennings, C.</span>, <span class="refAuthor">Hardie, T.</span>, <span class="refAuthor">Trammell, B.</span>, <span class="refAuthor">Huitema, C.</span>, and <span class="refAuthor">D. Borkmann</span>, <span class="refTitle">"Confidentiality in the Face of Pervasive Surveillance: A Threat Model and Problem Statement"</span>, <span class="seriesInfo">RFC 7624</span>, <span class="seriesInfo">DOI 10.17487/RFC7624</span>, <time datetime="2015-08" class="refDate">August 2015</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc7624">https://www.rfc-editor.org/rfc/rfc7624</a>&gt;</span>. </dd>
@@ -1679,6 +1704,10 @@ appear in all capitals, as shown here.<a href="#section-6-1" class="pilcrow">¶<
 <dt id="RFC9000">[RFC9000]</dt>
       <dd>
 <span class="refAuthor">Iyengar, J., Ed.</span> and <span class="refAuthor">M. Thomson, Ed.</span>, <span class="refTitle">"QUIC: A UDP-Based Multiplexed and Secure Transport"</span>, <span class="seriesInfo">RFC 9000</span>, <span class="seriesInfo">DOI 10.17487/RFC9000</span>, <time datetime="2021-05" class="refDate">May 2021</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9000">https://www.rfc-editor.org/rfc/rfc9000</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC9317">[RFC9317]</dt>
+      <dd>
+<span class="refAuthor">Holland, J.</span>, <span class="refAuthor">Begen, A.</span>, and <span class="refAuthor">S. Dawkins</span>, <span class="refTitle">"Operational Considerations for Streaming Media"</span>, <span class="seriesInfo">RFC 9317</span>, <span class="seriesInfo">DOI 10.17487/RFC9317</span>, <time datetime="2022-10" class="refDate">October 2022</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9317">https://www.rfc-editor.org/rfc/rfc9317</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC9484">[RFC9484]</dt>
     <dd>
