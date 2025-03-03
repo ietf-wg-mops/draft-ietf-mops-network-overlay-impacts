@@ -58,7 +58,7 @@ CDN cache selection, delivery path choices, traffic classification and content a
 # Introduction
 
 Enhancing the privacy of Internet users has a been significant focus of the IETF since the Snowden revelations and the publication of {{!RFC7258}}.  {{RFC7264}} explored in greater detail the technical threats identified in RFC7258 along with high level descriptions of mitigations.
-Since then the various working groups at the IETF have endevored to address the specific threats to their respective area and have produced a long list of new RFCs with privacy enhancements deliberately and consciously included.
+Since then the various working groups at the IETF have endeavored to address the specific threats to their respective area and have produced a long list of new RFCs with privacy enhancements deliberately and consciously included.
 Protocols like QUIC {{!RFC9000}} are examples of the new generation of IETF protocols with privacy enhancements such as always enabled encryption built directly into their design.
 
 At the same time that the IETF has been diligently enhancing Internet privacy, Internet video streaming has become a part of daily life for billions of viewers with streaming being for many their primary way of watching sports, entertainment, user generated content (UGC) and news.
@@ -66,27 +66,27 @@ This has grown to become the primary data by volume traversing the Internet with
 
 The Operational Considerations for Streaming Media {{!RFC9317}} provides a good introduction to the various engineering aspects encountered by streaming platforms in engineering and operating the infrastructure used to meet the global growth in video streaming.
 
-While early streaming efforts were satified with being able to stream a video to a device successfully without consideration for efficiency or scale, the rapid growth in viewership has pushed platforms to develop sophisticated architectures and designs.
+While early streaming efforts were satisfied with being able to stream a video to a device successfully without consideration for efficiency or scale, the rapid growth in viewership has pushed platforms to develop sophisticated architectures and designs.
 
 For video that is prerecorded, such as Video On Demand (VOD) TV and Movie content ans User Generated Content (UGC) distributing the recorded and encoded content using Content Delivery Network (CDN) caches is a common technique to meet demand at scale.
-The IETF CDNi working group has done significant work on this and SVTA OpenCaching (svta.org) extends upon CDNi to created a robust implementation of CDN architecture for VOD scaling.
-VOD \& UCG streaming typically place a focus on selecting the best CDN cache with the best responsiveness, the shortest network path and fewest of hops to avoid congestion and bandwith limitations that might limit the quality of the video being delivered.
+The IETF CDNi working group has done significant work on this and SVTA OpenCaching (svta.org) extends upon CDNi to create a robust implementation of CDN architecture for VOD scaling.
+VOD \& UCG streaming typically place a focus on selecting the best CDN cache with the best responsiveness, the shortest network path and fewest of hops to avoid congestion and bandwidth limitations that might limit the quality of the video being delivered.
 
 The newest frontier in streaming is live streaming, primarily around sports events.   Live streaming, like VOD has significant capacity demands with events that can have viewership levels ranging from tens of thousands to 10-50 million live viewers.
 The day of hundreds of millions of live viewers for a single event such as a major global sporting event is on the near horizon, with no limit in sight on how far growth can go.
-Perhaps, one day a signifant portion of the global population will live view an event over the Internet.
+Perhaps, one day a significant portion of the global population will live view an event over the Internet.
 
-Even today, the current viewers levels for large events are pushing the boundaries of video streaming techniqies.
+Even today, the current viewers levels for large events are pushing the boundaries of video streaming techniques.
 Live also comes with new challenges; CDN caching is still used to meet scaling challenges for live events, but unlike VOD it can't be prerecorded and prepositioned on CDN caches ahead of the event.
-Live sports also brings distinct and important low latency requirements - viewers don\'t want a big goal spoiled by alerts on their phones, or cheering the street before they see it on their own screen.
-The video pipeline used to deliver live streamed events with low latency at high quality is extemely well engineered but is very sensitive to interference from unexpected network behaviors and conditions.
+Live sports streaming also has important low latency requirements - viewers don\'t want a big goal spoiled by alerts on their phones, or cheering the street before they see it on their own screen.
+The video pipeline used to deliver live streamed events with low latency and at high quality is very optimized and as a result is very sensitive to interference from unexpected network behaviors and conditions.
 
 The delivery pipelines of VOD, UGC and Live have each been engineering and optimized to deliver the highest quality, in the most efficient manner over the Internet from platform to viewers.
-However, increasingly as the responses to {{!RFC7258}} and {{!RFC7264}} are implemented in consumer devices and serivces, they have occasionally introduced undexpected and sometimes non-easily detectable changes to the network behavior and the video pipeline in ways that can interfere with and undermine the efficiencies, scaling and low latency engineering that video platforms have spent considerable time, money and talent developing and deploying to meet user video experience expectations.
+However, increasingly as consumer products have added responses to {{!RFC7258}} and {{!RFC7264}} to consumer devices and services, they have occasionally introduced unexpected and sometimes non-easily detectable changes to the network behavior and the video pipeline in ways that can interfere with and undermine the efficiencies, scaling and low latency engineering that video platforms have spent considerable time, money and talent developing and deploying to meet user video experience expectations.
 
-The authors readily acknowledge the many challenges and difficulties in improving Internet privacy in an area as complex as the Internet while also maintaining compatibiltiy with the wildly varied applications and uses of the Internet on which users rely upon daily in their lives. This is hard stuff and it\'s very natural for there to be operational considerations that must be understood and folded back into architectural designs and consumer products.
+The authors readily acknowledge the many challenges and difficulties in improving Internet privacy in an area as complex as the Internet while also maintaining compatibility with the wildly varied applications and uses of the Internet on which users rely upon daily in their lives. This is hard stuff and it\'s very natural for there to be operational considerations that must be understood and folded back into architectural designs and consumer products.
 
-This document is intended to document the various impacts that have been observered by streaming applications from a streaming platform operational perspective on the impacts of certain enhanced privacy architecture approaches that have been pursued at the IETF.
+This document is intended to document the various impacts that have been observed by streaming applications from a streaming platform operational perspective on the impacts of certain enhanced privacy architecture approaches that have been pursued at the IETF.
 
 
 # Internet Privacy Enhancements
@@ -131,19 +131,28 @@ Network Overlay policy changes includes an alternate routing policy since a fund
 
 ### Procotol Policy Changes
 
-Network overlays have been seen to make application and transport procotol changes from what is expected. Such changes such as HTTP2/tcp into HTTP3/QUIC and HTTP2 into HTTPS2+TLS have been encounted.
+Network overlays have been seen to make application and transport protocol changes from what is expected. Such changes such as HTTP2/tcp into HTTP3/QUIC and HTTP2 into HTTPS2+TLS are performed by some privacy enhancing approaches, converting what is considered an undersirable protocol choice into what is considered a better alternative, hidden under the covers from the application.
+
+One impact occurs when the protocol change alters the network as seen by the video application.  For instance, a video application may make a test fetch of video inorder to test measure network conditions which will be use to make streaming decisions for the actual content being accessed. If the application test probe uses HTTP2/tcp to test, but the actual content access request over HTTP2/tcp is converted to HTTP3/QUIC then the video platform does not have accurate results from it test probe which can directly lead to eroneous non-optimal choices by the video player algorithm.
 
 ### Address Policy Changes
 
-IP layer changes such as converting from IPv4 to IPv6 or  IPv6 to IPv4, when unexpected and done invisibly to the appliction can cause both routing and cache selection issue, as well as cause problems in debugging situations causing engineers to not be using the correct address when examinng logs, doing their own test probes etc.
+IP address changes such as converting from IPv4 to IPv6 or  IPv6 to IPv4, done unexpectantly or done invisibly to the application can cause both routing and cache selection issues, as well as cause problems in debugging situations causing engineers to not be using the correct address when examining logs, doing their own test probes etc.
 
-Source IP Address assignement changes, again when done invisibly to the application can cause signifant disruption.  Platform authentication gateways that associate session authorizations with the sessions devices IP address can result in service access denial when associated addresses change unexpectedly.  For example when the devcie addresses as seen by the video application is different from the addresses seen by the associated streaming platform can result in the platform rejecting logins, content access and other service functions from the device.
+Source IP Address assignment changes, again when done invisibly to the application can cause significant disruption.  Platform authentication gateways that associate session authorizations with the sessions devices IP address can result in service access denial when associated addresses change unexpectedly.  For example when the device address as seen by the video application is different from the device address seen by the associated streaming platform, this can result in the platform rejecting logins, content access and other service functions from the device.   
 
 
 ### DNS Policy Changes
 
 Network overlays that change DNS setting have long been an issue for CDN architectures that use DNS as part of their load balancing architecture.  DNS0 information was designed to help CDN cache selection logic by providing more information to the decision making algorithms, so a policy change that changes the DNS resolver excpected by the appliction to a differen resolver that does not support DNS0 can be quite significant.
 
+### Log Data Changes
+
+Logging is often the first tool used to find and diagnose problems.   Network overlays which change policies that result in unexpected and non-understable log entries on either the user device or the video platform can greatly undermine the use of logs in problem determination and resolution.
+
+### Geo Location & Identification
+
+Network Overlays that change the apparent location of devices can result in platforms from not being able to properly identify the geospatial location of the user. It is very common for CDN caches to apply IP address level geolocation to determine in broad terms, such as identifying the country the user is in.   If an overlay changes the apparent origin addresses of video device to one outside the of the address blocks mapped by location providers then geolocation can break and users can be denied access to content they otherwise are able to access.
 
 ### MASQUE
 
