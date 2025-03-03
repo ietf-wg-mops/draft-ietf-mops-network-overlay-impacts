@@ -58,7 +58,7 @@ CDN cache selection, delivery path choices, traffic classification and content a
 # Introduction
 
 Enhancing the privacy of Internet users has a been significant focus of the IETF since the Snowden revelations and the publication of {{!RFC7258}}.  {{RFC7264}} explored in greater detail the technical threats identified in RFC7258 along with high level descriptions of mitigations.
-Since then the various working groups at the IETF have endevored to address the specific threats to their respective area and have produced a long list of new RFCs with privacy enhancements deliberately and consciously included. 
+Since then the various working groups at the IETF have endevored to address the specific threats to their respective area and have produced a long list of new RFCs with privacy enhancements deliberately and consciously included.
 Protocols like QUIC {{!RFC9000}} are examples of the new generation of IETF protocols with privacy enhancements such as always enabled encryption built directly into their design.
 
 At the same time that the IETF has been diligently enhancing Internet privacy, Internet video streaming has become a part of daily life for billions of viewers with streaming being for many their primary way of watching sports, entertainment, user generated content (UGC) and news.
@@ -105,7 +105,7 @@ automatically applied encryption even when the application has requeated a non-e
 
 Network Overlay's that cause network connection behavior and properties to differ from what the application expects can lead to situations where the application user and operator assume one set of behaviors of the network data flow to be true while in reality one or more different behaviors may occur. This in turn can lead to unanticipated outcomes that can have operational impacts.
 
-An example is illustated in figure 1 of different policies for a network overlay vs the underlying base network which the changes the traffic path 
+An example is illustated in figure 1 of different policies for a network overlay vs the underlying base network which the changes the traffic path
 from the Network Overlay having a different routing policy from that of the underlying native base network.
 
 ~~~
