@@ -14,13 +14,13 @@ changes include IP address assignment, transport protocols, routing, DNS resolve
 which in turn affect a variety of important content delivery aspects such as latency,
 CDN cache selection, delivery path choices, traffic classification and content access controls. 
     " name="description">
-<meta content="xml2rfc 3.27.0" name="generator">
+<meta content="xml2rfc 3.28.0" name="generator">
 <meta content="network policy" name="keyword">
 <meta content="video streaming" name="keyword">
 <meta content="streaming" name="keyword">
 <meta content="draft-ietf-mops-network-overlay-impacts-latest" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.27.0
+  xml2rfc 3.28.0
     Python 3.12.9
     ConfigArgParse 1.7
     google-i18n-address 3.1.1
@@ -1173,10 +1173,16 @@ CDN cache selection, delivery path choices, traffic classification and content a
                     <p id="section-toc.1-1.2.2.1.2.1.1" class="keepWithNext"><a href="#section-2.1.1" class="auto internal xref">2.1.1</a>.  <a href="#name-partitioning" class="internal xref">Partitioning</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.1.2.2">
-                    <p id="section-toc.1-1.2.2.1.2.2.1" class="keepWithNext"><a href="#section-2.1.2" class="auto internal xref">2.1.2</a>.  <a href="#name-policy-changes" class="internal xref">Policy Changes</a></p>
+                    <p id="section-toc.1-1.2.2.1.2.2.1" class="keepWithNext"><a href="#section-2.1.2" class="auto internal xref">2.1.2</a>.  <a href="#name-procotol-policy-changes" class="internal xref">Procotol Policy Changes</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.1.2.3">
-                    <p id="section-toc.1-1.2.2.1.2.3.1"><a href="#section-2.1.3" class="auto internal xref">2.1.3</a>.  <a href="#name-masque" class="internal xref">MASQUE</a></p>
+                    <p id="section-toc.1-1.2.2.1.2.3.1"><a href="#section-2.1.3" class="auto internal xref">2.1.3</a>.  <a href="#name-address-policy-changes" class="internal xref">Address Policy Changes</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.1.2.4">
+                    <p id="section-toc.1-1.2.2.1.2.4.1"><a href="#section-2.1.4" class="auto internal xref">2.1.4</a>.  <a href="#name-dns-policy-changes" class="internal xref">DNS Policy Changes</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.1.2.5">
+                    <p id="section-toc.1-1.2.2.1.2.5.1"><a href="#section-2.1.5" class="auto internal xref">2.1.5</a>.  <a href="#name-masque" class="internal xref">MASQUE</a></p>
 </li>
                 </ul>
 </li>
@@ -1287,7 +1293,7 @@ CDN cache selection, delivery path choices, traffic classification and content a
 Since then the various working groups at the IETF have endevored to address the specific threats to their respective area and have produced a long list of new RFCs with privacy enhancements deliberately and consciously included.
 Protocols like QUIC <span>[<a href="#RFC9000" class="cite xref">RFC9000</a>]</span> are examples of the new generation of IETF protocols with privacy enhancements such as always enabled encryption built directly into their design.<a href="#section-1-1" class="pilcrow">¶</a></p>
 <p id="section-1-2">At the same time that the IETF has been diligently enhancing Internet privacy, Internet video streaming has become a part of daily life for billions of viewers with streaming being for many their primary way of watching sports, entertainment, user generated content (UGC) and news.
-This has grown to become the primary data by volume traversing the Internet with an hour of HD video consisting of roughly 1.5-2.5GB of data and streaming is estimated to account for 80-85\% of current global Internet traffic.<a href="#section-1-2" class="pilcrow">¶</a></p>
+This has grown to become the primary data by volume traversing the Internet with an hour of HD video consisting of roughly 1.5-2.5GB of data and streaming is estimated to account for 80-85% of current global Internet traffic.<a href="#section-1-2" class="pilcrow">¶</a></p>
 <p id="section-1-3">The Operational Considerations for Streaming Media <span>[<a href="#RFC9317" class="cite xref">RFC9317</a>]</span> provides a good introduction to the various engineering aspects encountered by streaming platforms in engineering and operating the infrastructure used to meet the global growth in video streaming.<a href="#section-1-3" class="pilcrow">¶</a></p>
 <p id="section-1-4">While early streaming efforts were satified with being able to stream a video to a device successfully without consideration for efficiency or scale, the rapid growth in viewership has pushed platforms to develop sophisticated architectures and designs.<a href="#section-1-4" class="pilcrow">¶</a></p>
 <p id="section-1-5">For video that is prerecorded, such as Video On Demand (VOD) TV and Movie content ans User Generated Content (UGC) distributing the recorded and encoded content using Content Delivery Network (CDN) caches is a common technique to meet demand at scale.
@@ -1320,13 +1326,13 @@ monitoring.<a href="#section-2-1" class="pilcrow">¶</a></p>
         <h3 id="name-network-overlays">
 <a href="#section-2.1" class="section-number selfRef">2.1. </a><a href="#name-network-overlays" class="section-name selfRef">Network Overlays</a>
         </h3>
-<p id="section-2.1-1">The practical consequence of the approaches in <span>[<a href="#RFC7624" class="cite xref">RFC7624</a>]</span> is to often create a network flow that while still carried on the open Internet is in effect
-an new network flow that is overlayed on the underlying base network, namely an Network Overlay goverened by one or more alternate policies, including
-automatically applied encryption even when the application has requeated a non-encrypted connection.<a href="#section-2.1-1" class="pilcrow">¶</a></p>
-<p id="section-2.1-2">Network Overlay's that cause network connection behavior and properties to differ from what the application expects can lead to situations where the application user and operator assume one set of behaviors of the network data flow to be true while in reality one or more different behaviors may occur. This in turn can lead to unanticipated outcomes that can have operational impacts.<a href="#section-2.1-2" class="pilcrow">¶</a></p>
-<p id="section-2.1-3">An example is illustated in figure 1 of different policies for a network overlay vs the underlying base network which the changes the traffic path
-from the Network Overlay having a different routing policy from that of the underlying native base network.<a href="#section-2.1-3" class="pilcrow">¶</a></p>
-<div class="alignLeft art-text artwork" id="section-2.1-4">
+<p id="section-2.1-1">The IETF's privacy enhancement work to address <span>[<a href="#RFC72558" class="cite xref">RFC72558</a>]</span> covers a lot of design choices and policies such as the approach of always-on encryption as shown in the design of QUIC <span>[<a href="#RFC9000" class="cite xref">RFC9000</a>]</span>.   Many of these do not affect video streaming, however those that do impact streaming fall into a class of design choices that can be described as creating a new network overlay, operating as an overlay on top of the underlying native network, but  following one or more different policies than the underlying network or the streaming application would follow on their own.<a href="#section-2.1-1" class="pilcrow">¶</a></p>
+<p id="section-2.1-2">The Network Overlays that have been found by video platform operators to impact streaming operations are those that make policy changes in ways that are not directly visible, selectable, or detectable by the video streaming application or streaming platform.  These changes, when made under the covers and out of visibiltiy to the streaming application, often can make unexpected changes to the streaming pipeline in ways that undermine the architecture choices of the streaming application and platform engineers.<a href="#section-2.1-2" class="pilcrow">¶</a></p>
+<p id="section-2.1-3">Network Overlay's that cause network connection behavior and properties to differ from what the application expects can lead to situations where the application user and operator assume one set of behaviors of the network data flow to be true while in reality one or more different behaviors may occur. This in turn can lead to unanticipated outcomes that can have operational impacts.<a href="#section-2.1-3" class="pilcrow">¶</a></p>
+<p id="section-2.1-4">Changing the encryption policy from that expected by the streaming application, for example changing HTTP urls in manifests into HTTPS connections can disrupt architectures which involve the network being able to detect video flows.<a href="#section-2.1-4" class="pilcrow">¶</a></p>
+<p id="section-2.1-5">Changing routing policy from what is expect by the streaming application can break CDN cache selection logic, resulting in a farther away cache deliverying lower qualify video at higher latency than the closer cache that would be selected by the CDN cache selection logic might.<a href="#section-2.1-5" class="pilcrow">¶</a></p>
+<p id="section-2.1-6">An routing policy change example is illustated in figure 1 of different policies for a network overlay vs the underlying base network which the changes the traffic path from the Network Overlay having a different routing policy from that of the underlying native base network.<a href="#section-2.1-6" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-2.1-7">
 <pre>
  R  = router
                   &lt;--- non-overlay traffic path ---&gt;
@@ -1338,7 +1344,7 @@ from the Network Overlay having a different routing policy from that of the unde
                      &lt;--- overlay traffic path ---&gt;
 
  Figure 1:  Network Overlay routing select traffic via an alternate path
-</pre><a href="#section-2.1-4" class="pilcrow">¶</a>
+</pre><a href="#section-2.1-7" class="pilcrow">¶</a>
 </div>
 <div id="partitioning">
 <section id="section-2.1.1">
@@ -1348,20 +1354,37 @@ from the Network Overlay having a different routing policy from that of the unde
 <p id="section-2.1.1-1">Network Overlay policy changes includes an alternate routing policy since a fundamental aspect of this design is the tunneling of connections through alternate paths to enhance privacy. The reasons for this approach are discussed in the IAB document <a href="https://datatracker.ietf.org/doc/draft-iab-privacy-partitioning/">Partitioning as an Architecture for Privacy</a>.<a href="#section-2.1.1-1" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="policy-changes">
+<div id="procotol-policy-changes">
 <section id="section-2.1.2">
-          <h4 id="name-policy-changes">
-<a href="#section-2.1.2" class="section-number selfRef">2.1.2. </a><a href="#name-policy-changes" class="section-name selfRef">Policy Changes</a>
+          <h4 id="name-procotol-policy-changes">
+<a href="#section-2.1.2" class="section-number selfRef">2.1.2. </a><a href="#name-procotol-policy-changes" class="section-name selfRef">Procotol Policy Changes</a>
           </h4>
-<p id="section-2.1.2-1">Beyond alternate routing policies, network overlays often also make changes to the Source IP Address assignment, and/or selection of the DNS Resolver and/or including protocol conversions/translations such as HTTP2-&gt;HTTP3 and HTTP2-&gt;HTTPS2+TLS, and can include IP layer changes such as IPv4-&gt;IPv6 or IPv6-&gt;IPv6 conversions.<a href="#section-2.1.2-1" class="pilcrow">¶</a></p>
+<p id="section-2.1.2-1">Network overlays have been seen to make application and transport procotol changes from what is expected. Such changes such as HTTP2/tcp into HTTP3/QUIC and HTTP2 into HTTPS2+TLS have been encounted.<a href="#section-2.1.2-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="address-policy-changes">
+<section id="section-2.1.3">
+          <h4 id="name-address-policy-changes">
+<a href="#section-2.1.3" class="section-number selfRef">2.1.3. </a><a href="#name-address-policy-changes" class="section-name selfRef">Address Policy Changes</a>
+          </h4>
+<p id="section-2.1.3-1">IP layer changes such as converting from IPv4 to IPv6 or  IPv6 to IPv4, when unexpected and done invisibly to the appliction can cause both routing and cache selection issue, as well as cause problems in debugging situations causing engineers to not be using the correct address when examinng logs, doing their own test probes etc.<a href="#section-2.1.3-1" class="pilcrow">¶</a></p>
+<p id="section-2.1.3-2">Source IP Address assignement changes, again when done invisibly to the application can cause signifant disruption.  Platform authentication gateways that associate session authorizations with the sessions devices IP address can result in service access denial when associated addresses change unexpectedly.  For example when the devcie addresses as seen by the video application is different from the addresses seen by the associated streaming platform can result in the platform rejecting logins, content access and other service functions from the device.<a href="#section-2.1.3-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="dns-policy-changes">
+<section id="section-2.1.4">
+          <h4 id="name-dns-policy-changes">
+<a href="#section-2.1.4" class="section-number selfRef">2.1.4. </a><a href="#name-dns-policy-changes" class="section-name selfRef">DNS Policy Changes</a>
+          </h4>
+<p id="section-2.1.4-1">Network overlays that change DNS setting have long been an issue for CDN architectures that use DNS as part of their load balancing architecture.  DNS0 information was designed to help CDN cache selection logic by providing more information to the decision making algorithms, so a policy change that changes the DNS resolver excpected by the appliction to a differen resolver that does not support DNS0 can be quite significant.<a href="#section-2.1.4-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="masque">
-<section id="section-2.1.3">
+<section id="section-2.1.5">
           <h4 id="name-masque">
-<a href="#section-2.1.3" class="section-number selfRef">2.1.3. </a><a href="#name-masque" class="section-name selfRef">MASQUE</a>
+<a href="#section-2.1.5" class="section-number selfRef">2.1.5. </a><a href="#name-masque" class="section-name selfRef">MASQUE</a>
           </h4>
-<p id="section-2.1.3-1">Protocols such as MASQUE <span>[<a href="#RFC9484" class="cite xref">RFC9484</a>]</span> and services built on it such as Apple's <a href="https://www.apple.com/privacy/docs/iCloud_Private_Relay_Overview_Dec2021.PDF">iCloud Private Relay</a> are examples of Privacy Enhancing Network Overlays that involve making a number of network policy changes from the open Internet for the connections passed through them.<a href="#section-2.1.3-1" class="pilcrow">¶</a></p>
+<p id="section-2.1.5-1">Protocols such as MASQUE <span>[<a href="#RFC9484" class="cite xref">RFC9484</a>]</span> and services built on it such as Apple's <a href="https://www.apple.com/privacy/docs/iCloud_Private_Relay_Overview_Dec2021.PDF">iCloud Private Relay</a> are examples of Privacy Enhancing Network Overlays that involve making a number of network policy changes from the open Internet for the connections passed through them.<a href="#section-2.1.5-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -1684,6 +1707,10 @@ appear in all capitals, as shown here.<a href="#section-6-1" class="pilcrow">¶<
 <dt id="RFC3234">[RFC3234]</dt>
       <dd>
 <span class="refAuthor">Carpenter, B.</span> and <span class="refAuthor">S. Brim</span>, <span class="refTitle">"Middleboxes: Taxonomy and Issues"</span>, <span class="seriesInfo">RFC 3234</span>, <span class="seriesInfo">DOI 10.17487/RFC3234</span>, <time datetime="2002-02" class="refDate">February 2002</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc3234">https://www.rfc-editor.org/rfc/rfc3234</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC72558">[RFC72558]</dt>
+      <dd>
+<span class="refTitle">"*** BROKEN REFERENCE ***"</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC7258">[RFC7258]</dt>
       <dd>
