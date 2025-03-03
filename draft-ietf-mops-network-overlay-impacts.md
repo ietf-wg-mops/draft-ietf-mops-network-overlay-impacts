@@ -170,9 +170,9 @@ Source IP Address assignment changes, again when done invisibly to the applicati
 
 ### DNS Policy Changes
 
-Network overlays that change DNS setting have long been an issue for CDN architectures that use DNS as part of their load balancing architecture. 
+Network overlays that change DNS setting have long been an issue for CDN architectures that use DNS as part of their load balancing architecture.
 
-#### DNS0 
+#### DNS0
 
 DNS0 extension information was specifically designed to help CDN cache selection logic by providing more information to the decision making algorithms, so a policy change that changes the DNS resolver for an appliction to a different resolver that does not support DNS0 can have quite a significant impact to a video application.
 
