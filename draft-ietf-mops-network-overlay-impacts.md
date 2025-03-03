@@ -62,7 +62,7 @@ Since then the various working groups at the IETF have endevored to address the 
 Protocols like QUIC {{!RFC9000}} are examples of the new generation of IETF protocols with privacy enhancements such as always enabled encryption built directly into their design.
 
 At the same time that the IETF has been diligently enhancing Internet privacy, Internet video streaming has become a part of daily life for billions of viewers with streaming being for many their primary way of watching sports, entertainment, user generated content (UGC) and news.
-This has grown to become the primary data by volume traversing the Internet with an hour of HD video consisting of roughly 1.5-2.5GB of data and streaming is estimated to account for 80-85\% of current global Internet traffic.
+This has grown to become the primary data by volume traversing the Internet with an hour of HD video consisting of roughly 1.5-2.5GB of data and streaming is estimated to account for 80-85% of current global Internet traffic.
 
 The Operational Considerations for Streaming Media {{!RFC9317}} provides a good introduction to the various engineering aspects encountered by streaming platforms in engineering and operating the infrastructure used to meet the global growth in video streaming.
 
@@ -99,14 +99,18 @@ monitoring.
 
 ## Network Overlays
 
-The practical consequence of the approaches in {{!RFC7624}} is to often create a network flow that while still carried on the open Internet is in effect
-an new network flow that is overlayed on the underlying base network, namely an Network Overlay goverened by one or more alternate policies, including
-automatically applied encryption even when the application has requeated a non-encrypted connection.
+The IETF\'s privacy enhancement work to address {{!RFC72558}} covers a lot of design choices and policies such as the approach of always-on encryption as shown in the design of QUIC {{!RFC9000}}.   Many of these do not affect video streaming, however those that do impact streaming fall into a class of design choices that can be described as creating a new network overlay, operating as an overlay on top of the underlying native network, but  following one or more different policies than the underlying network or the streaming application would follow on their own.
+
+The Network Overlays that have been found by video platform operators to impact streaming operations are those that make policy changes in ways that are not directly visible, selectable, or detectable by the video streaming application or streaming platform.  These changes, when made under the covers and out of visibiltiy to the streaming application, often can make unexpected changes to the streaming pipeline in ways that undermine the architecture choices of the streaming application and platform engineers.
 
 Network Overlay's that cause network connection behavior and properties to differ from what the application expects can lead to situations where the application user and operator assume one set of behaviors of the network data flow to be true while in reality one or more different behaviors may occur. This in turn can lead to unanticipated outcomes that can have operational impacts.
 
-An example is illustated in figure 1 of different policies for a network overlay vs the underlying base network which the changes the traffic path
-from the Network Overlay having a different routing policy from that of the underlying native base network.
+Changing the encryption policy from that expected by the streaming application, for example changing HTTP urls in manifests into HTTPS connections can disrupt architectures which involve the network being able to detect video flows.
+
+Changing routing policy from what is expect by the streaming application can break CDN cache selection logic, resulting in a farther away cache deliverying lower qualify video at higher latency than the closer cache that would be selected by the CDN cache selection logic might.
+
+
+An routing policy change example is illustated in figure 1 of different policies for a network overlay vs the underlying base network which the changes the traffic path from the Network Overlay having a different routing policy from that of the underlying native base network.
 
 ~~~
  R  = router
@@ -125,9 +129,21 @@ from the Network Overlay having a different routing policy from that of the unde
 
 Network Overlay policy changes includes an alternate routing policy since a fundamental aspect of this design is the tunneling of connections through alternate paths to enhance privacy. The reasons for this approach are discussed in the IAB document [Partitioning as an Architecture for Privacy](https://datatracker.ietf.org/doc/draft-iab-privacy-partitioning/).
 
-### Policy Changes
+### Procotol Policy Changes
 
-Beyond alternate routing policies, network overlays often also make changes to the Source IP Address assignment, and/or selection of the DNS Resolver and/or including protocol conversions/translations such as HTTP2->HTTP3 and HTTP2->HTTPS2+TLS, and can include IP layer changes such as IPv4->IPv6 or IPv6->IPv6 conversions.
+Network overlays have been seen to make application and transport procotol changes from what is expected. Such changes such as HTTP2/tcp into HTTP3/QUIC and HTTP2 into HTTPS2+TLS have been encounted.
+
+### Address Policy Changes
+
+IP layer changes such as converting from IPv4 to IPv6 or  IPv6 to IPv4, when unexpected and done invisibly to the appliction can cause both routing and cache selection issue, as well as cause problems in debugging situations causing engineers to not be using the correct address when examinng logs, doing their own test probes etc.
+
+Source IP Address assignement changes, again when done invisibly to the application can cause signifant disruption.  Platform authentication gateways that associate session authorizations with the sessions devices IP address can result in service access denial when associated addresses change unexpectedly.  For example when the devcie addresses as seen by the video application is different from the addresses seen by the associated streaming platform can result in the platform rejecting logins, content access and other service functions from the device.
+
+
+### DNS Policy Changes
+
+Network overlays that change DNS setting have long been an issue for CDN architectures that use DNS as part of their load balancing architecture.  DNS0 information was designed to help CDN cache selection logic by providing more information to the decision making algorithms, so a policy change that changes the DNS resolver excpected by the appliction to a differen resolver that does not support DNS0 can be quite significant.
+
 
 ### MASQUE
 
