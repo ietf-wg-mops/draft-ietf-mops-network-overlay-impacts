@@ -77,35 +77,30 @@ Table of Contents
    1.  Introduction
    2.  Internet Privacy Enhancements
      2.1.  Network Overlays
-       2.1.1.  Partitioning
-       2.1.2.  Procotol Policy Changes
-       2.1.3.  Address Policy Changes
-       2.1.4.  DNS Policy Changes
-       2.1.5.  MASQUE
-     2.2.  Making It Easy (for Users) by Working Under the Covers
-   3.  Streaming Video
-     3.1.  Advances in Streaming Video Architecture
-   4.  Emerging Operational Issues with Network Overlay Policy Changes
-     4.1.  CDN interconnection troubleshooting
-     4.2.  Policy Changes Hidden from Applications
-     4.3.  Routing Changes
-       4.3.1.  End to End Problem Discovery
-       4.3.2.  CDN Edge Cache Selection due to Routing
-     4.4.  Changed Encryption Policy
-       4.4.1.  Forced Encryption Upgrade
-       4.4.2.  Forced Encryption Downgrade
-     4.5.  Changed DNS Resolver Selection
-     4.6.  Changed Source IP Address
-     4.7.  Performance and Problem determination
-     4.8.  Impact of Changing Network Routing and other Policies
-       4.8.1.  Middleboxes and learning from the past
-   5.  Appendix A: Network Overlays are different than VPNs
-     5.1.  VPNs typically:
-       5.1.1.  Network Overlays typically:
-   6.  Conventions and Definitions
-   7.  Security Considerations
-   8.  IANA Considerations
-   9.  Normative References
+       2.1.1.  Emerging Operational Issues with Network Overlay Policy
+               Changes
+     2.2.  Policy Changes
+       2.2.1.  Partitioning
+       2.2.2.  Procotol Policy Changes
+       2.2.3.  Encryption Policy
+       2.2.4.  Address Policy Changes
+       2.2.5.  DNS Policy Changes
+       2.2.6.  Log Data Changes
+       2.2.7.  Geo Location & Identification
+       2.2.8.  CDN interconnection troubleshooting
+       2.2.9.  Routing Changes
+   3.  Policy Changes Hidden from Applications
+   4.  Making It Easy (for Users) by Working Under the Covers
+   5.  Streaming Video
+     5.1.  Advances in Streaming Video Architecture
+   6.  Middleboxes and learning from the past
+   7.  Appendix A: Network Overlays are different than VPNs
+     7.1.  VPNs typically:
+       7.1.1.  Network Overlays typically:
+   8.  Conventions and Definitions
+   9.  Security Considerations
+   10. IANA Considerations
+   11. Normative References
    Acknowledgments
    Authors' Addresses
 
@@ -116,7 +111,7 @@ Table of Contents
    [RFC7258].  [RFC7264] explored in greater detail the technical
    threats identified in RFC7258 along with high level descriptions of
    mitigations.  Since then the various working groups at the IETF have
-   endevored to address the specific threats to their respective area
+   endeavored to address the specific threats to their respective area
    and have produced a long list of new RFCs with privacy enhancements
    deliberately and consciously included.  Protocols like QUIC [RFC9000]
    are examples of the new generation of IETF protocols with privacy
@@ -137,22 +132,22 @@ Table of Contents
    streaming platforms in engineering and operating the infrastructure
    used to meet the global growth in video streaming.
 
-   While early streaming efforts were satified with being able to stream
-   a video to a device successfully without consideration for efficiency
-   or scale, the rapid growth in viewership has pushed platforms to
-   develop sophisticated architectures and designs.
+   While early streaming efforts were satisfied with being able to
+   stream a video to a device successfully without consideration for
+   efficiency or scale, the rapid growth in viewership has pushed
+   platforms to develop sophisticated architectures and designs.
 
    For video that is prerecorded, such as Video On Demand (VOD) TV and
    Movie content ans User Generated Content (UGC) distributing the
    recorded and encoded content using Content Delivery Network (CDN)
    caches is a common technique to meet demand at scale.  The IETF CDNi
    working group has done significant work on this and SVTA OpenCaching
-   (svta.org) extends upon CDNi to created a robust implementation of
-   CDN architecture for VOD scaling.  VOD \& UCG streaming typically
-   place a focus on selecting the best CDN cache with the best
-   responsiveness, the shortest network path and fewest of hops to avoid
-   congestion and bandwith limitations that might limit the quality of
-   the video being delivered.
+   (svta.org) extends upon CDNi to create a robust implementation of CDN
+   architecture for VOD scaling.  VOD \& UCG streaming typically place a
+   focus on selecting the best CDN cache with the best responsiveness,
+   the shortest network path and fewest of hops to avoid congestion and
+   bandwidth limitations that might limit the quality of the video being
+   delivered.
 
    The newest frontier in streaming is live streaming, primarily around
    sports events.  Live streaming, like VOD has significant capacity
@@ -160,43 +155,43 @@ Table of Contents
    of thousands to 10-50 million live viewers.  The day of hundreds of
    millions of live viewers for a single event such as a major global
    sporting event is on the near horizon, with no limit in sight on how
-   far growth can go.  Perhaps, one day a signifant portion of the
+   far growth can go.  Perhaps, one day a significant portion of the
    global population will live view an event over the Internet.
 
    Even today, the current viewers levels for large events are pushing
-   the boundaries of video streaming techniqies.  Live also comes with
+   the boundaries of video streaming techniques.  Live also comes with
    new challenges; CDN caching is still used to meet scaling challenges
    for live events, but unlike VOD it can't be prerecorded and
-   prepositioned on CDN caches ahead of the event.  Live sports also
-   brings distinct and important low latency requirements - viewers
-   don't want a big goal spoiled by alerts on their phones, or cheering
-   the street before they see it on their own screen.  The video
-   pipeline used to deliver live streamed events with low latency at
-   high quality is extemely well engineered but is very sensitive to
+   prepositioned on CDN caches ahead of the event.  Live sports
+   streaming also has important low latency requirements - viewers don't
+   want a big goal spoiled by alerts on their phones, or cheering the
+   street before they see it on their own screen.  The video pipeline
+   used to deliver live streamed events with low latency and at high
+   quality is very optimized and as a result is very sensitive to
    interference from unexpected network behaviors and conditions.
 
    The delivery pipelines of VOD, UGC and Live have each been
    engineering and optimized to deliver the highest quality, in the most
    efficient manner over the Internet from platform to viewers.
-   However, increasingly as the responses to [RFC7258] and [RFC7264] are
-   implemented in consumer devices and serivces, they have occasionally
-   introduced undexpected and sometimes non-easily detectable changes to
-   the network behavior and the video pipeline in ways that can
-   interfere with and undermine the efficiencies, scaling and low
-   latency engineering that video platforms have spent considerable
-   time, money and talent developing and deploying to meet user video
-   experience expectations.
+   However, increasingly as consumer products have added responses to
+   [RFC7258] and [RFC7264] to consumer devices and services, they have
+   occasionally introduced unexpected and sometimes non-easily
+   detectable changes to the network behavior and the video pipeline in
+   ways that can interfere with and undermine the efficiencies, scaling
+   and low latency engineering that video platforms have spent
+   considerable time, money and talent developing and deploying to meet
+   user video experience expectations.
 
    The authors readily acknowledge the many challenges and difficulties
    in improving Internet privacy in an area as complex as the Internet
-   while also maintaining compatibiltiy with the wildly varied
+   while also maintaining compatibility with the wildly varied
    applications and uses of the Internet on which users rely upon daily
    in their lives.  This is hard stuff and it's very natural for there
    to be operational considerations that must be understood and folded
    back into architectural designs and consumer products.
 
    This document is intended to document the various impacts that have
-   been observered by streaming applications from a streaming platform
+   been observed by streaming applications from a streaming platform
    operational perspective on the impacts of certain enhanced privacy
    architecture approaches that have been pursued at the IETF.
 
@@ -244,6 +239,27 @@ Table of Contents
    more different behaviors may occur.  This in turn can lead to
    unanticipated outcomes that can have operational impacts.
 
+   Protocols such as MASQUE [RFC9484] and services built on it such as
+   Apple's iCloud Private Relay (https://www.apple.com/privacy/docs/
+   iCloud_Private_Relay_Overview_Dec2021.PDF) are examples of Privacy
+   Enhancing Network Overlays that involve making a number of network
+   policy changes from the open Internet for the connections passed
+   through them.
+
+2.1.1.  Emerging Operational Issues with Network Overlay Policy Changes
+
+   Streaming video applications and the streaming platforms delivering
+   content are starting to encounter various operational challenges
+   related to Network Overlays.  Typically the primary problems are
+   encountered when the network overlay has made policy changes that are
+   either unexpected, are difficult or impossible for the streaming
+   platform to detect, or the changes are inconsistently applied.
+
+   There are a variety of impacts but a few common classes of issues
+   have been observed:
+
+2.2.  Policy Changes
+
    Changing the encryption policy from that expected by the streaming
    application, for example changing HTTP urls in manifests into HTTPS
    connections can disrupt architectures which involve the network being
@@ -272,7 +288,7 @@ Table of Contents
 
  Figure 1:  Network Overlay routing select traffic via an alternate path
 
-2.1.1.  Partitioning
+2.2.1.  Partitioning
 
    Network Overlay policy changes includes an alternate routing policy
    since a fundamental aspect of this design is the tunneling of
@@ -281,50 +297,213 @@ Table of Contents
    an Architecture for Privacy (https://datatracker.ietf.org/doc/draft-
    iab-privacy-partitioning/).
 
-2.1.2.  Procotol Policy Changes
+2.2.2.  Procotol Policy Changes
 
    Network overlays have been seen to make application and transport
-   procotol changes from what is expected.  Such changes such as HTTP2/
-   tcp into HTTP3/QUIC and HTTP2 into HTTPS2+TLS have been encounted.
+   protocol changes from what is expected.  Such changes such as HTTP2/
+   tcp into HTTP3/QUIC and HTTP2 into HTTPS2+TLS are performed by some
+   privacy enhancing approaches, converting what is considered an
+   undersirable protocol choice into what is considered a better
+   alternative, hidden under the covers from the application.
 
-2.1.3.  Address Policy Changes
+   One impact occurs when the protocol change alters the network as seen
+   by the video application.  For instance, a video application may make
+   a test fetch of video inorder to test measure network conditions
+   which will be use to make streaming decisions for the actual content
+   being accessed.  If the application test probe uses HTTP2/tcp to
+   test, but the actual content access request over HTTP2/tcp is
+   converted to HTTP3/QUIC then the video platform does not have
+   accurate results from it test probe which can directly lead to
+   eroneous non-optimal choices by the video player algorithm.
 
-   IP layer changes such as converting from IPv4 to IPv6 or IPv6 to
-   IPv4, when unexpected and done invisibly to the appliction can cause
-   both routing and cache selection issue, as well as cause problems in
-   debugging situations causing engineers to not be using the correct
-   address when examinng logs, doing their own test probes etc.
+2.2.3.  Encryption Policy
 
-   Source IP Address assignement changes, again when done invisibly to
-   the application can cause signifant disruption.  Platform
+   Changing the encryption policy applied to video streams either adding
+   where it wasn't orginally used or removing if it was originally
+   specified can cause a wide range of operational problems.
+
+2.2.3.1.  Forced Encryption Upgrade
+
+   Changing unencrytped HTTP2 to encrypted HTTP2+TLS connects will
+   prohibit streaming workflows that involve content detection as part
+   of the network delivery.  This can result in video traffic not being
+   correctly identified and the incorrect network policies being applied
+   to it.  This is particularly problematic in environments using
+   multicast and in mobile environments.
+
+2.2.3.2.  Forced Encryption Downgrade
+
+   Equally so, removing of encryption applied to the transport stream by
+   a streaming platform would be significantly problematic as such
+   encryption may be part of a content protection and content integrity
+   protections architecture.
+
+2.2.4.  Address Policy Changes
+
+   IP address changes such as converting from IPv4 to IPv6 or IPv6 to
+   IPv4, done unexpectantly or done invisibly to the application can
+   cause both routing and cache selection issues, as well as cause
+   problems in debugging situations causing engineers to not be using
+   the correct address when examining logs, doing their own test probes
+   etc.
+
+   Source IP Address assignment changes, again when done invisibly to
+   the application can cause significant disruption.  Platform
    authentication gateways that associate session authorizations with
    the sessions devices IP address can result in service access denial
-   when associated addresses change unexpectedly.  For example when the
-   devcie addresses as seen by the video application is different from
-   the addresses seen by the associated streaming platform can result in
-   the platform rejecting logins, content access and other service
-   functions from the device.
+   when associated addresses change unexpectedly.  For example, when the
+   device address as seen by the video application is different from the
+   device address seen by the associated streaming platform, this can
+   result in the platform rejecting logins, content access and other
+   service functions from the device.
 
-2.1.4.  DNS Policy Changes
+2.2.5.  DNS Policy Changes
 
    Network overlays that change DNS setting have long been an issue for
    CDN architectures that use DNS as part of their load balancing
-   architecture.  DNS0 information was designed to help CDN cache
-   selection logic by providing more information to the decision making
-   algorithms, so a policy change that changes the DNS resolver
-   excpected by the appliction to a differen resolver that does not
-   support DNS0 can be quite significant.
+   architecture.
 
-2.1.5.  MASQUE
+2.2.5.1.  DNS0
 
-   Protocols such as MASQUE [RFC9484] and services built on it such as
-   Apple's iCloud Private Relay (https://www.apple.com/privacy/docs/
-   iCloud_Private_Relay_Overview_Dec2021.PDF) are examples of Privacy
-   Enhancing Network Overlays that involve making a number of network
-   policy changes from the open Internet for the connections passed
-   through them.
+   DNS0 extension information was specifically designed to help CDN
+   cache selection logic by providing more information to the decision
+   making algorithms, so a policy change that changes the DNS resolver
+   for an appliction to a different resolver that does not support DNS0
+   can have quite a significant impact to a video application.
 
-2.2.  Making It Easy (for Users) by Working Under the Covers
+2.2.6.  Log Data Changes
+
+   Logging is often the first tool used to find and diagnose problems.
+   Network overlays which change policies that result in unexpected and
+   non-understandable log entries on either the user device or the video
+   platform can greatly undermine the use of logs in problem
+   determination and resolution.
+
+2.2.7.  Geo Location & Identification
+
+   Network Overlays that change the apparent location of devices can
+   result in platforms from not being able to properly identify the
+   geospatial location of the user.  It is very common for CDN caches to
+   apply IP address level geolocation to determine in broad terms, such
+   as identifying the country the user is in.  If an overlay changes the
+   apparent origin addresses of video device to one outside the of the
+   address blocks mapped by location providers, then geolocation can
+   fail and users can be denied access to content they otherwise are
+   able to access.
+
+2.2.8.  CDN interconnection troubleshooting
+
+   In a CDN interconnection When 2 CDN domains have to localize a point
+   of failure, they first determine the delivery path and a point of
+   observation where to do measurement.  Then they proceed by dichotomy
+   to determine the domain where the point of failure is.  The issue
+   with overlay networking is the Following : CDNs use their request
+   routing information to determine a point of observation on the
+   delivery path where to do the measurement, as their delivery path is
+   overwritten by the re-routing of the overlay networking, the flow
+   can't be observed at the observation point.
+
+2.2.9.  Routing Changes
+
+   Routing changes which cause connections between video applications
+   and the infrastructure servcices they use can create a large number
+   of problems.
+
+2.2.9.1.  End to End Problem Discovery
+
+   A common issue in video delivery is locating where along the delivery
+   path the video transport is encountering problems.  Often such
+   problems are more complex than the connection not working at but
+   instead involve identifying bottleneck, lost packets, congestion
+   issues.  When the routing changes from what is expected or visible to
+   support tools it becomes an operational trouble spot for users and
+   platform suport to location and determine the source of the problems.
+
+2.2.9.2.  CDN Edge Cache Selection due to Routing
+
+   A significant, and often overlooked problem is the addition of
+   network latency compared to edge CDN caches or access network peering
+   connections.  Routing changes which cause bypassing edge CDN caches
+   and instead choosing less optimal caches
+
+ R  = router
+           <--- non-overlay traffic path --->
+ device -- R ---- R ---- Edge CDN Cache
+            \
+             \
+              \
+               R --- R -- ingest -- R --- R -- egress -- R ------R ---- Less Optimal CDN Cache
+                     <--- overlay traffic path --->
+
+ Figure:  Routing Changes alering CDN Cache selection
+
+2.2.9.3.  Performance and Problem determination
+
+   Network overlays often interfere with the tools used in performance
+   and problem determination.  This is due to either the tool and
+   protocols not able to traverse the alternative route tunnel impacting
+   services ability to diagnose connection and performance problems, or
+   the network overlay itself not supporting the tool and not supporting
+   or carrying the tools functions.
+
+2.2.9.4.  Impact of Changing Network Routing and other Policies
+
+   The problem for streaming applications occurs when the underlying
+   network properties and policies change from what is expected by the
+   streaming application.  In particular when such changes are either
+   hidden or not visible to the streaming application.
+
+   While the open Internet is a dynamic environment, changing of basic
+   network behavior and policies from what is expected as seen from the
+   streaming application, deviate unexpectedly from what the streaming
+   application expects.  This behavior disrupts the optimized streaming
+   delivery architecture for the end-user device.  Changes to Network
+   Policies such the routing, source IP address assigned to the
+   streaming application traffic, DNS resolver choice etc influences
+   this behavior.
+
+   Having a reliable understanding of the delivery path is essential for
+   streaming operators and the introduction of network overlays like
+   those based on technologies such as MASQUE especially when designed
+   to be undetectable by the applications using them has introduced new
+   technical challenges for streaming operators and network operators as
+   well as for their viewers.
+
+   The core problem occurs when changes to network policies are made,
+   often without notification or visibilty to applications and without
+   clear methods of probing to determine and test changed behaviors that
+   affect the streaming application's content delivery path resulting in
+   increased latency, changes of IP address for the application as seen
+   by either the application or the streaming service connection,
+   changes to DNS resolvers being queried and the results returned by
+   DNS, and changes to application transports such as adding or removing
+   outer layer encryption are all problems that have been observed in
+   production streaming platforms.
+
+3.  Policy Changes Hidden from Applications
+
+   One of the central recurring issues with streaming applications
+   running on devices or networks with changed policies due to network
+   overlays is that the changes are often hidden from the applications.
+
+   Applications often find it difficult or even impossible to detect
+   when network policy changes will be active and what they are
+   changing.  For example, a device may have a desingated default DNS
+   resolver for the device, but may have a different resolver selected
+   depending on how the streaming application queries the DNS.
+
+   Likewise, a streaming application might find that one application
+   transport protocol such as HTTP queries will have one set of routing
+   policies applied to it but a different application transport like
+   HTTPS may have a different set of routing policies applied.
+
+   Streaming applications that cannot determine the exact behavior to be
+   expected can prevent the streaming application from making good
+   content source decisions and can prevent appllications from being
+   able to provide reliable feedback and logs when problems are
+   encountered.
+
+4.  Making It Easy (for Users) by Working Under the Covers
 
    Historically, incorporating privacy features into consumer-facing
    products has been complex.  This challenge arises from the need to
@@ -334,26 +513,26 @@ Table of Contents
    users.
 
    Perhaps learning from the lessons of offering too many options, the
-   recent trend in privacy enhancements has steered torward either a
-   very simple "Privacy On or Off" switch or in other cases
-   automatically enabling or "upgrading" to enhance privacy.  Apple's
-   iCloud Private Relay can be easily turned on with a single settings
-   switch, while privacy features such as Encrypted DNS over HTTP and
-   upgrade from HTTP to HTTPS connections have had a number of
-   deployments that automatically enable them for users when possible.
+   recent trend in privacy enhancements has steered toward either a very
+   simple "Privacy On or Off" switch or in other cases automatically
+   enabling or "upgrading" to enhance privacy.  Apple's iCloud Private
+   Relay can be easily turned on with a single settings switch, while
+   privacy features such as Encrypted DNS over HTTP and upgrade from
+   HTTP to HTTPS connections have had a number of deployments that
+   automatically enable them for users when possible.
 
    Keeping with the motto of "Keep It Simple", users are generally not
    provided with granular Network Overlay controls permitting the user
    to select what applications, or what network connections the Network
    Overlay's policies can apply to.
 
-   Adhereing with the "Keep It Simple" approach the application itself
-   has very little connection to privacy enhancing Network Overlays.
+   Adhering to the "Keep It Simple" approach the application itself has
+   very little connection to privacy enhancing Network Overlays.
    Applications generally do not have a means to detect when networking
    policy changes are active.  Applications generally do not have a
    means to access policy change settings or to interact to change them.
 
-3.  Streaming Video
+5.  Streaming Video
 
    Streaming Video, while just one of the many different Internet
    applications does standout from other uses in a number of significant
@@ -399,20 +578,20 @@ Table of Contents
    latency networking and ultra-low-latency video delivery are both
    driven by the use of streaming video.
 
-3.1.  Advances in Streaming Video Architecture
+5.1.  Advances in Streaming Video Architecture
 
    Internet streaming has greatly matured and diversified from its early
    days of viewers watching pre-recorded 320x240, 640x480 standard
-   definiton 480p movies to wired PCs connected to the Internet via
+   definition 480p movies to wired PCs connected to the Internet via
    high-latency, low-bandwidth DSL as early DOCSIS modems.
 
    Streaming has grown to the extent that it has become a daily go-to
    video source world wide for billions of viewers and has expanded from
    pre-recorded movies to encompass every type of video content
    imaginable.  This growth to billions of viewers and the addition of
-   low latency sensistive content and new connectivity options like
-   WiFi, Cellular and Satellite in addition to high-speed DOCSIS and
-   fiber is the world streaming platforms now provide service in.
+   low latency sensitive content and new connectivity options like WiFi,
+   Cellular and Satellite in addition to high-speed DOCSIS and fiber is
+   the world streaming platforms now provide service in.
 
    With the large user base and its usage, the Streaming platforms also
    have significant technical challenges to meet viewer expectations:
@@ -450,169 +629,12 @@ Table of Contents
    optimized around achieving the best experience including low latency
    video delivery to viewing devices.  The open Internet can be
    unpredictable with temporary issues like packet loss, congestion and
-   other conditions.  However, streaming architecture is desinged to
+   other conditions.  However, streaming architecture is designed to
    handle these momentary problems as effectively as possible often
    through use of dynamic adaptive approaches designed into streaming
    protocols and platform components.
 
-4.  Emerging Operational Issues with Network Overlay Policy Changes
-
-   Streaming video applications and the streaming platforms delivering
-   content are starting to encounter various operational challenges
-   related to Network Overlays.  Typically the primary problems are
-   encountered when the network overlay has made policy changes that are
-   either unexpected, are difficult or impossible for the streaming
-   platform to detect, or the changes are inconsitently applied.
-
-   There are a variety of impacts but a few common classes of issues
-   have been observed:
-
-4.1.  CDN interconnection troubleshooting
-
-   In a CDN interconnection When 2 CDN domains have to localize a point
-   of failure, they first determine the delivery path and a point of
-   observation where to do measurement.  Then they proceed by dichotomy
-   to determine the domain where the point of failure is.  The issue
-   with overlay networking is the Following : CDNs use their request
-   routing information to determine a point of observation on the
-   delivery path where to do the measurement, as their delivery path is
-   overwritten by the re-routing of the overlay networking, the flow
-   can't be observed at the observation point.
-
-4.2.  Policy Changes Hidden from Applications
-
-   One of the central recurring issues with streaming applications
-   running on devices or networks with changed policies due to network
-   overlays is that the changes are often hidden from the applications.
-
-   Applications often find it difficult or even impossible to detect
-   when network policy changes will be active and what they are
-   changing.  For example, a device may have a desingated default DNS
-   resolver for the device, but may have a different resolver selected
-   depending on how the streaming application queries the DNS.
-
-   Likewise, a streaming application might find that one application
-   transport protocol such as HTTP queries will have one set of routing
-   policies applied to it but a different application transport like
-   HTTPS may have a different set of routing policies applied.
-
-   Streaming applications that cannot determine the exact behavior to be
-   expected can prevent the streaming application from making good
-   content source decisions and can prevent appllications from being
-   able to provide reliable feedback and logs when problems are
-   encountered.
-
-4.3.  Routing Changes
-
-   Routing changes which cause connections between video applications
-   and the infrastructure servcices they use can create a large number
-   of problems.
-
-4.3.1.  End to End Problem Discovery
-
-   A common issue in video delivery is locating where along the delivery
-   path the video transport is encountering problems.  Often such
-   problems are more complex than the connection not working at but
-   instead involve identifying bottleneck, lost packets, congestion
-   issues.  When the routing changes from what is expected or visible to
-   support tools it becomes an operational trouble spot for users and
-   platform suport to location and determine the source of the problems.
-
-4.3.2.  CDN Edge Cache Selection due to Routing
-
-   A significant, and often overlooked problem is the addition of
-   network latency compared to edge CDN caches or access network peering
-   connections.  Routing changes which cause bypassing edge CDN caches
-   and instead choosing less optimal caches
-
- R  = router
-           <--- non-overlay traffic path --->
- device -- R ---- R ---- Edge CDN Cache
-            \
-             \
-              \
-               R --- R -- ingest -- R --- R -- egress -- R ------R ---- Less Optimal CDN Cache
-                     <--- overlay traffic path --->
-
- Figure:  Routing Changes alering CDN Cache selection
-
-4.4.  Changed Encryption Policy
-
-   Changing the encryption policy applied to video streams either adding
-   where it wasn't orginally used or removing if it was originally
-   specified can cause a wide range of operational problems.
-
-4.4.1.  Forced Encryption Upgrade
-
-   Changing unencrytped HTTP2 to encrypted HTTP2+TLS connects will
-   prohibit streaming workflows that involve content detection as part
-   of the network delivery.  This can result in video traffic not being
-   correctly identified and the incorrect network policies being applied
-   to it.  This is particularly problematic in environments using
-   multicast and in mobile environments.
-
-4.4.2.  Forced Encryption Downgrade
-
-   Equally so, removing of encryption applied to the transport stream by
-   a streaming platform would be significantly problematic as such
-   encryption may be part of a content protection and content integrity
-   protections architecture.
-
-4.5.  Changed DNS Resolver Selection
-
-   DNS Resolver choice changes resulting in less optimal CDN cache
-   selection or bypassing of CDN load balancing direction
-
-4.6.  Changed Source IP Address
-
-   Changing the Source IP Address for the application's connections to
-   Streaming Platform Servers resulting in logging, geofencing, and
-   session management problems
-
-4.7.  Performance and Problem determination
-
-   Network overlays often interfere with the tools used in performance
-   and problem determination.  This is due to either the tool and
-   protocols not able to traverse the alternative route tunnel impacting
-   services ability to diagnose connection and performance problems, or
-   the network overlay itself not supporting the tool and not supporting
-   or carrying the tools functions.
-
-4.8.  Impact of Changing Network Routing and other Policies
-
-   The problem for streaming applications occurs when the underlying
-   network properties and policies change from what is expected by the
-   streaming application.  In particular when such changes are either
-   hidden or not visible to the streaming application.
-
-   While the open Internet is a dynamic environment, changing of basic
-   network behavior and policies from what is expected as seen from the
-   streaming application, deviate unexpectedly from what the streaming
-   application expects.  This behavior disrupts the optimized streaming
-   delivery architecture for the end-user device.  Changes to Network
-   Policies such the routing, source IP address assigned to the
-   streaming application traffic, DNS resolver choice etc influences
-   this behavior.
-
-   Having a reliable understanding of the delivery path is essential for
-   streaming operators and the introduction of network overlays like
-   those based on technologies such as MASQUE especially when designed
-   to be undetectable by the applications using them has introduced new
-   technical challenges for streaming operators and network operators as
-   well as for their viewers.
-
-   The core problem occurs when changes to network policies are made,
-   often without notification or visibilty to applications and without
-   clear methods of probing to determine and test changed behaviors that
-   affect the streaming application's content delivery path resulting in
-   increased latency, changes of IP address for the application as seen
-   by either the application or the streaming service connection,
-   changes to DNS resolvers being queried and the results returned by
-   DNS, and changes to application transports such as adding or removing
-   outer layer encryption are all problems that have been observed in
-   production streaming platforms.
-
-4.8.1.  Middleboxes and learning from the past
+6.  Middleboxes and learning from the past
 
    The IETF has discussed this situation in the past, more than 20 years
    ago in 2002 Middleboxes: Taxonomy and Issues [RFC3234] was published
@@ -620,7 +642,7 @@ Table of Contents
    of hidden changes occuring on the network between the sender and
    receiver.
 
-5.  Appendix A: Network Overlays are different than VPNs
+7.  Appendix A: Network Overlays are different than VPNs
 
    While conceptually similar in many ways to VPN (Virtual Private
    Network) technology, the various network overlay technologies
@@ -640,7 +662,7 @@ Table of Contents
    Whatever the reason, it's work looking at how VPNs differ from the
    Network Overlays being discussed herein.
 
-5.1.  VPNs typically:
+7.1.  VPNs typically:
 
    *  (1) VPNs typically are detectable by both the video application
       and often by the streaming platform.
@@ -656,7 +678,7 @@ Table of Contents
    *  various criteria such as application, destination IP address,
       application protocol etc.
 
-5.1.1.  Network Overlays typically:
+7.1.1.  Network Overlays typically:
 
    *  (1) Network Overlays are often undetectable by video applications
       or by the streaming platform, when in use
@@ -678,7 +700,7 @@ Table of Contents
       applications to interact with them such as getting or setting
       options.
 
-6.  Conventions and Definitions
+8.  Conventions and Definitions
 
    The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
    "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
@@ -686,15 +708,15 @@ Table of Contents
    BCP 14 [RFC2119] [RFC8174] when, and only when, they appear in all
    capitals, as shown here.
 
-7.  Security Considerations
+9.  Security Considerations
 
    TODO Security
 
-8.  IANA Considerations
+10.  IANA Considerations
 
    This document has no IANA actions.
 
-9.  Normative References
+11.  Normative References
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
