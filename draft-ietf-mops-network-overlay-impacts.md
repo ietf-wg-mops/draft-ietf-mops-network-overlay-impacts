@@ -244,6 +244,22 @@ or the streaming service connection, changes to DNS resolvers being queried and 
 application transports such as adding or removing outer layer encryption are all problems that have been observed in
 production streaming platforms.
 
+### Unintended Content Blocking
+
+A strongly undesirable unintended side-effect of network policy changes is the blocking of content to the viewer.   This may be the primary content URLs access
+which are blocked, or possibly advertising fetched from a second URL from the main video content.
+This can be due to policy changes altering device IP addresses, or changes to routing that run afoul of enforced traffic routing policies.
+
+Such blocking may be connected to restrictions built upon data feeds used for geofiltering and georestuctions, for example restriction which block
+delivery to networks identified as either commercial data-centers or other CDNs service network addresses.
+Essentially, running afoul of configurations possibly used to combat security threats that expect streaming viewers to be on home
+or possibly mobile networks, but not in commercial data centersor CDN content networks and so block delivery to IP addresses in those unexpected
+network blocks.  This is more likely to occur in network overlays that shift egress traffic to commeerical or CDN blocks.
+
+This is a particularly troublesome problem to determine as it may appear inconsistently from one streaming session to another.    Small changes in
+URLs in manifests from on session to another, especially on streaming platforms that make use of multi-CDN delivery and may encounter
+different delivery and security protection policies from the different multi-CDN operators invovled.
+
 # Policy Changes Hidden from Applications
 
 One of the central recurring issues with streaming applications running on devices or networks with changed policies due to network overlays is that the changes are often hidden from the applications.
