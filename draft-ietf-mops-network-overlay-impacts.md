@@ -379,5 +379,6 @@ This document has no IANA actions.
 {:numbered="false"}
 
 The authors would like to acknowledge the contributions from the Streaming Video Technology Alliance (SVTA) based on their work studying the impacts of
-network overlays on the streaming platforms. In particular, contributions from Brian Paxton have been very helpful.
+network overlays on the streaming platforms. In particular, contributions from Brian Paxton on observed overlay behavior and comments from Jay Robertson
+have been very helpful.
 
