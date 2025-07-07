@@ -1204,6 +1204,9 @@ CDN cache selection, delivery path choices, traffic classification and content a
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.2.2.9">
                     <p id="section-toc.1-1.2.2.2.2.9.1"><a href="#section-2.2.9" class="auto internal xref">2.2.9</a>.  <a href="#name-routing-changes" class="internal xref">Routing Changes</a></p>
 </li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.2.2.10">
+                    <p id="section-toc.1-1.2.2.2.2.10.1"><a href="#section-2.2.10" class="auto internal xref">2.2.10</a>. <a href="#name-unintended-content-blocking" class="internal xref">Unintended Content Blocking</a></p>
+</li>
                 </ul>
 </li>
             </ul>
@@ -1499,6 +1502,24 @@ application transports such as adding or removing outer layer encryption are all
 production streaming platforms.<a href="#section-2.2.9.4-4" class="pilcrow">¶</a></p>
 </section>
 </div>
+</section>
+</div>
+<div id="unintended-content-blocking">
+<section id="section-2.2.10">
+          <h4 id="name-unintended-content-blocking">
+<a href="#section-2.2.10" class="section-number selfRef">2.2.10. </a><a href="#name-unintended-content-blocking" class="section-name selfRef">Unintended Content Blocking</a>
+          </h4>
+<p id="section-2.2.10-1">A strongly undesirable unintended side-effect of network policy changes is the blocking of content to the viewer.   This may be the primary content URLs access
+which are blocked, or possibly advertising fetched from a second URL from the main video content.
+This can be due to policy changes altering device IP addresses, or changes to routing that run afoul of enforced traffic routing policies.<a href="#section-2.2.10-1" class="pilcrow">¶</a></p>
+<p id="section-2.2.10-2">Such blocking may be connected to restrictions built upon data feeds used for geofiltering and georestuctions, for example restriction which block
+delivery to networks identified as either commercial data-centers or other CDNs service network addresses.
+Essentially, running afoul of configurations possibly used to combat security threats that expect streaming viewers to be on home
+or possibly mobile networks, but not in commercial data centersor CDN content networks and so block delivery to IP addresses in those unexpected
+network blocks.  This is more likely to occur in network overlays that shift egress traffic to commeerical or CDN blocks.<a href="#section-2.2.10-2" class="pilcrow">¶</a></p>
+<p id="section-2.2.10-3">This is a particularly troublesome problem to determine as it may appear inconsistently from one streaming session to another.    Small changes in
+URLs in manifests from on session to another, especially on streaming platforms that make use of multi-CDN delivery and may encounter
+different delivery and security protection policies from the different multi-CDN operators invovled.<a href="#section-2.2.10-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
