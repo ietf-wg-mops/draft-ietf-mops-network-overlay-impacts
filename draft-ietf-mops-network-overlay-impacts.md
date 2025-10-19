@@ -46,22 +46,12 @@ normative:
 informative:
 
 --- abstract
-
-This document examines the operational impacts on streaming video applications 
-resulting from network policy changes introduced by network overlays. Such overlays 
-may alter IP address assignment, transport protocols, routing behavior, or DNS 
-resolution. These changes can, in turn, affect critical aspects of content delivery, 
-including latency, CDN cache selection, delivery path optimization, 
-traffic classification, and content access controls.
+This document examines the operational impacts on streaming video applications resulting from network policy changes introduced by network overlays. Such overlays may alter IP address assignment, transport protocols, routing behavior, or DNS resolution. These changes can, in turn, affect critical aspects of content delivery, including latency, CDN cache selection, delivery path optimization, traffic classification, and content access controls.
 
 --- middle
 
 # Introduction
-Enhancing the privacy of Internet users has been a significant focus of the IETF since the Snowden disclosures and 
-the publication of {{!7258}}. {{!RFC 7264}} explored in greater detail the technical threats identified in RFC7258, 
-and described high-level mitigation approaches.
-
-Since then, IETF working groups have endeavored to address these specific threats, producing a wide range of new 
+Enhancing the privacy of Internet users has been a significant focus of the IETF since the Snowden disclosures and the publication of {{!7258}}. {{!RFC 7264}} explored in greater detail the technical threats identified in RFC7258, and described high-level mitigation approaches. Since then, IETF working groups have endeavored to address these specific threats, producing a wide range of new 
 standards with built-in privacy enhancements. Protocol such as QUIC {{!RFC9000}} is an examples of this new generation: 
 always-enabled encryption and other protections embedded directly into the design.
 
@@ -70,47 +60,22 @@ primary way to watch sports, entertainment, user-generated content (UGC) and new
 volume: an hour of HD video can consume approximately 1.5 – 2.5 GB, and streaming is estimated to account for 80–85% 
 of global Internet traffic. The operational considerations for this growth are documented in {{!RFC 9317}.
 
-Early streaming efforts were focussed simply with making video available on a device. Today’s ecosystem demands 
-high-scale, low-latency delivery, including live events and 4K/8K streams. For prerecorded content such as 
-Video On Demand (VOD) and UGC, distributing encoded content via Content Delivery Network (CDN) caches is a common 
-technique for meeting scale. The IETF's CDNI working group and the Streaming Video Technology Alliance 
-(SVTA at svta.org) have extended these architectures with services like Open Caching.
+Early streaming efforts were focussed simply with making video available on a device. Today’s ecosystem demands high-scale, low-latency delivery, including live events and 4K/8K streams. For prerecorded content such as Video On Demand (VOD) and UGC, distributing encoded content via Content Delivery Network (CDN) caches is a common technique for meeting scale. The IETF's CDNI working group and the Streaming Video Technology Alliance (SVTA at svta.org) have extended these architectures with services like Open Caching.
 
-The newest frontier is live streaming—primarily around major sports events and other high-interest broadcasts. 
-These can involve tens to hundreds of millions of viewers simultaneously and impose strict latency and scale 
-requirements. Live delivery pipelines are highly optimized and sensitive to changes in underlying network behavior.
+The newest frontier is live streaming—primarily around major sports events and other high-interest broadcasts. These can involve tens to hundreds of millions of viewers simultaneously and impose strict latency and scale requirements. Live delivery pipelines are highly optimized and sensitive to changes in underlying network behavior. 
 
-However, as consumer devices and services increasingly incorporate privacy-enhancing features (in response to 
-{{!RFC7258}} and {{!RFC7264}}), they sometimes introduce unexpected or hard-to-detect changes in network behavior. 
-These changes can interfere with—or even undermine—the efficiency, scaling, and low-latency architectures that 
-streaming platforms have invested heavily to build.
+However, as consumer devices and services increasingly incorporate privacy-enhancing features (in response to {{!RFC7258}} and {{!RFC7264}}), they sometimes introduce unexpected or hard-to-detect changes in network behavior. These changes can interfere with—or even undermine—the efficiency, scaling, and low-latency architectures that streaming platforms have invested heavily to build.
 
-The authors acknowledge the many challenges of improving Internet privacy while supporting the vast variety of 
-Internet applications and use cases. This is difficult work, and it is natural that operational considerations must be 
-carefully incorporated into architectural designs.
+The authors acknowledge the many challenges of improving Internet privacy while supporting the vast variety of Internet applications and use cases. This is difficult work, and it is natural that operational considerations must be carefully incorporated into architectural designs.
 
-This document is intended to highlight the negative impacts that have been observed by streaming platforms, from an 
-operational perspective, when privacy-enhancing overlays or other network-policy changes are deployed. It aims to 
-provide insights to application developers, platform architects, and network operators into how such overlays may 
-affect streaming video delivery.
+This document is intended to highlight the negative impacts that have been observed by streaming platforms, from an operational perspective, when privacy-enhancing overlays or other network-policy changes are deployed. It aims to provide insights to application developers, platform architects, and network operators into how such overlays may affect streaming video delivery.
 
 # Internet Privacy Enhancements
-The IETF\’s efforts to strengthen Internet privacy and mitigate pervasive monitoring, as described in 
-{{!RFC7258}}, have driven a series of architectural and protocol-level developments. The initial focus was on 
-encrypting network data flows, most commonly through the wider adoption of Transport Layer Security (TLS). 
-Over time, these efforts have expanded to include policy- and design-level changes—such as modifying routing 
-paths, selecting privacy-preserving DNS resolvers, and introducing encrypted transport protocols—to better 
-obscure and isolate user traffic from observation within the underlying network infrastructure.
+The IETF\’s efforts to strengthen Internet privacy and mitigate pervasive monitoring, as described in {{!RFC7258}}, have driven a series of architectural and protocol-level developments. The initial focus was on encrypting network data flows, most commonly through the wider adoption of Transport Layer Security (TLS). Over time, these efforts have expanded to include policy- and design-level changes—such as modifying routing paths, selecting privacy-preserving DNS resolvers, and introducing encrypted transport protocols—to better obscure and isolate user traffic from observation within the underlying network infrastructure.
 
-The IAB’s {{!RFC7258}} identifies pervasive monitoring as an attack on privacy, while {{!RFC7624}} outlines 
-potential technical and operational responses to mitigate its impact. The development of the QUIC transport 
-protocol, defined in {{!RFC9000}}, exemplifies the application of these principles: QUIC integrates confidentiality, 
-integrity, and authentication into the transport layer itself, ensuring that user data and most protocol metadata 
-remain encrypted by default.
+The IAB’s {{!RFC7258}} identifies pervasive monitoring as an attack on privacy, while {{!RFC7624}} outlines potential technical and operational responses to mitigate its impact. The development of the QUIC transport protocol, defined in {{!RFC9000}}, exemplifies the application of these principles: QUIC integrates confidentiality, integrity, and authentication into the transport layer itself, ensuring that user data and most protocol metadata remain encrypted by default.
 
-Collectively, these privacy-enhancing measures have reshaped how networks and applications interact. However, 
-they also introduce new considerations for operational visibility, traffic management, and performance optimization, 
-which are particularly relevant to streaming video applications.
+Collectively, these privacy-enhancing measures have reshaped how networks and applications interact. However, they also introduce new considerations for operational visibility, traffic management, and performance optimization, which are particularly relevant to streaming video applications.
 
 ## Network Overlays
 
