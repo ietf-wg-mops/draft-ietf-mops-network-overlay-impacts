@@ -155,10 +155,11 @@ In effect, a forced encryption downgrade undermines both security and operationa
 
 ### Address Policy Changes
 
-IP address changes such as converting from IPv4 to IPv6 or  IPv6 to IPv4, done unexpectantly unexpectedlyor done invisibly to the application can cause both routing and cache selection issues, as well as cause problems in debugging situations causing engineers to not be using the correct address when examining logs, doing their own test probes etc.
+Network overlays that modify IP addressing policies—such as converting IPv4 to IPv6, IPv6 to IPv4, or reassigning source IP addresses—can introduce a range of operational challenges for streaming platforms, particularly when these changes occur unexpectedly or are invisible to the application. Such address changes can disrupt routing decisions, CDN cache selection, and traffic localization processes that depend on stable endpoint addresses. They also complicate diagnostic and troubleshooting efforts, as engineers analyzing logs, performing test probes, or correlating session data may inadvertently use incorrect or outdated IP information.
 
 Source IP Address assignment changes, again when done invisibly to the application can cause significant disruption.  Platform authentication gateways that associate session authorizations with the session's device's IP address can result in service access denial when associated addresses change unexpectedly.  For example, when the device address as seen by the video application is different from the device address seen by the associated streaming platform, this can result in the platform rejecting logins, content access and other service functions from the device.
 
+A related issue arises when the source IP address observed by the streaming platform differs from that seen by the client application or device. Because many streaming architectures use IP-based session binding—such as platform authentication gateways that associate user or device authorization with a specific IP address—unannounced address translation can result in service access failures, login rejections, or denied content delivery. For example, when an overlay reassigns or masks the client’s IP address, the streaming platform may interpret this as a new or unauthorized connection, even though the client session remains active. This mismatch can lead to intermittent playback interruptions, degraded user experience, or increased operational complexity for both service providers and network operators.
 
 ### DNS Policy Changes
 
