@@ -122,7 +122,7 @@ While effective for privacy protection, these routing partitions can also alter 
 
 ### Protocol Policy Changes
 
-Network overlays have been observed to alter application and transport protocol changes from those originall selected by the streaming application. In some cases, privacy-enhancing or optimization mechanisms automatically translate connections — for example, converting HTTP/2 over TCP into HTTP/3 over QUIC, or upgrading HTTP/2 sessions to HTTPS with TLS encryption.
+Network overlays have been observed to alter application and transport protocol changes from those originally selected by the streaming application. In some cases, privacy-enhancing or optimization mechanisms automatically translate connections — for example, converting HTTP/2 over TCP into HTTP/3 over QUIC, or upgrading HTTP/2 sessions to HTTPS with TLS encryption.
 Such conversions are typically performed to enforce stronger privacy, security, or efficiency policies, but they may occur without visibility or control by the streaming application.
 
 A key operational impact arises when protocol substitution changes the network characteristics perceived by the video application.
