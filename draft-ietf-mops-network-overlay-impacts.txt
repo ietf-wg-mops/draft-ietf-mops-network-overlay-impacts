@@ -125,15 +125,14 @@ Table of Contents
    80–85% of global Internet traffic.  The operational considerations
    for this growth are documented in [RFC9317].
 
-   Early streaming efforts were focussed simply with making video
-   available on a device.  Today’s ecosystem demands high-scale, low-
-   latency delivery, including live events and 4K/8K streams.  For
-   prerecorded content such as Video On Demand (VOD) and UGC,
-   distributing encoded content via Content Delivery Network (CDN)
-   caches is a common technique for meeting scale.  The IETF's CDNI
-   working group and the Streaming Video Technology Alliance (SVTA at
-   svta.org) have extended these architectures with services like Open
-   Caching.
+   Early streaming efforts were focused simply on making video available
+   on a device.  Today’s ecosystem demands high-scale, low-latency
+   delivery, including live events and 4K/8K streams.  For prerecorded
+   content such as Video On Demand (VOD) and UGC, distributing encoded
+   content via Content Delivery Network (CDN) caches is a common
+   technique for meeting scale.  The IETF's CDNI working group and the
+   Streaming Video Technology Alliance (SVTA at svta.org) have extended
+   these architectures with services like Open Caching.
 
    The newest frontier is live streaming—primarily around major sports
    events and other high-interest broadcasts.  These can involve tens to
@@ -330,7 +329,7 @@ Table of Contents
    In some cases, network overlays or privacy-enhancing systems may
    automatically enforce encryption, converting plaintext HTTP video
    traffic into HTTPS or encapsulating transport flows within encrypted
-   tunnels.While this improves confidentiality, it can also obscure
+   tunnels.  While this improves confidentiality, it can also obscure
    traffic classification and disable optimizations that rely on
    visibility into flow metadata, such as CDN cache selection, adaptive
    bitrate tuning, or Quality-of-Service (QoS) marking.
@@ -529,7 +528,7 @@ Table of Contents
    instead involve identifying bottlenecks, lost packets, and congestion
    issues.  When the routing changes from what is expected or visible to
    support tools it becomes an operational trouble spot for users and
-   platform suport to locate and determine the source of the problems.
+   platform support to locate and determine the source of the problems.
 
 2.2.9.2.  CDN Edge Cache Selection due to Routing
 
@@ -571,7 +570,7 @@ Table of Contents
    application expects.  This behavior disrupts the optimized streaming
    delivery architecture for the end-user device.  Changes to Network
    Policies such as routing, source IP address assigned to the streaming
-   application traffic, DNS resolver choice etc influences this
+   application traffic, DNS resolver choice etc. influences this
    behavior.
 
    Having a reliable understanding of the delivery path is essential for
@@ -603,22 +602,22 @@ Table of Contents
    policies.
 
    Such blocking may be connected to restrictions built upon data feeds
-   used for geofiltering and georestuctions, for example restriction
-   which block delivery to networks identified as either commercial
-   data-centers or other CDNs service network addresses.  Essentially,
+   used for geofiltering and georestrictions, for example restriction
+   which block delivery to networks identified as either commercial data
+   centers or other CDNs service network addresses.  Essentially,
    running afoul of configurations possibly used to combat security
    threats that expect streaming viewers to be on home or possibly
-   mobile networks, but not in commercial data centersor CDN content
+   mobile networks, but not in commercial data centers or CDN content
    networks and so block delivery to IP addresses in those unexpected
    network blocks.  This is more likely to occur in network overlays
-   that shift egress traffic to commeerical or CDN blocks.
+   that shift egress traffic to commerical or CDN blocks.
 
    This is a particularly troublesome problem to determine as it may
    appear inconsistently from one streaming session to another.  Small
    changes in URLs in manifests from on session to another, especially
    on streaming platforms that make use of multi-CDN delivery and may
    encounter different delivery and security protection policies from
-   the different multi-CDN operators invovled.
+   the different multi-CDN operators involed.
 
 3.  Policy Changes Hidden from Applications
 
@@ -778,7 +777,7 @@ Table of Contents
    The IETF has discussed this situation in the past, more than 20 years
    ago in 2002 Middleboxes: Taxonomy and Issues [RFC3234] was published
    capturing the issues with Middleboxes in the network and the effects
-   of hidden changes occuring on the network between the sender and
+   of hidden changes occurring on the network between the sender and
    receiver.
 
 7.  Appendix A: Network Overlays are different than VPNs
@@ -798,7 +797,7 @@ Table of Contents
    due to the very common use of VPNs to bypass geofiltering
    restrictions.
 
-   Whatever the reason, it is worthlooking at how VPNs differ from the
+   Whatever the reason, it is worth looking at how VPNs differ from the
    Network Overlays being discussed herein.
 
 7.1.  VPNs typically:
@@ -825,7 +824,7 @@ Table of Contents
       HTTP2/TCP+TLS on the same device.
 
    *  (3) Network Overlays often only apply to HTTP connections and do
-      not support ICMP, non-HTTP versions of DNS, NTP etc, and various
+      not support ICMP, non-HTTP versions of DNS, NTP etc., and various
       tools used for network measurement, problem determination, and
       network management that are not HTTP based.
 
