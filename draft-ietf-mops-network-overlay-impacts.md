@@ -51,7 +51,7 @@ This document examines the operational impacts on streaming video applications r
 --- middle
 
 # Introduction
-Enhancing the privacy of Internet users has been a significant focus of the IETF since the Snowden disclosures and the publication of {{!7258}}. {{!RFC 7264}} explored in greater detail the technical threats identified in RFC7258, and described high-level mitigation approaches. Since then, IETF working groups have endeavored to address these specific threats, producing a wide range of new standards with built-in privacy enhancements. Protocol such as QUIC {{!RFC9000}} is an examples of this new generation: always-enabled encryption and other protections embedded directly into the design.
+Enhancing the privacy of Internet users has been a significant focus of the IETF since the Snowden disclosures and the publication of {{!RFC7258}}. {{!RFC7264}} explored in greater detail the technical threats identified in RFC7258, and described high-level mitigation approaches. Since then, IETF working groups have endeavored to address these specific threats, producing a wide range of new standards with built-in privacy enhancements. Protocol such as QUIC {{!RFC9000}} is an examples of this new generation: always-enabled encryption and other protections embedded directly into the design.
 
 Meanwhile, Internet video streaming has become part of daily life for billions of viewers. For many, streaming is the primary way to watch sports, entertainment, user-generated content (UGC) and news. It has grown to dominate Internet volume: an hour of HD video can consume approximately 1.5 – 2.5 GB, and streaming is estimated to account for 80–85% of global Internet traffic. The operational considerations for this growth are documented in {{!RFC 9317}.
 
