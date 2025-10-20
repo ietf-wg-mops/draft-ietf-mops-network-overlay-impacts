@@ -128,7 +128,7 @@ Table of Contents
    Early streaming efforts were focused simply on making video available
    on a device.  Today’s ecosystem demands high-scale, low-latency
    delivery, including live events and 4K/8K streams.  For prerecorded
-   content such as Video On Demand (VOD) and UGC, distributing encoded
+   content such as Video on Demand (VOD) and UGC, distributing encoded
    content via Content Delivery Network (CDN) caches is a common
    technique for meeting scale.  The IETF's CDNI working group and the
    Streaming Video Technology Alliance (SVTA at svta.org) have extended
@@ -532,8 +532,8 @@ Table of Contents
 
 2.2.9.2.  CDN Edge Cache Selection due to Routing
 
-   A significant, and often overlooked problem is the addition of
-   network latency compared to edge CDN caches or access network peering
+   A significant and often overlooked problem is the addition of network
+   latency compared to edge CDN caches or access network peering
    connections.  Routing changes which cause bypassing edge CDN caches
    and instead choosing less optimal caches
 
@@ -561,8 +561,8 @@ Table of Contents
 
    The problem for streaming applications occurs when the underlying
    network properties and policies change from what is expected by the
-   streaming application.  In particular when such changes are either
-   hidden or not visible to the streaming application.
+   streaming application, especially when such changes are either hidden
+   or not visible to the streaming application.
 
    While the open Internet is a dynamic environment, changing of basic
    network behavior and policies from what is expected as seen from the
@@ -628,7 +628,7 @@ Table of Contents
    Applications often find it difficult or even impossible to detect
    when network policy changes will be active and what they are
    changing.  For example, a device may have a designated default DNS
-   resolver for the device, but may have a different resolver selected
+   resolver for the device but may have a different resolver selected
    depending on how the streaming application queries the DNS.
 
    Likewise, a streaming application might find that one application
@@ -656,7 +656,7 @@ Table of Contents
    enabling or "upgrading" to enhance privacy.  Apple's iCloud Private
    Relay can be easily turned on with a single settings switch, while
    privacy features such as Encrypted DNS over HTTP and upgrade from
-   HTTP to HTTPS connections have had a number of deployments that
+   HTTP to HTTPS connections have had a several deployments that
    automatically enable them for users when possible.
 
    Keeping with the motto of "Keep It Simple", users are generally not
@@ -673,14 +673,14 @@ Table of Contents
 5.  Streaming Video
 
    Streaming Video, while just one of the many different Internet
-   applications does standout from other uses in a number of significant
+   applications does standout from other uses in several significant
    ways that perhaps merit some amount of special consideration in
    understanding and addressing the impacts caused by particular privacy
    enhancing design and service offering choices.
 
    Firstly, Streaming video operates at a hard to imagine scale -
-   streaming video is served globally to more than 2 billion user daily
-   currently and continuing to grow in leaps and bounds.
+   streaming video is served globally to more than 2 billion users daily
+   and continues to grow in leaps and bounds.
 
    Secondly, the content types delivered through streaming has evolved
    from the pre-recorded low-resolution, low-bit rate, latency tolerant
@@ -735,25 +735,25 @@ Table of Contents
    have significant technical challenges to meet viewer expectations:
 
    *  (1) Delivery scales that commonly range from hundreds of thousands
-      to many millions of viewers simultaneously, with billions of views
-      globally daily;
+      to many millions of viewers simultaneously, with billions of daily
+      global views.
 
    *  (2) Low latency demands from live sports, live events and live
-      streamed content;
+      streamed content.
 
-   *  (3) content resolutions and corresponding formats which have
+   *  (3) Content resolutions and corresponding formats which have
       jumped from the days of SD-480p to 4K (3840x2160) and 8K
       (7680x4320) along with bit rates which can had data needs of
       10-24+ Mbps for 4K with 8K demanding 40 Mbps under extreme
-      compression and 150-300 Mbps for high quality such as cinema;
+      compression and 150-300 Mbps for high quality such as cinema.
 
-   *  (4) devices with very diverse capabilities low-cost streaming
-      sticks, to Smart TVs, tablets, phones, and game consoles;
+   *  (4) Devices with very diverse capabilities low-cost streaming
+      sticks, to Smart TVs, tablets, phones, and game consoles.
 
-   *  (5) broad range of connectivity choices including WiFi, Gig speed-
-      low latency DOCSIS, Fiber, satellite, and 5G cellular networks;
+   *  (5) Broad range of connectivity choices including WiFi, Gig speed-
+      low latency DOCSIS, Fiber, satellite, and 5G cellular networks.
 
-   *  (6) application transport protocols including MPEG DASH, HLS,
+   *  (6) Application transport protocols including MPEG DASH, HLS,
       HTTP2/TCP, HTTP3/QUIC, WebRTC, Media over QUIC (MoQ) and specialty
       application transports such as SRT, HESP etc.
 
@@ -909,8 +909,8 @@ Acknowledgments
    The authors would like to acknowledge the contributions from the
    Streaming Video Technology Alliance (SVTA) based on their work
    studying the impacts of network overlays on the streaming platforms.
-   In particular, contributions from Brian Paxton on observed overlay
-   behavior and comments from Jay Robertson have been very helpful.
+   The contributions from Brian Paxton on observed overlay behavior and
+   comments from Jay Robertson have been very helpful.
 
 Authors' Addresses
 
