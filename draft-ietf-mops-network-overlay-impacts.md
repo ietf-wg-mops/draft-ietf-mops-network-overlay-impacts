@@ -46,23 +46,27 @@ normative:
 informative:
 
 --- abstract
-This document examines the operational impacts on streaming video applications resulting from network policy changes introduced by network overlays. Such overlays may alter IP address assignment, transport protocols, routing behavior, or DNS resolution. These changes can, in turn, affect critical aspects of content delivery, including latency, CDN cache selection, delivery path optimization, traffic classification, and content access controls.
+This document examines the operational impacts on streaming video applications resulting from network policy changes introduced by network overlays.
+Such overlays may alter IP address assignment, transport protocols, routing behavior, or DNS resolution. These changes can, in turn, affect critical
+aspects of content delivery, including latency, CDN cache selection, delivery path optimization, traffic classification, and content access controls.
 
 --- middle
 
 # Introduction
-Enhancing the privacy of Internet users has been a significant focus of the IETF since the Snowden disclosures and the publication of {{!7258}}. {{!RFC 7264}} explored in greater detail the technical threats identified in RFC7258, and described high-level mitigation approaches. Since then, IETF working groups have endeavored to address these specific threats, producing a wide range of new 
-standards with built-in privacy enhancements. Protocol such as QUIC {{!RFC9000}} is an examples of this new generation: 
+Enhancing the privacy of Internet users has been a significant focus of the IETF since the Snowden disclosures and the publication of {{!7258}}.
+{{!RFC 7264}} explored in greater detail the technical threats identified in RFC7258, and described high-level mitigation approaches. Since then,
+IETF working groups have endeavored to address these specific threats, producing a wide range of new
+standards with built-in privacy enhancements. Protocol such as QUIC {{!RFC9000}} is an examples of this new generation:
 always-enabled encryption and other protections embedded directly into the design.
 
 Meanwhile, Internet video streaming has become part of daily life for billions of viewers. For many, streaming is the 
-primary way to watch sports, entertainment, user-generated content (UGC) and news. It has grown to dominate Internet 
-volume: an hour of HD video can consume approximately 1.5 – 2.5 GB, and streaming is estimated to account for 80–85% 
+primary way to watch sports, entertainment, user-generated content (UGC) and news. It has grown to dominate Internet
+volume: an hour of HD video can consume approximately 1.5 – 2.5 GB, and streaming is estimated to account for 80–85%
 of global Internet traffic. The operational considerations for this growth are documented in {{!RFC 9317}.
 
 Early streaming efforts were focussed simply with making video available on a device. Today’s ecosystem demands high-scale, low-latency delivery, including live events and 4K/8K streams. For prerecorded content such as Video On Demand (VOD) and UGC, distributing encoded content via Content Delivery Network (CDN) caches is a common technique for meeting scale. The IETF's CDNI working group and the Streaming Video Technology Alliance (SVTA at svta.org) have extended these architectures with services like Open Caching.
 
-The newest frontier is live streaming—primarily around major sports events and other high-interest broadcasts. These can involve tens to hundreds of millions of viewers simultaneously and impose strict latency and scale requirements. Live delivery pipelines are highly optimized and sensitive to changes in underlying network behavior. 
+The newest frontier is live streaming—primarily around major sports events and other high-interest broadcasts. These can involve tens to hundreds of millions of viewers simultaneously and impose strict latency and scale requirements. Live delivery pipelines are highly optimized and sensitive to changes in underlying network behavior.
 
 However, as consumer devices and services increasingly incorporate privacy-enhancing features (in response to {{!RFC7258}} and {{!RFC7264}}), they sometimes introduce unexpected or hard-to-detect changes in network behavior. These changes can interfere with—or even undermine—the efficiency, scaling, and low-latency architectures that streaming platforms have invested heavily to build.
 
@@ -313,7 +317,7 @@ With the large user base and its usage, the Streaming platforms also have signif
 * (1) Delivery scales that commonly range from hundreds of thousands to many millions of viewers simultaneously, with billions of views globally daily;
 * (2) Low latency demands from live sports, live events and live streamed content;
 * (3) content resolutions and corresponding formats which have jumped from the days of SD-480p to 4K (3840x2160) and 8K (7680x4320) along with bit rates which can had data needs of 10-24+ Mbps for 4K with 8K demanding 40 Mbps under extreme compression and 150-300 Mbps for high quality such as cinema;
-* (4) devices with very diverse capabilities low-cost streaming sticks, to Smart TVs, tablets, phones, and game consoles
+* (4) devices with very diverse capabilities low-cost streaming sticks, to Smart TVs, tablets, phones, and game consoles;
 * (5) broad range of connectivity choices including WiFi, Gig speed-low latency DOCSIS, Fiber, satellite, and 5G cellular networks;
 * (6) application transport protocols including MPEG DASH, HLS, HTTP2/TCP, HTTP3/QUIC, WebRTC, Media over QUIC (MoQ) and specialty application transports such as SRT, HESP etc.
 
