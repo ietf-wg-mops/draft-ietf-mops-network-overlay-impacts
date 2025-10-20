@@ -55,7 +55,7 @@ Enhancing the privacy of Internet users has been a significant focus of the IETF
 
 Meanwhile, Internet video streaming has become part of daily life for billions of viewers. For many, streaming is the primary way to watch sports, entertainment, user-generated content (UGC) and news. It has grown to dominate Internet volume: an hour of HD video can consume approximately 1.5 – 2.5 GB, and streaming is estimated to account for 80–85% of global Internet traffic. The operational considerations for this growth are documented in {{!RFC9317}}.
 
-Early streaming efforts were focused simply on making video available on a device. Today’s ecosystem demands high-scale, low-latency delivery, including live events and 4K/8K streams. For prerecorded content such as Video On Demand (VOD) and UGC, distributing encoded content via Content Delivery Network (CDN) caches is a common technique for meeting scale. The IETF's CDNI working group and the Streaming Video Technology Alliance (SVTA at svta.org) have extended these architectures with services like Open Caching.
+Early streaming efforts were focused simply on making video available on a device. Today’s ecosystem demands high-scale, low-latency delivery, including live events and 4K/8K streams. For prerecorded content such as Video on Demand (VOD) and UGC, distributing encoded content via Content Delivery Network (CDN) caches is a common technique for meeting scale. The IETF's CDNI working group and the Streaming Video Technology Alliance (SVTA at svta.org) have extended these architectures with services like Open Caching.
 
 The newest frontier is live streaming—primarily around major sports events and other high-interest broadcasts. These can involve tens to hundreds of millions of viewers simultaneously and impose strict latency and scale requirements. Live delivery pipelines are highly optimized and sensitive to changes in underlying network behavior.
 
@@ -199,7 +199,7 @@ visible to support tools it becomes an operational trouble spot for users and pl
 
 #### CDN Edge Cache Selection due to Routing
 
-A significant, and often overlooked problem is the addition of network latency compared to edge CDN caches or access network peering connections.  Routing changes which cause bypassing edge CDN caches and instead choosing less optimal caches
+A significant and often overlooked problem is the addition of network latency compared to edge CDN caches or access network peering connections.  Routing changes which cause bypassing edge CDN caches and instead choosing less optimal caches
 
 ~~~
  R  = router
@@ -220,7 +220,7 @@ Network overlays often interfere with the tools used in performance and problem 
 
 #### Impact of Changing Network Routing and other Policies
 
-The problem for streaming applications occurs when the underlying network properties and policies change from what is expected by the streaming application. In particular when such changes are either hidden or not visible to the streaming application.
+The problem for streaming applications occurs when the underlying network properties and policies change from what is expected by the streaming application, especially when such changes are either hidden or not visible to the streaming application.
 
 While the open Internet is a dynamic environment, changing of basic network behavior and policies from what is expected as seen from the streaming application,  deviates unexpectedly from what the streaming application expects. This behavior disrupts the optimized streaming delivery architecture for the end-user device.
 Changes to Network Policies such as routing, source IP address assigned to the streaming application traffic, DNS resolver choice etc. influences this behavior.
@@ -241,7 +241,7 @@ This is a particularly troublesome problem to determine as it may appear inconsi
 
 One of the central recurring issues with streaming applications running on devices or networks with changed policies due to network overlays is that the changes are often hidden from the applications.
 
-Applications often find it difficult or even impossible to detect when network policy changes will be active and what they are changing.   For example, a device may have a designated default DNS resolver for the device, but may have a different resolver selected depending on how the streaming application queries the DNS.
+Applications often find it difficult or even impossible to detect when network policy changes will be active and what they are changing.   For example, a device may have a designated default DNS resolver for the device but may have a different resolver selected depending on how the streaming application queries the DNS.
 
 Likewise, a streaming application might find that one application transport protocol such as HTTP queries will have one set of routing policies applied to it but a different application transport like HTTPS may have a different set of routing policies applied.
 
@@ -251,7 +251,7 @@ Streaming applications that cannot determine the exact behavior to be expected c
 
 Historically, incorporating privacy features into consumer-facing products has been complex. This challenge arises from the need to address a wide range of use cases while also offering users easy access to advanced privacy frameworks and taxonomies. Many attempts have been made and very few have achieved finding success with end users.
 
-Perhaps learning from the lessons of offering too many options, the recent trend in privacy enhancements has steered toward either a very simple \"Privacy On or Off\" switch or in other cases automatically enabling or \"upgrading\" to enhance privacy.   Apple\'s iCloud Private Relay can be easily turned on with a single settings switch, while privacy features such as Encrypted DNS over HTTP and upgrade from HTTP to HTTPS connections have had a number of deployments that automatically enable them for users when possible.
+Perhaps learning from the lessons of offering too many options, the recent trend in privacy enhancements has steered toward either a very simple \"Privacy On or Off\" switch or in other cases automatically enabling or \"upgrading\" to enhance privacy.   Apple\'s iCloud Private Relay can be easily turned on with a single settings switch, while privacy features such as Encrypted DNS over HTTP and upgrade from HTTP to HTTPS connections have had a several deployments that automatically enable them for users when possible.
 
 Keeping with the motto of "Keep It Simple", users are generally not provided with granular Network Overlay controls permitting the user to select what applications, or what network connections the Network Overlay policies can apply to.
 
@@ -259,9 +259,9 @@ Adhering to the "Keep It Simple" approach the application itself has very little
 
 # Streaming Video
 
-Streaming Video, while just one of the many different Internet applications does standout from other uses in a number of significant ways that perhaps merit some amount of special consideration in understanding and addressing the impacts caused by particular privacy enhancing design and service offering choices.
+Streaming Video, while just one of the many different Internet applications does standout from other uses in several significant ways that perhaps merit some amount of special consideration in understanding and addressing the impacts caused by particular privacy enhancing design and service offering choices.
 
-Firstly, Streaming video operates at a hard to imagine scale - streaming video is served globally to more than 2 billion user daily currently and continuing to grow in leaps and bounds.
+Firstly, Streaming video operates at a hard to imagine scale - streaming video is served globally to more than 2 billion users daily and continues to grow in leaps and bounds.
 
 Secondly, the content types delivered through streaming has evolved from  the pre-recorded low-resolution, low-bit rate, latency tolerant video-on-demand movies, live or pre-recorded TV shows, and user generated videos delivered by pioneering streaming platforms to now including low-latency 4K and 8K live sports events, while also evolving the pre-recorded content with high-bit rate such as 4K and 8K cinema quality and High Dynamic Range (HDR) lighting.
 
@@ -279,12 +279,12 @@ Streaming has grown to the extent that it has become a daily go-to video source 
 
 With the large user base and its usage, the Streaming platforms also have significant technical challenges to meet viewer expectations:
 
-* (1) Delivery scales that commonly range from hundreds of thousands to many millions of viewers simultaneously, with billions of views globally daily;
-* (2) Low latency demands from live sports, live events and live streamed content;
-* (3) content resolutions and corresponding formats which have jumped from the days of SD-480p to 4K (3840x2160) and 8K (7680x4320) along with bit rates which can had data needs of 10-24+ Mbps for 4K with 8K demanding 40 Mbps under extreme compression and 150-300 Mbps for high quality such as cinema;
-* (4) devices with very diverse capabilities low-cost streaming sticks, to Smart TVs, tablets, phones, and game consoles;
-* (5) broad range of connectivity choices including WiFi, Gig speed-low latency DOCSIS, Fiber, satellite, and 5G cellular networks;
-* (6) application transport protocols including MPEG DASH, HLS, HTTP2/TCP, HTTP3/QUIC, WebRTC, Media over QUIC (MoQ) and specialty application transports such as SRT, HESP etc.
+* (1) Delivery scales that commonly range from hundreds of thousands to many millions of viewers simultaneously, with billions of daily global views.
+* (2) Low latency demands from live sports, live events and live streamed content.
+* (3) Content resolutions and corresponding formats which have jumped from the days of SD-480p to 4K (3840x2160) and 8K (7680x4320) along with bit rates which can had data needs of 10-24+ Mbps for 4K with 8K demanding 40 Mbps under extreme compression and 150-300 Mbps for high quality such as cinema.
+* (4) Devices with very diverse capabilities low-cost streaming sticks, to Smart TVs, tablets, phones, and game consoles.
+* (5) Broad range of connectivity choices including WiFi, Gig speed-low latency DOCSIS, Fiber, satellite, and 5G cellular networks.
+* (6) Application transport protocols including MPEG DASH, HLS, HTTP2/TCP, HTTP3/QUIC, WebRTC, Media over QUIC (MoQ) and specialty application transports such as SRT, HESP etc.
 
 To meet these challenges streaming platforms have significantly invested in developing delivery architectures that are built with detailed understandings of each element in the content delivery pathway, starting from the content capture all the way through to the screen of the viewer.
 
@@ -335,5 +335,5 @@ This document has no IANA actions.
 # Acknowledgments
 {:numbered="false"}
 
-The authors would like to acknowledge the contributions from the Streaming Video Technology Alliance (SVTA) based on their work studying the impacts of network overlays on the streaming platforms. In particular, contributions from Brian Paxton on observed overlay behavior and comments from Jay Robertson have been very helpful.
+The authors would like to acknowledge the contributions from the Streaming Video Technology Alliance (SVTA) based on their work studying the impacts of network overlays on the streaming platforms. The contributions from Brian Paxton on observed overlay behavior and comments from Jay Robertson have been very helpful.
 
