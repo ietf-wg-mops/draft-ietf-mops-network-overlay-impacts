@@ -55,7 +55,7 @@ Enhancing the privacy of Internet users has been a significant focus of the IETF
 
 Meanwhile, Internet video streaming has become part of daily life for billions of viewers. For many, streaming is the primary way to watch sports, entertainment, user-generated content (UGC) and news. It has grown to dominate Internet volume: an hour of HD video can consume approximately 1.5 – 2.5 GB, and streaming is estimated to account for 80–85% of global Internet traffic. The operational considerations for this growth are documented in {{!RFC9317}}.
 
-Early streaming efforts were focussed simply with making video available on a device. Today’s ecosystem demands high-scale, low-latency delivery, including live events and 4K/8K streams. For prerecorded content such as Video On Demand (VOD) and UGC, distributing encoded content via Content Delivery Network (CDN) caches is a common technique for meeting scale. The IETF's CDNI working group and the Streaming Video Technology Alliance (SVTA at svta.org) have extended these architectures with services like Open Caching.
+Early streaming efforts were focused simply on making video available on a device. Today’s ecosystem demands high-scale, low-latency delivery, including live events and 4K/8K streams. For prerecorded content such as Video On Demand (VOD) and UGC, distributing encoded content via Content Delivery Network (CDN) caches is a common technique for meeting scale. The IETF's CDNI working group and the Streaming Video Technology Alliance (SVTA at svta.org) have extended these architectures with services like Open Caching.
 
 The newest frontier is live streaming—primarily around major sports events and other high-interest broadcasts. These can involve tens to hundreds of millions of viewers simultaneously and impose strict latency and scale requirements. Live delivery pipelines are highly optimized and sensitive to changes in underlying network behavior.
 
@@ -129,7 +129,7 @@ This mismatch can lead to inaccurate bandwidth estimation, causing the adaptive 
 
 Changes to the encryption policy applied to video streams — whether by adding encryption where it was not originally used, or by removing or terminating encryption where it was expected — can introduce significant operational challenges for streaming applications and delivery networks.
 
-In some cases, network overlays or privacy-enhancing systems may automatically enforce encryption, converting plaintext HTTP video traffic into HTTPS or encapsulating transport flows within encrypted tunnels.While this improves confidentiality, it can also obscure traffic classification and disable optimizations that rely on visibility into flow metadata, such as CDN cache selection, adaptive bitrate tuning, or Quality-of-Service (QoS) marking.
+In some cases, network overlays or privacy-enhancing systems may automatically enforce encryption, converting plaintext HTTP video traffic into HTTPS or encapsulating transport flows within encrypted tunnels. While this improves confidentiality, it can also obscure traffic classification and disable optimizations that rely on visibility into flow metadata, such as CDN cache selection, adaptive bitrate tuning, or Quality-of-Service (QoS) marking.
 
 Conversely, if encryption is removed or terminated prematurely, such as through a proxy that decrypts and re-encrypts video traffic, it can violate end-to-end security assumptions made by the application or CDN, potentially exposing content or user data to unauthorized inspection.
 
@@ -195,7 +195,7 @@ When routing behavior differs from what the video platform or application expect
 
 A common issue in video delivery is locating where along the delivery path the video transport is encountering problems.   Often such problems are more complex than
 the connection not working at but instead involve identifying bottlenecks, lost packets, and congestion issues.   When the routing changes from what is expected or
-visible to support tools it becomes an operational trouble spot for users and platform suport to locate and determine the source of the problems.
+visible to support tools it becomes an operational trouble spot for users and platform support to locate and determine the source of the problems.
 
 #### CDN Edge Cache Selection due to Routing
 
@@ -223,7 +223,7 @@ Network overlays often interfere with the tools used in performance and problem 
 The problem for streaming applications occurs when the underlying network properties and policies change from what is expected by the streaming application. In particular when such changes are either hidden or not visible to the streaming application.
 
 While the open Internet is a dynamic environment, changing of basic network behavior and policies from what is expected as seen from the streaming application,  deviates unexpectedly from what the streaming application expects. This behavior disrupts the optimized streaming delivery architecture for the end-user device.
-Changes to Network Policies such as routing, source IP address assigned to the streaming application traffic, DNS resolver choice etc influences this behavior.
+Changes to Network Policies such as routing, source IP address assigned to the streaming application traffic, DNS resolver choice etc. influences this behavior.
 
 Having a reliable understanding of the delivery path is essential for streaming operators and the introduction of network overlays like those based on technologies such as MASQUE especially when designed to be undetectable by the applications using them has introduced new technical challenges for streaming operators and network operators as well as for their viewers.
 
@@ -233,9 +233,9 @@ The core problem occurs when changes to network policies are made often without 
 
 A strongly undesirable unintended side-effect of network policy changes is the blocking of content to the viewer.   This may be the primary content URLs access which are blocked, or possibly advertising fetched from a second URL from the main video content. This can be due to policy changes altering device IP addresses, or changes to routing that run afoul of enforced traffic routing policies.
 
-Such blocking may be connected to restrictions built upon data feeds used for geofiltering and georestuctions, for example restriction which block delivery to networks identified as either commercial data-centers or other CDNs service network addresses. Essentially, running afoul of configurations possibly used to combat security threats that expect streaming viewers to be on home or possibly mobile networks, but not in commercial data centersor CDN content networks and so block delivery to IP addresses in those unexpected network blocks.  This is more likely to occur in network overlays that shift egress traffic to commeerical or CDN blocks.
+Such blocking may be connected to restrictions built upon data feeds used for geofiltering and georestrictions, for example restriction which block delivery to networks identified as either commercial data centers or other CDNs service network addresses. Essentially, running afoul of configurations possibly used to combat security threats that expect streaming viewers to be on home or possibly mobile networks, but not in commercial data centers or CDN content networks and so block delivery to IP addresses in those unexpected network blocks.  This is more likely to occur in network overlays that shift egress traffic to commerical or CDN blocks.
 
-This is a particularly troublesome problem to determine as it may appear inconsistently from one streaming session to another.    Small changes in URLs in manifests from on session to another, especially on streaming platforms that make use of multi-CDN delivery and may encounter different delivery and security protection policies from the different multi-CDN operators invovled.
+This is a particularly troublesome problem to determine as it may appear inconsistently from one streaming session to another.    Small changes in URLs in manifests from on session to another, especially on streaming platforms that make use of multi-CDN delivery and may encounter different delivery and security protection policies from the different multi-CDN operators involed.
 
 # Policy Changes Hidden from Applications
 
@@ -293,7 +293,7 @@ Streaming applications are part of an end-to-end architecture that is optimized 
 
 # Middleboxes and learning from the past
 
-The IETF has discussed this situation in the past, more than 20 years ago in 2002 Middleboxes: Taxonomy and Issues {{!RFC3234}} was published capturing the issues with Middleboxes in the network and the effects of hidden changes occuring on the network between the sender and receiver.
+The IETF has discussed this situation in the past, more than 20 years ago in 2002 Middleboxes: Taxonomy and Issues {{!RFC3234}} was published capturing the issues with Middleboxes in the network and the effects of hidden changes occurring on the network between the sender and receiver.
 
 # Appendix A: Network Overlays are different than VPNs
 
@@ -301,7 +301,7 @@ While conceptually similar in many ways to VPN (Virtual Private Network) technol
 
 It is also worth noting that one reason why the issues discussed in this document have not been concern with regard to VPNs is that largely VPNs have not been a pervasive way to stream video.   First, many VPNs have not had very good or consistent throughput compared to the direct open Internet and so provide a poor viewing experience.  Second, many video platforms block or deny service to VPN connections due to the very common use of VPNs to bypass geofiltering restrictions.
 
-Whatever the reason, it is worthlooking at how VPNs differ from the Network Overlays being discussed herein.
+Whatever the reason, it is worth looking at how VPNs differ from the Network Overlays being discussed herein.
 
 ### VPNs typically:
 
@@ -313,7 +313,7 @@ Whatever the reason, it is worthlooking at how VPNs differ from the Network Over
 
 * (1) Network Overlays are often undetectable by video applications or by the streaming platform, when in use.
 * (2) Network Overlays often only apply to specific application transports such as HTTP2/TCP or HTTP3/QUIC while not applying to HTTP2/TCP+TLS on the same device.
-* (3) Network Overlays often only apply to HTTP connections and do not support ICMP, non-HTTP versions of DNS, NTP etc, and various tools used for network measurement, problem determination, and network management that are not HTTP based.
+* (3) Network Overlays often only apply to HTTP connections and do not support ICMP, non-HTTP versions of DNS, NTP etc., and various tools used for network measurement, problem determination, and network management that are not HTTP based.
 + (4) Network Overlays do not expose to applications any means for the application to discover the policy changes the overlay will apply to the applications network connections.
 + (5) Network Overlays do not expose mechanisms or APIs for applications to interact with them such as getting or setting options.
 
