@@ -134,7 +134,7 @@ Table of Contents
    Streaming Video Technology Alliance (SVTA at svta.org) have extended
    these architectures with services like Open Caching.
 
-   The newest frontier is live streaming—primarily around major sports
+   The newest frontier is live streaming, primarily around major sports
    events and other high-interest broadcasts.  These can involve tens to
    hundreds of millions of viewers simultaneously and impose strict
    latency and scale requirements.  Live delivery pipelines are highly
@@ -143,9 +143,9 @@ Table of Contents
    However, as consumer devices and services increasingly incorporate
    privacy-enhancing features (in response to [RFC7258] and [RFC7624]),
    they sometimes introduce unexpected or hard-to-detect changes in
-   network behavior.  These changes can interfere with—or even
-   undermine—the efficiency, scaling, and low-latency architectures that
-   streaming platforms have invested heavily to build.
+   network behavior.  These changes can interfere with or even undermine
+   the efficiency, scaling, and low-latency architectures that streaming
+   platforms have invested heavily to build.
 
    The authors acknowledge the many challenges of improving Internet
    privacy while supporting the vast variety of Internet applications
@@ -155,7 +155,7 @@ Table of Contents
 
    This document is intended to highlight the negative impacts that have
    been observed by streaming platforms, from an operational
-   perspective, when privacy-enhancing overlays or other network-policy
+   perspective, when privacy-enhancing overlays or other network policy
    changes are deployed.  It aims to provide insights to application
    developers, platform architects, and network operators into how such
    overlays may affect streaming video delivery.
