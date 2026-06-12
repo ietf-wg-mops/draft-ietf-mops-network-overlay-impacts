@@ -63,7 +63,7 @@ However, as consumer devices and services increasingly incorporate privacy-enhan
 
 The authors acknowledge the many challenges of improving Internet privacy while supporting the vast variety of Internet applications and use cases. This is difficult work, and it is natural that operational considerations must be carefully incorporated into architectural designs.
 
-This document is intended to highlight the negative impacts that have been observed by streaming platforms, from an operational perspective, when privacy-enhancing overlays or other network policy changes are deployed. It aims to provide insights to application developers, platform architects, and network operators into how such overlays may affect streaming video delivery.
+The purpose of this document is to raise awareness of these operational impacts. It is a problem statement that documents the negative effects streaming platforms have observed, from an operational perspective, when privacy-enhancing overlays or other network policy changes are deployed. It aims to give application developers, platform architects, network operators, and designers of privacy-enhancing technologies a shared understanding of how such overlays can affect streaming video delivery, so that these considerations can be taken into account. Defining specific mitigations is out of scope and is left to future work.
 
 # Internet Privacy Enhancements
 
