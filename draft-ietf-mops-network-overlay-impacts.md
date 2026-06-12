@@ -57,13 +57,13 @@ Meanwhile, Internet video streaming has become part of daily life for billions o
 
 Early streaming efforts were focused simply on making video available on a device. Today’s ecosystem demands high-scale, low-latency delivery, including live events and 4K/8K streams. For prerecorded content such as Video on Demand (VOD) and UGC, distributing encoded content via Content Delivery Network (CDN) caches is a common technique for meeting scale. The IETF's CDNI working group and the Streaming Video Technology Alliance (SVTA at svta.org) have extended these architectures with services like Open Caching.
 
-The newest frontier is live streaming—primarily around major sports events and other high-interest broadcasts. These can involve tens to hundreds of millions of viewers simultaneously and impose strict latency and scale requirements. Live delivery pipelines are highly optimized and sensitive to changes in underlying network behavior.
+The newest frontier is live streaming, primarily around major sports events and other high-interest broadcasts. These can involve tens to hundreds of millions of viewers simultaneously and impose strict latency and scale requirements. Live delivery pipelines are highly optimized and sensitive to changes in underlying network behavior.
 
-However, as consumer devices and services increasingly incorporate privacy-enhancing features (in response to {{!RFC7258}} and {{!RFC7624}}), they sometimes introduce unexpected or hard-to-detect changes in network behavior. These changes can interfere with—or even undermine—the efficiency, scaling, and low-latency architectures that streaming platforms have invested heavily to build.
+However, as consumer devices and services increasingly incorporate privacy-enhancing features (in response to {{!RFC7258}} and {{!RFC7624}}), they sometimes introduce unexpected or hard-to-detect changes in network behavior. These changes can interfere with or even undermine the efficiency, scaling, and low-latency architectures that streaming platforms have invested heavily to build.
 
 The authors acknowledge the many challenges of improving Internet privacy while supporting the vast variety of Internet applications and use cases. This is difficult work, and it is natural that operational considerations must be carefully incorporated into architectural designs.
 
-This document is intended to highlight the negative impacts that have been observed by streaming platforms, from an operational perspective, when privacy-enhancing overlays or other network-policy changes are deployed. It aims to provide insights to application developers, platform architects, and network operators into how such overlays may affect streaming video delivery.
+This document is intended to highlight the negative impacts that have been observed by streaming platforms, from an operational perspective, when privacy-enhancing overlays or other network policy changes are deployed. It aims to provide insights to application developers, platform architects, and network operators into how such overlays may affect streaming video delivery.
 
 # Internet Privacy Enhancements
 
