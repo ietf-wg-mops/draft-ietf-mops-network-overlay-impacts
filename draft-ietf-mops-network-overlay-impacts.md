@@ -51,7 +51,7 @@ This document examines the operational impacts on streaming video applications r
 --- middle
 
 # Introduction
-Enhancing the privacy of Internet users has been a significant focus of the IETF since the Snowden disclosures and the publication of {{!RFC7258}}. {{!RFC7264}} explored in greater detail the technical threats identified in RFC7258, and described high-level mitigation approaches. Since then, IETF working groups have endeavored to address these specific threats, producing a wide range of new standards with built-in privacy enhancements. Protocol such as QUIC {{!RFC9000}} is an examples of this new generation: always-enabled encryption and other protections embedded directly into the design.
+Enhancing the privacy of Internet users has been a significant focus of the IETF since the Snowden disclosures and the publication of {{!RFC7258}}. {{!RFC7624}} explored in greater detail the technical threats identified in RFC7258, and described high-level mitigation approaches. Since then, IETF working groups have endeavored to address these specific threats, producing a wide range of new standards with built-in privacy enhancements. Protocol such as QUIC {{!RFC9000}} is an examples of this new generation: always-enabled encryption and other protections embedded directly into the design.
 
 Meanwhile, Internet video streaming has become part of daily life for billions of viewers. For many, streaming is the primary way to watch sports, entertainment, user-generated content (UGC) and news. It has grown to dominate Internet volume: an hour of HD video can consume approximately 1.5 – 2.5 GB, and streaming is estimated to account for 80–85% of global Internet traffic. The operational considerations for this growth are documented in {{!RFC9317}}.
 
@@ -59,7 +59,7 @@ Early streaming efforts were focused simply on making video available on a devic
 
 The newest frontier is live streaming—primarily around major sports events and other high-interest broadcasts. These can involve tens to hundreds of millions of viewers simultaneously and impose strict latency and scale requirements. Live delivery pipelines are highly optimized and sensitive to changes in underlying network behavior.
 
-However, as consumer devices and services increasingly incorporate privacy-enhancing features (in response to {{!RFC7258}} and {{!RFC7264}}), they sometimes introduce unexpected or hard-to-detect changes in network behavior. These changes can interfere with—or even undermine—the efficiency, scaling, and low-latency architectures that streaming platforms have invested heavily to build.
+However, as consumer devices and services increasingly incorporate privacy-enhancing features (in response to {{!RFC7258}} and {{!RFC7624}}), they sometimes introduce unexpected or hard-to-detect changes in network behavior. These changes can interfere with—or even undermine—the efficiency, scaling, and low-latency architectures that streaming platforms have invested heavily to build.
 
 The authors acknowledge the many challenges of improving Internet privacy while supporting the vast variety of Internet applications and use cases. This is difficult work, and it is natural that operational considerations must be carefully incorporated into architectural designs.
 
