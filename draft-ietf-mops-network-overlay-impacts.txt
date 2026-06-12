@@ -113,8 +113,8 @@ Table of Contents
    threats identified in RFC7258, and described high-level mitigation
    approaches.  Since then, IETF working groups have endeavored to
    address these specific threats, producing a wide range of new
-   standards with built-in privacy enhancements.  Protocol such as QUIC
-   [RFC9000] is an examples of this new generation: always-enabled
+   standards with built-in privacy enhancements.  Protocols such as QUIC
+   [RFC9000] are examples of this new generation: always-enabled
    encryption and other protections embedded directly into the design.
 
    Meanwhile, Internet video streaming has become part of daily life for
