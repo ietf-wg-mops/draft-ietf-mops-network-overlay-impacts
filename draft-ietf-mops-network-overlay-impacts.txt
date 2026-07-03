@@ -94,7 +94,7 @@ Table of Contents
    4.  Making It Easy (for Users) by Working Under the Covers
    5.  Streaming Video
      5.1.  Advances in Streaming Video Architecture
-   6.  Middleboxes and learning from the past
+   6.  Middleboxes and Learning from the Past
    7.  Appendix A: Network Overlays are different than VPNs
      7.1.  VPNs typically:
        7.1.1.  Network Overlays typically:
@@ -656,112 +656,108 @@ Table of Contents
 5.  Streaming Video
 
    Streaming Video, while just one of the many different Internet
-   applications does standout from other uses in several significant
-   ways that perhaps merit some amount of special consideration in
-   understanding and addressing the impacts caused by particular privacy
-   enhancing design and service offering choices.
+   applications, stands out from other uses in several significant ways
+   that merit consideration when understanding and addressing the
+   impacts caused by particular privacy-enhancing design and service
+   offering choices.
 
-   Firstly, Streaming video operates at a hard to imagine scale -
-   streaming video is served globally to more than 2 billion users daily
-   and continues to grow in leaps and bounds.
+   Streaming video operates at a scale that is hard to imagine.
+   Streaming is served globally to more than 2 billion users daily and
+   continues to grow.
 
-   Secondly, the content types delivered through streaming has evolved
-   from the pre-recorded low-resolution, low-bit rate, latency tolerant
-   video-on-demand movies, live or pre-recorded TV shows, and user
-   generated videos delivered by pioneering streaming platforms to now
-   including low-latency 4K and 8K live sports events, while also
-   evolving the pre-recorded content with high-bit rate such as 4K and
-   8K cinema quality and High Dynamic Range (HDR) lighting.
+   The content types delivered through streaming have evolved from pre-
+   recorded low-resolution, low-bitrate, latency-tolerant video-on-
+   demand movies, live or pre-recorded TV shows, and user generated
+   videos delivered by pioneering streaming platforms to now including
+   low-latency 4K and 8K live sports events, while also evolving pre-
+   recorded content to high-bitrate 4K and 8K cinema quality and High
+   Dynamic Range (HDR) lighting.
 
-   Finally, the expectations of streaming video viewers have
-   significantly evolved from the days of settling for being able to
-   watch a movie in a PC browser.  Viewers expect to watch on any device
-   type they want ranging from low-end-streaming sticks that plug into a
-   USB port, to 4K and HDR capable laptops, 4K and 8K HDR TV screens,
-   gaming consoles, smart phones and many more choices.  Viewers also
-   expect to have the same great viewing experience while at home
-   connected via high-speed wired Internet, high-speed WiFi, or mobile
-   cellular 5G and even satellite Internet connections.
+   The expectations of streaming video viewers have also significantly
+   evolved from the days of watching a movie in a PC browser.  Viewers
+   expect to watch on any device they want, ranging from low-end
+   streaming sticks that plug into a USB port to 4K and HDR capable
+   laptops, 4K and 8K HDR TV screens, gaming consoles, and smartphones.
+   Viewers also expect the same great viewing experience whether at home
+   on high-speed wired Internet, high-speed WiFi, mobile cellular 5G, or
+   even satellite Internet connections.
 
-   To meet the growth to billions of users, the growth in content type,
-   quality and speed expectations, and on-any-device anywhere that I am
-   over any-network-connection expectations of users the Streaming Video
-   technology infrastructure has had to itself evolve significantly.
-   This video streaming evolution work is being done in the IETF and in
+   To meet the growth to billions of users, expanded content types and
+   quality expectations, and any-device anywhere over any network
+   expectations, the streaming video technology infrastructure has had
+   to evolve significantly.  This work is being done in the IETF and in
    the Streaming Video Technology Alliance (SVTA)
    (https://www.svta.org/), and in a number of other technical and
    industry groups.
 
-   It's hard to overstate just how much the growth of streaming video
-   has contributed to the growth of the Internet.  Internet connections
-   of multiples of hundreds of megabits and gigabits speeds today are
-   because of the needs of video streaming, the ongoing work on low-
-   latency networking and ultra-low-latency video delivery are both
-   driven by the use of streaming video.
+   The growth of streaming video has contributed enormously to the
+   growth of the Internet.  Internet connections at hundreds of megabits
+   and gigabit speeds today exist because of the needs of video
+   streaming, and the ongoing work on low-latency networking and ultra-
+   low-latency video delivery are both driven by streaming video.
 
 5.1.  Advances in Streaming Video Architecture
 
    Internet streaming has greatly matured and diversified from its early
-   days of viewers watching pre-recorded 320x240, 640x480 standard
-   definition 480p movies to wired PCs connected to the Internet via
-   high-latency, low-bandwidth DSL as early DOCSIS modems.
+   days of viewers watching pre-recorded standard definition 480p movies
+   on wired PCs connected via high-latency, low-bandwidth DSL or early
+   DOCSIS modems.
 
-   Streaming has grown to the extent that it has become a daily go-to
-   video source worldwide for billions of viewers and has expanded from
-   pre-recorded movies to encompass every type of video content
-   imaginable.  This growth to billions of viewers and the addition of
-   low latency sensitive content and new connectivity options like WiFi,
-   Cellular and Satellite in addition to high-speed DOCSIS and fiber is
-   the world streaming platforms now provide service in.
+   Streaming has grown to the extent that it has become a daily video
+   source for billions of viewers worldwide and has expanded from pre-
+   recorded movies to encompass every type of video content imaginable.
+   This growth to billions of viewers and the addition of latency-
+   sensitive content and new connectivity options including WiFi,
+   cellular, and satellite, in addition to high-speed DOCSIS and fiber,
+   defines the world streaming platforms now serve.
 
-   With the large user base and its usage, the Streaming platforms also
-   have significant technical challenges to meet viewer expectations:
+   With this large user base and its usage patterns, streaming platforms
+   face significant technical challenges in meeting viewer expectations:
 
    *  (1) Delivery scales that commonly range from hundreds of thousands
-      to many millions of viewers simultaneously, with billions of daily
+      to many millions of simultaneous viewers, with billions of daily
       global views.
 
-   *  (2) Low latency demands from live sports, live events and live
+   *  (2) Low latency demands from live sports, live events, and live
       streamed content.
 
-   *  (3) Content resolutions and corresponding formats which have
-      jumped from the days of SD-480p to 4K (3840x2160) and 8K
-      (7680x4320) along with bit rates which can had data needs of
-      10-24+ Mbps for 4K with 8K demanding 40 Mbps under extreme
-      compression and 150-300 Mbps for high quality such as cinema.
+   *  (3) Content resolutions that have jumped from SD 480p to 4K
+      (3840x2160) and 8K (7680x4320), with bitrate requirements of
+      10-24+ Mbps for 4K and 40 Mbps under extreme compression or
+      150-300 Mbps for high quality cinema-grade 8K.
 
-   *  (4) Devices with very diverse capabilities low-cost streaming
-      sticks, to Smart TVs, tablets, phones, and game consoles.
+   *  (4) Devices with very diverse capabilities, from low-cost
+      streaming sticks to Smart TVs, tablets, phones, and game consoles.
 
-   *  (5) Broad range of connectivity choices including WiFi, Gig speed-
-      low latency DOCSIS, Fiber, satellite, and 5G cellular networks.
+   *  (5) A broad range of connectivity choices including WiFi, gigabit-
+      speed low-latency DOCSIS, fiber, satellite, and 5G cellular
+      networks.
 
    *  (6) Application transport protocols including MPEG DASH, HLS,
-      HTTP2/TCP, HTTP3/QUIC, WebRTC, Media over QUIC (MoQ) and specialty
-      application transports such as SRT, HESP etc.
+      HTTP/2 over TCP, HTTP/3 over QUIC, WebRTC, Media over QUIC (MoQ),
+      and specialty transports such as SRT and HESP.
 
-   To meet these challenges streaming platforms have significantly
-   invested in developing delivery architectures that are built with
-   detailed understandings of each element in the content delivery
-   pathway, starting from the content capture all the way through to the
-   screen of the viewer.
+   To meet these challenges, streaming platforms have significantly
+   invested in developing delivery architectures built on detailed
+   understanding of each element in the content delivery pathway, from
+   content capture all the way through to the viewer's screen.
 
-   Streaming applications are part of an end-to-end architecture that is
+   Streaming applications are part of an end-to-end architecture
    optimized around achieving the best experience including low latency
    video delivery to viewing devices.  The open Internet can be
-   unpredictable with temporary issues like packet loss, congestion and
+   unpredictable with temporary issues like packet loss, congestion, and
    other conditions.  However, streaming architecture is designed to
-   handle these momentary problems as effectively as possible often
-   through use of dynamic adaptive approaches designed into streaming
-   protocols and platform components.
+   handle these momentary problems as effectively as possible, often
+   through dynamic adaptive approaches designed into streaming protocols
+   and platform components.
 
-6.  Middleboxes and learning from the past
+6.  Middleboxes and Learning from the Past
 
-   The IETF has discussed this situation in the past, more than 20 years
-   ago in 2002 Middleboxes: Taxonomy and Issues [RFC3234] was published
-   capturing the issues with Middleboxes in the network and the effects
-   of hidden changes occurring on the network between the sender and
-   receiver.
+   The IETF has discussed this situation in the past.  More than 20
+   years ago, in 2002, Middleboxes: Taxonomy and Issues [RFC3234] was
+   published, capturing the issues with middleboxes in the network and
+   the effects of hidden changes occurring on the network between the
+   sender and receiver.
 
 7.  Appendix A: Network Overlays are different than VPNs
 
@@ -885,9 +881,11 @@ Acknowledgments
 
    The authors would like to acknowledge the contributions from the
    Streaming Video Technology Alliance (SVTA) based on their work
-   studying the impacts of network overlays on the streaming platforms.
-   The contributions from Brian Paxton on observed overlay behavior and
-   comments from Jay Robertson have been very helpful.
+   studying the impacts of network overlays on streaming platforms.  The
+   contributions from Brian Paxton on observed overlay behavior and
+   comments from Jay Robertson have been very helpful.  The authors are
+   also grateful to Leonard Giuliano, Emile Stephan, and Kyle Rose for
+   their reviews and contributions to this document.
 
 Authors' Addresses
 
