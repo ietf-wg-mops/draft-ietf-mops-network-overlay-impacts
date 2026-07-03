@@ -77,31 +77,31 @@ Table of Contents
    1.  Introduction
    2.  Internet Privacy Enhancements
      2.1.  Network Overlays
-       2.1.1.  Emerging Operational Issues with Network Overlay Policy
+     2.2.  Transparency and Connection Policy
+       2.2.1.  Transparent connection policy approaches:
+       2.2.2.  Non-transparent connection policy approaches:
+       2.2.3.  Emerging Operational Issues with Network Overlay Policy
                Changes
-     2.2.  Policy Changes
-       2.2.1.  Partitioning
-       2.2.2.  Protocol Policy Changes
-       2.2.3.  Encryption Policy
-       2.2.4.  Address Policy Changes
-       2.2.5.  DNS Policy Changes
-       2.2.6.  Log Data Changes
-       2.2.7.  Geo Location & Identification
-       2.2.8.  CDN Interconnection Troubleshooting
-       2.2.9.  Routing Changes
-       2.2.10. Unintended Content Blocking
+     2.3.  Policy Changes
+       2.3.1.  Partitioning
+       2.3.2.  Protocol Policy Changes
+       2.3.3.  Encryption Policy
+       2.3.4.  Address Policy Changes
+       2.3.5.  DNS Policy Changes
+       2.3.6.  Log Data Changes
+       2.3.7.  Geo Location & Identification
+       2.3.8.  CDN Interconnection Troubleshooting
+       2.3.9.  Routing Changes
+       2.3.10. Unintended Content Blocking
    3.  Policy Changes Hidden from Applications
    4.  Making It Easy (for Users) by Working Under the Covers
    5.  Streaming Video
      5.1.  Advances in Streaming Video Architecture
    6.  Middleboxes and Learning from the Past
-   7.  Appendix A: Network Overlays are different than VPNs
-     7.1.  VPNs typically:
-       7.1.1.  Network Overlays typically:
-   8.  Conventions and Definitions
-   9.  Security Considerations
-   10. IANA Considerations
-   11. Normative References
+   7.  Conventions and Definitions
+   8.  Security Considerations
+   9.  IANA Considerations
+   10. Normative References
    Acknowledgments
    Authors' Addresses
 
@@ -230,7 +230,102 @@ Table of Contents
    that streaming services rely on for consistent content delivery and
    Quality of Experience (QoE) management.
 
-2.1.1.  Emerging Operational Issues with Network Overlay Policy Changes
+2.2.  Transparency and Connection Policy
+
+   What matters when considering network overlay impact on streaming is
+   not the technology or protocol used, but whether the alternative
+   network connection policies applied are transparent or hidden from
+   the connection endpoints.
+
+   Prior to network overlays, connection policy changes tended to be
+   transparent to the application-server connection.  Changes made to
+   the connection were visible to one or both sides, enabling the
+   connection endpoints to have awareness of the policies applied.
+
+   The issue this document focuses on is where alternative network
+   connection policies are non-transparent to the connection endpoints,
+   particularly the application.  The application is the party
+   architecturally designated to make decisions about network connection
+   properties and policies, and non-transparent overlays remove that
+   ability without any indication to the application that this has
+   occurred.
+
+   This distinction means that even classic connection policy approaches
+   such as Layer 2 VPNs fall within this document's problem statement if
+   they operate non-transparently to the connection endpoints, and
+   particularly to the application.
+
+   A related distinction concerns end-to-end connection autonomy.  When
+   an application opens a connection, it does so based on server-
+   published endpoint information, obtained via DNS or direct IP
+   addressing.  Network overlays silently intercept that connection,
+   rerouting or readdressing it and making new path choices without the
+   client being involved.  Neither the application nor the server has
+   signaled consent to this interception, and neither endpoint receives
+   any indication that the path or addressing has changed.  This silent
+   substitution of routing decisions is distinct from what a traditional
+   VPN does, where the application is aware that its traffic is
+   traversing an overlay and the network operator has explicitly
+   configured that behavior.
+
+   Historically, the issues discussed in this document have not been a
+   major concern for typical VPN deployments, largely because VPNs have
+   not been a pervasive way to stream video.  Many VPNs have not offered
+   throughput or consistency comparable to a direct Internet path, and
+   many video platforms block or degrade service to detected VPN
+   connections due to their common use in bypassing geofiltering
+   restrictions.
+
+   Where a distinction is useful operationally, it is not the technology
+   or protocol used but the deployment pattern in common use.
+   Traditional and newer overlay deployments have tended to differ along
+   the following lines.
+
+2.2.1.  Transparent connection policy approaches:
+
+   *  (1) are generally detectable by the application and the network
+      operator.
+
+   *  (2) typically work at the network layer of a device, so a wide
+      range, if not all, of the device's transports and protocols flow
+      through the overlay.
+
+   *  (3) typically provide exception options allowing traffic to be
+      excluded based on criteria such as application, destination IP
+      address, or application protocol.
+
+2.2.2.  Non-transparent connection policy approaches:
+
+   *  (1) are often undetectable by video applications or the streaming
+      platform while in use.
+
+   *  (2) often apply only to specific application transports, such as
+      HTTP/2 over TCP or HTTP/3 over QUIC, while leaving other
+      transports on the same device, such as TCP+TLS, unaffected.
+
+   *  (3) often apply only to HTTP connections, without support for
+      ICMP, non-HTTP DNS, NTP, or the other non-HTTP-based tools used
+      for network measurement, problem determination, and network
+      management.
+
+   *  (4) do not expose to applications any means of discovering what
+      policy changes the overlay applies to their network connections.
+
+   *  (5) do not expose mechanisms or APIs for applications to interact
+      with the overlay, such as getting or setting options.
+
+   These are patterns of observed deployment behavior, not categories
+   defined by protocol specification.  What determines whether a
+   connection policy mechanism falls within the scope of this document
+   is whether it operates non-transparently to the connection endpoints,
+   not the protocol or technology it uses.
+
+   Even where a network overlay operates transparently to the connection
+   endpoints, the operational impacts described in this document,
+   including protocol changes, tunneling effects, and path alterations,
+   remain significant considerations for streaming video deployments.
+
+2.2.3.  Emerging Operational Issues with Network Overlay Policy Changes
 
    Streaming video applications and content delivery platforms are
    increasingly encountering operational challenges associated with
@@ -245,7 +340,7 @@ Table of Contents
    throughput reporting that affect Quality of Experience (QoE)
    monitoring and optimization.
 
-2.2.  Policy Changes
+2.3.  Policy Changes
 
    Changes to network policies introduced by overlays can alter the
    expected behavior of streaming applications in several ways.
@@ -280,7 +375,7 @@ Table of Contents
 
  Figure 1:  Network Overlay routing selects traffic via an alternate path
 
-2.2.1.  Partitioning
+2.3.1.  Partitioning
 
    Network Overlay policy changes often include the use of alternate
    routing policies, as a core element of their design involves
@@ -297,7 +392,7 @@ Table of Contents
    streaming video performance, such as cache selection accuracy,
    latency, and adaptive bitrate (ABR) responsiveness.
 
-2.2.2.  Protocol Policy Changes
+2.3.2.  Protocol Policy Changes
 
    Network overlays have been observed to alter application and
    transport protocols from those originally selected by the streaming
@@ -320,7 +415,7 @@ Table of Contents
    bandwidth estimation, causing the adaptive bitrate (ABR) algorithm to
    select non-optimal streaming parameters and degrade user experience.
 
-2.2.3.  Encryption Policy
+2.3.3.  Encryption Policy
 
    Changes to the encryption policy applied to video streams, whether by
    adding encryption where it was not originally used or by removing or
@@ -347,7 +442,7 @@ Table of Contents
    performance, incorrect cache usage, or inconsistent delivery
    behavior.
 
-2.2.3.1.  Forced Encryption Upgrade
+2.3.3.1.  Forced Encryption Upgrade
 
    Enforcing encryption upgrades, for example converting unencrypted
    HTTP/2 traffic into HTTP/2 over TLS (HTTPS), can disrupt streaming
@@ -367,7 +462,7 @@ Table of Contents
    optimizations, resulting in degraded performance or increased
    operational complexity.
 
-2.2.3.2.  Forced Encryption Downgrade
+2.3.3.2.  Forced Encryption Downgrade
 
    Conversely, removal or termination of encryption originally applied
    by a streaming platform can introduce serious operational and
@@ -387,7 +482,7 @@ Table of Contents
    operational reliability, leading to potential playback failures,
    content delivery errors, or loss of user trust.
 
-2.2.4.  Address Policy Changes
+2.3.4.  Address Policy Changes
 
    Network overlays that modify IP addressing policies, such as
    converting IPv4 to IPv6, IPv6 to IPv4, or reassigning source IP
@@ -415,7 +510,7 @@ Table of Contents
    increased operational complexity for both service providers and
    network operators.
 
-2.2.5.  DNS Policy Changes
+2.3.5.  DNS Policy Changes
 
    Network overlays that modify DNS resolver settings or redirect DNS
    queries can have significant implications for Content Delivery
@@ -429,7 +524,7 @@ Table of Contents
    incorrectly infer the client’s location, resulting in non-optimal
    cache selection, increased latency, or reduced video quality.
 
-2.2.5.1.  EDNS0
+2.3.5.1.  EDNS0
 
    The EDNS(0) (Extension Mechanisms for DNS, [RFC6891]) extension was
    introduced to allow resolvers to include additional client subnet
@@ -441,7 +536,7 @@ Table of Contents
    cache, negatively impacting video startup time, buffering, and
    overall user experience.
 
-2.2.6.  Log Data Changes
+2.3.6.  Log Data Changes
 
    Accurate and consistent logging is essential for diagnosing streaming
    performance and operational issues.  Network overlays that alter
@@ -454,7 +549,7 @@ Table of Contents
    both problem determination and root-cause analysis, complicating
    operational monitoring and incident response workflows.
 
-2.2.7.  Geo Location & Identification
+2.3.7.  Geo Location & Identification
 
    Network overlays that alter the apparent source location of user
    devices can interfere with streaming platforms’ ability to accurately
@@ -478,7 +573,7 @@ Table of Contents
    detection, and rights management processes that depend on consistent
    geographic identifiers.
 
-2.2.8.  CDN Interconnection Troubleshooting
+2.3.8.  CDN Interconnection Troubleshooting
 
    In CDN interconnection scenarios, when two CDN domains collaborate to
    localize a point of failure, they typically begin by identifying the
@@ -495,7 +590,7 @@ Table of Contents
    the CDN expects it to be, making fault localization and coordination
    between interconnecting CDNs significantly more difficult.
 
-2.2.9.  Routing Changes
+2.3.9.  Routing Changes
 
    Routing changes introduced by network overlays can alter the expected
    path between video applications and the infrastructure services they
@@ -511,7 +606,7 @@ Table of Contents
    is often not visible to the streaming application or operators
    monitoring network performance.
 
-2.2.9.1.  End to End Problem Discovery
+2.3.9.1.  End to End Problem Discovery
 
    A common issue in video delivery is locating where along the delivery
    path the video transport is encountering problems.  Such problems are
@@ -521,7 +616,7 @@ Table of Contents
    tools, it becomes an operational trouble spot for users and platform
    support to locate and determine the source of the problems.
 
-2.2.9.2.  CDN Edge Cache Selection due to Routing
+2.3.9.2.  CDN Edge Cache Selection due to Routing
 
    A significant and often overlooked problem is the addition of network
    latency compared to edge CDN caches or access network peering
@@ -540,7 +635,7 @@ Table of Contents
 
  Figure:  Routing Changes altering CDN Cache selection
 
-2.2.9.3.  Performance and Problem Determination
+2.3.9.3.  Performance and Problem Determination
 
    Network overlays often interfere with the tools used in performance
    and problem determination.  This is due to either the tools and
@@ -549,7 +644,7 @@ Table of Contents
    problems, or the network overlay itself not supporting or carrying
    the tool's functions.
 
-2.2.9.4.  Impact of Changing Network Routing and Other Policies
+2.3.9.4.  Impact of Changing Network Routing and Other Policies
 
    The problem for streaming applications occurs when the underlying
    network properties and policies change from what the streaming
@@ -578,7 +673,7 @@ Table of Contents
    transports such as adding or removing encryption.  All of these have
    been observed in production streaming platforms.
 
-2.2.10.  Unintended Content Blocking
+2.3.10.  Unintended Content Blocking
 
    A strongly undesirable side-effect of network policy changes is the
    blocking of content to the viewer.  This may affect primary content
@@ -759,63 +854,7 @@ Table of Contents
    the effects of hidden changes occurring on the network between the
    sender and receiver.
 
-7.  Appendix A: Network Overlays are different than VPNs
-
-   While conceptually similar in many ways to VPN (Virtual Private
-   Network) technology, the various network overlay technologies
-   currently being deployed as well as new ones currently being designed
-   by the IETF differ quite significantly from the older VPN approach
-   they are replacing in a number of ways.
-
-   It is also worth noting that one reason why the issues discussed in
-   this document have not been concern with regard to VPNs is that
-   largely VPNs have not been a pervasive way to stream video.  First,
-   many VPNs have not had very good or consistent throughput compared to
-   the direct open Internet and so provide a poor viewing experience.
-   Second, many video platforms block or deny service to VPN connections
-   due to the very common use of VPNs to bypass geofiltering
-   restrictions.
-
-   Whatever the reason, it is worth looking at how VPNs differ from the
-   Network Overlays being discussed herein.
-
-7.1.  VPNs typically:
-
-   *  (1) VPNs typically are detectable by both the video application
-      and often by the streaming platform.
-
-   *  (2) VPNs typically work at the network layer of a device,
-      resulting in a wide-range (if not all) transports and protocols
-      from the device flowing through the VPN
-
-   *  (3) VPNs typically provide exception options allowing for
-      exclusion from traversing via the VPN based on various criteria
-      such as application, destination IP address, application protocol
-      etc.
-
-7.1.1.  Network Overlays typically:
-
-   *  (1) Network Overlays are often undetectable by video applications
-      or by the streaming platform, when in use.
-
-   *  (2) Network Overlays often only apply to specific application
-      transports such as HTTP2/TCP or HTTP3/QUIC while not applying to
-      HTTP2/TCP+TLS on the same device.
-
-   *  (3) Network Overlays often only apply to HTTP connections and do
-      not support ICMP, non-HTTP versions of DNS, NTP etc., and various
-      tools used for network measurement, problem determination, and
-      network management that are not HTTP based.
-
-   *  (4) Network Overlays do not expose to applications any means for
-      the application to discover the policy changes the overlay will
-      apply to the applications network connections.
-
-   *  (5) Network Overlays do not expose mechanisms or APIs for
-      applications to interact with them such as getting or setting
-      options.
-
-8.  Conventions and Definitions
+7.  Conventions and Definitions
 
    The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
    "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
@@ -823,15 +862,15 @@ Table of Contents
    BCP 14 [RFC2119] [RFC8174] when, and only when, they appear in all
    capitals, as shown here.
 
-9.  Security Considerations
+8.  Security Considerations
 
    TODO Security
 
-10.  IANA Considerations
+9.  IANA Considerations
 
    This document has no IANA actions.
 
-11.  Normative References
+10.  Normative References
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
