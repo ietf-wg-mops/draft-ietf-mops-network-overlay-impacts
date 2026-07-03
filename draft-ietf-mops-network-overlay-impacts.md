@@ -415,23 +415,57 @@ policies from different CDN operators may be encountered.
 
 # Policy Changes Hidden from Applications
 
-One of the central recurring issues with streaming applications running on devices or networks with changed policies due to network overlays is that the changes are often hidden from the applications.
+One of the central recurring issues with streaming applications
+running on devices or networks with changed policies due to
+network overlays is that the changes are often hidden from the
+applications.
 
-Applications often find it difficult or even impossible to detect when network policy changes will be active and what they are changing.   For example, a device may have a designated default DNS resolver for the device but may have a different resolver selected depending on how the streaming application queries the DNS.
+Applications often find it difficult or even impossible to detect
+when network policy changes will be active and what they are
+changing. For example, a device may have a designated default DNS
+resolver but a different resolver may be selected depending on how
+the streaming application queries DNS.
 
-Likewise, a streaming application might find that one application transport protocol such as HTTP queries will have one set of routing policies applied to it but a different application transport like HTTPS may have a different set of routing policies applied.
+Likewise, a streaming application might find that one application
+transport protocol such as HTTP has one set of routing policies
+applied to it while a different transport such as HTTPS has a
+different set of routing policies applied.
 
-Streaming applications that cannot determine the exact behavior to be expected can prevent the streaming application from making good content source decisions and can prevent applications from being able to provide reliable feedback and logs when problems are encountered.
+Streaming applications that cannot determine the expected behavior
+are prevented from making good content source decisions and from
+providing reliable feedback and logs when problems are
+encountered.
 
 # Making It Easy (for Users) by Working Under the Covers
 
-Historically, incorporating privacy features into consumer-facing products has been complex. This challenge arises from the need to address a wide range of use cases while also offering users easy access to advanced privacy frameworks and taxonomies. Many attempts have been made and very few have achieved finding success with end users.
+Historically, incorporating privacy features into consumer-facing
+products has been complex. This challenge arises from the need to
+address a wide range of use cases while also offering users easy
+access to advanced privacy frameworks and taxonomies. Many
+attempts have been made and very few have found success with end
+users.
 
-Perhaps learning from the lessons of offering too many options, the recent trend in privacy enhancements has steered toward either a very simple \"Privacy On or Off\" switch or in other cases automatically enabling or \"upgrading\" to enhance privacy.   Apple\'s iCloud Private Relay can be easily turned on with a single settings switch, while privacy features such as Encrypted DNS over HTTP and upgrade from HTTP to HTTPS connections have had a several deployments that automatically enable them for users when possible.
+Perhaps learning from the lessons of offering too many options,
+the recent trend in privacy enhancements has steered toward either
+a very simple "Privacy On or Off" switch or in other cases
+automatically enabling or upgrading to enhance privacy. Apple's
+iCloud Private Relay can be easily turned on with a single
+settings switch, while privacy features such as Encrypted DNS over
+HTTP and upgrades from HTTP to HTTPS connections have seen several
+deployments that automatically enable them for users when
+possible.
 
-Keeping with the motto of "Keep It Simple", users are generally not provided with granular Network Overlay controls permitting the user to select what applications, or what network connections the Network Overlay policies can apply to.
+Keeping with the motto of "Keep It Simple", users are generally
+not provided with granular Network Overlay controls permitting
+them to select what applications or network connections the
+Network Overlay policies apply to.
 
-Adhering to the "Keep It Simple" approach the application itself has very little connection to privacy enhancing Network Overlays.  Applications generally do not have a means to detect when networking policy changes are active. Applications generally do not have a means to access policy change settings or to interact to change them.
+Adhering to the "Keep It Simple" approach, the application itself
+has very little connection to privacy-enhancing Network Overlays.
+Applications generally do not have a means to detect when
+networking policy changes are active. Applications generally do
+not have a means to access policy change settings or to interact
+to change them.
 
 # Streaming Video
 
