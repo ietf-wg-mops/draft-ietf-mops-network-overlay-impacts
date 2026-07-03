@@ -67,16 +67,49 @@ The purpose of this document is to raise awareness of these operational impacts.
 
 # Internet Privacy Enhancements
 
-The IETF\’s efforts to strengthen Internet privacy and mitigate pervasive monitoring, as described in {{!RFC7258}}, have driven a series of architectural and protocol-level developments. The initial focus was on encrypting network data flows, most commonly through the wider adoption of Transport Layer Security (TLS). Over time, these efforts have expanded to include policy- and design-level changes—such as modifying routing paths, selecting privacy-preserving DNS resolvers, and introducing encrypted transport protocols—to better obscure and isolate user traffic from observation within the underlying network infrastructure.
+The IETF’s efforts to strengthen Internet privacy and mitigate
+pervasive monitoring, as described in {{!RFC7258}}, have driven a
+series of architectural and protocol-level developments. The
+initial focus was on encrypting network data flows, most commonly
+through the wider adoption of Transport Layer Security (TLS). Over
+time, these efforts have expanded to include changes at the policy
+and design level, such as modifying routing paths, selecting
+privacy-preserving DNS resolvers, and introducing encrypted
+transport protocols, to better obscure and isolate user traffic
+from observation within the underlying network infrastructure.
 
-The IAB’s {{!RFC7258}} identifies pervasive monitoring as an attack on privacy, while {{!RFC7624}} outlines potential technical and operational responses to mitigate its impact. The development of the QUIC transport protocol, defined in {{!RFC9000}}, exemplifies the application of these principles: QUIC integrates confidentiality, integrity, and authentication into the transport layer itself, ensuring that user data and most protocol metadata remain encrypted by default.
+{{!RFC7258}} identifies pervasive monitoring as an attack on
+privacy, while {{!RFC7624}} outlines potential technical and
+operational responses to mitigate its impact. The development of
+the QUIC transport protocol, defined in {{!RFC9000}}, exemplifies
+the application of these principles. QUIC integrates
+confidentiality, integrity, and authentication into the transport
+layer itself, ensuring that user data and most protocol metadata
+remain encrypted by default.
 
 Collectively, these privacy-enhancing measures have reshaped how networks and applications interact. However, they also introduce new considerations for operational visibility, traffic management, and performance optimization, which are particularly relevant to streaming video applications.
 
 ## Network Overlays
-The IETF\’s privacy-enhancement efforts in response to {{!RFC7258}} have driven a range of architectural and policy design choices, including the adoption of “always-on” encryption, as exemplified by QUIC {{!RFC9000}}. While many such developments have minimal impact on video streaming, some introduce new behaviors that can be described as creating network overlays—logical networks that operate on top of the underlying native network, but apply different routing, transport, or policy decisions than either the native network or the streaming application would independently choose.
+The IETF’s privacy-enhancement efforts in response to {{!RFC7258}}
+have driven a range of architectural and policy design choices,
+including the adoption of “always-on” encryption, as exemplified
+by QUIC {{!RFC9000}}. While many such developments have minimal
+impact on video streaming, some introduce new behaviors that can
+be described as creating network overlays, which are logical
+networks that operate on top of the underlying native network but
+apply different routing, transport, or policy decisions than
+either the native network or the streaming application would
+independently choose.
 
-Network overlays that alter policies or paths in ways not directly visible, selectable, or detectable by the streaming application or platform can have significant operational effects. These overlays may transparently modify network properties—such as source IP addresses, DNS resolver choices, or routing behavior—without the knowledge of the streaming service or end user. Such hidden policy changes can inadvertently disrupt the assumptions underlying adaptive streaming architectures, content delivery path optimization, or CDN selection mechanisms.
+Network overlays that alter policies or paths in ways not directly
+visible, selectable, or detectable by the streaming application or
+platform can have significant operational effects. These overlays
+may silently modify network properties, such as source IP
+addresses, DNS resolver choices, or routing behavior, without the
+knowledge of the streaming service or end user. Such hidden policy
+changes can inadvertently disrupt the assumptions underlying
+adaptive streaming architectures, content delivery path
+optimization, or CDN selection mechanisms.
 
 When a network overlay modifies connection properties in ways that differ from application expectations, the result can be mismatched assumptions between the application and the actual transport environment. This disconnect may cause degraded performance, misclassification of network paths, or unexpected latency and throughput characteristics, all of which affect streaming quality and operational predictability.
 
@@ -84,7 +117,7 @@ Protocols such as MASQUE {{!RFC9484}} and services built on it such as Apple\'s 
 
 ### Emerging Operational Issues with Network Overlay Policy Changes
 
-Streaming video applications and content delivery platforms are increasingly encountering operational challenges associated with network overlays. These challenges arise when overlays introduce policy changes that are unexpected, inconsistently applied, or difficult—or even impossible—for the streaming platform to detect or adapt to in real time. While the specific impacts vary depending on the overlay’s design and implementation, several common classes of operational issues have been observed across deployments. These include mismatches in routing and cache selection, unexpected transport-layer behavior, and inconsistencies in latency or throughput reporting that affect Quality of Experience (QoE) monitoring and optimization.
+Streaming video applications and content delivery platforms are increasingly encountering operational challenges associated with network overlays. These challenges arise when overlays introduce policy changes that are unexpected, inconsistently applied, or difficult or impossible for the streaming platform to detect or adapt to in real time. While the specific impacts vary depending on the overlay’s design and implementation, several common classes of operational issues have been observed across deployments. These include mismatches in routing and cache selection, unexpected transport-layer behavior, and inconsistencies in latency or throughput reporting that affect Quality of Experience (QoE) monitoring and optimization.
 
 ## Policy Changes
 
