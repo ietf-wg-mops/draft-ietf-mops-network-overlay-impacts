@@ -1335,7 +1335,12 @@ optimization, or CDN selection mechanisms.<a href="#section-2.1-2" class="pilcro
 <a href="#section-2.2" class="section-number selfRef">2.2. </a><a href="#name-policy-changes" class="section-name selfRef">Policy Changes</a>
         </h3>
 <p id="section-2.2-1">Changes to network policies introduced by overlays can alter the expected behavior of streaming applications in several ways.<a href="#section-2.2-1" class="pilcrow">¶</a></p>
-<p id="section-2.2-2">For example, an overlay that modifies encryption policies—such as transforming HTTP URLs in manifests into HTTPS connections—can disrupt architectures that rely on the network’s ability to identify or classify video flows. In such cases, the visibility of traffic used for caching, optimization, or QoS treatment may be reduced or lost entirely.<a href="#section-2.2-2" class="pilcrow">¶</a></p>
+<p id="section-2.2-2">For example, an overlay that modifies encryption policies, such as
+transforming HTTP URLs in manifests into HTTPS connections, can
+disrupt architectures that rely on the network’s ability to
+identify or classify video flows. In such cases, the visibility of
+traffic used for caching, optimization, or QoS treatment may be
+reduced or lost entirely.<a href="#section-2.2-2" class="pilcrow">¶</a></p>
 <p id="section-2.2-3">Similarly, overlays that alter routing policies can interfere with the Content Delivery Network (CDN) cache selection logic used by streaming platforms. A change in routing path may cause the application to connect to a more distant cache, resulting in higher latency, lower throughput, and degraded video quality, even when a closer cache would otherwise have been selected.<a href="#section-2.2-3" class="pilcrow">¶</a></p>
 <p id="section-2.2-4">An example of a routing policy change is illustrated in Figure 1, showing how a network overlay can apply a routing policy that diverges from that of the underlying base network, resulting in a modified traffic path and different delivery characteristics.<a href="#section-2.2-4" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-2.2-5">
@@ -1358,7 +1363,11 @@ optimization, or CDN selection mechanisms.<a href="#section-2.1-2" class="pilcro
 <a href="#section-2.2.1" class="section-number selfRef">2.2.1. </a><a href="#name-partitioning" class="section-name selfRef">Partitioning</a>
           </h4>
 <p id="section-2.2.1-1">Network Overlay policy changes often include the use of alternate routing policies, as a core element of their design involves tunneling connections through different network paths to enhance user privacy and reduce tracking.
-This architectural concept—partitioning—is further discussed in the IAB document <a href="https://datatracker.ietf.org/doc/draft-iab-privacy-partitioning/">Partitioning as an Architecture for Privacy</a>. By isolating traffic and obscuring its correlation with the underlying native network, partitioning helps defend against pervasive monitoring and traffic analysis.<a href="#section-2.2.1-1" class="pilcrow">¶</a></p>
+This architectural concept, partitioning, is further discussed in
+the IAB document <a href="https://datatracker.ietf.org/doc/draft-iab-privacy-partitioning/">Partitioning as an Architecture for Privacy</a>.
+By isolating traffic and obscuring its correlation with the
+underlying native network, partitioning helps defend against
+pervasive monitoring and traffic analysis.<a href="#section-2.2.1-1" class="pilcrow">¶</a></p>
 <p id="section-2.2.1-2">While effective for privacy protection, these routing partitions can also alter network visibility and path selection in ways that affect streaming video performance, such as cache selection accuracy, latency, and adaptive bitrate (ABR) responsiveness.<a href="#section-2.2.1-2" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -1367,11 +1376,26 @@ This architectural concept—partitioning—is further discussed in the IAB docu
           <h4 id="name-protocol-policy-changes">
 <a href="#section-2.2.2" class="section-number selfRef">2.2.2. </a><a href="#name-protocol-policy-changes" class="section-name selfRef">Protocol Policy Changes</a>
           </h4>
-<p id="section-2.2.2-1">Network overlays have been observed to alter application and transport protocol changes from those originally selected by the streaming application. In some cases, privacy-enhancing or optimization mechanisms automatically translate connections — for example, converting HTTP/2 over TCP into HTTP/3 over QUIC, or upgrading HTTP/2 sessions to HTTPS with TLS encryption.
-Such conversions are typically performed to enforce stronger privacy, security, or efficiency policies, but they may occur without visibility or control by the streaming application.<a href="#section-2.2.2-1" class="pilcrow">¶</a></p>
-<p id="section-2.2.2-2">A key operational impact arises when protocol substitution changes the network characteristics perceived by the video application.
-For example, a video application may perform a preliminary fetch to measure network conditions before selecting an appropriate bitrate for content delivery. If the application’s test probe uses HTTP/2 over TCP, but the subsequent content request is transparently converted by the overlay to HTTP/3 over QUIC, the measured results no longer reflect the actual transport path.
-This mismatch can lead to inaccurate bandwidth estimation, causing the adaptive bitrate (ABR) algorithm to select non-optimal streaming parameters and degrade user experience.<a href="#section-2.2.2-2" class="pilcrow">¶</a></p>
+<p id="section-2.2.2-1">Network overlays have been observed to alter application and
+transport protocols from those originally selected by the
+streaming application. In some cases, privacy-enhancing or
+optimization mechanisms automatically translate connections, for
+example converting HTTP/2 over TCP into HTTP/3 over QUIC, or
+upgrading HTTP/2 sessions to HTTPS with TLS encryption. Such
+conversions are typically performed to enforce stronger privacy,
+security, or efficiency policies, but they may occur without
+visibility or control by the streaming application.<a href="#section-2.2.2-1" class="pilcrow">¶</a></p>
+<p id="section-2.2.2-2">A key operational impact arises when protocol substitution changes
+the network characteristics perceived by the video application. A
+video application may perform a preliminary fetch to measure
+network conditions before selecting an appropriate bitrate for
+content delivery. If the application’s test probe uses HTTP/2 over
+TCP but the subsequent content request is silently converted by
+the overlay to HTTP/3 over QUIC, the measured results no longer
+reflect the actual transport path. This mismatch can lead to
+inaccurate bandwidth estimation, causing the adaptive bitrate
+(ABR) algorithm to select non-optimal streaming parameters and
+degrade user experience.<a href="#section-2.2.2-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="encryption-policy">
@@ -1379,7 +1403,11 @@ This mismatch can lead to inaccurate bandwidth estimation, causing the adaptive 
           <h4 id="name-encryption-policy">
 <a href="#section-2.2.3" class="section-number selfRef">2.2.3. </a><a href="#name-encryption-policy" class="section-name selfRef">Encryption Policy</a>
           </h4>
-<p id="section-2.2.3-1">Changes to the encryption policy applied to video streams — whether by adding encryption where it was not originally used, or by removing or terminating encryption where it was expected — can introduce significant operational challenges for streaming applications and delivery networks.<a href="#section-2.2.3-1" class="pilcrow">¶</a></p>
+<p id="section-2.2.3-1">Changes to the encryption policy applied to video streams, whether
+by adding encryption where it was not originally used or by
+removing or terminating encryption where it was expected, can
+introduce significant operational challenges for streaming
+applications and delivery networks.<a href="#section-2.2.3-1" class="pilcrow">¶</a></p>
 <p id="section-2.2.3-2">In some cases, network overlays or privacy-enhancing systems may automatically enforce encryption, converting plaintext HTTP video traffic into HTTPS or encapsulating transport flows within encrypted tunnels. While this improves confidentiality, it can also obscure traffic classification and disable optimizations that rely on visibility into flow metadata, such as CDN cache selection, adaptive bitrate tuning, or Quality-of-Service (QoS) marking.<a href="#section-2.2.3-2" class="pilcrow">¶</a></p>
 <p id="section-2.2.3-3">Conversely, if encryption is removed or terminated prematurely, such as through a proxy that decrypts and re-encrypts video traffic, it can violate end-to-end security assumptions made by the application or CDN, potentially exposing content or user data to unauthorized inspection.<a href="#section-2.2.3-3" class="pilcrow">¶</a></p>
 <p id="section-2.2.3-4">In both cases, mismatched encryption policies between the streaming application, CDN, and the underlying network can lead to reduced performance, incorrect cache usage, or inconsistent delivery behavior.<a href="#section-2.2.3-4" class="pilcrow">¶</a></p>
@@ -1388,7 +1416,10 @@ This mismatch can lead to inaccurate bandwidth estimation, causing the adaptive 
             <h5 id="name-forced-encryption-upgrade">
 <a href="#section-2.2.3.1" class="section-number selfRef">2.2.3.1. </a><a href="#name-forced-encryption-upgrade" class="section-name selfRef">Forced Encryption Upgrade</a>
             </h5>
-<p id="section-2.2.3.1-1">Enforcing encryption upgrades — for example, converting unencrypted HTTP/2 traffic into HTTP/2 over TLS (HTTPS) — can disrupt streaming workflows that rely on the network’s ability to inspect or classify content as part of the delivery process. When network visibility into streaming flows is removed, content-aware optimizations such as CDN cache selection, multicast distribution, or traffic prioritization may fail to function as designed. As a result, video traffic may be misclassified as generic encrypted data, leading to incorrect policy enforcement or suboptimal delivery behavior.<a href="#section-2.2.3.1-1" class="pilcrow">¶</a></p>
+<p id="section-2.2.3.1-1">Enforcing encryption upgrades, for example converting unencrypted
+HTTP/2 traffic into HTTP/2 over TLS (HTTPS), can disrupt streaming
+workflows that rely on the network’s ability to inspect or classify
+content as part of the delivery process. When network visibility into streaming flows is removed, content-aware optimizations such as CDN cache selection, multicast distribution, or traffic prioritization may fail to function as designed. As a result, video traffic may be misclassified as generic encrypted data, leading to incorrect policy enforcement or suboptimal delivery behavior.<a href="#section-2.2.3.1-1" class="pilcrow">¶</a></p>
 <p id="section-2.2.3.1-2">This issue is particularly significant in mobile and multicast-based environments, where network-assisted detection of video streams is often required to achieve efficient bandwidth utilization and maintain quality of experience. In such cases, forced encryption upgrades may prevent the network from applying appropriate delivery optimizations, resulting in degraded performance or increased operational complexity.<a href="#section-2.2.3.1-2" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -1397,7 +1428,12 @@ This mismatch can lead to inaccurate bandwidth estimation, causing the adaptive 
             <h5 id="name-forced-encryption-downgrade">
 <a href="#section-2.2.3.2" class="section-number selfRef">2.2.3.2. </a><a href="#name-forced-encryption-downgrade" class="section-name selfRef">Forced Encryption Downgrade</a>
             </h5>
-<p id="section-2.2.3.2-1">Conversely, removal or termination of encryption originally applied by a streaming platform can introduce serious operational and security concerns. In many streaming architectures, transport-level encryption (e.g., HTTPS or QUIC) is not only used to ensure confidentiality but also forms an integral part of the content protection and integrity assurance mechanisms.<a href="#section-2.2.3.2-1" class="pilcrow">¶</a></p>
+<p id="section-2.2.3.2-1">Conversely, removal or termination of encryption originally
+applied by a streaming platform can introduce serious operational
+and security concerns. In many streaming architectures,
+transport-level encryption, such as HTTPS or QUIC, is not only
+used to ensure confidentiality but also forms an integral part of
+the content protection and integrity assurance mechanisms.<a href="#section-2.2.3.2-1" class="pilcrow">¶</a></p>
 <p id="section-2.2.3.2-2">When an intermediate network overlay or proxy terminates TLS sessions or otherwise downgrades an encrypted connection to plaintext, it can invalidate end-to-end trust assumptions between the client, CDN, and content provider. Such behavior may expose sensitive metadata, enable unauthorized content inspection or modification, and violate Digital Rights Management (DRM).<a href="#section-2.2.3.2-2" class="pilcrow">¶</a></p>
 <p id="section-2.2.3.2-3">In effect, a forced encryption downgrade undermines both security and operational reliability, leading to potential playback failures, content delivery errors, or loss of user trust.<a href="#section-2.2.3.2-3" class="pilcrow">¶</a></p>
 </section>
