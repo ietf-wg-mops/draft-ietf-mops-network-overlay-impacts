@@ -10,24 +10,25 @@
 <meta content="
        This document examines the operational impacts on streaming video applications resulting from network policy changes introduced by network overlays. Such overlays may alter IP address assignment, transport protocols, routing behavior, or DNS resolution. These changes can, in turn, affect critical aspects of content delivery, including latency, CDN cache selection, delivery path optimization, traffic classification, and content access controls. 
     " name="description">
-<meta content="xml2rfc 3.33.0" name="generator">
+<meta content="xml2rfc 3.34.0" name="generator">
 <meta content="network policy" name="keyword">
 <meta content="video streaming" name="keyword">
 <meta content="streaming" name="keyword">
 <meta content="draft-ietf-mops-network-overlay-impacts-latest" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.33.0
-    Python 3.12.13
-    ConfigArgParse 1.7
+  xml2rfc 3.34.0
+    Python 3.14.5
+    ConfigArgParse 1.7.5
     google-i18n-address 3.1.1
     intervaltree 3.2.1
     Jinja2 3.1.6
-    lxml 6.0.2
-    platformdirs 4.9.6
+    lxml 6.1.1
+    natsort 8.4.0
+    platformdirs 4.10.0
     pycountry 24.6.1
     PyYAML 6.0.3
     requests 2.33.1
-    wcwidth 0.7.0
+    wcwidth 0.8.2
 -->
 <link href="draft-ietf-mops-network-overlay-impacts.xml" rel="alternate" type="application/rfc+xml">
 <link href="#copyright" rel="license">
@@ -1046,11 +1047,11 @@ svg {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">NOISV</td>
-<td class="right">June 2026</td>
+<td class="right">July 2026</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Deen &amp; Mishra</td>
-<td class="center">Expires 14 December 2026</td>
+<td class="center">Expires 4 January 2027</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1063,12 +1064,12 @@ svg {
 <dd class="internet-draft">draft-ietf-mops-network-overlay-impacts-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2026-06-12" class="published">12 June 2026</time>
+<time datetime="2026-07-03" class="published">3 July 2026</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2026-12-14">14 December 2026</time></dd>
+<dd class="expires"><time datetime="2027-01-04">4 January 2027</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1122,7 +1123,7 @@ svg {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 14 December 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 4 January 2027.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1273,16 +1274,49 @@ svg {
       <h2 id="name-internet-privacy-enhancemen">
 <a href="#section-2" class="section-number selfRef">2. </a><a href="#name-internet-privacy-enhancemen" class="section-name selfRef">Internet Privacy Enhancements</a>
       </h2>
-<p id="section-2-1">The IETF\’s efforts to strengthen Internet privacy and mitigate pervasive monitoring, as described in <span>[<a href="#RFC7258" class="cite xref">RFC7258</a>]</span>, have driven a series of architectural and protocol-level developments. The initial focus was on encrypting network data flows, most commonly through the wider adoption of Transport Layer Security (TLS). Over time, these efforts have expanded to include policy- and design-level changes—such as modifying routing paths, selecting privacy-preserving DNS resolvers, and introducing encrypted transport protocols—to better obscure and isolate user traffic from observation within the underlying network infrastructure.<a href="#section-2-1" class="pilcrow">¶</a></p>
-<p id="section-2-2">The IAB’s <span>[<a href="#RFC7258" class="cite xref">RFC7258</a>]</span> identifies pervasive monitoring as an attack on privacy, while <span>[<a href="#RFC7624" class="cite xref">RFC7624</a>]</span> outlines potential technical and operational responses to mitigate its impact. The development of the QUIC transport protocol, defined in <span>[<a href="#RFC9000" class="cite xref">RFC9000</a>]</span>, exemplifies the application of these principles: QUIC integrates confidentiality, integrity, and authentication into the transport layer itself, ensuring that user data and most protocol metadata remain encrypted by default.<a href="#section-2-2" class="pilcrow">¶</a></p>
+<p id="section-2-1">The IETF’s efforts to strengthen Internet privacy and mitigate
+pervasive monitoring, as described in <span>[<a href="#RFC7258" class="cite xref">RFC7258</a>]</span>, have driven a
+series of architectural and protocol-level developments. The
+initial focus was on encrypting network data flows, most commonly
+through the wider adoption of Transport Layer Security (TLS). Over
+time, these efforts have expanded to include changes at the policy
+and design level, such as modifying routing paths, selecting
+privacy-preserving DNS resolvers, and introducing encrypted
+transport protocols, to better obscure and isolate user traffic
+from observation within the underlying network infrastructure.<a href="#section-2-1" class="pilcrow">¶</a></p>
+<p id="section-2-2"><span>[<a href="#RFC7258" class="cite xref">RFC7258</a>]</span> identifies pervasive monitoring as an attack on
+privacy, while <span>[<a href="#RFC7624" class="cite xref">RFC7624</a>]</span> outlines potential technical and
+operational responses to mitigate its impact. The development of
+the QUIC transport protocol, defined in <span>[<a href="#RFC9000" class="cite xref">RFC9000</a>]</span>, exemplifies
+the application of these principles. QUIC integrates
+confidentiality, integrity, and authentication into the transport
+layer itself, ensuring that user data and most protocol metadata
+remain encrypted by default.<a href="#section-2-2" class="pilcrow">¶</a></p>
 <p id="section-2-3">Collectively, these privacy-enhancing measures have reshaped how networks and applications interact. However, they also introduce new considerations for operational visibility, traffic management, and performance optimization, which are particularly relevant to streaming video applications.<a href="#section-2-3" class="pilcrow">¶</a></p>
 <div id="network-overlays">
 <section id="section-2.1">
         <h3 id="name-network-overlays">
 <a href="#section-2.1" class="section-number selfRef">2.1. </a><a href="#name-network-overlays" class="section-name selfRef">Network Overlays</a>
         </h3>
-<p id="section-2.1-1">The IETF\’s privacy-enhancement efforts in response to <span>[<a href="#RFC7258" class="cite xref">RFC7258</a>]</span> have driven a range of architectural and policy design choices, including the adoption of “always-on” encryption, as exemplified by QUIC <span>[<a href="#RFC9000" class="cite xref">RFC9000</a>]</span>. While many such developments have minimal impact on video streaming, some introduce new behaviors that can be described as creating network overlays—logical networks that operate on top of the underlying native network, but apply different routing, transport, or policy decisions than either the native network or the streaming application would independently choose.<a href="#section-2.1-1" class="pilcrow">¶</a></p>
-<p id="section-2.1-2">Network overlays that alter policies or paths in ways not directly visible, selectable, or detectable by the streaming application or platform can have significant operational effects. These overlays may transparently modify network properties—such as source IP addresses, DNS resolver choices, or routing behavior—without the knowledge of the streaming service or end user. Such hidden policy changes can inadvertently disrupt the assumptions underlying adaptive streaming architectures, content delivery path optimization, or CDN selection mechanisms.<a href="#section-2.1-2" class="pilcrow">¶</a></p>
+<p id="section-2.1-1">The IETF’s privacy-enhancement efforts in response to <span>[<a href="#RFC7258" class="cite xref">RFC7258</a>]</span>
+have driven a range of architectural and policy design choices,
+including the adoption of “always-on” encryption, as exemplified
+by QUIC <span>[<a href="#RFC9000" class="cite xref">RFC9000</a>]</span>. While many such developments have minimal
+impact on video streaming, some introduce new behaviors that can
+be described as creating network overlays, which are logical
+networks that operate on top of the underlying native network but
+apply different routing, transport, or policy decisions than
+either the native network or the streaming application would
+independently choose.<a href="#section-2.1-1" class="pilcrow">¶</a></p>
+<p id="section-2.1-2">Network overlays that alter policies or paths in ways not directly
+visible, selectable, or detectable by the streaming application or
+platform can have significant operational effects. These overlays
+may silently modify network properties, such as source IP
+addresses, DNS resolver choices, or routing behavior, without the
+knowledge of the streaming service or end user. Such hidden policy
+changes can inadvertently disrupt the assumptions underlying
+adaptive streaming architectures, content delivery path
+optimization, or CDN selection mechanisms.<a href="#section-2.1-2" class="pilcrow">¶</a></p>
 <p id="section-2.1-3">When a network overlay modifies connection properties in ways that differ from application expectations, the result can be mismatched assumptions between the application and the actual transport environment. This disconnect may cause degraded performance, misclassification of network paths, or unexpected latency and throughput characteristics, all of which affect streaming quality and operational predictability.<a href="#section-2.1-3" class="pilcrow">¶</a></p>
 <p id="section-2.1-4">Protocols such as MASQUE <span>[<a href="#RFC9484" class="cite xref">RFC9484</a>]</span> and services built on it such as Apple's <a href="https://www.apple.com/privacy/docs/iCloud_Private_Relay_Overview_Dec2021.PDF">iCloud Private Relay</a> illustrate privacy-enhancing network overlays that deliberately alter connection policies relative to the open Internet. While beneficial for user privacy, such mechanisms can also obscure the visibility and control that streaming services rely on for consistent content delivery and Quality of Experience (QoE) management.<a href="#section-2.1-4" class="pilcrow">¶</a></p>
 <div id="emerging-operational-issues-with-network-overlay-policy-changes">
@@ -1290,7 +1324,7 @@ svg {
           <h4 id="name-emerging-operational-issues">
 <a href="#section-2.1.1" class="section-number selfRef">2.1.1. </a><a href="#name-emerging-operational-issues" class="section-name selfRef">Emerging Operational Issues with Network Overlay Policy Changes</a>
           </h4>
-<p id="section-2.1.1-1">Streaming video applications and content delivery platforms are increasingly encountering operational challenges associated with network overlays. These challenges arise when overlays introduce policy changes that are unexpected, inconsistently applied, or difficult—or even impossible—for the streaming platform to detect or adapt to in real time. While the specific impacts vary depending on the overlay’s design and implementation, several common classes of operational issues have been observed across deployments. These include mismatches in routing and cache selection, unexpected transport-layer behavior, and inconsistencies in latency or throughput reporting that affect Quality of Experience (QoE) monitoring and optimization.<a href="#section-2.1.1-1" class="pilcrow">¶</a></p>
+<p id="section-2.1.1-1">Streaming video applications and content delivery platforms are increasingly encountering operational challenges associated with network overlays. These challenges arise when overlays introduce policy changes that are unexpected, inconsistently applied, or difficult or impossible for the streaming platform to detect or adapt to in real time. While the specific impacts vary depending on the overlay’s design and implementation, several common classes of operational issues have been observed across deployments. These include mismatches in routing and cache selection, unexpected transport-layer behavior, and inconsistencies in latency or throughput reporting that affect Quality of Experience (QoE) monitoring and optimization.<a href="#section-2.1.1-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
