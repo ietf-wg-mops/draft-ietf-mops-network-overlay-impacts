@@ -220,55 +220,121 @@ In effect, a forced encryption downgrade undermines both security and operationa
 
 ### Address Policy Changes
 
-Network overlays that modify IP addressing policies—such as converting IPv4 to IPv6, IPv6 to IPv4, or reassigning source IP addresses—can introduce a range of operational challenges for streaming platforms, particularly when these changes occur unexpectedly or are invisible to the application. Such address changes can disrupt routing decisions, CDN cache selection, and traffic localization processes that depend on stable endpoint addresses. They also complicate diagnostic and troubleshooting efforts, as engineers analyzing logs, performing test probes, or correlating session data may inadvertently use incorrect or outdated IP information.
+Network overlays that modify IP addressing policies, such as
+converting IPv4 to IPv6, IPv6 to IPv4, or reassigning source IP
+addresses, can introduce a range of operational challenges for
+streaming platforms, particularly when these changes occur
+unexpectedly or are invisible to the application. Such address
+changes can disrupt routing decisions, CDN cache selection, and
+traffic localization processes that depend on stable endpoint
+addresses. They also complicate diagnostic and troubleshooting
+efforts, as engineers analyzing logs, performing test probes, or
+correlating session data may inadvertently use incorrect or
+outdated IP information.
 
-Source IP Address assignment changes, again when done invisibly to the application can cause significant disruption.  Platform authentication gateways that associate session authorizations with the session's device's IP address can result in service access denial when associated addresses change unexpectedly.  For example, when the device address as seen by the video application is different from the device address seen by the associated streaming platform, this can result in the platform rejecting logins, content access and other service functions from the device.
-
-A related issue arises when the source IP address observed by the streaming platform differs from that seen by the client application or device. Because many streaming architectures use IP-based session binding—such as platform authentication gateways that associate user or device authorization with a specific IP address—unannounced address translation can result in service access failures, login rejections, or denied content delivery. For example, when an overlay reassigns or masks the client’s IP address, the streaming platform may interpret this as a new or unauthorized connection, even though the client session remains active. This mismatch can lead to intermittent playback interruptions, degraded user experience, or increased operational complexity for both service providers and network operators.
+A related issue arises when the source IP address observed by the
+streaming platform differs from that seen by the client
+application or device. Because many streaming architectures use
+IP-based session binding, such as platform authentication gateways
+that associate user or device authorization with a specific IP
+address, unannounced address translation can result in service
+access failures, login rejections, or denied content delivery. For
+example, when an overlay reassigns or masks the client’s IP
+address, the streaming platform may interpret this as a new or
+unauthorized connection, even though the client session remains
+active. This mismatch can lead to intermittent playback
+interruptions, degraded user experience, or increased operational
+complexity for both service providers and network operators.
 
 ### DNS Policy Changes
 Network overlays that modify DNS resolver settings or redirect DNS queries can have significant implications for Content Delivery Networks (CDNs) that rely on DNS-based load balancing for cache selection and traffic localization.
 
-Many CDN architectures determine the “best” cache for a client by observing the source IP address of the DNS resolver making the request. When an overlay substitutes or masks the resolver—either intentionally or as part of privacy-enhancing policies—the CDN may incorrectly infer the client’s location, resulting in non-optimal cache selection, increased latency, or reduced video quality.
+Many CDN architectures determine the best cache for a client by
+observing the source IP address of the DNS resolver making the
+request. When an overlay substitutes or masks the resolver, either
+intentionally or as part of privacy-enhancing policies, the CDN
+may incorrectly infer the client’s location, resulting in
+non-optimal cache selection, increased latency, or reduced video
+quality.
 
 #### EDNS0
 The EDNS(0) (Extension Mechanisms for DNS, {{!RFC6891}}) extension was introduced to allow resolvers to include additional client subnet information in DNS queries, improving CDN cache selection accuracy. If a network overlay redirects DNS queries to a resolver that does not support EDNS(0) or deliberately strips this information, the CDN loses critical context for determining the most appropriate edge cache. This can lead to the selection of a distant or overloaded cache, negatively impacting video startup time, buffering, and overall user experience.
 
 ### Log Data Changes
-Accurate and consistent logging is essential for diagnosing streaming performance and operational issues. Network overlays that alter connection properties—such as DNS resolvers, IP addresses, or transport protocols—can cause log entries to differ between the client device and the streaming platform. When such discrepancies occur, engineers attempting to correlate logs for troubleshooting may misinterpret session behavior or fail to identify the true source of a problem. Unexpected or misleading log data therefore undermines both problem determination and root-cause analysis, complicating operational monitoring and incident response workflows.
+Accurate and consistent logging is essential for diagnosing
+streaming performance and operational issues. Network overlays
+that alter connection properties, such as DNS resolvers, IP
+addresses, or transport protocols, can cause log entries to differ
+between the client device and the streaming platform. When such
+discrepancies occur, engineers attempting to correlate logs for
+troubleshooting may misinterpret session behavior or fail to
+identify the true source of a problem. Unexpected or misleading
+log data therefore undermines both problem determination and
+root-cause analysis, complicating operational monitoring and
+incident response workflows.
 
 ### Geo Location & Identification
 Network overlays that alter the apparent source location of user devices can interfere with streaming platforms’ ability to accurately determine geospatial attributes such as country, region, or network domain.
 
-Many CDNs and content providers rely on IP address–based geolocation to enforce regional content licensing, apply local regulations, or select nearby caches for optimal performance.
-When an overlay substitutes or masks the client’s IP address—presenting it as originating from a different region or outside of known geolocation mappings—the platform may be unable to correctly associate the user with their actual location.
+Many CDNs and content providers rely on IP address based
+geolocation to enforce regional content licensing, apply local
+regulations, or select nearby caches for optimal performance.
+When an overlay substitutes or masks the client’s IP address,
+presenting it as originating from a different region or outside of
+known geolocation mappings, the platform may be unable to
+correctly associate the user with their actual location.
 
 This can result in users being denied access to region-restricted content that they would otherwise be authorized to view, or being directed to distant CDN caches, causing degraded video quality and higher latency.
 
 In addition, such location ambiguity complicates analytics, fraud detection, and rights management processes that depend on consistent geographic identifiers.
 
-### CDN interconnection troubleshooting
+### CDN Interconnection Troubleshooting
 
-In CDN interconnection scenarios, when two CDN domains collaborate to localize a point of failure, they typically begin by identifying the delivery path and selecting observation points along that path to take diagnostic measurements. Through iterative testing. they narrow down the problem domain to isolate the failure’s location.
+In CDN interconnection scenarios, when two CDN domains collaborate
+to localize a point of failure, they typically begin by
+identifying the delivery path and selecting observation points
+along that path to take diagnostic measurements. Through iterative
+testing, they narrow down the problem domain to isolate the
+failure’s location.
 
-However, when network overlays alter routing behavior, this process becomes unreliable.
-Since CDNs depend on their request routing information to determine where along the delivery path measurements should be taken, the presence of an overlay that reroutes or tunnels traffic means that the expected observation point no longer lies on the actual traffic path.
-As a result, the flow cannot be observed where the CDN expects it to be, making fault localization and coordination between interconnecting CDNs significantly more difficult.
+However, when network overlays alter routing behavior, this
+process becomes unreliable. CDNs depend on their request routing
+information to determine where along the delivery path
+measurements should be taken. The presence of an overlay that
+reroutes or tunnels traffic means that the expected observation
+point no longer lies on the actual traffic path. As a result, the
+flow cannot be observed where the CDN expects it to be, making
+fault localization and coordination between interconnecting CDNs
+significantly more difficult.
 
 ### Routing Changes
-Routing changes introduced by network overlays can alter the expected path between video applications and the infrastructure services they rely on. Such changes may cause a wide range of operational problems — including degraded performance, inconsistent latency, or failures in CDN cache selection and session persistence.
+Routing changes introduced by network overlays can alter the
+expected path between video applications and the infrastructure
+services they rely on. Such changes may cause a wide range of
+operational problems, including degraded performance, inconsistent
+latency, or failures in CDN cache selection and session
+persistence.
 
 When routing behavior differs from what the video platform or application expects, content delivery optimizations such as proximity-based cache selection, adaptive bitrate decisions, and transport-layer congestion management can become ineffective. These effects can be difficult to detect, as the overlay’s routing policy is often not visible to the streaming application or operators monitoring network performance.
 
 #### End to End Problem Discovery
 
-A common issue in video delivery is locating where along the delivery path the video transport is encountering problems.   Often such problems are more complex than
-the connection not working at but instead involve identifying bottlenecks, lost packets, and congestion issues.   When the routing changes from what is expected or
-visible to support tools it becomes an operational trouble spot for users and platform support to locate and determine the source of the problems.
+A common issue in video delivery is locating where along the
+delivery path the video transport is encountering problems. Such
+problems are often more complex than a connection not working at
+all and instead involve identifying bottlenecks, lost packets, and
+congestion issues. When routing changes from what is expected or
+visible to support tools, it becomes an operational trouble spot
+for users and platform support to locate and determine the source
+of the problems.
 
 #### CDN Edge Cache Selection due to Routing
 
-A significant and often overlooked problem is the addition of network latency compared to edge CDN caches or access network peering connections.  Routing changes which cause bypassing edge CDN caches and instead choosing less optimal caches
+A significant and often overlooked problem is the addition of
+network latency compared to edge CDN caches or access network
+peering connections. Routing changes that cause traffic to bypass
+edge CDN caches and instead reach less optimal caches are
+illustrated in the figure below.
 
 ~~~
  R  = router
@@ -283,28 +349,69 @@ A significant and often overlooked problem is the addition of network latency co
  Figure:  Routing Changes altering CDN Cache selection
 ~~~
 
-#### Performance and Problem determination
+#### Performance and Problem Determination
 
-Network overlays often interfere with the tools used in performance and problem determination.   This is due to either the tool and protocols not being able to traverse the alternative route tunnel impacting service's ability to diagnose connection and performance problems, or the network overlay itself not supporting the tool and not supporting or carrying the tools functions.
+Network overlays often interfere with the tools used in
+performance and problem determination. This is due to either the
+tools and protocols not being able to traverse the alternative
+route tunnel, impacting a service's ability to diagnose connection
+and performance problems, or the network overlay itself not
+supporting or carrying the tool's functions.
 
-#### Impact of Changing Network Routing and other Policies
+#### Impact of Changing Network Routing and Other Policies
 
-The problem for streaming applications occurs when the underlying network properties and policies change from what is expected by the streaming application, especially when such changes are either hidden or not visible to the streaming application.
+The problem for streaming applications occurs when the underlying
+network properties and policies change from what the streaming
+application expects, especially when such changes are hidden or
+not visible to the application.
 
-While the open Internet is a dynamic environment, changing of basic network behavior and policies from what is expected as seen from the streaming application,  deviates unexpectedly from what the streaming application expects. This behavior disrupts the optimized streaming delivery architecture for the end-user device.
-Changes to Network Policies such as routing, source IP address assigned to the streaming application traffic, DNS resolver choice etc. influences this behavior.
+While the open Internet is a dynamic environment, changes to basic
+network behavior and policies that deviate unexpectedly from what
+the streaming application expects disrupt the optimized streaming
+delivery architecture for the end-user device. Changes to network
+policies such as routing, source IP address assignment, and DNS
+resolver choice influence this behavior.
 
-Having a reliable understanding of the delivery path is essential for streaming operators and the introduction of network overlays like those based on technologies such as MASQUE especially when designed to be undetectable by the applications using them has introduced new technical challenges for streaming operators and network operators as well as for their viewers.
+Having a reliable understanding of the delivery path is essential
+for streaming operators. The introduction of network overlays,
+particularly those designed to be undetectable by the applications
+using them, has introduced new technical challenges for streaming
+operators, network operators, and their viewers.
 
-The core problem occurs when changes to network policies are made often without notification or visibility to applications and without clear methods of probing to determine and test changed behaviors that affect the streaming application\'s content delivery path resulting in increased latency, changes of IP address for the application as seen by either the application or the streaming service connection, changes to DNS resolvers being queried and the results returned by DNS, and changes to application transports such as adding or removing outer layer encryption are all problems that have been observed in production streaming platforms.
+The core problem occurs when changes to network policies are made
+without notification or visibility to applications and without
+clear methods for probing or testing the changed behaviors. The
+affected behaviors include increased latency, changes to the IP
+address seen by either the application or the streaming service,
+changes to DNS resolvers and the results they return, and changes
+to application transports such as adding or removing encryption.
+All of these have been observed in production streaming platforms.
 
 ### Unintended Content Blocking
 
-A strongly undesirable unintended side-effect of network policy changes is the blocking of content to the viewer.   This may be the primary content URLs access which are blocked, or possibly advertising fetched from a second URL from the main video content. This can be due to policy changes altering device IP addresses, or changes to routing that run afoul of enforced traffic routing policies.
+A strongly undesirable side-effect of network policy changes is
+the blocking of content to the viewer. This may affect primary
+content URLs, or possibly advertising fetched from a second URL
+alongside the main video content. Such blocking can be due to
+policy changes altering device IP addresses, or routing changes
+that conflict with enforced traffic routing policies.
 
-Such blocking may be connected to restrictions built upon data feeds used for geofiltering and georestrictions, for example restriction which block delivery to networks identified as either commercial data centers or other CDNs service network addresses. Essentially, running afoul of configurations possibly used to combat security threats that expect streaming viewers to be on home or possibly mobile networks, but not in commercial data centers or CDN content networks and so block delivery to IP addresses in those unexpected network blocks.  This is more likely to occur in network overlays that shift egress traffic to commerical or CDN blocks.
+Such blocking may be connected to restrictions built upon data
+feeds used for geofiltering and georestrictions, for example
+restrictions that block delivery to networks identified as
+commercial data centers or CDN service network addresses.
+Essentially, this is running afoul of configurations used to
+combat security threats that expect streaming viewers to be on
+home or mobile networks, not in commercial data centers or CDN
+content networks. This is more likely to occur in network overlays
+that shift egress traffic to commercial or CDN address blocks.
 
-This is a particularly troublesome problem to determine as it may appear inconsistently from one streaming session to another.    Small changes in URLs in manifests from on session to another, especially on streaming platforms that make use of multi-CDN delivery and may encounter different delivery and security protection policies from the different multi-CDN operators involed.
+This is a particularly difficult problem to diagnose as it may
+appear inconsistently from one streaming session to another.
+Small changes in URLs in manifests from one session to another are
+especially problematic on streaming platforms that use multi-CDN
+delivery, where different delivery and security protection
+policies from different CDN operators may be encountered.
 
 # Policy Changes Hidden from Applications
 
