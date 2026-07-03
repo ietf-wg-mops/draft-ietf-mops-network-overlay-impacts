@@ -115,6 +115,96 @@ When a network overlay modifies connection properties in ways that differ from a
 
 Protocols such as MASQUE {{!RFC9484}} and services built on it such as Apple\'s [iCloud Private Relay](https://www.apple.com/privacy/docs/iCloud_Private_Relay_Overview_Dec2021.PDF) illustrate privacy-enhancing network overlays that deliberately alter connection policies relative to the open Internet. While beneficial for user privacy, such mechanisms can also obscure the visibility and control that streaming services rely on for consistent content delivery and Quality of Experience (QoE) management.
 
+## Transparency and Connection Policy
+
+What matters when considering network overlay impact on streaming
+is not the technology or protocol used, but whether the
+alternative network connection policies applied are transparent
+or hidden from the connection endpoints.
+
+Prior to network overlays, connection policy changes tended to be
+transparent to the application-server connection. Changes made to
+the connection were visible to one or both sides, enabling the
+connection endpoints to have awareness of the policies applied.
+
+The issue this document focuses on is where alternative network
+connection policies are non-transparent to the connection
+endpoints, particularly the application. The application is the
+party architecturally designated to make decisions about network
+connection properties and policies, and non-transparent overlays
+remove that ability without any indication to the application that
+this has occurred.
+
+This distinction means that even classic connection policy
+approaches such as Layer 2 VPNs fall within this document's
+problem statement if they operate non-transparently to the
+connection endpoints, and particularly to the application.
+
+A related distinction concerns end-to-end connection autonomy.
+When an application opens a connection, it does so based on
+server-published endpoint information, obtained via DNS or direct
+IP addressing. Network overlays silently intercept that connection,
+rerouting or readdressing it and making new path choices without
+the client being involved. Neither the application nor the server
+has signaled consent to this interception, and neither endpoint
+receives any indication that the path or addressing has changed.
+This silent substitution of routing decisions is distinct from
+what a traditional VPN does, where the application is aware that
+its traffic is traversing an overlay and the network operator has
+explicitly configured that behavior.
+
+Historically, the issues discussed in this document have not been a
+major concern for typical VPN deployments, largely because VPNs
+have not been a pervasive way to stream video. Many VPNs have not
+offered throughput or consistency comparable to a direct Internet
+path, and many video platforms block or degrade service to detected
+VPN connections due to their common use in bypassing geofiltering
+restrictions.
+
+Where a distinction is useful operationally, it is not the
+technology or protocol used but the deployment pattern in common
+use. Traditional and newer overlay deployments have tended to
+differ along the following lines.
+
+### Transparent connection policy approaches:
+
+* (1) are generally detectable by the application and the
+  network operator.
+* (2) typically work at the network layer of a device, so a wide
+  range, if not all, of the device's transports and protocols flow
+  through the overlay.
+* (3) typically provide exception options allowing traffic to be
+  excluded based on criteria such as application, destination IP
+  address, or application protocol.
+
+### Non-transparent connection policy approaches:
+
+* (1) are often undetectable by video applications or the
+  streaming platform while in use.
+* (2) often apply only to specific application transports, such as
+  HTTP/2 over TCP or HTTP/3 over QUIC, while leaving other
+  transports on the same device, such as TCP+TLS, unaffected.
+* (3) often apply only to HTTP connections, without support for
+  ICMP, non-HTTP DNS, NTP, or the other non-HTTP-based tools used
+  for network measurement, problem determination, and network
+  management.
+* (4) do not expose to applications any means of discovering what
+  policy changes the overlay applies to their network connections.
+* (5) do not expose mechanisms or APIs for applications to interact
+  with the overlay, such as getting or setting options.
+
+These are patterns of observed deployment behavior, not categories
+defined by protocol specification. What determines whether a
+connection policy mechanism falls within the scope of this document
+is whether it operates non-transparently to the connection
+endpoints, not the protocol or technology it uses.
+
+Even where a network overlay operates transparently to the
+connection endpoints, the operational impacts described in this
+document, including protocol changes, tunneling effects, and path
+alterations, remain significant considerations for streaming video
+deployments.
+
 ### Emerging Operational Issues with Network Overlay Policy Changes
 
 Streaming video applications and content delivery platforms are increasingly encountering operational challenges associated with network overlays. These challenges arise when overlays introduce policy changes that are unexpected, inconsistently applied, or difficult or impossible for the streaming platform to detect or adapt to in real time. While the specific impacts vary depending on the overlay’s design and implementation, several common classes of operational issues have been observed across deployments. These include mismatches in routing and cache selection, unexpected transport-layer behavior, and inconsistencies in latency or throughput reporting that affect Quality of Experience (QoE) monitoring and optimization.
@@ -572,28 +662,6 @@ The IETF has discussed this situation in the past. More than
 {{!RFC3234}} was published, capturing the issues with middleboxes
 in the network and the effects of hidden changes occurring on the
 network between the sender and receiver.
-
-# Appendix A: Network Overlays are different than VPNs
-
-While conceptually similar in many ways to VPN (Virtual Private Network) technology, the various network overlay technologies currently being deployed as well as new ones currently being designed by the IETF differ quite significantly from the older VPN approach they are replacing in a number of ways.
-
-It is also worth noting that one reason why the issues discussed in this document have not been concern with regard to VPNs is that largely VPNs have not been a pervasive way to stream video.   First, many VPNs have not had very good or consistent throughput compared to the direct open Internet and so provide a poor viewing experience.  Second, many video platforms block or deny service to VPN connections due to the very common use of VPNs to bypass geofiltering restrictions.
-
-Whatever the reason, it is worth looking at how VPNs differ from the Network Overlays being discussed herein.
-
-### VPNs typically:
-
-* (1) VPNs typically are detectable by both the video application and often by the streaming platform.
-* (2) VPNs typically work at the network layer of a device, resulting in a wide-range (if not all) transports and protocols from the device flowing through the VPN
-* (3) VPNs typically provide exception options allowing for exclusion from traversing via the VPN based on various criteria such as application, destination IP address, application protocol etc.
-
-### Network Overlays typically:
-
-* (1) Network Overlays are often undetectable by video applications or by the streaming platform, when in use.
-* (2) Network Overlays often only apply to specific application transports such as HTTP2/TCP or HTTP3/QUIC while not applying to HTTP2/TCP+TLS on the same device.
-* (3) Network Overlays often only apply to HTTP connections and do not support ICMP, non-HTTP versions of DNS, NTP etc., and various tools used for network measurement, problem determination, and network management that are not HTTP based.
-+ (4) Network Overlays do not expose to applications any means for the application to discover the policy changes the overlay will apply to the applications network connections.
-+ (5) Network Overlays do not expose mechanisms or APIs for applications to interact with them such as getting or setting options.
 
 
 # Conventions and Definitions
