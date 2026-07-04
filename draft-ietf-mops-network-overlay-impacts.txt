@@ -5,8 +5,8 @@
 Media OPerationS                                                 G. Deen
 Internet-Draft                                      Comcast-NBCUniversal
 Intended status: Informational                                 S. Mishra
-Expires: 4 January 2027                                          Verizon
-                                                             3 July 2026
+Expires: 5 January 2027                                          Verizon
+                                                             4 July 2026
 
 
                Network Overlay Impacts to Streaming Video
@@ -56,7 +56,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 4 January 2027.
+   This Internet-Draft will expire on 5 January 2027.
 
 Copyright Notice
 
@@ -255,14 +255,14 @@ Table of Contents
    they operate non-transparently to the connection endpoints, and
    particularly to the application.
 
-   A related distinction concerns end-to-end connection autonomy.  When
-   an application opens a connection, it does so based on server-
-   published endpoint information, obtained via DNS or direct IP
-   addressing.  Network overlays silently intercept that connection,
-   rerouting or readdressing it and making new path choices without the
-   client being involved.  Neither the application nor the server has
-   signaled consent to this interception, and neither endpoint receives
-   any indication that the path or addressing has changed.  This silent
+   Network overlays also affect end-to-end connection autonomy.  When an
+   application opens a connection, it does so based on server-published
+   endpoint information, obtained via DNS or direct IP addressing.
+   Network overlays silently intercept that connection, rerouting or
+   readdressing it and making new path choices without the client being
+   involved.  Neither the application nor the server has signaled
+   consent to this interception, and neither endpoint receives any
+   indication that the path or addressing has changed.  This silent
    substitution of routing decisions is distinct from what a traditional
    VPN does, where the application is aware that its traffic is
    traversing an overlay and the network operator has explicitly
