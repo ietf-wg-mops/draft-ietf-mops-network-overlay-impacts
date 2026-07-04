@@ -140,7 +140,7 @@ approaches such as Layer 2 VPNs fall within this document's
 problem statement if they operate non-transparently to the
 connection endpoints, and particularly to the application.
 
-A related distinction concerns end-to-end connection autonomy.
+Network overlays also affect end-to-end connection autonomy.
 When an application opens a connection, it does so based on
 server-published endpoint information, obtained via DNS or direct
 IP addressing. Network overlays silently intercept that connection,
