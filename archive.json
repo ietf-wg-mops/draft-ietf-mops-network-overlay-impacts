@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-07-02T02:09:03.603264+00:00",
+  "timestamp": "2026-07-05T01:59:37.512159+00:00",
   "repo": "ietf-wg-mops/draft-ietf-mops-network-overlay-impacts",
   "labels": [
     {
@@ -49,7 +49,24 @@
       "color": "ffffff"
     }
   ],
-  "issues": [],
+  "issues": [
+    {
+      "number": 6,
+      "id": "I_kwDON3ePec8AAAABHgs4tQ",
+      "title": "dichotomy between VPNs and overlays in Appendix A.",
+      "url": "https://github.com/ietf-wg-mops/draft-ietf-mops-network-overlay-impacts/issues/6",
+      "state": "CLOSED",
+      "author": "smishra1200",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Logging an issue per David Schinazi <dschinazi.ietf@gmail.com> Mon, 23 February 2026 22:44 UTC\n\nI disagree with the dichotomy between VPNs and overlays in\nAppendix A. VPNs are just one category of network overlay. As an example,\nif Chrome were to ship a default-enabled full-tunnel VPN to Google\ndatacenters for all users tomorrow, I can guarantee that it'll cause the\nissues mentioned in other parts of the doc. Also, an IPsec VPN will reduce\nthe MTU, that's something that can adversely impact video performance.\nThere's still recent work in L3/L2 VPNs, such as RFC 9484 and\ndraft-ietf-masque-connect-ethernet is a new layer 2 VPN. The fact that they\nboth use the QUIC packet format instead of ESP or L2TP header doesn't\nchange the performance characteristics. The activation of  the QUIC\ncongestion controller could do interesting things, but so can a traffic\nshaper that only drops packets. At the end of the day, I think the\ndistinction is semantics and doesn't matter when it comes to what\nrecommendations you're giving.",
+      "createdAt": "2026-07-03T00:05:58Z",
+      "updatedAt": "2026-07-03T23:25:50Z",
+      "closedAt": "2026-07-03T23:25:50Z",
+      "comments": []
+    }
+  ],
   "pulls": [
     {
       "number": 1,
@@ -185,6 +202,216 @@
       "mergedBy": "smishra1200",
       "mergeCommit": {
         "oid": "1f8a1bfc9f6a6c73e2faae8016f84ca54de17b6c"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 7,
+      "id": "PR_kwDON3ePec7tW-55",
+      "title": "Add Transparency and Connection Policy section, remove Appendix A (is\u2026",
+      "url": "https://github.com/ietf-wg-mops/draft-ietf-mops-network-overlay-impacts/pull/7",
+      "state": "MERGED",
+      "author": "smishra1200",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "  Closes #6\r\n\r\n  Replaces Appendix A (Network Overlays are different than VPNs) with a\r\n  new Section 2.2 (Transparency and Connection Policy). The new section\r\n  reframes the VPN vs overlay distinction around transparency of\r\n  connection policy changes to endpoints, addresses David Schinazi's\r\n  review comment on the VPN dichotomy.",
+      "createdAt": "2026-07-03T00:19:24Z",
+      "updatedAt": "2026-07-03T23:25:49Z",
+      "baseRepository": "ietf-wg-mops/draft-ietf-mops-network-overlay-impacts",
+      "baseRefName": "main",
+      "baseRefOid": "1f8a1bfc9f6a6c73e2faae8016f84ca54de17b6c",
+      "headRepository": "ietf-wg-mops/draft-ietf-mops-network-overlay-impacts",
+      "headRefName": "transparency-and-connection-policy",
+      "headRefOid": "c1c2449054bb65fbd12ac88dd2fee3790e2d60dc",
+      "closedAt": "2026-07-03T23:25:49Z",
+      "mergedAt": "2026-07-03T23:25:49Z",
+      "mergedBy": "gitnnelg",
+      "mergeCommit": {
+        "oid": "0e860dbee10e9c62585cabd04afaac5e2fab548f"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDON3ePec8AAAABE-Bnow",
+          "commit": {
+            "abbreviatedOid": "c1c2449"
+          },
+          "author": "gitnnelg",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "This is an improvement from the original text and addresses the issue David S. raised.",
+          "createdAt": "2026-07-03T23:25:34Z",
+          "updatedAt": "2026-07-03T23:25:34Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "id": "PR_kwDON3ePec7ttclw",
+      "title": "Editorial review and cleanup: Section 2, Network Overlays, and Emerging Operational Issues",
+      "url": "https://github.com/ietf-wg-mops/draft-ietf-mops-network-overlay-impacts/pull/8",
+      "state": "MERGED",
+      "author": "smishra1200",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Editorial review and cleanup of Section 2 (Internet Privacy Enhancements), \r\nSection 2.1 (Network Overlays), and Section 2.1.1  (Emerging Operational Issues with Network Overlay Policy Changes).",
+      "createdAt": "2026-07-03T19:42:34Z",
+      "updatedAt": "2026-07-03T19:45:16Z",
+      "baseRepository": "ietf-wg-mops/draft-ietf-mops-network-overlay-impacts",
+      "baseRefName": "main",
+      "baseRefOid": "1f8a1bfc9f6a6c73e2faae8016f84ca54de17b6c",
+      "headRepository": "ietf-wg-mops/draft-ietf-mops-network-overlay-impacts",
+      "headRefName": "editorial-section-2",
+      "headRefOid": "3446ade9d871261085d1caa8008b31f9b8fed964",
+      "closedAt": "2026-07-03T19:43:21Z",
+      "mergedAt": "2026-07-03T19:43:21Z",
+      "mergedBy": "smishra1200",
+      "mergeCommit": {
+        "oid": "2173dea3523eb565aedc9caa9995663e24761ffe"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 9,
+      "id": "PR_kwDON3ePec7ttyUK",
+      "title": "Editorial review and cleanup: Policy Changes, Partitioning, Protocol Policy Changes, Encryption Policy",
+      "url": "https://github.com/ietf-wg-mops/draft-ietf-mops-network-overlay-impacts/pull/9",
+      "state": "MERGED",
+      "author": "smishra1200",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": " Editorial review and cleanup of the Policy Changes intro,\r\n Partitioning, Protocol Policy Changes, Encryption Policy, Forced\r\n Encryption Upgrade, and Forced Encryption Downgrade subsections.",
+      "createdAt": "2026-07-03T20:05:43Z",
+      "updatedAt": "2026-07-03T20:06:24Z",
+      "baseRepository": "ietf-wg-mops/draft-ietf-mops-network-overlay-impacts",
+      "baseRefName": "main",
+      "baseRefOid": "2173dea3523eb565aedc9caa9995663e24761ffe",
+      "headRepository": "ietf-wg-mops/draft-ietf-mops-network-overlay-impacts",
+      "headRefName": "editorial-policy-changes-part1",
+      "headRefOid": "bdaee34be5fce7d979cf142f574a5897684785dc",
+      "closedAt": "2026-07-03T20:06:24Z",
+      "mergedAt": "2026-07-03T20:06:24Z",
+      "mergedBy": "smishra1200",
+      "mergeCommit": {
+        "oid": "39634fa7b939916dd25a319fdaf8c3c379b6ddd6"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 10,
+      "id": "PR_kwDON3ePec7tuFUi",
+      "title": "  Editorial review and cleanup: Address Policy Changes, DNS, Log Data, Geo Location, CDN Interconnection  Troubleshooting, Routing Changes, Unintended Content Blocking",
+      "url": "https://github.com/ietf-wg-mops/draft-ietf-mops-network-overlay-impacts/pull/10",
+      "state": "MERGED",
+      "author": "smishra1200",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Editorial review and cleanup of Address Policy Changes, DNS Policy\r\nChanges, Log Data Changes, Geo Location and Identification, CDN\r\nInterconnection Troubleshooting, Routing Changes, and Unintended\r\nContent Blocking subsections. \r\n\r\nAlso removes a duplicate paragraph in Address Policy Changes and completes an incomplete sentence\r\nbefore the CDN Edge Cache Selection diagram.",
+      "createdAt": "2026-07-03T20:27:16Z",
+      "updatedAt": "2026-07-03T20:27:56Z",
+      "baseRepository": "ietf-wg-mops/draft-ietf-mops-network-overlay-impacts",
+      "baseRefName": "main",
+      "baseRefOid": "39634fa7b939916dd25a319fdaf8c3c379b6ddd6",
+      "headRepository": "ietf-wg-mops/draft-ietf-mops-network-overlay-impacts",
+      "headRefName": "editorial-policy-changes-part2",
+      "headRefOid": "eff9a3a8ef388de398bf094f672dba57a145afc7",
+      "closedAt": "2026-07-03T20:27:45Z",
+      "mergedAt": "2026-07-03T20:27:45Z",
+      "mergedBy": "smishra1200",
+      "mergeCommit": {
+        "oid": "d3a0300a4501ccc565ee4c694440d7d7962c00cc"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 11,
+      "id": "PR_kwDON3ePec7tuKg3",
+      "title": "Editorial review and cleanup: Policy Changes Hidden from Applications, Making It Easy",
+      "url": "https://github.com/ietf-wg-mops/draft-ietf-mops-network-overlay-impacts/pull/11",
+      "state": "MERGED",
+      "author": "smishra1200",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Editorial review and cleanup of Policy Changes Hidden from Applications and Making It Easy (for Users) by Working Under\r\nthe Covers sections.",
+      "createdAt": "2026-07-03T20:33:48Z",
+      "updatedAt": "2026-07-03T20:35:03Z",
+      "baseRepository": "ietf-wg-mops/draft-ietf-mops-network-overlay-impacts",
+      "baseRefName": "main",
+      "baseRefOid": "d3a0300a4501ccc565ee4c694440d7d7962c00cc",
+      "headRepository": "ietf-wg-mops/draft-ietf-mops-network-overlay-impacts",
+      "headRefName": "editorial-hidden-policies-making-easy",
+      "headRefOid": "83ac30850a70dceb705dc1d873d0e68d088071c4",
+      "closedAt": "2026-07-03T20:35:03Z",
+      "mergedAt": "2026-07-03T20:35:03Z",
+      "mergedBy": "smishra1200",
+      "mergeCommit": {
+        "oid": "201f37ccf3842683c53a6f7b7304b4a2b33359ad"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 12,
+      "id": "PR_kwDON3ePec7tudyG",
+      "title": "Editorial review and cleanup: Streaming Video, Streaming Video Architecture, Middleboxes, Acknowledgments",
+      "url": "https://github.com/ietf-wg-mops/draft-ietf-mops-network-overlay-impacts/pull/12",
+      "state": "MERGED",
+      "author": "smishra1200",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Editorial review and cleanup of Streaming Video, Advances in Streaming Video Architecture, Middleboxes and Learning from the\r\nPast, and Acknowledgments sections. \r\n\r\nAlso removes first-person language and fixes heading capitalization.",
+      "createdAt": "2026-07-03T20:55:37Z",
+      "updatedAt": "2026-07-03T20:56:08Z",
+      "baseRepository": "ietf-wg-mops/draft-ietf-mops-network-overlay-impacts",
+      "baseRefName": "main",
+      "baseRefOid": "201f37ccf3842683c53a6f7b7304b4a2b33359ad",
+      "headRepository": "ietf-wg-mops/draft-ietf-mops-network-overlay-impacts",
+      "headRefName": "editorial-streaming-video-middleboxes",
+      "headRefOid": "01096d6fcd4d168a0301309512c9a151f26f8c58",
+      "closedAt": "2026-07-03T20:56:07Z",
+      "mergedAt": "2026-07-03T20:56:07Z",
+      "mergedBy": "smishra1200",
+      "mergeCommit": {
+        "oid": "01b367eda4d07f117f27156ac844ef92d1ff0501"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 13,
+      "id": "PR_kwDON3ePec7t6CEl",
+      "title": "Editorial: clarify opening sentence of connection autonomy paragraph of Transparency and Connection Policy section",
+      "url": "https://github.com/ietf-wg-mops/draft-ietf-mops-network-overlay-impacts/pull/13",
+      "state": "MERGED",
+      "author": "smishra1200",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Transparency and Connection Policy (5th paragraph)\r\nReplace:\r\n\"A related distinction concerns end-to-end connection autonomy\" with\r\n\"Network overlays also affect end-to-end connection autonomy\"\r\n\r\nUse of \"related distinction\" is very abstract and may confuse the reader. The new sentence keeps the context unambiguous.",
+      "createdAt": "2026-07-04T18:09:34Z",
+      "updatedAt": "2026-07-04T18:11:24Z",
+      "baseRepository": "ietf-wg-mops/draft-ietf-mops-network-overlay-impacts",
+      "baseRefName": "main",
+      "baseRefOid": "0e860dbee10e9c62585cabd04afaac5e2fab548f",
+      "headRepository": "ietf-wg-mops/draft-ietf-mops-network-overlay-impacts",
+      "headRefName": "editorial-connection-autonomy",
+      "headRefOid": "898d9d744e7e62e0414ec573d959063ecdb22e0a",
+      "closedAt": "2026-07-04T18:11:24Z",
+      "mergedAt": "2026-07-04T18:11:24Z",
+      "mergedBy": "smishra1200",
+      "mergeCommit": {
+        "oid": "8397a456475958ddeff694510ab15a7ac60a5437"
       },
       "comments": [],
       "reviews": []
