@@ -52,7 +52,7 @@ This document examines the operational impacts on streaming video applications r
 
 # Introduction
 
-This document explores the unintended operational impacts of network overlays—such as VPNs and MASQUE-based tunnels—on highly scalable Internet streaming applications. Because these streaming architectures are optimized for specific network environments, overlay-enforced policy changes can degrade performance. This analysis serves as a foundational exploration to guide future work regarding potential mitigations and design improvements.
+This document explores the unintended operational impacts of network overlays, such as VPNs and MASQUE-based tunnels, on highly scalable Internet streaming applications. Because these streaming architectures are optimized for specific network environments, overlay-enforced policy changes can degrade performance. This analysis serves as a foundational exploration to guide future work regarding potential mitigations and design improvements.
 
 The authors acknowledge the inherent friction between maximizing Internet transport privacy and maintaining the operational efficiency of data-intensive applications. Integrating these competing operational requirements into architectural designs is a complex task.
 
@@ -61,7 +61,7 @@ The purpose of this document is to establish a clear problem statement regarding
 
 # Streaming Applications: Optimized for Scaling and Latency
 
-Internet video streaming has become a global utility for billions of viewers, evolving by necessity into a highly optimized operational ecosystem. This ecosystem delivers live sports, entertainment, linear television, user-generated content (UGC), and breaking news to any Internet-connected device across heterogeneous networks, including high-bandwidth fixed lines, mobile, and Wi-Fi. Consequently, streaming dominates Internet traffic, accounting for an estimated 80–85% of global volume.
+Internet video streaming has become a global utility for billions of viewers, evolving by necessity into a highly optimized operational ecosystem. This ecosystem delivers live sports, entertainment, linear television, user-generated content (UGC), and breaking news to any Internet-connected device across heterogeneous networks, including high-bandwidth fixed lines, mobile, and Wi-Fi. Consequently, streaming dominates Internet traffic as documented in {{!RFC9317}}.
 
 These sessions require sustained, data-intensive throughput. For example, a single hour of high-definition (HD) video utilizes continuous flows of 0.5–8.0 Mbps (totaling approximately 0.2–3.6 GB), while 4K video demands 4.0–20.0 Mbps (totaling approximately 1.8–9.0 GB).
 
