@@ -110,7 +110,7 @@ Table of Contents
 1.  Introduction
 
    This document explores the unintended operational impacts of network
-   overlays—such as VPNs and MASQUE-based tunnels—on highly scalable
+   overlays, such as VPNs and MASQUE-based tunnels, on highly scalable
    Internet streaming applications.  Because these streaming
    architectures are optimized for specific network environments,
    overlay-enforced policy changes can degrade performance.  This
@@ -143,8 +143,8 @@ Table of Contents
    linear television, user-generated content (UGC), and breaking news to
    any Internet-connected device across heterogeneous networks,
    including high-bandwidth fixed lines, mobile, and Wi-Fi.
-   Consequently, streaming dominates Internet traffic, accounting for an
-   estimated 80–85% of global volume.
+   Consequently, streaming dominates Internet traffic as documented in
+   [RFC9317].
 
    These sessions require sustained, data-intensive throughput.  For
    example, a single hour of high-definition (HD) video utilizes
