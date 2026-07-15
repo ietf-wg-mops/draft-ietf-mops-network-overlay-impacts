@@ -698,7 +698,7 @@ Streaming Video Technology Alliance (SVTA) based on their work
 studying the impacts of network overlays on streaming platforms.
 The contributions from Brian Paxton on observed overlay behavior
 and comments from Jay Robertson have been very helpful. The
-authors are also grateful to Leonard Giuliano, Emile Stephan,
+authors are also very grateful to David Schinazi, Leonard Giuliano, Emile Stephan,
 and Kyle Rose for their reviews and contributions to this
 document.
 
