@@ -4,8 +4,6 @@ abbrev: "NOISV"
 category: info
 
 ipr: trust200902
-area: Internet
-workgroup: MOPS
 
 stand_alone: yes
 pi: [toc, sortrefs, symrefs]
@@ -29,7 +27,7 @@ venue:
   mail: "mops@ietf.org"
   arch: "https://mailarchive.ietf.org/arch/browse/mops/"
   github: "ietf-wg-mops/draft-ietf-mops-network-overlay-impacts"
-  latest: "https://ietf-wg-mops.github.io/draft-ietf-mops-network-overlay-impacts/draft-ietf--mops-network-overlay-impacts.html"
+  latest: "https://ietf-wg-mops.github.io/draft-ietf-mops-network-overlay-impacts/draft-ietf-mops-network-overlay-impacts.html"
 
 author:
  -
@@ -61,17 +59,17 @@ The purpose of this document is to establish a clear problem statement regarding
 
 # Streaming Applications: Optimized for Scaling and Latency
 
-Internet video streaming has become a global utility for billions of viewers, evolving by necessity into a highly optimized operational ecosystem. This ecosystem delivers live sports, entertainment, linear television, user-generated content (UGC), and breaking news to any Internet-connected device across heterogeneous networks, including high-bandwidth fixed lines, mobile, and Wi-Fi. Consequently, streaming dominates Internet traffic as documented in {{!RFC9317}}.
+Internet video streaming has become a global utility for billions of viewers, evolving by necessity into a highly optimized operational ecosystem. This ecosystem delivers live sports, entertainment, linear television, user-generated content (UGC), and breaking news to any Internet-connected device across heterogeneous networks, including high-bandwidth fixed lines, mobile, and Wi-Fi. Consequently, streaming dominates Internet traffic as documented in {{?RFC9317}}.
 
 These sessions require sustained, data-intensive throughput. For example, a single hour of high-definition (HD) video utilizes continuous flows of 0.5–8.0 Mbps (totaling approximately 0.2–3.6 GB), while 4K video demands 4.0–20.0 Mbps (totaling approximately 1.8–9.0 GB).
 
-To support this volume, the video streaming ecosystem relies on sophisticated network and data management methodologies. This includes the IETF’s Content Delivery Network Interconnection (CDNI) frameworks for tiered CDN topologies and downstream CDN selection/orchestration. Each streaming platform carefully architects its delivery pipeline around deterministic network policies, predictable routing, and explicit path signaling. This optimization is critical to meet scaling demands regarding simultaneous viewer concurrency, aggregate data volume, and the ultra-low latency thresholds required for interactive and live sports viewing. The foundations of this application ecosystem are discussed in {{!RFC9317}}, though the technology has continued to evolve significantly since its publication.
+To support this volume, the video streaming ecosystem relies on sophisticated network and data management methodologies. This includes the IETF’s Content Delivery Network Interconnection (CDNI) frameworks for tiered CDN topologies and downstream CDN selection/orchestration. Each streaming platform carefully architects its delivery pipeline around deterministic network policies, predictable routing, and explicit path signaling. This optimization is critical to meet scaling demands regarding simultaneous viewer concurrency, aggregate data volume, and the ultra-low latency thresholds required for interactive and live sports viewing. The foundations of this application ecosystem are discussed in {{?RFC9317}}, though the technology has continued to evolve significantly since its publication.
 
 Regardless of content type, the successful delivery of data at this scale requires a well-understood, end-to-end application and networking architecture. The workflow behaves predictably and consistently according to the design assumptions of the video streaming architects.
 
 # Network Overlays: Privacy Enhancements and Operational Features
 
-Enhancing Internet user privacy has been a core focus of the IETF following the publication of {{!RFC7258}}, which established pervasive surveillance as a technical attack. {{!RFC7624}} further detailed these technical threats and outlined high-level mitigation approaches. Since then, IETF working groups have systematically addressed these vectors, producing new standards with native privacy protections. Protocols like QUIC {{!RFC9000}} exemplify this shift, embedding always-on transport encryption and wire-image obfuscation directly into the protocol design.
+Enhancing Internet user privacy has been a core focus of the IETF following the publication of {{?RFC7258}}, which established pervasive surveillance as a technical attack. {{?RFC7624}} further detailed these technical threats and outlined high-level mitigation approaches. Since then, IETF working groups have systematically addressed these vectors, producing new standards with native privacy protections. Protocols like QUIC {{?RFC9000}} exemplify this shift, embedding always-on transport encryption and wire-image obfuscation directly into the protocol design.
 
 Concurrently, application-layer and transport-layer network overlays—such as Virtual Private Networks (VPNs) and MASQUE-based tunnels—have emerged as easily deployable mechanisms to shield user traffic from network intermediaries. However, as consumer operating systems, browsers, and applications increasingly integrate these privacy-enhancing overlays, they introduce architectural changes to the underlying network behavior.
 
@@ -80,7 +78,7 @@ These overlays frequently obfuscate client IP geolocation, alter path MTU charac
 # Internet Privacy Enhancements
 
 The IETF’s efforts to strengthen Internet privacy and mitigate
-pervasive monitoring, as described in {{!RFC7258}}, have driven a
+pervasive monitoring, as described in {{?RFC7258}}, have driven a
 series of architectural and protocol-level developments. The
 initial focus was on encrypting network data flows, most commonly
 through the wider adoption of Transport Layer Security (TLS). Over
@@ -90,10 +88,10 @@ privacy-preserving DNS resolvers, and introducing encrypted
 transport protocols, to better obscure and isolate user traffic
 from observation within the underlying network infrastructure.
 
-{{!RFC7258}} identifies pervasive monitoring as an attack on
-privacy, while {{!RFC7624}} outlines potential technical and
+{{?RFC7258}} identifies pervasive monitoring as an attack on
+privacy, while {{?RFC7624}} outlines potential technical and
 operational responses to mitigate its impact. The development of
-the QUIC transport protocol, defined in {{!RFC9000}}, exemplifies
+the QUIC transport protocol, defined in {{?RFC9000}}, exemplifies
 the application of these principles. QUIC integrates
 confidentiality, integrity, and authentication into the transport
 layer itself, ensuring that user data and most protocol metadata
@@ -102,10 +100,10 @@ remain encrypted by default.
 Collectively, these privacy-enhancing measures have reshaped how networks and applications interact. However, they also introduce new considerations for operational visibility, traffic management, and performance optimization, which are particularly relevant to streaming video applications.
 
 ## Network Overlays
-The IETF’s privacy-enhancement efforts in response to {{!RFC7258}}
+The IETF’s privacy-enhancement efforts in response to {{?RFC7258}}
 have driven a range of architectural and policy design choices,
 including the adoption of “always-on” encryption, as exemplified
-by QUIC {{!RFC9000}}. While many such developments have minimal
+by QUIC {{?RFC9000}}. While many such developments have minimal
 impact on video streaming, some introduce new behaviors that can
 be described as creating network overlays, which are logical
 networks that operate on top of the underlying native network but
@@ -125,7 +123,7 @@ optimization, or CDN selection mechanisms.
 
 When a network overlay modifies connection properties in ways that differ from application expectations, the result can be mismatched assumptions between the application and the actual transport environment. This disconnect may cause degraded performance, misclassification of network paths, or unexpected latency and throughput characteristics, all of which affect streaming quality and operational predictability.
 
-Protocols such as MASQUE {{!RFC9484}} and services built on it such as Apple\'s [iCloud Private Relay](https://www.apple.com/privacy/docs/iCloud_Private_Relay_Overview_Dec2021.PDF) illustrate privacy-enhancing network overlays that deliberately alter connection policies relative to the open Internet. While beneficial for user privacy, such mechanisms can also obscure the visibility and control that streaming services rely on for consistent content delivery and Quality of Experience (QoE) management.
+Protocols such as MASQUE {{?RFC9484}} and services built on it such as Apple\'s [iCloud Private Relay](https://www.apple.com/privacy/docs/iCloud_Private_Relay_Overview_Dec2021.PDF) illustrate privacy-enhancing network overlays that deliberately alter connection policies relative to the open Internet. While beneficial for user privacy, such mechanisms can also obscure the visibility and control that streaming services rely on for consistent content delivery and Quality of Experience (QoE) management.
 
 ## Transparency and Connection Policy
 
@@ -360,7 +358,7 @@ non-optimal cache selection, increased latency, or reduced video
 quality.
 
 #### EDNS0
-The EDNS(0) (Extension Mechanisms for DNS, {{!RFC6891}}) extension was introduced to allow resolvers to include additional client subnet information in DNS queries, improving CDN cache selection accuracy. If a network overlay redirects DNS queries to a resolver that does not support EDNS(0) or deliberately strips this information, the CDN loses critical context for determining the most appropriate edge cache. This can lead to the selection of a distant or overloaded cache, negatively impacting video startup time, buffering, and overall user experience.
+The EDNS(0) (Extension Mechanisms for DNS, {{?RFC6891}}) extension was introduced to allow resolvers to include additional client subnet information in DNS queries, improving CDN cache selection accuracy. If a network overlay redirects DNS queries to a resolver that does not support EDNS(0) or deliberately strips this information, the CDN loses critical context for determining the most appropriate edge cache. This can lead to the selection of a distant or overloaded cache, negatively impacting video startup time, buffering, and overall user experience.
 
 ### Log Data Changes
 Accurate and consistent logging is essential for diagnosing
@@ -671,14 +669,10 @@ streaming protocols and platform components.
 
 The IETF has discussed this situation in the past. More than
 20 years ago, in 2002, Middleboxes: Taxonomy and Issues
-{{!RFC3234}} was published, capturing the issues with middleboxes
+{{?RFC3234}} was published, capturing the issues with middleboxes
 in the network and the effects of hidden changes occurring on the
 network between the sender and receiver.
 
-
-# Conventions and Definitions
-
-{::boilerplate bcp14-tagged}
 
 # Security Considerations
 
