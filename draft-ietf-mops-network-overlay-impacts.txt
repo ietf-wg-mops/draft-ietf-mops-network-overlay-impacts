@@ -5,8 +5,8 @@
 Media OPerationS                                                 G. Deen
 Internet-Draft                                      Comcast-NBCUniversal
 Intended status: Informational                                 S. Mishra
-Expires: 16 January 2027                                         Verizon
-                                                            15 July 2026
+Expires: 30 April 2027                                           Verizon
+                                                         27 October 2026
 
 
                Network Overlay Impacts to Streaming Video
@@ -27,7 +27,7 @@ About This Document
    This note is to be removed before publishing as an RFC.
 
    The latest revision of this draft can be found at https://ietf-wg-
-   mops.github.io/draft-ietf-mops-network-overlay-impacts/draft-ietf--
+   mops.github.io/draft-ietf-mops-network-overlay-impacts/draft-ietf-
    mops-network-overlay-impacts.html.  Status information for this
    document may be found at https://datatracker.ietf.org/doc/draft-ietf-
    mops-network-overlay-impacts/.
@@ -56,7 +56,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 16 January 2027.
+   This Internet-Draft will expire on 30 April 2027.
 
 Copyright Notice
 
@@ -100,10 +100,9 @@ Table of Contents
    7.  Streaming Video
      7.1.  Advances in Streaming Video Architecture
    8.  Middleboxes and Learning from the Past
-   9.  Conventions and Definitions
-   10. Security Considerations
-   11. IANA Considerations
-   12. Normative References
+   9.  Security Considerations
+   10. IANA Considerations
+   11. Informative References
    Acknowledgments
    Authors' Addresses
 
@@ -889,28 +888,15 @@ Table of Contents
    the effects of hidden changes occurring on the network between the
    sender and receiver.
 
-9.  Conventions and Definitions
-
-   The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
-   "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
-   "OPTIONAL" in this document are to be interpreted as described in
-   BCP 14 [RFC2119] [RFC8174] when, and only when, they appear in all
-   capitals, as shown here.
-
-10.  Security Considerations
+9.  Security Considerations
 
    TODO Security
 
-11.  IANA Considerations
+10.  IANA Considerations
 
    This document has no IANA actions.
 
-12.  Normative References
-
-   [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
-              Requirement Levels", BCP 14, RFC 2119,
-              DOI 10.17487/RFC2119, March 1997,
-              <https://www.rfc-editor.org/rfc/rfc2119>.
+11.  Informative References
 
    [RFC3234]  Carpenter, B. and S. Brim, "Middleboxes: Taxonomy and
               Issues", RFC 3234, DOI 10.17487/RFC3234, February 2002,
@@ -931,10 +917,6 @@ Table of Contents
               Threat Model and Problem Statement", RFC 7624,
               DOI 10.17487/RFC7624, August 2015,
               <https://www.rfc-editor.org/rfc/rfc7624>.
-
-   [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
-              2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
-              May 2017, <https://www.rfc-editor.org/rfc/rfc8174>.
 
    [RFC9000]  Iyengar, J., Ed. and M. Thomson, Ed., "QUIC: A UDP-Based
               Multiplexed and Secure Transport", RFC 9000,
