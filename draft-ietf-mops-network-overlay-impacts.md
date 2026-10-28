@@ -42,6 +42,12 @@ author:
 normative:
 
 informative:
+  PRIVATE-RELAY:
+    target: https://www.apple.com/privacy/docs/iCloud_Private_Relay_Overview_Dec2021.PDF
+    title: iCloud Private Relay Overview
+    author:
+      org: Apple Inc.
+    date: 2021-12
 
 --- abstract
 This document examines the operational impacts on streaming video applications resulting from network policy changes introduced by network overlays. Such overlays may alter IP address assignment, transport protocols, routing behavior, or DNS resolution. These changes can, in turn, affect critical aspects of content delivery, including latency, CDN cache selection, delivery path optimization, traffic classification, and content access controls.
@@ -63,7 +69,7 @@ Internet video streaming has become a global utility for billions of viewers, ev
 
 These sessions require sustained, data-intensive throughput. For example, a single hour of high-definition (HD) video utilizes continuous flows of 0.5–8.0 Mbps (totaling approximately 0.2–3.6 GB), while 4K video demands 4.0–20.0 Mbps (totaling approximately 1.8–9.0 GB).
 
-To support this volume, the video streaming ecosystem relies on sophisticated network and data management methodologies. This includes the IETF’s Content Delivery Network Interconnection (CDNI) frameworks for tiered CDN topologies and downstream CDN selection/orchestration. Each streaming platform carefully architects its delivery pipeline around deterministic network policies, predictable routing, and explicit path signaling. This optimization is critical to meet scaling demands regarding simultaneous viewer concurrency, aggregate data volume, and the ultra-low latency thresholds required for interactive and live sports viewing. The foundations of this application ecosystem are discussed in {{?RFC9317}}, though the technology has continued to evolve significantly since its publication.
+To support this volume, the video streaming ecosystem relies on sophisticated network and data management methodologies. This includes the IETF’s Content Delivery Network Interconnection (CDNI) frameworks {{?RFC6707}} {{?RFC7336}} for tiered CDN topologies and downstream CDN selection/orchestration. Each streaming platform carefully architects its delivery pipeline around deterministic network policies, predictable routing, and explicit path signaling. This optimization is critical to meet scaling demands regarding simultaneous viewer concurrency, aggregate data volume, and the ultra-low latency thresholds required for interactive and live sports viewing. The foundations of this application ecosystem are discussed in {{?RFC9317}}, though the technology has continued to evolve significantly since its publication.
 
 Regardless of content type, the successful delivery of data at this scale requires a well-understood, end-to-end application and networking architecture. The workflow behaves predictably and consistently according to the design assumptions of the video streaming architects.
 
@@ -123,7 +129,7 @@ optimization, or CDN selection mechanisms.
 
 When a network overlay modifies connection properties in ways that differ from application expectations, the result can be mismatched assumptions between the application and the actual transport environment. This disconnect may cause degraded performance, misclassification of network paths, or unexpected latency and throughput characteristics, all of which affect streaming quality and operational predictability.
 
-Protocols such as MASQUE {{?RFC9484}} and services built on it such as Apple\'s [iCloud Private Relay](https://www.apple.com/privacy/docs/iCloud_Private_Relay_Overview_Dec2021.PDF) illustrate privacy-enhancing network overlays that deliberately alter connection policies relative to the open Internet. While beneficial for user privacy, such mechanisms can also obscure the visibility and control that streaming services rely on for consistent content delivery and Quality of Experience (QoE) management.
+Protocols such as MASQUE {{?RFC9484}} and services built on it such as Apple's iCloud Private Relay {{PRIVATE-RELAY}} illustrate privacy-enhancing network overlays that deliberately alter connection policies relative to the open Internet. While beneficial for user privacy, such mechanisms can also obscure the visibility and control that streaming services rely on for consistent content delivery and Quality of Experience (QoE) management.
 
 ## Transparency and Connection Policy
 
@@ -251,7 +257,7 @@ An example of a routing policy change is illustrated in Figure 1, showing how a 
 
 Network Overlay policy changes often include the use of alternate routing policies, as a core element of their design involves tunneling connections through different network paths to enhance user privacy and reduce tracking.
 This architectural concept, partitioning, is further discussed in
-the IAB document [Partitioning as an Architecture for Privacy](https://datatracker.ietf.org/doc/draft-iab-privacy-partitioning/).
+{{?RFC9614}}.
 By isolating traffic and obscuring its correlation with the
 underlying native network, partitioning helps defend against
 pervasive monitoring and traffic analysis.
@@ -550,10 +556,10 @@ the recent trend in privacy enhancements has steered toward either
 a very simple "Privacy On or Off" switch or in other cases
 automatically enabling or upgrading to enhance privacy. Apple's
 iCloud Private Relay can be easily turned on with a single
-settings switch, while privacy features such as Encrypted DNS over
-HTTP and upgrades from HTTP to HTTPS connections have seen several
-deployments that automatically enable them for users when
-possible.
+settings switch, while privacy features such as DNS over HTTPS
+(DoH) {{?RFC8484}} and upgrades from HTTP to HTTPS connections
+have seen several deployments that automatically enable them for
+users when possible.
 
 Keeping with the motto of "Keep It Simple", users are generally
 not provided with granular Network Overlay controls permitting
