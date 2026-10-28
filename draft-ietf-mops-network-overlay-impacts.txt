@@ -5,8 +5,8 @@
 Media OPerationS                                                 G. Deen
 Internet-Draft                                      Comcast-NBCUniversal
 Intended status: Informational                                 S. Mishra
-Expires: 30 April 2027                                           Verizon
-                                                         27 October 2026
+Expires: 1 May 2027                                              Verizon
+                                                         28 October 2026
 
 
                Network Overlay Impacts to Streaming Video
@@ -56,7 +56,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 30 April 2027.
+   This Internet-Draft will expire on 1 May 2027.
 
 Copyright Notice
 
@@ -398,16 +398,17 @@ Table of Contents
    diverges from that of the underlying base network, resulting in a
    modified traffic path and different delivery characteristics.
 
- R  = router
-                  <--- non-overlay traffic path --->
- device -- R ---- R ------------- R ------------- R ---- R -- dest-node
-            \                                           /
-             \                                         /
-              \                                       /
-               R -- R -- ingest -- egress -- R ------+
-                     <--- overlay traffic path --->
+  R  = router
+                   <--- non-overlay traffic path --->
+  device -- R ---- R ------------- R ------------- R ---- R -- dest-node
+             \                                           /
+              \                                         /
+               \                                       /
+                R -- R -- ingest -- egress -- R ------+
+                      <--- overlay traffic path --->
 
- Figure 1:  Network Overlay routing selects traffic via an alternate path
+        Figure 1: Network Overlay Routing Selects Traffic via an
+                             Alternate Path
 
 4.3.1.  Partitioning
 
@@ -655,8 +656,8 @@ Table of Contents
    A significant and often overlooked problem is the addition of network
    latency compared to edge CDN caches or access network peering
    connections.  Routing changes that cause traffic to bypass edge CDN
-   caches and instead reach less optimal caches are illustrated in the
-   figure below.
+   caches and instead reach less optimal caches are illustrated in
+   Figure 2.
 
  R  = router
            <--- non-overlay traffic path --->
@@ -664,10 +665,11 @@ Table of Contents
             \
              \
               \
-               R --- R -- ingest -- R --- R -- egress -- R ------R ---- Less Optimal CDN Cache
+               R -- R -- ingest -- R -- R -- egress -- R -- Less Optimal
+                                                            CDN Cache
                      <--- overlay traffic path --->
 
- Figure:  Routing Changes altering CDN Cache selection
+        Figure 2: Routing Changes Altering CDN Cache Selection
 
 4.3.9.3.  Performance and Problem Determination
 
