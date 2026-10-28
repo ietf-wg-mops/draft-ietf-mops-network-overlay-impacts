@@ -78,7 +78,7 @@ These overlays frequently obfuscate client IP geolocation, alter path MTU charac
 # Internet Privacy Enhancements
 
 The IETF’s efforts to strengthen Internet privacy and mitigate
-pervasive monitoring, as described in {{?RFC7258}}, have driven a
+pervasive monitoring have driven a
 series of architectural and protocol-level developments. The
 initial focus was on encrypting network data flows, most commonly
 through the wider adoption of Transport Layer Security (TLS). Over
@@ -88,22 +88,10 @@ privacy-preserving DNS resolvers, and introducing encrypted
 transport protocols, to better obscure and isolate user traffic
 from observation within the underlying network infrastructure.
 
-{{?RFC7258}} identifies pervasive monitoring as an attack on
-privacy, while {{?RFC7624}} outlines potential technical and
-operational responses to mitigate its impact. The development of
-the QUIC transport protocol, defined in {{?RFC9000}}, exemplifies
-the application of these principles. QUIC integrates
-confidentiality, integrity, and authentication into the transport
-layer itself, ensuring that user data and most protocol metadata
-remain encrypted by default.
-
 Collectively, these privacy-enhancing measures have reshaped how networks and applications interact. However, they also introduce new considerations for operational visibility, traffic management, and performance optimization, which are particularly relevant to streaming video applications.
 
 ## Network Overlays
-The IETF’s privacy-enhancement efforts in response to {{?RFC7258}}
-have driven a range of architectural and policy design choices,
-including the adoption of “always-on” encryption, as exemplified
-by QUIC {{?RFC9000}}. While many such developments have minimal
+While many of these privacy enhancements have minimal
 impact on video streaming, some introduce new behaviors that can
 be described as creating network overlays, which are logical
 networks that operate on top of the underlying native network but
@@ -596,7 +584,7 @@ experience whether at home on high-speed wired Internet,
 high-speed WiFi, mobile cellular 5G, or even satellite Internet
 connections.
 
-To meet the growth to billions of users, expanded content types
+To meet this growth, expanded content types
 and quality expectations, and any-device anywhere over any
 network expectations, the streaming video technology
 infrastructure has had to evolve significantly. This work is
@@ -618,16 +606,7 @@ early days of viewers watching pre-recorded standard definition
 480p movies on wired PCs connected via high-latency, low-bandwidth
 DSL or early DOCSIS modems.
 
-Streaming has grown to the extent that it has become a daily video
-source for billions of viewers worldwide and has expanded from
-pre-recorded movies to encompass every type of video content
-imaginable. This growth to billions of viewers and the addition of
-latency-sensitive content and new connectivity options including
-WiFi, cellular, and satellite, in addition to high-speed DOCSIS
-and fiber, defines the world streaming platforms now serve.
-
-With this large user base and its usage patterns, streaming
-platforms face significant technical challenges in meeting viewer
+Today, streaming platforms face significant technical challenges in meeting viewer
 expectations:
 
 * (1) Delivery scales that commonly range from hundreds of
