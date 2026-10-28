@@ -77,16 +77,15 @@ framework for understanding how overlay mechanisms impact predictable
 video delivery. Defining specific mitigations is out of scope for this
 document.
 
-
 # Streaming Applications: Optimized for Scaling and Latency
 
-Internet video streaming has become a global utility for billions of
-viewers, evolving by necessity into a highly optimized operational
-ecosystem. This ecosystem delivers live sports, entertainment, linear
-television, user-generated content (UGC), and breaking news to any
-Internet-connected device across heterogeneous networks, including
-high-bandwidth fixed lines, mobile, and Wi-Fi. {{?RFC9317}} reports that
-video made up about 75% of traffic to end users in 2019.
+Internet video streaming has become a global utility, evolving by
+necessity into a highly optimized operational ecosystem. This ecosystem
+delivers live sports, entertainment, linear television, user-generated
+content (UGC), and breaking news to any Internet-connected device across
+heterogeneous networks, including high-bandwidth fixed lines, mobile,
+and Wi-Fi. {{?RFC9317}} reports that video made up about 75% of traffic
+to end users in 2019.
 
 These sessions require sustained, data-intensive throughput,
 particularly at high-definition (HD) and 4K resolutions.
@@ -94,15 +93,15 @@ particularly at high-definition (HD) and 4K resolutions.
 To support this volume, the video streaming ecosystem relies on
 sophisticated network and data management methodologies. This includes
 the IETF's Content Delivery Network Interconnection (CDNI) frameworks
-{{?RFC6707}} {{?RFC7336}} for tiered CDN topologies and downstream CDN
-selection/orchestration. Each streaming platform carefully architects
-its delivery pipeline around predictable network behavior and routing.
-This optimization is critical to meet scaling demands regarding
-simultaneous viewer concurrency, aggregate data volume, and the
-ultra-low latency thresholds required for interactive and live sports
-viewing. The foundations of this application ecosystem are discussed in
-{{?RFC9317}}, though the technology has continued to evolve
-significantly since its publication.
+{{?RFC6707}} {{?RFC7336}} for tiered Content Delivery Network (CDN)
+topologies and downstream CDN selection/orchestration. Each streaming
+platform carefully architects its delivery pipeline around predictable
+network behavior and routing. This optimization is critical to meet
+scaling demands regarding simultaneous viewer concurrency, aggregate
+data volume, and the ultra-low latency thresholds required for
+interactive and live sports viewing. The foundations of this application
+ecosystem are discussed in {{?RFC9317}}, though the technology has
+continued to evolve significantly since its publication.
 
 Regardless of content type, the successful delivery of data at this
 scale requires a well-understood, end-to-end application and networking
@@ -136,16 +135,15 @@ upon.
 
 # Internet Privacy Enhancements
 
-The IETF's efforts to strengthen Internet privacy and mitigate
-pervasive monitoring have driven a
-series of architectural and protocol-level developments. The
-initial focus was on encrypting network data flows, most commonly
-through the wider adoption of Transport Layer Security (TLS). Over
-time, these efforts have expanded to include changes at the policy
-and design level, such as modifying routing paths, selecting
-privacy-preserving DNS resolvers, and introducing encrypted
-transport protocols, to better obscure and isolate user traffic
-from observation within the underlying network infrastructure.
+The IETF's efforts to strengthen Internet privacy and mitigate pervasive
+monitoring have driven a series of architectural and protocol-level
+developments. The initial focus was on encrypting network data flows,
+most commonly through the wider adoption of Transport Layer Security
+(TLS). Over time, these efforts have expanded to include changes at the
+policy and design level, such as modifying routing paths, selecting
+privacy-preserving DNS resolvers, and introducing encrypted transport
+protocols, to better obscure and isolate user traffic from observation
+within the underlying network infrastructure.
 
 Collectively, these privacy-enhancing measures have reshaped how
 networks and applications interact. However, they also introduce new
@@ -154,6 +152,7 @@ performance optimization, which are particularly relevant to streaming
 video applications.
 
 ## Network Overlays
+
 While many of these privacy enhancements have minimal
 impact on video streaming, some introduce new behaviors that can
 be described as creating network overlays, which are logical
@@ -180,8 +179,8 @@ misclassification of network paths, or unexpected latency and throughput
 characteristics, all of which affect streaming quality and operational
 predictability.
 
-Protocols such as MASQUE {{?RFC9484}} and services built on it such as
-Apple's iCloud Private Relay {{PRIVATE-RELAY}} illustrate
+Protocols such as MASQUE {{?RFC9298}} {{?RFC9484}} and services built on
+it such as Apple's iCloud Private Relay {{PRIVATE-RELAY}} illustrate
 privacy-enhancing network overlays that deliberately alter connection
 policies relative to the open Internet. While beneficial for user
 privacy, such mechanisms can also obscure the visibility and control
@@ -279,7 +278,7 @@ document, including protocol changes, tunneling effects, and path
 alterations, remain significant considerations for streaming video
 deployments.
 
-### Emerging Operational Issues with Network Overlay Policy Changes
+## Policy Changes
 
 Streaming video applications and content delivery platforms are
 increasingly encountering operational challenges associated with network
@@ -290,27 +289,24 @@ specific impacts vary depending on the overlay's design and
 implementation, several common classes of operational issues have been
 observed across deployments. These include mismatches in routing and
 cache selection, unexpected transport-layer behavior, and
-inconsistencies in latency or throughput reporting that affect Quality
-of Experience (QoE) monitoring and optimization.
-
-## Policy Changes
+inconsistencies in latency or throughput reporting that affect QoE
+monitoring and optimization.
 
 Changes to network policies introduced by overlays can alter the
 expected behavior of streaming applications in several ways.
 
 For example, an overlay that modifies encryption policies, such as
-transforming HTTP URLs in manifests into HTTPS connections, can
-disrupt architectures that rely on the network's ability to
-identify or classify video flows. In such cases, the visibility of
-traffic used for caching, optimization, or QoS treatment may be
-reduced or lost entirely.
+transforming HTTP URLs in manifests into HTTPS connections, can disrupt
+architectures that rely on the network's ability to identify or classify
+video flows. In such cases, the visibility of traffic used for caching,
+optimization, or Quality of Service (QoS) treatment may be reduced or
+lost entirely.
 
 Similarly, overlays that alter routing policies can interfere with the
-Content Delivery Network (CDN) cache selection logic used by streaming
-platforms. A change in routing path may cause the application to connect
-to a more distant cache, resulting in higher latency, lower throughput,
-and degraded video quality, even when a closer cache would otherwise
-have been selected.
+CDN cache selection logic used by streaming platforms. A change in
+routing path may cause the application to connect to a more distant
+cache, resulting in higher latency, lower throughput, and degraded video
+quality, even when a closer cache would otherwise have been selected.
 
 An example of a routing policy change is illustrated in
 {{fig-overlay-routing}}, showing how a network overlay can apply a
@@ -357,17 +353,16 @@ conversions are typically performed to enforce stronger privacy,
 security, or efficiency policies, but they may occur without
 visibility or control by the streaming application.
 
-A key operational impact arises when protocol substitution changes
-the network characteristics perceived by the video application. A
-video application may perform a preliminary fetch to measure
-network conditions before selecting an appropriate bitrate for
-content delivery. If the application's test probe uses HTTP/2 over
-TCP but the subsequent content request is silently converted by
-the overlay to HTTP/3 over QUIC, the measured results no longer
-reflect the actual transport path. This mismatch can lead to
-inaccurate bandwidth estimation, causing the adaptive bitrate
-(ABR) algorithm to select non-optimal streaming parameters and
-degrade user experience.
+A key operational impact arises when protocol substitution changes the
+network characteristics perceived by the video application. A video
+application may perform a preliminary fetch to measure network
+conditions before selecting an appropriate bitrate for content delivery.
+If the application's test probe uses HTTP/2 over TCP but the subsequent
+content request is silently converted by the overlay to HTTP/3 over
+QUIC, the measured results no longer reflect the actual transport path.
+This mismatch can lead to inaccurate bandwidth estimation, causing the
+ABR algorithm to select non-optimal streaming parameters and degrade
+user experience.
 
 ### Encryption Policy
 
@@ -383,7 +378,7 @@ traffic into HTTPS or encapsulating transport flows within encrypted
 tunnels. While this improves confidentiality, it can also obscure
 traffic classification and disable optimizations that rely on visibility
 into flow metadata, such as CDN cache selection, adaptive bitrate
-tuning, or Quality-of-Service (QoS) marking.
+tuning, or QoS marking.
 
 Conversely, if encryption is removed or terminated prematurely, such as
 through a proxy that decrypts and re-encrypts video traffic, it can
@@ -426,8 +421,8 @@ When an intermediate network overlay or proxy terminates TLS sessions or
 otherwise downgrades an encrypted connection to plaintext, it can
 invalidate end-to-end trust assumptions between the client, CDN, and
 content provider. Such behavior may expose sensitive metadata, enable
-unauthorized content inspection or modification, and violate Digital
-Rights Management (DRM).
+unauthorized content inspection or modification, and break Digital
+Rights Management (DRM) protections.
 
 In effect, a forced encryption downgrade undermines both security and
 operational reliability, leading to potential playback failures, content
@@ -462,10 +457,10 @@ interruptions, degraded user experience, or increased operational
 complexity for both service providers and network operators.
 
 ### DNS Policy Changes
+
 Network overlays that modify DNS resolver settings or redirect DNS
-queries can have significant implications for Content Delivery Networks
-(CDNs) that rely on DNS-based load balancing for cache selection and
-traffic localization.
+queries can have significant implications for CDNs that rely on
+DNS-based load balancing for cache selection and traffic localization.
 
 Many CDN architectures determine the best cache for a client by
 observing the source IP address of the DNS resolver making the
@@ -476,6 +471,7 @@ non-optimal cache selection, increased latency, or reduced video
 quality.
 
 #### EDNS Client Subnet
+
 The EDNS Client Subnet (ECS) option {{?RFC7871}}, carried in the
 Extension Mechanisms for DNS (EDNS(0)) {{?RFC6891}}, allows recursive
 resolvers to include information about the client's network in DNS
@@ -487,6 +483,7 @@ selection of a distant or overloaded cache, negatively impacting video
 startup time, buffering, and overall user experience.
 
 ### Log Data Changes
+
 Accurate and consistent logging is essential for diagnosing
 streaming performance and operational issues. Network overlays
 that alter connection properties, such as DNS resolvers, IP
@@ -500,6 +497,7 @@ root-cause analysis, complicating operational monitoring and
 incident response workflows.
 
 ### Geolocation and Identification
+
 Network overlays that alter the apparent source location of user devices
 can interfere with streaming platforms' ability to accurately determine
 geospatial attributes such as country, region, or network domain.
@@ -541,6 +539,7 @@ fault localization and coordination between interconnecting CDNs
 significantly more difficult.
 
 ### Routing Changes
+
 Routing changes introduced by network overlays can alter the
 expected path between video applications and the infrastructure
 services they rely on. Such changes may cause a wide range of
@@ -719,7 +718,7 @@ video-on-demand movies, live or pre-recorded TV shows, and user
 generated videos delivered by pioneering streaming platforms to
 now including low-latency 4K and 8K live sports events, while
 also evolving pre-recorded content to high-bitrate 4K and 8K
-cinema quality and High Dynamic Range (HDR) lighting.
+cinema quality and High Dynamic Range (HDR) video.
 
 The expectations of streaming video viewers have also
 significantly evolved from the days of watching a movie in a PC
@@ -731,20 +730,18 @@ experience, whether they are at home using high-speed wired
 Internet, high-speed Wi-Fi, mobile cellular 5G, or even satellite
 Internet connections.
 
-To meet this growth, expanded content types
-and quality expectations, and any-device anywhere over any
-network expectations, the streaming video technology
-infrastructure has had to evolve significantly. This work is
-being done in the IETF and in the
-[Streaming Video Technology Alliance (SVTA)](https://www.svta.org/),
-and in a number of other technical and industry groups.
+To meet this growth, the expanded content types and quality
+expectations, and the expectation of any device, anywhere, over any
+network, the streaming video technology infrastructure has had to evolve
+significantly. This work is being done in the IETF and in the [Streaming
+Video Technology Alliance (SVTA)](https://www.svta.org/), and in a
+number of other technical and industry groups.
 
-The growth of streaming video has contributed enormously to the
-growth of the Internet. Internet connections at hundreds of
-megabits and gigabit speeds today exist because of the needs of
-video streaming, and the ongoing work on low-latency networking
-and ultra-low-latency video delivery are both driven by streaming
-video.
+The growth of streaming video has contributed enormously to the growth
+of the Internet. Internet connections at hundreds of megabits and
+gigabit speeds have been driven in large part by the needs of video
+streaming, as has the ongoing work on low-latency networking and
+ultra-low-latency video delivery.
 
 ## Advances in Streaming Video Architecture
 
@@ -770,8 +767,9 @@ meeting viewer expectations:
    cellular networks.
 6. Streaming formats such as MPEG-DASH and HLS, and transport
    protocols including HTTP/2 over TCP, HTTP/3 over QUIC, WebRTC,
-   Media over QUIC (MoQ), and specialty transports such as SRT and
-   HESP.
+   Media over QUIC (MoQ), and specialty transports such as Secure
+   Reliable Transport (SRT) and the High Efficiency Streaming
+   Protocol (HESP).
 
 To meet these challenges, streaming platforms have significantly
 invested in developing delivery architectures built on detailed
@@ -787,7 +785,6 @@ is designed to handle these momentary problems as effectively as
 possible, often through dynamic adaptive approaches designed into
 streaming protocols and platform components.
 
-
 # Middleboxes and Learning from the Past
 
 The IETF has discussed this situation in the past. More than
@@ -795,7 +792,6 @@ The IETF has discussed this situation in the past. More than
 {{?RFC3234}} was published, capturing the issues with middleboxes
 in the network and the effects of hidden changes occurring on the
 network between the sender and receiver.
-
 
 # Security Considerations
 
