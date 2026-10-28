@@ -232,7 +232,7 @@ reduced or lost entirely.
 
 Similarly, overlays that alter routing policies can interfere with the Content Delivery Network (CDN) cache selection logic used by streaming platforms. A change in routing path may cause the application to connect to a more distant cache, resulting in higher latency, lower throughput, and degraded video quality, even when a closer cache would otherwise have been selected.
 
-An example of a routing policy change is illustrated in Figure 1, showing how a network overlay can apply a routing policy that diverges from that of the underlying base network, resulting in a modified traffic path and different delivery characteristics.
+An example of a routing policy change is illustrated in {{fig-overlay-routing}}, showing how a network overlay can apply a routing policy that diverges from that of the underlying base network, resulting in a modified traffic path and different delivery characteristics.
 
 ~~~
  R  = router
@@ -243,9 +243,8 @@ An example of a routing policy change is illustrated in Figure 1, showing how a 
               \                                       /
                R -- R -- ingest -- egress -- R ------+
                      <--- overlay traffic path --->
-
- Figure 1:  Network Overlay routing selects traffic via an alternate path
 ~~~
+{: #fig-overlay-routing title="Network Overlay Routing Selects Traffic via an Alternate Path"}
 
 ### Partitioning
 
@@ -434,7 +433,7 @@ A significant and often overlooked problem is the addition of
 network latency compared to edge CDN caches or access network
 peering connections. Routing changes that cause traffic to bypass
 edge CDN caches and instead reach less optimal caches are
-illustrated in the figure below.
+illustrated in {{fig-cdn-cache-selection}}.
 
 ~~~
  R  = router
@@ -443,11 +442,11 @@ illustrated in the figure below.
             \
              \
               \
-               R --- R -- ingest -- R --- R -- egress -- R ------R ---- Less Optimal CDN Cache
+               R -- R -- ingest -- R -- R -- egress -- R -- Less Optimal
+                                                            CDN Cache
                      <--- overlay traffic path --->
-
- Figure:  Routing Changes altering CDN Cache selection
 ~~~
+{: #fig-cdn-cache-selection title="Routing Changes Altering CDN Cache Selection"}
 
 #### Performance and Problem Determination
 
