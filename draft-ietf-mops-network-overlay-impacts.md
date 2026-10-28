@@ -61,7 +61,7 @@ The purpose of this document is to establish a clear problem statement regarding
 
 Internet video streaming has become a global utility for billions of viewers, evolving by necessity into a highly optimized operational ecosystem. This ecosystem delivers live sports, entertainment, linear television, user-generated content (UGC), and breaking news to any Internet-connected device across heterogeneous networks, including high-bandwidth fixed lines, mobile, and Wi-Fi. Consequently, streaming dominates Internet traffic as documented in {{?RFC9317}}.
 
-These sessions require sustained, data-intensive throughput. For example, a single hour of high-definition (HD) video utilizes continuous flows of 0.5–8.0 Mbps (totaling approximately 0.2–3.6 GB), while 4K video demands 4.0–20.0 Mbps (totaling approximately 1.8–9.0 GB).
+These sessions require sustained, data-intensive throughput, particularly at high-definition (HD) and 4K resolutions.
 
 To support this volume, the video streaming ecosystem relies on sophisticated network and data management methodologies. This includes the IETF’s Content Delivery Network Interconnection (CDNI) frameworks for tiered CDN topologies and downstream CDN selection/orchestration. Each streaming platform carefully architects its delivery pipeline around deterministic network policies, predictable routing, and explicit path signaling. This optimization is critical to meet scaling demands regarding simultaneous viewer concurrency, aggregate data volume, and the ultra-low latency thresholds required for interactive and live sports viewing. The foundations of this application ecosystem are discussed in {{?RFC9317}}, though the technology has continued to evolve significantly since its publication.
 
@@ -159,7 +159,7 @@ the client being involved. Neither the application nor the server
 has signaled consent to this interception, and neither endpoint
 receives any indication that the path or addressing has changed.
 This silent substitution of routing decisions is distinct from
-what a traditional VPN does, where the application is aware that
+a transparent VPN, where the application is aware that
 its traffic is traversing an overlay and the network operator has
 explicitly configured that behavior.
 
@@ -264,7 +264,7 @@ transport protocols from those originally selected by the
 streaming application. In some cases, privacy-enhancing or
 optimization mechanisms automatically translate connections, for
 example converting HTTP/2 over TCP into HTTP/3 over QUIC, or
-upgrading HTTP/2 sessions to HTTPS with TLS encryption. Such
+upgrading cleartext HTTP/1.1 sessions to HTTPS. Such
 conversions are typically performed to enforce stronger privacy,
 security, or efficiency policies, but they may occur without
 visibility or control by the streaming application.
@@ -297,8 +297,8 @@ In both cases, mismatched encryption policies between the streaming application,
 
 #### Forced Encryption Upgrade
 
-Enforcing encryption upgrades, for example converting unencrypted
-HTTP/2 traffic into HTTP/2 over TLS (HTTPS), can disrupt streaming
+Enforcing encryption upgrades, for example converting cleartext
+HTTP/1.1 traffic into HTTPS, can disrupt streaming
 workflows that rely on the network’s ability to inspect or classify
 content as part of the delivery process. When network visibility into streaming flows is removed, content-aware optimizations such as CDN cache selection, multicast distribution, or traffic prioritization may fail to function as designed. As a result, video traffic may be misclassified as generic encrypted data, leading to incorrect policy enforcement or suboptimal delivery behavior.
 
@@ -356,8 +356,8 @@ may incorrectly infer the client’s location, resulting in
 non-optimal cache selection, increased latency, or reduced video
 quality.
 
-#### EDNS0
-The EDNS(0) (Extension Mechanisms for DNS, {{?RFC6891}}) extension was introduced to allow resolvers to include additional client subnet information in DNS queries, improving CDN cache selection accuracy. If a network overlay redirects DNS queries to a resolver that does not support EDNS(0) or deliberately strips this information, the CDN loses critical context for determining the most appropriate edge cache. This can lead to the selection of a distant or overloaded cache, negatively impacting video startup time, buffering, and overall user experience.
+#### EDNS Client Subnet
+The EDNS Client Subnet (ECS) option {{?RFC7871}}, carried in the Extension Mechanisms for DNS (EDNS(0)) {{?RFC6891}}, allows recursive resolvers to include information about the client's network in DNS queries, improving CDN cache selection accuracy. If a network overlay redirects DNS queries to a resolver that does not support ECS or deliberately omits this information, the CDN loses critical context for determining the most appropriate edge cache. This can lead to the selection of a distant or overloaded cache, negatively impacting video startup time, buffering, and overall user experience.
 
 ### Log Data Changes
 Accurate and consistent logging is essential for diagnosing
@@ -575,7 +575,7 @@ the impacts caused by particular privacy-enhancing design and
 service offering choices.
 
 Streaming video operates at a scale that is hard to imagine.
-Streaming is served globally to more than 2 billion users daily
+Streaming is served globally to billions of users daily
 and continues to grow.
 
 The content types delivered through streaming have evolved from
@@ -636,18 +636,17 @@ expectations:
 * (2) Low latency demands from live sports, live events, and live
   streamed content.
 * (3) Content resolutions that have jumped from SD 480p to 4K
-  (3840x2160) and 8K (7680x4320), with bitrate requirements of
-  10-24+ Mbps for 4K and 40 Mbps under extreme compression or
-  150-300 Mbps for high quality cinema-grade 8K.
+  (3840x2160) and 8K (7680x4320).
 * (4) Devices with very diverse capabilities, from low-cost
   streaming sticks to Smart TVs, tablets, phones, and game
   consoles.
 * (5) A broad range of connectivity choices including WiFi,
   gigabit-speed low-latency DOCSIS, fiber, satellite, and 5G
   cellular networks.
-* (6) Application transport protocols including MPEG DASH, HLS,
-  HTTP/2 over TCP, HTTP/3 over QUIC, WebRTC, Media over QUIC
-  (MoQ), and specialty transports such as SRT and HESP.
+* (6) Streaming formats such as MPEG-DASH and HLS, and transport
+  protocols including HTTP/2 over TCP, HTTP/3 over QUIC, WebRTC,
+  Media over QUIC (MoQ), and specialty transports such as SRT and
+  HESP.
 
 To meet these challenges, streaming platforms have significantly
 invested in developing delivery architectures built on detailed
