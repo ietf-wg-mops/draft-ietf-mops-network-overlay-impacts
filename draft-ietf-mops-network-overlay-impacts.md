@@ -244,7 +244,7 @@ An example of a routing policy change is illustrated in {{fig-overlay-routing}},
 
 ### Partitioning
 
-Network Overlay policy changes often include the use of alternate routing policies, as a core element of their design involves tunneling connections through different network paths to enhance user privacy and reduce tracking.
+Network overlay policy changes often include the use of alternate routing policies, as a core element of their design involves tunneling connections through different network paths to enhance user privacy and reduce tracking.
 This architectural concept, partitioning, is further discussed in
 {{?RFC9614}}.
 By isolating traffic and obscuring its correlation with the
@@ -368,7 +368,7 @@ log data therefore undermines both problem determination and
 root-cause analysis, complicating operational monitoring and
 incident response workflows.
 
-### Geo Location & Identification
+### Geolocation and Identification
 Network overlays that alter the apparent source location of user devices can interfere with streaming platforms’ ability to accurately determine geospatial attributes such as country, region, or network domain.
 
 Many CDNs and content providers rely on IP address based
@@ -412,7 +412,7 @@ persistence.
 
 When routing behavior differs from what the video platform or application expects, content delivery optimizations such as proximity-based cache selection, adaptive bitrate decisions, and transport-layer congestion management can become ineffective. These effects can be difficult to detect, as the overlay’s routing policy is often not visible to the streaming application or operators monitoring network performance.
 
-#### End to End Problem Discovery
+#### End-to-End Problem Discovery
 
 A common issue in video delivery is locating where along the
 delivery path the video transport is encountering problems. Such
@@ -484,7 +484,7 @@ All of these have been observed in production streaming platforms.
 
 ### Unintended Content Blocking
 
-A strongly undesirable side-effect of network policy changes is
+A strongly undesirable consequence of network policy changes is
 the blocking of content to the viewer. This may affect primary
 content URLs, or possibly advertising fetched from a second URL
 alongside the main video content. Such blocking can be due to
@@ -495,9 +495,8 @@ Such blocking may be connected to restrictions built upon data
 feeds used for geofiltering and georestrictions, for example
 restrictions that block delivery to networks identified as
 commercial data centers or CDN service network addresses.
-Essentially, this is running afoul of configurations used to
-combat security threats that expect streaming viewers to be on
-home or mobile networks, not in commercial data centers or CDN
+In effect, the traffic conflicts with security configurations
+that expect streaming viewers to be on home or mobile networks, not in commercial data centers or CDN
 content networks. This is more likely to occur in network overlays
 that shift egress traffic to commercial or CDN address blocks.
 
@@ -550,29 +549,25 @@ settings switch, while privacy features such as DNS over HTTPS
 have seen several deployments that automatically enable them for
 users when possible.
 
-Keeping with the motto of "Keep It Simple", users are generally
-not provided with granular Network Overlay controls permitting
-them to select what applications or network connections the
-Network Overlay policies apply to.
-
-Adhering to the "Keep It Simple" approach, the application itself
-has very little connection to privacy-enhancing Network Overlays.
-Applications generally do not have a means to detect when
-networking policy changes are active. Applications generally do
-not have a means to access policy change settings or to interact
-to change them.
+In keeping with this "Keep It Simple" approach, users are
+generally not provided with granular network overlay controls
+permitting them to select which applications or network
+connections the overlay policies apply to. Applications likewise
+have very little connection to privacy-enhancing network overlays.
+They generally have no means to detect when networking policy
+changes are active, and no means to access or change the policy
+settings.
 
 # Streaming Video
 
-Streaming Video, while just one of the many different Internet
+Streaming video, while just one of the many different Internet
 applications, stands out from other uses in several significant
 ways that merit consideration when understanding and addressing
 the impacts caused by particular privacy-enhancing design and
 service offering choices.
 
-Streaming video operates at a scale that is hard to imagine.
-Streaming is served globally to billions of users daily
-and continues to grow.
+Streaming video operates at a very large scale that continues to
+grow.
 
 The content types delivered through streaming have evolved from
 pre-recorded low-resolution, low-bitrate, latency-tolerant
@@ -589,7 +584,7 @@ from low-end streaming sticks that plug into an HDMI port to 4K and
 HDR capable laptops, 4K and 8K HDR TV screens, gaming consoles,
 and smartphones. Viewers also expect a seamless viewing
 experience, whether they are at home using high-speed wired
-Internet, high-speed WiFi, mobile cellular 5G, or even satellite
+Internet, high-speed Wi-Fi, mobile cellular 5G, or even satellite
 Internet connections.
 
 To meet this growth, expanded content types
@@ -617,23 +612,22 @@ DSL or early DOCSIS modems.
 Today, streaming platforms face significant technical challenges in meeting viewer
 expectations:
 
-* (1) Delivery scales that commonly range from hundreds of
-  thousands to many millions of simultaneous viewers, with
-  billions of daily global views.
-* (2) Low latency demands from live sports, live events, and live
-  streamed content.
-* (3) Content resolutions that have jumped from SD 480p to 4K
-  (3840x2160) and 8K (7680x4320).
-* (4) Devices with very diverse capabilities, from low-cost
-  streaming sticks to Smart TVs, tablets, phones, and game
-  consoles.
-* (5) A broad range of connectivity choices including WiFi,
-  gigabit-speed low-latency DOCSIS, fiber, satellite, and 5G
-  cellular networks.
-* (6) Streaming formats such as MPEG-DASH and HLS, and transport
-  protocols including HTTP/2 over TCP, HTTP/3 over QUIC, WebRTC,
-  Media over QUIC (MoQ), and specialty transports such as SRT and
-  HESP.
+1. Delivery scales that commonly range from hundreds of
+   thousands to many millions of simultaneous viewers.
+2. Low latency demands from live sports, live events, and live
+   streamed content.
+3. Content resolutions that have jumped from SD 480p to 4K
+   (3840x2160) and 8K (7680x4320).
+4. Devices with very diverse capabilities, from low-cost
+   streaming sticks to Smart TVs, tablets, phones, and game
+   consoles.
+5. A broad range of connectivity choices including Wi-Fi,
+   gigabit-speed low-latency DOCSIS, fiber, satellite, and 5G
+   cellular networks.
+6. Streaming formats such as MPEG-DASH and HLS, and transport
+   protocols including HTTP/2 over TCP, HTTP/3 over QUIC, WebRTC,
+   Media over QUIC (MoQ), and specialty transports such as SRT and
+   HESP.
 
 To meet these challenges, streaming platforms have significantly
 invested in developing delivery architectures built on detailed
