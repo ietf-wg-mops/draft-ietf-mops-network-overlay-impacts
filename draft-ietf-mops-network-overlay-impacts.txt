@@ -91,7 +91,7 @@ Table of Contents
        4.3.4.  Address Policy Changes
        4.3.5.  DNS Policy Changes
        4.3.6.  Log Data Changes
-       4.3.7.  Geo Location & Identification
+       4.3.7.  Geolocation and Identification
        4.3.8.  CDN Interconnection Troubleshooting
        4.3.9.  Routing Changes
        4.3.10. Unintended Content Blocking
@@ -145,7 +145,7 @@ Table of Contents
 
    To support this volume, the video streaming ecosystem relies on
    sophisticated network and data management methodologies.  This
-   includes the IETF’s Content Delivery Network Interconnection (CDNI)
+   includes the IETF's Content Delivery Network Interconnection (CDNI)
    frameworks [RFC6707] [RFC7336] for tiered CDN topologies and
    downstream CDN selection/orchestration.  Each streaming platform
    carefully architects its delivery pipeline around predictable network
@@ -190,7 +190,7 @@ Table of Contents
 
 4.  Internet Privacy Enhancements
 
-   The IETF’s efforts to strengthen Internet privacy and mitigate
+   The IETF's efforts to strengthen Internet privacy and mitigate
    pervasive monitoring have driven a series of architectural and
    protocol-level developments.  The initial focus was on encrypting
    network data flows, most commonly through the wider adoption of
@@ -347,7 +347,7 @@ Table of Contents
    policy changes that are unexpected, inconsistently applied, or
    difficult or impossible for the streaming platform to detect or adapt
    to in real time.  While the specific impacts vary depending on the
-   overlay’s design and implementation, several common classes of
+   overlay's design and implementation, several common classes of
    operational issues have been observed across deployments.  These
    include mismatches in routing and cache selection, unexpected
    transport-layer behavior, and inconsistencies in latency or
@@ -361,7 +361,7 @@ Table of Contents
 
    For example, an overlay that modifies encryption policies, such as
    transforming HTTP URLs in manifests into HTTPS connections, can
-   disrupt architectures that rely on the network’s ability to identify
+   disrupt architectures that rely on the network's ability to identify
    or classify video flows.  In such cases, the visibility of traffic
    used for caching, optimization, or QoS treatment may be reduced or
    lost entirely.
@@ -392,7 +392,7 @@ Table of Contents
 
 4.3.1.  Partitioning
 
-   Network Overlay policy changes often include the use of alternate
+   Network overlay policy changes often include the use of alternate
    routing policies, as a core element of their design involves
    tunneling connections through different network paths to enhance user
    privacy and reduce tracking.  This architectural concept,
@@ -422,7 +422,7 @@ Table of Contents
    the network characteristics perceived by the video application.  A
    video application may perform a preliminary fetch to measure network
    conditions before selecting an appropriate bitrate for content
-   delivery.  If the application’s test probe uses HTTP/2 over TCP but
+   delivery.  If the application's test probe uses HTTP/2 over TCP but
    the subsequent content request is silently converted by the overlay
    to HTTP/3 over QUIC, the measured results no longer reflect the
    actual transport path.  This mismatch can lead to inaccurate
@@ -460,7 +460,7 @@ Table of Contents
 
    Enforcing encryption upgrades, for example converting cleartext
    HTTP/1.1 traffic into HTTPS, can disrupt streaming workflows that
-   rely on the network’s ability to inspect or classify content as part
+   rely on the network's ability to inspect or classify content as part
    of the delivery process.  When network visibility into streaming
    flows is removed, content-aware optimizations such as CDN cache
    selection, multicast distribution, or traffic prioritization may fail
@@ -517,7 +517,7 @@ Table of Contents
    or device authorization with a specific IP address, unannounced
    address translation can result in service access failures, login
    rejections, or denied content delivery.  For example, when an overlay
-   reassigns or masks the client’s IP address, the streaming platform
+   reassigns or masks the client's IP address, the streaming platform
    may interpret this as a new or unauthorized connection, even though
    the client session remains active.  This mismatch can lead to
    intermittent playback interruptions, degraded user experience, or
@@ -535,7 +535,7 @@ Table of Contents
    observing the source IP address of the DNS resolver making the
    request.  When an overlay substitutes or masks the resolver, either
    intentionally or as part of privacy-enhancing policies, the CDN may
-   incorrectly infer the client’s location, resulting in non-optimal
+   incorrectly infer the client's location, resulting in non-optimal
    cache selection, increased latency, or reduced video quality.
 
 4.3.5.1.  EDNS Client Subnet
@@ -563,17 +563,17 @@ Table of Contents
    both problem determination and root-cause analysis, complicating
    operational monitoring and incident response workflows.
 
-4.3.7.  Geo Location & Identification
+4.3.7.  Geolocation and Identification
 
    Network overlays that alter the apparent source location of user
-   devices can interfere with streaming platforms’ ability to accurately
+   devices can interfere with streaming platforms' ability to accurately
    determine geospatial attributes such as country, region, or network
    domain.
 
    Many CDNs and content providers rely on IP address based geolocation
    to enforce regional content licensing, apply local regulations, or
    select nearby caches for optimal performance.  When an overlay
-   substitutes or masks the client’s IP address, presenting it as
+   substitutes or masks the client's IP address, presenting it as
    originating from a different region or outside of known geolocation
    mappings, the platform may be unable to correctly associate the user
    with their actual location.
@@ -593,7 +593,7 @@ Table of Contents
    localize a point of failure, they typically begin by identifying the
    delivery path and selecting observation points along that path to
    take diagnostic measurements.  Through iterative testing, they narrow
-   down the problem domain to isolate the failure’s location.
+   down the problem domain to isolate the failure's location.
 
    However, when network overlays alter routing behavior, this process
    becomes unreliable.  CDNs depend on their request routing information
@@ -616,11 +616,11 @@ Table of Contents
    application expects, content delivery optimizations such as
    proximity-based cache selection, adaptive bitrate decisions, and
    transport-layer congestion management can become ineffective.  These
-   effects can be difficult to detect, as the overlay’s routing policy
+   effects can be difficult to detect, as the overlay's routing policy
    is often not visible to the streaming application or operators
    monitoring network performance.
 
-4.3.9.1.  End to End Problem Discovery
+4.3.9.1.  End-to-End Problem Discovery
 
    A common issue in video delivery is locating where along the delivery
    path the video transport is encountering problems.  Such problems are
@@ -690,7 +690,7 @@ Table of Contents
 
 4.3.10.  Unintended Content Blocking
 
-   A strongly undesirable side-effect of network policy changes is the
+   A strongly undesirable consequence of network policy changes is the
    blocking of content to the viewer.  This may affect primary content
    URLs, or possibly advertising fetched from a second URL alongside the
    main video content.  Such blocking can be due to policy changes
@@ -700,12 +700,11 @@ Table of Contents
    Such blocking may be connected to restrictions built upon data feeds
    used for geofiltering and georestrictions, for example restrictions
    that block delivery to networks identified as commercial data centers
-   or CDN service network addresses.  Essentially, this is running afoul
-   of configurations used to combat security threats that expect
-   streaming viewers to be on home or mobile networks, not in commercial
-   data centers or CDN content networks.  This is more likely to occur
-   in network overlays that shift egress traffic to commercial or CDN
-   address blocks.
+   or CDN service network addresses.  In effect, the traffic conflicts
+   with security configurations that expect streaming viewers to be on
+   home or mobile networks, not in commercial data centers or CDN
+   content networks.  This is more likely to occur in network overlays
+   that shift egress traffic to commercial or CDN address blocks.
 
    This is a particularly difficult problem to diagnose as it may appear
    inconsistently from one streaming session to another.  Small changes
@@ -752,28 +751,24 @@ Table of Contents
    from HTTP to HTTPS connections have seen several deployments that
    automatically enable them for users when possible.
 
-   Keeping with the motto of "Keep It Simple", users are generally not
-   provided with granular Network Overlay controls permitting them to
-   select what applications or network connections the Network Overlay
-   policies apply to.
-
-   Adhering to the "Keep It Simple" approach, the application itself has
-   very little connection to privacy-enhancing Network Overlays.
-   Applications generally do not have a means to detect when networking
-   policy changes are active.  Applications generally do not have a
-   means to access policy change settings or to interact to change them.
+   In keeping with this "Keep It Simple" approach, users are generally
+   not provided with granular network overlay controls permitting them
+   to select which applications or network connections the overlay
+   policies apply to.  Applications likewise have very little connection
+   to privacy-enhancing network overlays.  They generally have no means
+   to detect when networking policy changes are active, and no means to
+   access or change the policy settings.
 
 7.  Streaming Video
 
-   Streaming Video, while just one of the many different Internet
+   Streaming video, while just one of the many different Internet
    applications, stands out from other uses in several significant ways
    that merit consideration when understanding and addressing the
    impacts caused by particular privacy-enhancing design and service
    offering choices.
 
-   Streaming video operates at a scale that is hard to imagine.
-   Streaming is served globally to billions of users daily and continues
-   to grow.
+   Streaming video operates at a very large scale that continues to
+   grow.
 
    The content types delivered through streaming have evolved from pre-
    recorded low-resolution, low-bitrate, latency-tolerant video-on-
@@ -789,7 +784,7 @@ Table of Contents
    streaming sticks that plug into an HDMI port to 4K and HDR capable
    laptops, 4K and 8K HDR TV screens, gaming consoles, and smartphones.
    Viewers also expect a seamless viewing experience, whether they are
-   at home using high-speed wired Internet, high-speed WiFi, mobile
+   at home using high-speed wired Internet, high-speed Wi-Fi, mobile
    cellular 5G, or even satellite Internet connections.
 
    To meet this growth, expanded content types and quality expectations,
@@ -815,27 +810,26 @@ Table of Contents
    Today, streaming platforms face significant technical challenges in
    meeting viewer expectations:
 
-   *  (1) Delivery scales that commonly range from hundreds of thousands
-      to many millions of simultaneous viewers, with billions of daily
-      global views.
+   1.  Delivery scales that commonly range from hundreds of thousands to
+       many millions of simultaneous viewers.
 
-   *  (2) Low latency demands from live sports, live events, and live
-      streamed content.
+   2.  Low latency demands from live sports, live events, and live
+       streamed content.
 
-   *  (3) Content resolutions that have jumped from SD 480p to 4K
-      (3840x2160) and 8K (7680x4320).
+   3.  Content resolutions that have jumped from SD 480p to 4K
+       (3840x2160) and 8K (7680x4320).
 
-   *  (4) Devices with very diverse capabilities, from low-cost
-      streaming sticks to Smart TVs, tablets, phones, and game consoles.
+   4.  Devices with very diverse capabilities, from low-cost streaming
+       sticks to Smart TVs, tablets, phones, and game consoles.
 
-   *  (5) A broad range of connectivity choices including WiFi, gigabit-
-      speed low-latency DOCSIS, fiber, satellite, and 5G cellular
-      networks.
+   5.  A broad range of connectivity choices including Wi-Fi, gigabit-
+       speed low-latency DOCSIS, fiber, satellite, and 5G cellular
+       networks.
 
-   *  (6) Streaming formats such as MPEG-DASH and HLS, and transport
-      protocols including HTTP/2 over TCP, HTTP/3 over QUIC, WebRTC,
-      Media over QUIC (MoQ), and specialty transports such as SRT and
-      HESP.
+   6.  Streaming formats such as MPEG-DASH and HLS, and transport
+       protocols including HTTP/2 over TCP, HTTP/3 over QUIC, WebRTC,
+       Media over QUIC (MoQ), and specialty transports such as SRT and
+       HESP.
 
    To meet these challenges, streaming platforms have significantly
    invested in developing delivery architectures built on detailed
