@@ -151,16 +151,16 @@ Table of Contents
    To support this volume, the video streaming ecosystem relies on
    sophisticated network and data management methodologies.  This
    includes the IETF’s Content Delivery Network Interconnection (CDNI)
-   frameworks for tiered CDN topologies and downstream CDN selection/
-   orchestration.  Each streaming platform carefully architects its
-   delivery pipeline around deterministic network policies, predictable
-   routing, and explicit path signaling.  This optimization is critical
-   to meet scaling demands regarding simultaneous viewer concurrency,
-   aggregate data volume, and the ultra-low latency thresholds required
-   for interactive and live sports viewing.  The foundations of this
-   application ecosystem are discussed in [RFC9317], though the
-   technology has continued to evolve significantly since its
-   publication.
+   frameworks [RFC6707] [RFC7336] for tiered CDN topologies and
+   downstream CDN selection/orchestration.  Each streaming platform
+   carefully architects its delivery pipeline around deterministic
+   network policies, predictable routing, and explicit path signaling.
+   This optimization is critical to meet scaling demands regarding
+   simultaneous viewer concurrency, aggregate data volume, and the
+   ultra-low latency thresholds required for interactive and live sports
+   viewing.  The foundations of this application ecosystem are discussed
+   in [RFC9317], though the technology has continued to evolve
+   significantly since its publication.
 
    Regardless of content type, the successful delivery of data at this
    scale requires a well-understood, end-to-end application and
@@ -242,8 +242,7 @@ Table of Contents
    operational predictability.
 
    Protocols such as MASQUE [RFC9484] and services built on it such as
-   Apple's iCloud Private Relay (https://www.apple.com/privacy/docs/
-   iCloud_Private_Relay_Overview_Dec2021.PDF) illustrate privacy-
+   Apple's iCloud Private Relay [PRIVATE-RELAY] illustrate privacy-
    enhancing network overlays that deliberately alter connection
    policies relative to the open Internet.  While beneficial for user
    privacy, such mechanisms can also obscure the visibility and control
@@ -402,11 +401,10 @@ Table of Contents
    routing policies, as a core element of their design involves
    tunneling connections through different network paths to enhance user
    privacy and reduce tracking.  This architectural concept,
-   partitioning, is further discussed in the IAB document Partitioning
-   as an Architecture for Privacy (https://datatracker.ietf.org/doc/
-   draft-iab-privacy-partitioning/).  By isolating traffic and obscuring
-   its correlation with the underlying native network, partitioning
-   helps defend against pervasive monitoring and traffic analysis.
+   partitioning, is further discussed in [RFC9614].  By isolating
+   traffic and obscuring its correlation with the underlying native
+   network, partitioning helps defend against pervasive monitoring and
+   traffic analysis.
 
    While effective for privacy protection, these routing partitions can
    also alter network visibility and path selection in ways that affect
@@ -755,8 +753,8 @@ Table of Contents
    simple "Privacy On or Off" switch or in other cases automatically
    enabling or upgrading to enhance privacy.  Apple's iCloud Private
    Relay can be easily turned on with a single settings switch, while
-   privacy features such as Encrypted DNS over HTTP and upgrades from
-   HTTP to HTTPS connections have seen several deployments that
+   privacy features such as DNS over HTTPS (DoH) [RFC8484] and upgrades
+   from HTTP to HTTPS connections have seen several deployments that
    automatically enable them for users when possible.
 
    Keeping with the motto of "Keep It Simple", users are generally not
@@ -876,9 +874,19 @@ Table of Contents
 
 11.  Informative References
 
+   [PRIVATE-RELAY]
+              Apple Inc., "iCloud Private Relay Overview", December
+              2021, <https://www.apple.com/privacy/docs/
+              iCloud_Private_Relay_Overview_Dec2021.PDF>.
+
    [RFC3234]  Carpenter, B. and S. Brim, "Middleboxes: Taxonomy and
               Issues", RFC 3234, DOI 10.17487/RFC3234, February 2002,
               <https://www.rfc-editor.org/rfc/rfc3234>.
+
+   [RFC6707]  Niven-Jenkins, B., Le Faucheur, F., and N. Bitar, "Content
+              Distribution Network Interconnection (CDNI) Problem
+              Statement", RFC 6707, DOI 10.17487/RFC6707, September
+              2012, <https://www.rfc-editor.org/rfc/rfc6707>.
 
    [RFC6891]  Damas, J., Graff, M., and P. Vixie, "Extension Mechanisms
               for DNS (EDNS(0))", STD 75, RFC 6891,
@@ -888,6 +896,11 @@ Table of Contents
    [RFC7258]  Farrell, S. and H. Tschofenig, "Pervasive Monitoring Is an
               Attack", BCP 188, RFC 7258, DOI 10.17487/RFC7258, May
               2014, <https://www.rfc-editor.org/rfc/rfc7258>.
+
+   [RFC7336]  Peterson, L., Davie, B., and R. van Brandenburg, Ed.,
+              "Framework for Content Distribution Network
+              Interconnection (CDNI)", RFC 7336, DOI 10.17487/RFC7336,
+              August 2014, <https://www.rfc-editor.org/rfc/rfc7336>.
 
    [RFC7624]  Barnes, R., Schneier, B., Jennings, C., Hardie, T.,
               Trammell, B., Huitema, C., and D. Borkmann,
@@ -900,6 +913,10 @@ Table of Contents
               Kumari, "Client Subnet in DNS Queries", RFC 7871,
               DOI 10.17487/RFC7871, May 2016,
               <https://www.rfc-editor.org/rfc/rfc7871>.
+
+   [RFC8484]  Hoffman, P. and P. McManus, "DNS Queries over HTTPS
+              (DoH)", RFC 8484, DOI 10.17487/RFC8484, October 2018,
+              <https://www.rfc-editor.org/rfc/rfc8484>.
 
    [RFC9000]  Iyengar, J., Ed. and M. Thomson, Ed., "QUIC: A UDP-Based
               Multiplexed and Secure Transport", RFC 9000,
@@ -915,6 +932,11 @@ Table of Contents
               Kühlewind, M., and M. Westerlund, "Proxying IP in HTTP",
               RFC 9484, DOI 10.17487/RFC9484, October 2023,
               <https://www.rfc-editor.org/rfc/rfc9484>.
+
+   [RFC9614]  Kühlewind, M., Pauly, T., and C. A. Wood, "Partitioning as
+              an Architecture for Privacy", RFC 9614,
+              DOI 10.17487/RFC9614, July 2024,
+              <https://www.rfc-editor.org/rfc/rfc9614>.
 
 Acknowledgments
 
