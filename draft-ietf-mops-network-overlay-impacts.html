@@ -1173,9 +1173,6 @@ svg {
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.2.2.2">
                     <p id="section-toc.1-1.4.2.2.2.2.1"><a href="#section-4.2.2" class="auto internal xref">4.2.2</a>.  <a href="#name-non-transparent-connection-" class="internal xref">Non-transparent Connection Policy Approaches</a></p>
 </li>
-                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.2.2.3">
-                    <p id="section-toc.1-1.4.2.2.2.3.1"><a href="#section-4.2.3" class="auto internal xref">4.2.3</a>.  <a href="#name-emerging-operational-issues" class="internal xref">Emerging Operational Issues with Network Overlay Policy Changes</a></p>
-</li>
                 </ul>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.3">
@@ -1281,27 +1278,27 @@ document.<a href="#section-1-3" class="pilcrow">¶</a></p>
       <h2 id="name-streaming-applications-opti">
 <a href="#section-2" class="section-number selfRef">2. </a><a href="#name-streaming-applications-opti" class="section-name selfRef">Streaming Applications: Optimized for Scaling and Latency</a>
       </h2>
-<p id="section-2-1">Internet video streaming has become a global utility for billions of
-viewers, evolving by necessity into a highly optimized operational
-ecosystem. This ecosystem delivers live sports, entertainment, linear
-television, user-generated content (UGC), and breaking news to any
-Internet-connected device across heterogeneous networks, including
-high-bandwidth fixed lines, mobile, and Wi-Fi. <span>[<a href="#RFC9317" class="cite xref">RFC9317</a>]</span> reports that
-video made up about 75% of traffic to end users in 2019.<a href="#section-2-1" class="pilcrow">¶</a></p>
+<p id="section-2-1">Internet video streaming has become a global utility, evolving by
+necessity into a highly optimized operational ecosystem. This ecosystem
+delivers live sports, entertainment, linear television, user-generated
+content (UGC), and breaking news to any Internet-connected device across
+heterogeneous networks, including high-bandwidth fixed lines, mobile,
+and Wi-Fi. <span>[<a href="#RFC9317" class="cite xref">RFC9317</a>]</span> reports that video made up about 75% of traffic
+to end users in 2019.<a href="#section-2-1" class="pilcrow">¶</a></p>
 <p id="section-2-2">These sessions require sustained, data-intensive throughput,
 particularly at high-definition (HD) and 4K resolutions.<a href="#section-2-2" class="pilcrow">¶</a></p>
 <p id="section-2-3">To support this volume, the video streaming ecosystem relies on
 sophisticated network and data management methodologies. This includes
 the IETF's Content Delivery Network Interconnection (CDNI) frameworks
-<span>[<a href="#RFC6707" class="cite xref">RFC6707</a>]</span> <span>[<a href="#RFC7336" class="cite xref">RFC7336</a>]</span> for tiered CDN topologies and downstream CDN
-selection/orchestration. Each streaming platform carefully architects
-its delivery pipeline around predictable network behavior and routing.
-This optimization is critical to meet scaling demands regarding
-simultaneous viewer concurrency, aggregate data volume, and the
-ultra-low latency thresholds required for interactive and live sports
-viewing. The foundations of this application ecosystem are discussed in
-<span>[<a href="#RFC9317" class="cite xref">RFC9317</a>]</span>, though the technology has continued to evolve
-significantly since its publication.<a href="#section-2-3" class="pilcrow">¶</a></p>
+<span>[<a href="#RFC6707" class="cite xref">RFC6707</a>]</span> <span>[<a href="#RFC7336" class="cite xref">RFC7336</a>]</span> for tiered Content Delivery Network (CDN)
+topologies and downstream CDN selection/orchestration. Each streaming
+platform carefully architects its delivery pipeline around predictable
+network behavior and routing. This optimization is critical to meet
+scaling demands regarding simultaneous viewer concurrency, aggregate
+data volume, and the ultra-low latency thresholds required for
+interactive and live sports viewing. The foundations of this application
+ecosystem are discussed in <span>[<a href="#RFC9317" class="cite xref">RFC9317</a>]</span>, though the technology has
+continued to evolve significantly since its publication.<a href="#section-2-3" class="pilcrow">¶</a></p>
 <p id="section-2-4">Regardless of content type, the successful delivery of data at this
 scale requires a well-understood, end-to-end application and networking
 architecture. The workflow behaves predictably and consistently
@@ -1340,16 +1337,15 @@ upon.<a href="#section-3-3" class="pilcrow">¶</a></p>
       <h2 id="name-internet-privacy-enhancemen">
 <a href="#section-4" class="section-number selfRef">4. </a><a href="#name-internet-privacy-enhancemen" class="section-name selfRef">Internet Privacy Enhancements</a>
       </h2>
-<p id="section-4-1">The IETF's efforts to strengthen Internet privacy and mitigate
-pervasive monitoring have driven a
-series of architectural and protocol-level developments. The
-initial focus was on encrypting network data flows, most commonly
-through the wider adoption of Transport Layer Security (TLS). Over
-time, these efforts have expanded to include changes at the policy
-and design level, such as modifying routing paths, selecting
-privacy-preserving DNS resolvers, and introducing encrypted
-transport protocols, to better obscure and isolate user traffic
-from observation within the underlying network infrastructure.<a href="#section-4-1" class="pilcrow">¶</a></p>
+<p id="section-4-1">The IETF's efforts to strengthen Internet privacy and mitigate pervasive
+monitoring have driven a series of architectural and protocol-level
+developments. The initial focus was on encrypting network data flows,
+most commonly through the wider adoption of Transport Layer Security
+(TLS). Over time, these efforts have expanded to include changes at the
+policy and design level, such as modifying routing paths, selecting
+privacy-preserving DNS resolvers, and introducing encrypted transport
+protocols, to better obscure and isolate user traffic from observation
+within the underlying network infrastructure.<a href="#section-4-1" class="pilcrow">¶</a></p>
 <p id="section-4-2">Collectively, these privacy-enhancing measures have reshaped how
 networks and applications interact. However, they also introduce new
 considerations for operational visibility, traffic management, and
@@ -1383,8 +1379,8 @@ environment. This disconnect may cause degraded performance,
 misclassification of network paths, or unexpected latency and throughput
 characteristics, all of which affect streaming quality and operational
 predictability.<a href="#section-4.1-3" class="pilcrow">¶</a></p>
-<p id="section-4.1-4">Protocols such as MASQUE <span>[<a href="#RFC9484" class="cite xref">RFC9484</a>]</span> and services built on it such as
-Apple's iCloud Private Relay <span>[<a href="#PRIVATE-RELAY" class="cite xref">PRIVATE-RELAY</a>]</span> illustrate
+<p id="section-4.1-4">Protocols such as MASQUE <span>[<a href="#RFC9298" class="cite xref">RFC9298</a>]</span> <span>[<a href="#RFC9484" class="cite xref">RFC9484</a>]</span> and services built on
+it such as Apple's iCloud Private Relay <span>[<a href="#PRIVATE-RELAY" class="cite xref">PRIVATE-RELAY</a>]</span> illustrate
 privacy-enhancing network overlays that deliberately alter connection
 policies relative to the open Internet. While beneficial for user
 privacy, such mechanisms can also obscure the visibility and control
@@ -1503,12 +1499,14 @@ alterations, remain significant considerations for streaming video
 deployments.<a href="#section-4.2.2-4" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="emerging-operational-issues-with-network-overlay-policy-changes">
-<section id="section-4.2.3">
-          <h4 id="name-emerging-operational-issues">
-<a href="#section-4.2.3" class="section-number selfRef">4.2.3. </a><a href="#name-emerging-operational-issues" class="section-name selfRef">Emerging Operational Issues with Network Overlay Policy Changes</a>
-          </h4>
-<p id="section-4.2.3-1">Streaming video applications and content delivery platforms are
+</section>
+</div>
+<div id="policy-changes">
+<section id="section-4.3">
+        <h3 id="name-policy-changes">
+<a href="#section-4.3" class="section-number selfRef">4.3. </a><a href="#name-policy-changes" class="section-name selfRef">Policy Changes</a>
+        </h3>
+<p id="section-4.3-1">Streaming video applications and content delivery platforms are
 increasingly encountering operational challenges associated with network
 overlays. These challenges arise when overlays introduce policy changes
 that are unexpected, inconsistently applied, or difficult or impossible
@@ -1517,39 +1515,29 @@ specific impacts vary depending on the overlay's design and
 implementation, several common classes of operational issues have been
 observed across deployments. These include mismatches in routing and
 cache selection, unexpected transport-layer behavior, and
-inconsistencies in latency or throughput reporting that affect Quality
-of Experience (QoE) monitoring and optimization.<a href="#section-4.2.3-1" class="pilcrow">¶</a></p>
-</section>
-</div>
-</section>
-</div>
-<div id="policy-changes">
-<section id="section-4.3">
-        <h3 id="name-policy-changes">
-<a href="#section-4.3" class="section-number selfRef">4.3. </a><a href="#name-policy-changes" class="section-name selfRef">Policy Changes</a>
-        </h3>
-<p id="section-4.3-1">Changes to network policies introduced by overlays can alter the
-expected behavior of streaming applications in several ways.<a href="#section-4.3-1" class="pilcrow">¶</a></p>
-<p id="section-4.3-2">For example, an overlay that modifies encryption policies, such as
-transforming HTTP URLs in manifests into HTTPS connections, can
-disrupt architectures that rely on the network's ability to
-identify or classify video flows. In such cases, the visibility of
-traffic used for caching, optimization, or QoS treatment may be
-reduced or lost entirely.<a href="#section-4.3-2" class="pilcrow">¶</a></p>
-<p id="section-4.3-3">Similarly, overlays that alter routing policies can interfere with the
-Content Delivery Network (CDN) cache selection logic used by streaming
-platforms. A change in routing path may cause the application to connect
-to a more distant cache, resulting in higher latency, lower throughput,
-and degraded video quality, even when a closer cache would otherwise
-have been selected.<a href="#section-4.3-3" class="pilcrow">¶</a></p>
-<p id="section-4.3-4">An example of a routing policy change is illustrated in
+inconsistencies in latency or throughput reporting that affect QoE
+monitoring and optimization.<a href="#section-4.3-1" class="pilcrow">¶</a></p>
+<p id="section-4.3-2">Changes to network policies introduced by overlays can alter the
+expected behavior of streaming applications in several ways.<a href="#section-4.3-2" class="pilcrow">¶</a></p>
+<p id="section-4.3-3">For example, an overlay that modifies encryption policies, such as
+transforming HTTP URLs in manifests into HTTPS connections, can disrupt
+architectures that rely on the network's ability to identify or classify
+video flows. In such cases, the visibility of traffic used for caching,
+optimization, or Quality of Service (QoS) treatment may be reduced or
+lost entirely.<a href="#section-4.3-3" class="pilcrow">¶</a></p>
+<p id="section-4.3-4">Similarly, overlays that alter routing policies can interfere with the
+CDN cache selection logic used by streaming platforms. A change in
+routing path may cause the application to connect to a more distant
+cache, resulting in higher latency, lower throughput, and degraded video
+quality, even when a closer cache would otherwise have been selected.<a href="#section-4.3-4" class="pilcrow">¶</a></p>
+<p id="section-4.3-5">An example of a routing policy change is illustrated in
 <a href="#fig-overlay-routing" class="auto internal xref">Figure 1</a>, showing how a network overlay can apply a
 routing policy that diverges from that of the underlying base network,
 resulting in a modified traffic path and different delivery
-characteristics.<a href="#section-4.3-4" class="pilcrow">¶</a></p>
+characteristics.<a href="#section-4.3-5" class="pilcrow">¶</a></p>
 <span id="name-network-overlay-routing-sel"></span><div id="fig-overlay-routing">
 <figure id="figure-1">
-          <div class="alignLeft art-text artwork" id="section-4.3-5.1">
+          <div class="alignLeft art-text artwork" id="section-4.3-6.1">
 <pre>
  R  = router
                   &lt;--- non-overlay traffic path ---&gt;
@@ -1597,17 +1585,16 @@ upgrading cleartext HTTP/1.1 sessions to HTTPS. Such
 conversions are typically performed to enforce stronger privacy,
 security, or efficiency policies, but they may occur without
 visibility or control by the streaming application.<a href="#section-4.3.2-1" class="pilcrow">¶</a></p>
-<p id="section-4.3.2-2">A key operational impact arises when protocol substitution changes
-the network characteristics perceived by the video application. A
-video application may perform a preliminary fetch to measure
-network conditions before selecting an appropriate bitrate for
-content delivery. If the application's test probe uses HTTP/2 over
-TCP but the subsequent content request is silently converted by
-the overlay to HTTP/3 over QUIC, the measured results no longer
-reflect the actual transport path. This mismatch can lead to
-inaccurate bandwidth estimation, causing the adaptive bitrate
-(ABR) algorithm to select non-optimal streaming parameters and
-degrade user experience.<a href="#section-4.3.2-2" class="pilcrow">¶</a></p>
+<p id="section-4.3.2-2">A key operational impact arises when protocol substitution changes the
+network characteristics perceived by the video application. A video
+application may perform a preliminary fetch to measure network
+conditions before selecting an appropriate bitrate for content delivery.
+If the application's test probe uses HTTP/2 over TCP but the subsequent
+content request is silently converted by the overlay to HTTP/3 over
+QUIC, the measured results no longer reflect the actual transport path.
+This mismatch can lead to inaccurate bandwidth estimation, causing the
+ABR algorithm to select non-optimal streaming parameters and degrade
+user experience.<a href="#section-4.3.2-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="encryption-policy">
@@ -1626,7 +1613,7 @@ traffic into HTTPS or encapsulating transport flows within encrypted
 tunnels. While this improves confidentiality, it can also obscure
 traffic classification and disable optimizations that rely on visibility
 into flow metadata, such as CDN cache selection, adaptive bitrate
-tuning, or Quality-of-Service (QoS) marking.<a href="#section-4.3.3-2" class="pilcrow">¶</a></p>
+tuning, or QoS marking.<a href="#section-4.3.3-2" class="pilcrow">¶</a></p>
 <p id="section-4.3.3-3">Conversely, if encryption is removed or terminated prematurely, such as
 through a proxy that decrypts and re-encrypts video traffic, it can
 violate end-to-end security assumptions made by the application or CDN,
@@ -1671,8 +1658,8 @@ the content protection and integrity assurance mechanisms.<a href="#section-4.3.
 otherwise downgrades an encrypted connection to plaintext, it can
 invalidate end-to-end trust assumptions between the client, CDN, and
 content provider. Such behavior may expose sensitive metadata, enable
-unauthorized content inspection or modification, and violate Digital
-Rights Management (DRM).<a href="#section-4.3.3.2-2" class="pilcrow">¶</a></p>
+unauthorized content inspection or modification, and break Digital
+Rights Management (DRM) protections.<a href="#section-4.3.3.2-2" class="pilcrow">¶</a></p>
 <p id="section-4.3.3.2-3">In effect, a forced encryption downgrade undermines both security and
 operational reliability, leading to potential playback failures, content
 delivery errors, or loss of user trust.<a href="#section-4.3.3.2-3" class="pilcrow">¶</a></p>
@@ -1717,9 +1704,8 @@ complexity for both service providers and network operators.<a href="#section-4.
 <a href="#section-4.3.5" class="section-number selfRef">4.3.5. </a><a href="#name-dns-policy-changes" class="section-name selfRef">DNS Policy Changes</a>
           </h4>
 <p id="section-4.3.5-1">Network overlays that modify DNS resolver settings or redirect DNS
-queries can have significant implications for Content Delivery Networks
-(CDNs) that rely on DNS-based load balancing for cache selection and
-traffic localization.<a href="#section-4.3.5-1" class="pilcrow">¶</a></p>
+queries can have significant implications for CDNs that rely on
+DNS-based load balancing for cache selection and traffic localization.<a href="#section-4.3.5-1" class="pilcrow">¶</a></p>
 <p id="section-4.3.5-2">Many CDN architectures determine the best cache for a client by
 observing the source IP address of the DNS resolver making the
 request. When an overlay substitutes or masks the resolver, either
@@ -2021,7 +2007,7 @@ video-on-demand movies, live or pre-recorded TV shows, and user
 generated videos delivered by pioneering streaming platforms to
 now including low-latency 4K and 8K live sports events, while
 also evolving pre-recorded content to high-bitrate 4K and 8K
-cinema quality and High Dynamic Range (HDR) lighting.<a href="#section-7-3" class="pilcrow">¶</a></p>
+cinema quality and High Dynamic Range (HDR) video.<a href="#section-7-3" class="pilcrow">¶</a></p>
 <p id="section-7-4">The expectations of streaming video viewers have also
 significantly evolved from the days of watching a movie in a PC
 browser. Viewers expect to watch on any device they want, ranging
@@ -2031,19 +2017,17 @@ and smartphones. Viewers also expect a seamless viewing
 experience, whether they are at home using high-speed wired
 Internet, high-speed Wi-Fi, mobile cellular 5G, or even satellite
 Internet connections.<a href="#section-7-4" class="pilcrow">¶</a></p>
-<p id="section-7-5">To meet this growth, expanded content types
-and quality expectations, and any-device anywhere over any
-network expectations, the streaming video technology
-infrastructure has had to evolve significantly. This work is
-being done in the IETF and in the
-<a href="https://www.svta.org/">Streaming Video Technology Alliance (SVTA)</a>,
-and in a number of other technical and industry groups.<a href="#section-7-5" class="pilcrow">¶</a></p>
-<p id="section-7-6">The growth of streaming video has contributed enormously to the
-growth of the Internet. Internet connections at hundreds of
-megabits and gigabit speeds today exist because of the needs of
-video streaming, and the ongoing work on low-latency networking
-and ultra-low-latency video delivery are both driven by streaming
-video.<a href="#section-7-6" class="pilcrow">¶</a></p>
+<p id="section-7-5">To meet this growth, the expanded content types and quality
+expectations, and the expectation of any device, anywhere, over any
+network, the streaming video technology infrastructure has had to evolve
+significantly. This work is being done in the IETF and in the <a href="https://www.svta.org/">Streaming
+Video Technology Alliance (SVTA)</a>, and in a
+number of other technical and industry groups.<a href="#section-7-5" class="pilcrow">¶</a></p>
+<p id="section-7-6">The growth of streaming video has contributed enormously to the growth
+of the Internet. Internet connections at hundreds of megabits and
+gigabit speeds have been driven in large part by the needs of video
+streaming, as has the ongoing work on low-latency networking and
+ultra-low-latency video delivery.<a href="#section-7-6" class="pilcrow">¶</a></p>
 <div id="advances-in-streaming-video-architecture">
 <section id="section-7.1">
         <h3 id="name-advances-in-streaming-video">
@@ -2081,8 +2065,9 @@ cellular networks.<a href="#section-7.1-3.5.1" class="pilcrow">¶</a></p>
           <li id="section-7.1-3.6">
             <p id="section-7.1-3.6.1">Streaming formats such as MPEG-DASH and HLS, and transport
 protocols including HTTP/2 over TCP, HTTP/3 over QUIC, WebRTC,
-Media over QUIC (MoQ), and specialty transports such as SRT and
-HESP.<a href="#section-7.1-3.6.1" class="pilcrow">¶</a></p>
+Media over QUIC (MoQ), and specialty transports such as Secure
+Reliable Transport (SRT) and the High Efficiency Streaming
+Protocol (HESP).<a href="#section-7.1-3.6.1" class="pilcrow">¶</a></p>
 </li>
         </ol>
 <p id="section-7.1-4">To meet these challenges, streaming platforms have significantly
@@ -2174,6 +2159,10 @@ network between the sender and receiver.<a href="#section-8-1" class="pilcrow">�
 <dt id="RFC9000">[RFC9000]</dt>
       <dd>
 <span class="refAuthor">Iyengar, J., Ed.</span> and <span class="refAuthor">M. Thomson, Ed.</span>, <span class="refTitle">"QUIC: A UDP-Based Multiplexed and Secure Transport"</span>, <span class="seriesInfo">RFC 9000</span>, <span class="seriesInfo">DOI 10.17487/RFC9000</span>, <time datetime="2021-05" class="refDate">May 2021</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9000">https://www.rfc-editor.org/rfc/rfc9000</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC9298">[RFC9298]</dt>
+      <dd>
+<span class="refAuthor">Schinazi, D.</span>, <span class="refTitle">"Proxying UDP in HTTP"</span>, <span class="seriesInfo">RFC 9298</span>, <span class="seriesInfo">DOI 10.17487/RFC9298</span>, <time datetime="2022-08" class="refDate">August 2022</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9298">https://www.rfc-editor.org/rfc/rfc9298</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC9317">[RFC9317]</dt>
       <dd>
