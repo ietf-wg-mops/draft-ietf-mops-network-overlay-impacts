@@ -56,30 +56,30 @@ This document examines the operational impacts on streaming video applications r
 
 # Introduction
 
-This document explores the unintended operational impacts of network overlays, such as VPNs and MASQUE-based tunnels, on highly scalable Internet streaming applications. Because these streaming architectures are optimized for specific network environments, overlay-enforced policy changes can degrade performance. This analysis serves as a foundational exploration to guide future work regarding potential mitigations and design improvements.
+This document explores the unintended operational impacts of network overlays, such as VPNs and MASQUE-based tunnels, on highly scalable Internet streaming applications. Because these streaming architectures are optimized for specific network environments, overlay-enforced policy changes can degrade performance.
 
 The authors acknowledge the inherent friction between maximizing Internet transport privacy and maintaining the operational efficiency of data-intensive applications. Integrating these competing operational requirements into architectural designs is a complex task.
 
-The purpose of this document is to establish a clear problem statement regarding these operational impacts. It documents the negative externalities observed by streaming platforms when privacy-enhancing overlays or unexpected network policy changes disrupt the delivery path. This analysis aims to provide application developers, platform architects, network operators, and protocol designers with a shared framework for understanding how overlay mechanisms impact deterministic video delivery. Accounting for these operational realities is vital for future protocol design; however, defining specific mitigations is out of scope for this document and is left to future work.
+The purpose of this document is to establish a clear problem statement regarding these operational impacts. It documents the negative externalities observed by streaming platforms when privacy-enhancing overlays or unexpected network policy changes disrupt the delivery path. This analysis aims to provide application developers, platform architects, network operators, and protocol designers with a shared framework for understanding how overlay mechanisms impact predictable video delivery. Defining specific mitigations is out of scope for this document.
 
 
 # Streaming Applications: Optimized for Scaling and Latency
 
-Internet video streaming has become a global utility for billions of viewers, evolving by necessity into a highly optimized operational ecosystem. This ecosystem delivers live sports, entertainment, linear television, user-generated content (UGC), and breaking news to any Internet-connected device across heterogeneous networks, including high-bandwidth fixed lines, mobile, and Wi-Fi. Consequently, streaming dominates Internet traffic as documented in {{?RFC9317}}.
+Internet video streaming has become a global utility for billions of viewers, evolving by necessity into a highly optimized operational ecosystem. This ecosystem delivers live sports, entertainment, linear television, user-generated content (UGC), and breaking news to any Internet-connected device across heterogeneous networks, including high-bandwidth fixed lines, mobile, and Wi-Fi. {{?RFC9317}} reports that video made up about 75% of traffic to end users in 2019.
 
 These sessions require sustained, data-intensive throughput, particularly at high-definition (HD) and 4K resolutions.
 
-To support this volume, the video streaming ecosystem relies on sophisticated network and data management methodologies. This includes the IETF’s Content Delivery Network Interconnection (CDNI) frameworks {{?RFC6707}} {{?RFC7336}} for tiered CDN topologies and downstream CDN selection/orchestration. Each streaming platform carefully architects its delivery pipeline around deterministic network policies, predictable routing, and explicit path signaling. This optimization is critical to meet scaling demands regarding simultaneous viewer concurrency, aggregate data volume, and the ultra-low latency thresholds required for interactive and live sports viewing. The foundations of this application ecosystem are discussed in {{?RFC9317}}, though the technology has continued to evolve significantly since its publication.
+To support this volume, the video streaming ecosystem relies on sophisticated network and data management methodologies. This includes the IETF’s Content Delivery Network Interconnection (CDNI) frameworks {{?RFC6707}} {{?RFC7336}} for tiered CDN topologies and downstream CDN selection/orchestration. Each streaming platform carefully architects its delivery pipeline around predictable network behavior and routing. This optimization is critical to meet scaling demands regarding simultaneous viewer concurrency, aggregate data volume, and the ultra-low latency thresholds required for interactive and live sports viewing. The foundations of this application ecosystem are discussed in {{?RFC9317}}, though the technology has continued to evolve significantly since its publication.
 
 Regardless of content type, the successful delivery of data at this scale requires a well-understood, end-to-end application and networking architecture. The workflow behaves predictably and consistently according to the design assumptions of the video streaming architects.
 
 # Network Overlays: Privacy Enhancements and Operational Features
 
-Enhancing Internet user privacy has been a core focus of the IETF following the publication of {{?RFC7258}}, which established pervasive surveillance as a technical attack. {{?RFC7624}} further detailed these technical threats and outlined high-level mitigation approaches. Since then, IETF working groups have systematically addressed these vectors, producing new standards with native privacy protections. Protocols like QUIC {{?RFC9000}} exemplify this shift, embedding always-on transport encryption and wire-image obfuscation directly into the protocol design.
+Enhancing Internet user privacy has been a core focus of the IETF following the publication of {{?RFC7258}}, which established pervasive monitoring as a technical attack. {{?RFC7624}} further detailed these technical threats and outlined high-level mitigation approaches. Since then, IETF working groups have systematically addressed these vectors, producing new standards with native privacy protections. Protocols like QUIC {{?RFC9000}} exemplify this shift, embedding always-on transport encryption and wire-image obfuscation directly into the protocol design.
 
-Concurrently, application-layer and transport-layer network overlays—such as Virtual Private Networks (VPNs) and MASQUE-based tunnels—have emerged as easily deployable mechanisms to shield user traffic from network intermediaries. However, as consumer operating systems, browsers, and applications increasingly integrate these privacy-enhancing overlays, they introduce architectural changes to the underlying network behavior.
+Concurrently, network overlays, such as Virtual Private Networks (VPNs) and MASQUE-based tunnels, have emerged as easily deployable mechanisms to shield user traffic from network intermediaries. However, as consumer operating systems, browsers, and applications increasingly integrate these privacy-enhancing overlays, they introduce architectural changes to the underlying network behavior.
 
-These overlays frequently obfuscate client IP geolocation, alter path MTU characteristics, disrupt standard anycast routing, inject transport-layer jitter, or mask flow identifiers. Such changes directly interfere with or undermine the traffic engineering, localized edge-caching, load balancing, and low-latency optimizations that streaming platforms rely upon.
+These overlays frequently obfuscate client IP geolocation, alter path MTU characteristics, disrupt standard anycast routing, add latency and jitter, or mask flow identifiers. Such changes directly interfere with or undermine the traffic engineering, localized edge-caching, load balancing, and low-latency optimizations that streaming platforms rely upon.
 
 # Internet Privacy Enhancements
 
@@ -126,7 +126,7 @@ is not the technology or protocol used, but whether the
 alternative network connection policies applied are transparent
 or hidden from the connection endpoints.
 
-Prior to network overlays, connection policy changes tended to be
+Traditionally, connection policy changes tended to be
 transparent to the application-server connection. Changes made to
 the connection were visible to one or both sides, enabling the
 connection endpoints to have awareness of the policies applied.
@@ -140,16 +140,16 @@ remove that ability without any indication to the application that
 this has occurred.
 
 This distinction means that even classic connection policy
-approaches such as Layer 2 VPNs fall within this document's
+approaches such as traditional VPNs fall within this document's
 problem statement if they operate non-transparently to the
 connection endpoints, and particularly to the application.
 
 Network overlays also affect end-to-end connection autonomy.
 When an application opens a connection, it does so based on
 server-published endpoint information, obtained via DNS or direct
-IP addressing. Network overlays silently intercept that connection,
-rerouting or readdressing it and making new path choices without
-the client being involved. Neither the application nor the server
+IP addressing. Non-transparent overlays silently intercept that
+connection, rerouting or readdressing it and making new path choices
+without the application being involved. Neither the application nor the server
 has signaled consent to this interception, and neither endpoint
 receives any indication that the path or addressing has changed.
 This silent substitution of routing decisions is distinct from
@@ -165,37 +165,39 @@ path, and many video platforms block or degrade service to detected
 VPN connections due to their common use in bypassing geofiltering
 restrictions.
 
-Where a distinction is useful operationally, it is not the
-technology or protocol used but the deployment pattern in common
-use. Traditional and newer overlay deployments have tended to
-differ along the following lines.
+Traditional and newer overlay deployments have tended to differ
+along the following lines.
 
-### Transparent connection policy approaches:
+### Transparent Connection Policy Approaches
 
-* (1) are generally detectable by the application and the
-  network operator.
-* (2) typically work at the network layer of a device, so a wide
-  range, if not all, of the device's transports and protocols flow
-  through the overlay.
-* (3) typically provide exception options allowing traffic to be
-  excluded based on criteria such as application, destination IP
-  address, or application protocol.
+These approaches:
 
-### Non-transparent connection policy approaches:
+1. are generally detectable by the application and the
+   network operator.
+2. typically work at the network layer of a device, so a wide
+   range, if not all, of the device's transports and protocols flow
+   through the overlay.
+3. typically provide exception options allowing traffic to be
+   excluded based on criteria such as application, destination IP
+   address, or application protocol.
 
-* (1) are often undetectable by video applications or the
-  streaming platform while in use.
-* (2) often apply only to specific application transports, such as
-  HTTP/2 over TCP or HTTP/3 over QUIC, while leaving other
-  transports on the same device, such as TCP+TLS, unaffected.
-* (3) often apply only to HTTP connections, without support for
-  ICMP, non-HTTP DNS, NTP, or the other non-HTTP-based tools used
-  for network measurement, problem determination, and network
-  management.
-* (4) do not expose to applications any means of discovering what
-  policy changes the overlay applies to their network connections.
-* (5) do not expose mechanisms or APIs for applications to interact
-  with the overlay, such as getting or setting options.
+### Non-transparent Connection Policy Approaches
+
+These approaches:
+
+1. are often undetectable by video applications or the
+   streaming platform while in use.
+2. often apply only to specific applications or traffic types, such
+   as browser traffic, leaving other traffic on the same device
+   unaffected.
+3. often apply only to HTTP connections, without support for
+   ICMP, non-HTTP DNS, NTP, or the other non-HTTP-based tools used
+   for network measurement, problem determination, and network
+   management.
+4. do not expose to applications any means of discovering what
+   policy changes the overlay applies to their network connections.
+5. do not expose mechanisms or APIs for applications to interact
+   with the overlay, such as getting or setting options.
 
 These are patterns of observed deployment behavior, not categories
 defined by protocol specification. What determines whether a
