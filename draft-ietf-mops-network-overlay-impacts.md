@@ -426,10 +426,10 @@ of the problems.
 #### CDN Edge Cache Selection due to Routing
 
 A significant and often overlooked problem is the addition of
-network latency compared to edge CDN caches or access network
-peering connections. Routing changes that cause traffic to bypass
-edge CDN caches and instead reach less optimal caches are
-illustrated in {{fig-cdn-cache-selection}}.
+network latency compared to connecting directly to edge CDN caches
+or access network peering connections. Routing changes that cause
+traffic to bypass edge CDN caches and instead reach less optimal
+caches are illustrated in {{fig-cdn-cache-selection}}.
 
 ~~~
  R  = router
@@ -510,15 +510,15 @@ policies from different CDN operators may be encountered.
 
 # Policy Changes Hidden from Applications
 
-One of the central recurring issues with streaming applications
-running on devices or networks with changed policies due to
-network overlays is that the changes are often hidden from the
+One of the central recurring challenges with streaming applications
+operating on devices or networks affected by network overlays is
+that these policy changes are frequently concealed from the
 applications.
 
 Applications often find it difficult or even impossible to detect
 when network policy changes will be active and what they are
 changing. For example, a device may have a designated default DNS
-resolver but a different resolver may be selected depending on how
+resolver, but a different resolver may be selected depending on how
 the streaming application queries DNS.
 
 Likewise, a streaming application might find that one application
@@ -542,7 +542,7 @@ users.
 
 Perhaps learning from the lessons of offering too many options,
 the recent trend in privacy enhancements has steered toward either
-a very simple "Privacy On or Off" switch or in other cases
+a very simple "Privacy On or Off" switch, or in other cases,
 automatically enabling or upgrading to enhance privacy. Apple's
 iCloud Private Relay can be easily turned on with a single
 settings switch, while privacy features such as DNS over HTTPS
@@ -585,12 +585,12 @@ cinema quality and High Dynamic Range (HDR) lighting.
 The expectations of streaming video viewers have also
 significantly evolved from the days of watching a movie in a PC
 browser. Viewers expect to watch on any device they want, ranging
-from low-end streaming sticks that plug into a USB port to 4K and
+from low-end streaming sticks that plug into an HDMI port to 4K and
 HDR capable laptops, 4K and 8K HDR TV screens, gaming consoles,
-and smartphones. Viewers also expect the same great viewing
-experience whether at home on high-speed wired Internet,
-high-speed WiFi, mobile cellular 5G, or even satellite Internet
-connections.
+and smartphones. Viewers also expect a seamless viewing
+experience, whether they are at home using high-speed wired
+Internet, high-speed WiFi, mobile cellular 5G, or even satellite
+Internet connections.
 
 To meet this growth, expanded content types
 and quality expectations, and any-device anywhere over any
