@@ -510,12 +510,12 @@ it is configured as a full tunnel or a split tunnel
 of this practice and does not evaluate it.
 
 Overlays can also interact with IPv4/IPv6 transition technologies.
-If an overlay uses IPv4 as its underlay on an IPv6-only or
-IPv6-mostly {{?RFC8925}} access network, the overlay traffic depends
-on the network's IPv4 transition mechanism, such as NAT64
-{{?RFC6146}}, MAP-T {{?RFC7599}}, or Lightweight 4over6
-{{?RFC7596}}, even when the streaming service itself is reachable
-over IPv6. During large streaming events, this can place additional
+If an overlay uses IPv4 as its underlay on an IPv6-only access
+network, or on a host operating in IPv6-only mode on an IPv6-mostly
+network {{?RFC8925}}, the overlay traffic depends on the network's
+IPv4 transition mechanism, such as NAT64 {{?RFC6146}}, MAP-T
+{{?RFC7599}}, or Lightweight 4over6 {{?RFC7596}}, even when the
+streaming service itself is reachable over IPv6. During large streaming events, this can place additional
 load on the translation or encapsulation gateways.
 
 ### DNS Policy Changes {#dns-policy-changes}
