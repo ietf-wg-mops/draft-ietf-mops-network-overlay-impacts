@@ -126,6 +126,17 @@ operating systems, browsers, and applications increasingly integrate
 these privacy-enhancing overlays, they introduce architectural changes
 to the underlying network behavior.
 
+Privacy is not the only motivation for deploying network overlays.
+Enterprises commonly require VPNs or Secure Web Gateways (SWGs) on
+employee devices, including when employees work from home, and these
+deployments may operate in either split-tunnel or full-tunnel mode
+(see {{split-tunnel}}). Overlays are also used to obtain IPv6
+connectivity from access networks that offer only IPv4, for example
+using tunnel brokers {{?RFC3053}} or Teredo {{?RFC4380}}. Many of the
+operational impacts described in this document can also arise in
+these deployments. Some of these motivations, such as enterprise
+policy, are outside the influence of the network operator.
+
 These overlays frequently obfuscate client IP geolocation, alter path
 MTU characteristics, disrupt standard anycast routing, add latency and
 jitter, or mask flow identifiers. Such changes directly interfere with
@@ -277,6 +288,37 @@ connection endpoints, the operational impacts described in this
 document, including protocol changes, tunneling effects, and path
 alterations, remain significant considerations for streaming video
 deployments.
+
+### Full-Tunnel and Split-Tunnel Configurations {#split-tunnel}
+
+A related but separate distinction is whether an overlay carries all
+of a device's traffic (full tunnel) or only a subset (split tunnel).
+{{?RFC7556}} describes both configurations in terms of Provisioning
+Domains (PvDs), using the terms "force tunneling" and "split
+tunneling".
+
+Some of the issues described in {{dns-policy-changes}} and
+{{cdn-edge-cache-selection}} can arise specifically in split-tunnel
+configurations where DNS resolution and the resulting traffic take
+different paths. For example, if a DNS query is answered by the
+network operator's resolver and the media traffic is then carried
+over the overlay, a CDN that maps clients to caches using DNS may
+direct the client to a cache inside the network operator's network.
+The media traffic then leaves the overlay at its egress point and
+travels back to that cache, adding latency and extra traffic between
+the overlay egress point and the network operator's network. The
+reverse mismatch, where DNS is resolved through the overlay and the
+traffic is sent outside it, can lead the CDN to select a cache near
+the overlay egress point rather than near the client.
+
+When DNS and the associated traffic follow the same path, as in a
+full-tunnel configuration or a multi-PvD implementation that uses
+DNS results only within the PvD that provided them
+({{Section 5.2.1 of RFC7556}}), the CDN can select a cache near the
+overlay egress point. This may move traffic that could otherwise be
+served from caches inside the network operator's network onto its
+external peering or transit links, but the cache selection is
+consistent with the path the traffic actually takes.
 
 ## Policy Changes
 
@@ -456,7 +498,27 @@ active. This mismatch can lead to intermittent playback
 interruptions, degraded user experience, or increased operational
 complexity for both service providers and network operators.
 
-### DNS Policy Changes
+Associating authorization with a client IP address is fragile even
+without overlays, because a client's source address can legitimately
+vary between connections in the same session. Examples include
+dual-stack clients that use both IPv4 and IPv6 {{?RFC8305}}, NAT
+deployments that map a client's connections to different external
+addresses {{?RFC4787}}, and IPv6 temporary addresses {{?RFC8981}}.
+Whether an overlay triggers this failure can also depend on whether
+it is configured as a full tunnel or a split tunnel
+({{split-tunnel}}). This document describes the operational impact
+of this practice and does not evaluate it.
+
+Overlays can also interact with IPv4/IPv6 transition technologies.
+If an overlay uses IPv4 as its underlay on an IPv6-only or
+IPv6-mostly {{?RFC8925}} access network, the overlay traffic depends
+on the network's IPv4 transition mechanism, such as NAT64
+{{?RFC6146}}, MAP-T {{?RFC7599}}, or Lightweight 4over6
+{{?RFC7596}}, even when the streaming service itself is reachable
+over IPv6. During large streaming events, this can place additional
+load on the translation or encapsulation gateways.
+
+### DNS Policy Changes {#dns-policy-changes}
 
 Network overlays that modify DNS resolver settings or redirect DNS
 queries can have significant implications for CDNs that rely on
@@ -566,7 +628,7 @@ visible to support tools, it becomes an operational trouble spot
 for users and platform support to locate and determine the source
 of the problems.
 
-#### CDN Edge Cache Selection due to Routing
+#### CDN Edge Cache Selection due to Routing {#cdn-edge-cache-selection}
 
 A significant and often overlooked problem is the addition of
 network latency compared to connecting directly to edge CDN caches
