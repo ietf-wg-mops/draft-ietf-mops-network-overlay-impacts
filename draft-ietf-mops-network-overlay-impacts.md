@@ -408,7 +408,7 @@ of experience. In such cases, forced encryption upgrades may prevent the
 network from applying appropriate delivery optimizations, resulting in
 degraded performance or increased operational complexity.
 
-#### Forced Encryption Downgrade
+#### Forced Encryption Downgrade {#forced-encryption-downgrade}
 
 Conversely, removal or termination of encryption originally
 applied by a streaming platform can introduce serious operational
@@ -496,7 +496,7 @@ log data therefore undermines both problem determination and
 root-cause analysis, complicating operational monitoring and
 incident response workflows.
 
-### Geolocation and Identification
+### Geolocation and Identification {#geolocation-and-identification}
 
 Network overlays that alter the apparent source location of user devices
 can interfere with streaming platforms' ability to accurately determine
@@ -625,7 +625,7 @@ changes to DNS resolvers and the results they return, and changes
 to application transports such as adding or removing encryption.
 All of these have been observed in production streaming platforms.
 
-### Unintended Content Blocking
+### Unintended Content Blocking {#unintended-content-blocking}
 
 A strongly undesirable consequence of network policy changes is
 the blocking of content to the viewer. This may affect primary
@@ -810,7 +810,31 @@ that are hard to detect or diagnose.
 
 # Security Considerations
 
-TODO Security
+This document describes operational impacts and does not define
+any protocol or mechanism. It introduces no new security
+considerations of its own.
+
+The network overlays discussed here are generally deployed to
+improve user privacy and security. Nothing in this document
+argues against their use.
+
+Several of the impacts described in this document have security
+implications for streaming platforms:
+
+1. An overlay or proxy that terminates or downgrades an encrypted
+   connection can invalidate end-to-end trust assumptions and
+   expose content or user data to inspection or modification
+   (see {{forced-encryption-downgrade}}).
+
+2. Changes to the apparent client location can affect fraud
+   detection and rights management processes that depend on
+   consistent geographic identifiers (see
+   {{geolocation-and-identification}}).
+
+3. Security policies that expect viewers to connect from home or
+   mobile networks can block legitimate users whose overlay
+   egress traffic comes from data center or CDN address blocks
+   (see {{unintended-content-blocking}}).
 
 # IANA Considerations
 
