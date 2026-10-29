@@ -793,6 +793,21 @@ The IETF has discussed this situation in the past. More than
 in the network and the effects of hidden changes occurring on the
 network between the sender and receiver.
 
+Network overlays reverse the roles described there. With a
+middlebox, the network changes traffic without the knowledge of
+the endpoints. With a privacy-enhancing overlay, the endpoint's
+traffic changes in ways the network and the content provider
+cannot see. In both cases, one party has built its operations on
+connection properties that another party changes or removes.
+
+Many of the streaming impacts described in this document follow
+this pattern. Client IP address, DNS resolver location, and
+routing path are long-standing properties of Internet connections,
+and CDN selection, geolocation, and troubleshooting are built on
+them. When an overlay changes these properties without the
+knowledge of the endpoints, those functions can break in ways
+that are hard to detect or diagnose.
+
 # Security Considerations
 
 TODO Security
