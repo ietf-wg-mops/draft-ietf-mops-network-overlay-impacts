@@ -82,6 +82,7 @@ Table of Contents
      4.2.  Transparency and Connection Policy
        4.2.1.  Transparent Connection Policy Approaches
        4.2.2.  Non-transparent Connection Policy Approaches
+       4.2.3.  Full-Tunnel and Split-Tunnel Configurations
      4.3.  Policy Changes
        4.3.1.  Partitioning
        4.3.2.  Protocol Policy Changes
@@ -179,6 +180,17 @@ Table of Contents
    However, as consumer operating systems, browsers, and applications
    increasingly integrate these privacy-enhancing overlays, they
    introduce architectural changes to the underlying network behavior.
+
+   Privacy is not the only motivation for deploying network overlays.
+   Enterprises commonly require VPNs or Secure Web Gateways (SWGs) on
+   employee devices, including when employees work from home, and these
+   deployments may operate in either split-tunnel or full-tunnel mode
+   (see Section 4.2.3).  Overlays are also used to obtain IPv6
+   connectivity from access networks that offer only IPv4, for example
+   using tunnel brokers [RFC3053] or Teredo [RFC4380].  Many of the
+   operational impacts described in this document can also arise in
+   these deployments.  Some of these motivations, such as enterprise
+   policy, are outside the influence of the network operator.
 
    These overlays frequently obfuscate client IP geolocation, alter path
    MTU characteristics, disrupt standard anycast routing, add latency
@@ -337,6 +349,37 @@ Table of Contents
    endpoints, the operational impacts described in this document,
    including protocol changes, tunneling effects, and path alterations,
    remain significant considerations for streaming video deployments.
+
+4.2.3.  Full-Tunnel and Split-Tunnel Configurations
+
+   A related but separate distinction is whether an overlay carries all
+   of a device's traffic (full tunnel) or only a subset (split tunnel).
+   [RFC7556] describes both configurations in terms of Provisioning
+   Domains (PvDs), using the terms "force tunneling" and "split
+   tunneling".
+
+   Some of the issues described in Section 4.3.5 and Section 4.3.9.2 can
+   arise specifically in split-tunnel configurations where DNS
+   resolution and the resulting traffic take different paths.  For
+   example, if a DNS query is answered by the network operator's
+   resolver and the media traffic is then carried over the overlay, a
+   CDN that maps clients to caches using DNS may direct the client to a
+   cache inside the network operator's network.  The media traffic then
+   leaves the overlay at its egress point and travels back to that
+   cache, adding latency and extra traffic between the overlay egress
+   point and the network operator's network.  The reverse mismatch,
+   where DNS is resolved through the overlay and the traffic is sent
+   outside it, can lead the CDN to select a cache near the overlay
+   egress point rather than near the client.
+
+   When DNS and the associated traffic follow the same path, as in a
+   full-tunnel configuration or a multi-PvD implementation that uses DNS
+   results only within the PvD that provided them (Section 5.2.1 of
+   [RFC7556]), the CDN can select a cache near the overlay egress point.
+   This may move traffic that could otherwise be served from caches
+   inside the network operator's network onto its external peering or
+   transit links, but the cache selection is consistent with the path
+   the traffic actually takes.
 
 4.3.  Policy Changes
 
@@ -519,6 +562,26 @@ Table of Contents
    intermittent playback interruptions, degraded user experience, or
    increased operational complexity for both service providers and
    network operators.
+
+   Associating authorization with a client IP address is fragile even
+   without overlays, because a client's source address can legitimately
+   vary between connections in the same session.  Examples include dual-
+   stack clients that use both IPv4 and IPv6 [RFC8305], NAT deployments
+   that map a client's connections to different external addresses
+   [RFC4787], and IPv6 temporary addresses [RFC8981].  Whether an
+   overlay triggers this failure can also depend on whether it is
+   configured as a full tunnel or a split tunnel (Section 4.2.3).  This
+   document describes the operational impact of this practice and does
+   not evaluate it.
+
+   Overlays can also interact with IPv4/IPv6 transition technologies.
+   If an overlay uses IPv4 as its underlay on an IPv6-only access
+   network, or on a host operating in IPv6-only mode on an IPv6-mostly
+   network [RFC8925], the overlay traffic depends on the network's IPv4
+   transition mechanism, such as NAT64 [RFC6146], MAP-T [RFC7599], or
+   Lightweight 4over6 [RFC7596], even when the streaming service itself
+   is reachable over IPv6.  During large streaming events, this can
+   place additional load on the translation or encapsulation gateways.
 
 4.3.5.  DNS Policy Changes
 
@@ -902,9 +965,28 @@ Table of Contents
               2021, <https://www.apple.com/privacy/docs/
               iCloud_Private_Relay_Overview_Dec2021.PDF>.
 
+   [RFC3053]  Durand, A., Fasano, P., Guardini, I., and D. Lento, "IPv6
+              Tunnel Broker", RFC 3053, DOI 10.17487/RFC3053, January
+              2001, <https://www.rfc-editor.org/rfc/rfc3053>.
+
    [RFC3234]  Carpenter, B. and S. Brim, "Middleboxes: Taxonomy and
               Issues", RFC 3234, DOI 10.17487/RFC3234, February 2002,
               <https://www.rfc-editor.org/rfc/rfc3234>.
+
+   [RFC4380]  Huitema, C., "Teredo: Tunneling IPv6 over UDP through
+              Network Address Translations (NATs)", RFC 4380,
+              DOI 10.17487/RFC4380, February 2006,
+              <https://www.rfc-editor.org/rfc/rfc4380>.
+
+   [RFC4787]  Audet, F., Ed. and C. Jennings, "Network Address
+              Translation (NAT) Behavioral Requirements for Unicast
+              UDP", BCP 127, RFC 4787, DOI 10.17487/RFC4787, January
+              2007, <https://www.rfc-editor.org/rfc/rfc4787>.
+
+   [RFC6146]  Bagnulo, M., Matthews, P., and I. van Beijnum, "Stateful
+              NAT64: Network Address and Protocol Translation from IPv6
+              Clients to IPv4 Servers", RFC 6146, DOI 10.17487/RFC6146,
+              April 2011, <https://www.rfc-editor.org/rfc/rfc6146>.
 
    [RFC6707]  Niven-Jenkins, B., Le Faucheur, F., and N. Bitar, "Content
               Distribution Network Interconnection (CDNI) Problem
@@ -925,6 +1007,20 @@ Table of Contents
               Interconnection (CDNI)", RFC 7336, DOI 10.17487/RFC7336,
               August 2014, <https://www.rfc-editor.org/rfc/rfc7336>.
 
+   [RFC7556]  Anipko, D., Ed., "Multiple Provisioning Domain
+              Architecture", RFC 7556, DOI 10.17487/RFC7556, June 2015,
+              <https://www.rfc-editor.org/rfc/rfc7556>.
+
+   [RFC7596]  Cui, Y., Sun, Q., Boucadair, M., Tsou, T., Lee, Y., and I.
+              Farrer, "Lightweight 4over6: An Extension to the Dual-
+              Stack Lite Architecture", RFC 7596, DOI 10.17487/RFC7596,
+              July 2015, <https://www.rfc-editor.org/rfc/rfc7596>.
+
+   [RFC7599]  Li, X., Bao, C., Dec, W., Ed., Troan, O., Matsushima, S.,
+              and T. Murakami, "Mapping of Address and Port using
+              Translation (MAP-T)", RFC 7599, DOI 10.17487/RFC7599, July
+              2015, <https://www.rfc-editor.org/rfc/rfc7599>.
+
    [RFC7624]  Barnes, R., Schneier, B., Jennings, C., Hardie, T.,
               Trammell, B., Huitema, C., and D. Borkmann,
               "Confidentiality in the Face of Pervasive Surveillance: A
@@ -937,9 +1033,25 @@ Table of Contents
               DOI 10.17487/RFC7871, May 2016,
               <https://www.rfc-editor.org/rfc/rfc7871>.
 
+   [RFC8305]  Schinazi, D. and T. Pauly, "Happy Eyeballs Version 2:
+              Better Connectivity Using Concurrency", RFC 8305,
+              DOI 10.17487/RFC8305, December 2017,
+              <https://www.rfc-editor.org/rfc/rfc8305>.
+
    [RFC8484]  Hoffman, P. and P. McManus, "DNS Queries over HTTPS
               (DoH)", RFC 8484, DOI 10.17487/RFC8484, October 2018,
               <https://www.rfc-editor.org/rfc/rfc8484>.
+
+   [RFC8925]  Colitti, L., Linkova, J., Richardson, M., and T.
+              Mrugalski, "IPv6-Only Preferred Option for DHCPv4",
+              RFC 8925, DOI 10.17487/RFC8925, October 2020,
+              <https://www.rfc-editor.org/rfc/rfc8925>.
+
+   [RFC8981]  Gont, F., Krishnan, S., Narten, T., and R. Draves,
+              "Temporary Address Extensions for Stateless Address
+              Autoconfiguration in IPv6", RFC 8981,
+              DOI 10.17487/RFC8981, February 2021,
+              <https://www.rfc-editor.org/rfc/rfc8981>.
 
    [RFC9000]  Iyengar, J., Ed. and M. Thomson, Ed., "QUIC: A UDP-Based
               Multiplexed and Secure Transport", RFC 9000,
