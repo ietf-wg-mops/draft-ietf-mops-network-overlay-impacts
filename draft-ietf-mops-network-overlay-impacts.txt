@@ -181,6 +181,13 @@ Table of Contents
    increasingly integrate these privacy-enhancing overlays, they
    introduce architectural changes to the underlying network behavior.
 
+   These overlays frequently obfuscate client IP geolocation, alter path
+   MTU characteristics, disrupt standard anycast routing, add latency
+   and jitter, or mask flow identifiers.  Such changes directly
+   interfere with or undermine the traffic engineering, localized edge-
+   caching, load balancing, and low-latency optimizations that streaming
+   platforms rely upon.
+
    Privacy is not the only motivation for deploying network overlays.
    Enterprises commonly require VPNs or Secure Web Gateways (SWGs) on
    employee devices, including when employees work from home, and these
@@ -191,13 +198,6 @@ Table of Contents
    operational impacts described in this document can also arise in
    these deployments.  Some of these motivations, such as enterprise
    policy, are outside the influence of the network operator.
-
-   These overlays frequently obfuscate client IP geolocation, alter path
-   MTU characteristics, disrupt standard anycast routing, add latency
-   and jitter, or mask flow identifiers.  Such changes directly
-   interfere with or undermine the traffic engineering, localized edge-
-   caching, load balancing, and low-latency optimizations that streaming
-   platforms rely upon.
 
 4.  Internet Privacy Enhancements
 
@@ -1085,8 +1085,8 @@ Acknowledgments
    contributions from Brian Paxton on observed overlay behavior and
    comments from Jay Robertson have been very helpful.  The authors are
    also very grateful to David Schinazi, Leonard Giuliano, Emile
-   Stephan, and Kyle Rose for their reviews and contributions to this
-   document.
+   Stephan, Kyle Rose, and Erik Nygren for their reviews and
+   contributions to this document.
 
 Authors' Addresses
 

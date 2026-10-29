@@ -1327,7 +1327,13 @@ to shield user traffic from network intermediaries. However, as consumer
 operating systems, browsers, and applications increasingly integrate
 these privacy-enhancing overlays, they introduce architectural changes
 to the underlying network behavior.<a href="#section-3-2" class="pilcrow">¶</a></p>
-<p id="section-3-3">Privacy is not the only motivation for deploying network overlays.
+<p id="section-3-3">These overlays frequently obfuscate client IP geolocation, alter path
+MTU characteristics, disrupt standard anycast routing, add latency and
+jitter, or mask flow identifiers. Such changes directly interfere with
+or undermine the traffic engineering, localized edge-caching, load
+balancing, and low-latency optimizations that streaming platforms rely
+upon.<a href="#section-3-3" class="pilcrow">¶</a></p>
+<p id="section-3-4">Privacy is not the only motivation for deploying network overlays.
 Enterprises commonly require VPNs or Secure Web Gateways (SWGs) on
 employee devices, including when employees work from home, and these
 deployments may operate in either split-tunnel or full-tunnel mode
@@ -1336,13 +1342,7 @@ connectivity from access networks that offer only IPv4, for example
 using tunnel brokers <span>[<a href="#RFC3053" class="cite xref">RFC3053</a>]</span> or Teredo <span>[<a href="#RFC4380" class="cite xref">RFC4380</a>]</span>. Many of the
 operational impacts described in this document can also arise in
 these deployments. Some of these motivations, such as enterprise
-policy, are outside the influence of the network operator.<a href="#section-3-3" class="pilcrow">¶</a></p>
-<p id="section-3-4">These overlays frequently obfuscate client IP geolocation, alter path
-MTU characteristics, disrupt standard anycast routing, add latency and
-jitter, or mask flow identifiers. Such changes directly interfere with
-or undermine the traffic engineering, localized edge-caching, load
-balancing, and low-latency optimizations that streaming platforms rely
-upon.<a href="#section-3-4" class="pilcrow">¶</a></p>
+policy, are outside the influence of the network operator.<a href="#section-3-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="internet-privacy-enhancements">
@@ -2334,8 +2334,9 @@ Streaming Video Technology Alliance (SVTA) based on their work studying
 the impacts of network overlays on streaming platforms. The
 contributions from Brian Paxton on observed overlay behavior and
 comments from Jay Robertson have been very helpful. The authors are also
-very grateful to David Schinazi, Leonard Giuliano, Emile Stephan, and
-Kyle Rose for their reviews and contributions to this document.<a href="#appendix-A-1" class="pilcrow">¶</a></p>
+very grateful to David Schinazi, Leonard Giuliano, Emile Stephan,
+Kyle Rose, and Erik Nygren for their reviews and contributions to this
+document.<a href="#appendix-A-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="authors-addresses">
