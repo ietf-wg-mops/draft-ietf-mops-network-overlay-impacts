@@ -126,6 +126,13 @@ operating systems, browsers, and applications increasingly integrate
 these privacy-enhancing overlays, they introduce architectural changes
 to the underlying network behavior.
 
+These overlays frequently obfuscate client IP geolocation, alter path
+MTU characteristics, disrupt standard anycast routing, add latency and
+jitter, or mask flow identifiers. Such changes directly interfere with
+or undermine the traffic engineering, localized edge-caching, load
+balancing, and low-latency optimizations that streaming platforms rely
+upon.
+
 Privacy is not the only motivation for deploying network overlays.
 Enterprises commonly require VPNs or Secure Web Gateways (SWGs) on
 employee devices, including when employees work from home, and these
@@ -136,13 +143,6 @@ using tunnel brokers {{?RFC3053}} or Teredo {{?RFC4380}}. Many of the
 operational impacts described in this document can also arise in
 these deployments. Some of these motivations, such as enterprise
 policy, are outside the influence of the network operator.
-
-These overlays frequently obfuscate client IP geolocation, alter path
-MTU characteristics, disrupt standard anycast routing, add latency and
-jitter, or mask flow identifiers. Such changes directly interfere with
-or undermine the traffic engineering, localized edge-caching, load
-balancing, and low-latency optimizations that streaming platforms rely
-upon.
 
 # Internet Privacy Enhancements
 
@@ -913,6 +913,7 @@ Streaming Video Technology Alliance (SVTA) based on their work studying
 the impacts of network overlays on streaming platforms. The
 contributions from Brian Paxton on observed overlay behavior and
 comments from Jay Robertson have been very helpful. The authors are also
-very grateful to David Schinazi, Leonard Giuliano, Emile Stephan, and
-Kyle Rose for their reviews and contributions to this document.
+very grateful to David Schinazi, Leonard Giuliano, Emile Stephan,
+Kyle Rose, and Erik Nygren for their reviews and contributions to this
+document.
 
