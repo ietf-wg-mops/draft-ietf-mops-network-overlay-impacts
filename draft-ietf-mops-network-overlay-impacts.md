@@ -515,8 +515,9 @@ network, or on a host operating in IPv6-only mode on an IPv6-mostly
 network {{?RFC8925}}, the overlay traffic depends on the network's
 IPv4 transition mechanism, such as NAT64 {{?RFC6146}}, MAP-T
 {{?RFC7599}}, or Lightweight 4over6 {{?RFC7596}}, even when the
-streaming service itself is reachable over IPv6. During large streaming events, this can place additional
-load on the translation or encapsulation gateways.
+streaming service itself is reachable over IPv6. During large
+streaming events, this can place additional load on the translation
+or encapsulation gateways.
 
 ### DNS Policy Changes {#dns-policy-changes}
 
