@@ -5,8 +5,8 @@
 Media OPerationS                                                 G. Deen
 Internet-Draft                                      Comcast-NBCUniversal
 Intended status: Informational                                 S. Mishra
-Expires: 2 May 2027                                              Verizon
-                                                         29 October 2026
+Expires: 3 May 2027                                              Verizon
+                                                         30 October 2026
 
 
                Network Overlay Impacts to Streaming Video
@@ -56,7 +56,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 2 May 2027.
+   This Internet-Draft will expire on 3 May 2027.
 
 Copyright Notice
 
@@ -1092,7 +1092,7 @@ Authors' Addresses
 
    Glenn Deen
    Comcast-NBCUniversal
-   Email: glenn_deen@comcast.com
+   Email: rgd.ietf@gmail.com
 
 
    Sanjay Mishra
