@@ -33,7 +33,7 @@ author:
  -
     fullname: "Glenn Deen"
     organization: Comcast-NBCUniversal
-    email: "glenn_deen@comcast.com"
+    email: "rgd.ietf@gmail.com"
  -
     fullname: "Sanjay Mishra"
     organization: Verizon
